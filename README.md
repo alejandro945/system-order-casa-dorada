@@ -1,6 +1,6 @@
 # Título del Proyecto
 
-_Coffee Shop_
+_Casa Dorada System Order_
 
 ## Comenzando 🚀
 
@@ -94,4 +94,4 @@ Este proyecto está bajo la Licencia (MIT) - mira el archivo [LICENSE.md](LICENS
 
 
 ---
-⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945) 😊
+⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945)[Luis Murcia](https://github.com/luis486) 😊
