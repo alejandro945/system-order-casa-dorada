@@ -18,6 +18,8 @@ public class Restaurant {
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
     }
+    public Restaurant(){
+    }
 
     public List<Product> getProducts() {
         return this.products;
