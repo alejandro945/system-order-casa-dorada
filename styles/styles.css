@@ -5,3 +5,7 @@
 .background2{
     -fx-background-color: #efb810;
 }
+
+.background3{
+    -fx-background-image: url("La-casa-dorada.jpg");
+}

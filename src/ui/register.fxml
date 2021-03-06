@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" styleClass="background2" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="background3">
+         <children>
+            <Label layoutX="197.0" layoutY="72.0" prefHeight="36.0" prefWidth="173.0" text="Register User" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="116.0" layoutY="131.0" text="Name(s):" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="114.0" layoutY="170.0" text="Last name(s): " textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="114.0" layoutY="215.0" prefHeight="26.0" prefWidth="112.0" text="Name of user:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="114.0" layoutY="256.0" prefHeight="26.0" prefWidth="83.0" text="Password:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="248.0" layoutY="257.0" prefHeight="25.0" prefWidth="155.0" />
+            <TextField layoutX="248.0" layoutY="132.0" prefHeight="25.0" prefWidth="155.0" promptText="You can only enter strings" />
+            <TextField layoutX="248.0" layoutY="171.0" prefHeight="25.0" prefWidth="155.0" promptText="You can only enter strings" />
+            <TextField layoutX="248.0" layoutY="216.0" prefHeight="25.0" prefWidth="155.0" />
+            <Button layoutX="232.0" layoutY="313.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="112.0" text="Sing in">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>

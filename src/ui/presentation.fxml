@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="495.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="495.0" styleClass="background3" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="449.0" fitWidth="523.0" layoutX="-28.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../imgs/La-casa-dorada.jpg" />
-         </image>
-      </ImageView>
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="494.0">
         <menus>
           <Menu mnemonicParsing="false" text="Option">
             <items>
-              <MenuItem mnemonicParsing="false" text="Log in" />
-                  <MenuItem mnemonicParsing="false" text="Register" />
+              <MenuItem fx:id="showLogIn" mnemonicParsing="false" text="Log in" />
+                  <MenuItem fx:id="showRegisterUser" mnemonicParsing="false" text="Register" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <Label layoutX="155.0" layoutY="182.0" stylesheets="@../../styles/styles.css" text="Welcome!" textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
