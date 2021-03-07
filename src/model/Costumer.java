@@ -7,14 +7,20 @@ public class Costumer {
     private String address;
     private int telephone;
     private String suggestions;
+    private User creator;
+    private User lastEditor;
+    private boolean state;
 
-    public Costumer(String name, String lastName, int id, String address, int telephone, String suggestions) {
+    public Costumer(String name, String lastName, int id, String address, int telephone, String suggestions,
+            User creator) {
         this.name = name;
         this.lastName = lastName;
         this.id = id;
         this.address = address;
         this.telephone = telephone;
         this.suggestions = suggestions;
+        this.creator = creator;
+        this.state = true;
     }
 
     public String getName() {
@@ -64,4 +70,29 @@ public class Costumer {
     public void setSuggestions(String suggestions) {
         this.suggestions = suggestions;
     }
+
+    public User getCreator() {
+        return this.creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public User getLastEditor() {
+        return this.lastEditor;
+    }
+
+    public void setLastEditor(User lastEditor) {
+        this.lastEditor = lastEditor;
+    }
+
+    public boolean getState() {
+        return this.state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
 }

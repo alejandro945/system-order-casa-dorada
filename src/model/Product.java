@@ -8,13 +8,35 @@ public class Product implements Comparable<Product> {
     private List<Ingredients> ingredients;
     private ProductSize size;
     private int price;
+    private User creator;
+    private User lastEditor;
+    private boolean state;
 
-    public Product(String name, ProductType type, List<Ingredients> ingredients, ProductSize size, int price) {
+    public Product(String name, ProductType type, List<Ingredients> ingredients, ProductSize size, int price,
+            User creator) {
         this.name = name;
         this.type = type;
         this.ingredients = ingredients;
         this.size = size;
         this.price = price;
+        this.creator = creator;
+        this.state = true;
+    }
+
+    public User getCreator() {
+        return this.creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public User getLastEditor() {
+        return this.lastEditor;
+    }
+
+    public void setLastEditor(User lastEditor) {
+        this.lastEditor = lastEditor;
     }
 
     public String getName() {
@@ -55,6 +77,14 @@ public class Product implements Comparable<Product> {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public boolean getState() {
+        return this.state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 
     @Override

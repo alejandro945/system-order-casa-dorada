@@ -8,42 +8,52 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" styleClass="background2" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="background3">
+      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
          <children>
-            <Label layoutX="197.0" layoutY="72.0" prefHeight="36.0" prefWidth="173.0" text="Register User" textFill="WHITE">
+            <Label layoutX="162.0" layoutY="24.0" prefHeight="43.0" prefWidth="189.0" text="Register User" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="25.0" />
+                  <Font name="System Bold Italic" size="29.0" />
                </font>
             </Label>
-            <Label layoutX="116.0" layoutY="131.0" text="Name(s):" textFill="WHITE">
+            <Label layoutX="98.0" layoutY="80.0" text="Name(s):" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="114.0" layoutY="170.0" text="Last name(s): " textFill="WHITE">
+            <Label layoutX="96.0" layoutY="119.0" text="Last name(s): " textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="114.0" layoutY="215.0" prefHeight="26.0" prefWidth="112.0" text="Name of user:" textFill="WHITE">
+            <Label layoutX="96.0" layoutY="164.0" prefHeight="26.0" prefWidth="112.0" text="Name of user:" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="114.0" layoutY="256.0" prefHeight="26.0" prefWidth="83.0" text="Password:" textFill="WHITE">
+            <Label layoutX="96.0" layoutY="205.0" prefHeight="26.0" prefWidth="83.0" text="Password:" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <PasswordField layoutX="248.0" layoutY="257.0" prefHeight="25.0" prefWidth="155.0" />
-            <TextField layoutX="248.0" layoutY="132.0" prefHeight="25.0" prefWidth="155.0" promptText="You can only enter strings" />
-            <TextField layoutX="248.0" layoutY="171.0" prefHeight="25.0" prefWidth="155.0" promptText="You can only enter strings" />
-            <TextField layoutX="248.0" layoutY="216.0" prefHeight="25.0" prefWidth="155.0" />
-            <Button layoutX="232.0" layoutY="313.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="112.0" text="Sing in">
+            <PasswordField alignment="CENTER" layoutX="230.0" layoutY="206.0" prefHeight="31.0" prefWidth="198.0" promptText="Password" />
+            <TextField alignment="CENTER" layoutX="230.0" layoutY="81.0" prefHeight="31.0" prefWidth="198.0" promptText="Name" />
+            <TextField alignment="CENTER" layoutX="230.0" layoutY="120.0" prefHeight="31.0" prefWidth="198.0" promptText="Last Name" />
+            <TextField alignment="CENTER" layoutX="230.0" layoutY="165.0" prefHeight="31.0" prefWidth="198.0" promptText="Username" />
+            <Button layoutX="157.0" layoutY="261.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="198.0" style="-fx-background-color: blue;" text="Create Account" textFill="WHITE">
                <font>
-                  <Font size="22.0" />
+                  <Font name="System Bold Italic" size="22.0" />
+               </font>
+            </Button>
+            <Label layoutX="157.0" layoutY="313.0" text="Already have an account?" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="179.0" layoutY="345.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Sing in" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="22.0" />
                </font>
             </Button>
          </children>

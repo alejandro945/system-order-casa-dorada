@@ -11,9 +11,11 @@ public class Order {
     private Employee employee;
     private Date date;
     private String suggestion;
+    private User creator;
+    private User lastEditor;
 
     public Order(int code, State state, List<Product> products, List<Integer> amount, Costumer costumer,
-            Employee employee, Date date, String suggestion) {
+            Employee employee, Date date, String suggestion, User creator) {
         this.code = code;
         this.state = state;
         this.products = products;
@@ -22,6 +24,7 @@ public class Order {
         this.employee = employee;
         this.date = date;
         this.suggestion = suggestion;
+        this.creator = creator;
     }
 
     public int getCode() {
@@ -86,6 +89,22 @@ public class Order {
 
     public void setSuggestion(String suggestion) {
         this.suggestion = suggestion;
+    }
+
+    public User getCreator() {
+        return this.creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public User getLastEditor() {
+        return this.lastEditor;
+    }
+
+    public void setLastEditor(User lastEditor) {
+        this.lastEditor = lastEditor;
     }
 
 }
