@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
          <children>
@@ -37,11 +37,11 @@
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <PasswordField alignment="CENTER" layoutX="230.0" layoutY="206.0" prefHeight="31.0" prefWidth="198.0" promptText="Password" />
-            <TextField alignment="CENTER" layoutX="230.0" layoutY="81.0" prefHeight="31.0" prefWidth="198.0" promptText="Name" />
-            <TextField alignment="CENTER" layoutX="230.0" layoutY="120.0" prefHeight="31.0" prefWidth="198.0" promptText="Last Name" />
-            <TextField alignment="CENTER" layoutX="230.0" layoutY="165.0" prefHeight="31.0" prefWidth="198.0" promptText="Username" />
-            <Button layoutX="157.0" layoutY="261.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="198.0" style="-fx-background-color: blue;" text="Create Account" textFill="WHITE">
+            <PasswordField fx:id="txtPasswordRegister" alignment="CENTER" layoutX="230.0" layoutY="206.0" prefHeight="31.0" prefWidth="198.0" promptText="Password" />
+            <TextField fx:id="txtNameRegister" alignment="CENTER" layoutX="230.0" layoutY="81.0" prefHeight="31.0" prefWidth="198.0" promptText="Name" />
+            <TextField fx:id="txtLastNameRegister" alignment="CENTER" layoutX="230.0" layoutY="120.0" prefHeight="31.0" prefWidth="198.0" promptText="Last Name" />
+            <TextField fx:id="txtNameUserRegister" alignment="CENTER" layoutX="230.0" layoutY="165.0" prefHeight="31.0" prefWidth="198.0" promptText="Username" />
+            <Button layoutX="157.0" layoutY="261.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="48.0" prefWidth="198.0" style="-fx-background-color: blue;" text="Create Account" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="22.0" />
                </font>
@@ -51,7 +51,7 @@
                   <Font name="System Italic" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="179.0" layoutY="345.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Sing in" textFill="WHITE">
+            <Button layoutX="179.0" layoutY="345.0" mnemonicParsing="false" onAction="#showLogIn" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Sing in" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="22.0" />
                </font>
