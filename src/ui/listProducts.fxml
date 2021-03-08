@@ -8,16 +8,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProducts" layoutX="-11.0" prefHeight="523.0" prefWidth="495.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProducts" layoutX="-11.0" prefHeight="523.0" prefWidth="485.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colPriceProducts" prefWidth="78.0" text="PRICE" />
-            <TableColumn fx:id="colNameProducts" text="NAME" />
-            <TableColumn fx:id="colProductType" prefWidth="135.0" text="PRODUCT TYPE" />
-            <TableColumn fx:id="colIngredientsProducts" prefWidth="104.0" text="INGREDIENTS" />
-            <TableColumn fx:id="colSizeProducts" prefWidth="96.0" text="SIZE" />
-            <TableColumn prefWidth="113.0" text="PRICE" />
+            <TableColumn fx:id="colNameProducts" prefWidth="57.0" text="NAME" />
+            <TableColumn fx:id="colProductType" prefWidth="119.0" text="PRODUCT TYPE" />
+            <TableColumn fx:id="colIngredientsProducts" minWidth="8.0" prefWidth="98.0" text="INGREDIENTS" />
+            <TableColumn fx:id="colSizeProducts" prefWidth="59.0" text="SIZE" />
+            <TableColumn fx:id="colCreatorProducts" prefWidth="71.0" text="USER" />
+            <TableColumn fx:id="colSizeProducts1" prefWidth="220.0" text="SIZE" />
          </columns>
       </TableView>
       <Label layoutX="489.0" layoutY="14.0" text="Name:">
@@ -50,22 +51,22 @@
       <TextField fx:id="txtIngredientsProducts" layoutX="491.0" layoutY="171.0" />
       <TextField fx:id="txtSizeProducts" layoutX="491.0" layoutY="224.0" />
       <TextField fx:id="txtPriceProducts" layoutX="495.0" layoutY="283.0" />
-      <Button layoutX="502.0" layoutY="357.0" mnemonicParsing="false" onAction="#addProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Añadir" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="357.0" mnemonicParsing="false" onAction="#createProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="398.0" mnemonicParsing="false" onAction="#actualizeProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Actualizar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="398.0" mnemonicParsing="false" onAction="#updateProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="435.0" mnemonicParsing="false" onAction="#inhabilitProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Deshabilitar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="435.0" mnemonicParsing="false" onAction="#disableProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Eliminar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

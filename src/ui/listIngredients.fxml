@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listIngredients" prefHeight="523.0" prefWidth="482.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listIngredients" prefHeight="523.0" prefWidth="482.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colNameIngredients" prefWidth="480.0" text="NAME" />
          </columns>
@@ -21,22 +21,22 @@
          </font>
       </Label>
       <TextField fx:id="txtNameIngredients" layoutX="495.0" layoutY="183.0" />
-      <Button layoutX="502.0" layoutY="283.0" mnemonicParsing="false" onAction="#addIngredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Añadir" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="283.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="330.0" mnemonicParsing="false" onAction="#actualizeIngredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Actualizar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="330.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="376.0" mnemonicParsing="false" onAction="#inhabilitIntegredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Deshabilitar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="376.0" mnemonicParsing="false" onAction="#disableIntegredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="417.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Eliminar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="417.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

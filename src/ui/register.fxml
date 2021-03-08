@@ -8,54 +8,60 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
+      <Pane prefHeight="428.0" prefWidth="523.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
          <children>
-            <Label layoutX="162.0" layoutY="24.0" prefHeight="43.0" prefWidth="189.0" text="Register User" textFill="WHITE">
+            <Label layoutX="162.0" layoutY="14.0" prefHeight="43.0" prefWidth="189.0" text="Register User" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="29.0" />
                </font>
             </Label>
-            <Label layoutX="98.0" layoutY="80.0" text="Name(s):" textFill="WHITE">
+            <Label layoutX="96.0" layoutY="68.0" text="Name(s):" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="96.0" layoutY="119.0" text="Last name(s): " textFill="WHITE">
+            <Label layoutX="57.0" layoutY="108.0" text="Last name(s): " textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="96.0" layoutY="164.0" prefHeight="26.0" prefWidth="112.0" text="Name of user:" textFill="WHITE">
+            <Label layoutX="57.0" layoutY="182.0" prefHeight="26.0" prefWidth="112.0" text="Name of user:" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="96.0" layoutY="205.0" prefHeight="26.0" prefWidth="83.0" text="Password:" textFill="WHITE">
+            <Label layoutX="81.0" layoutY="225.0" prefHeight="26.0" prefWidth="83.0" text="Password:" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtPasswordRegister" alignment="CENTER" layoutX="230.0" layoutY="206.0" prefHeight="31.0" prefWidth="198.0" promptText="Password" />
-            <TextField fx:id="txtNameRegister" alignment="CENTER" layoutX="230.0" layoutY="81.0" prefHeight="31.0" prefWidth="198.0" promptText="Name" />
-            <TextField fx:id="txtLastNameRegister" alignment="CENTER" layoutX="230.0" layoutY="120.0" prefHeight="31.0" prefWidth="198.0" promptText="Last Name" />
-            <TextField fx:id="txtNameUserRegister" alignment="CENTER" layoutX="230.0" layoutY="165.0" prefHeight="31.0" prefWidth="198.0" promptText="Username" />
-            <Button layoutX="157.0" layoutY="261.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="48.0" prefWidth="198.0" style="-fx-background-color: blue;" text="Create Account" textFill="WHITE">
+            <PasswordField fx:id="txtPasswordRegister" alignment="CENTER" layoutX="186.0" layoutY="222.0" prefHeight="31.0" prefWidth="198.0" promptText="Password" />
+            <TextField fx:id="txtNameRegister" alignment="CENTER" layoutX="186.0" layoutY="66.0" prefHeight="31.0" prefWidth="198.0" promptText="Name" />
+            <TextField fx:id="txtLastNameRegister" alignment="CENTER" layoutX="186.0" layoutY="106.0" prefHeight="31.0" prefWidth="198.0" promptText="Last Name" />
+            <TextField fx:id="txtNameUserRegister" alignment="CENTER" layoutX="186.0" layoutY="185.0" prefHeight="31.0" prefWidth="198.0" promptText="Username" />
+            <Button layoutX="152.0" layoutY="268.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="44.0" prefWidth="189.0" style="-fx-background-color: gold;" text="Create Account" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="164.0" layoutY="312.0" text="Already have an account?" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="169.0" layoutY="338.0" mnemonicParsing="false" onAction="#showLogIn" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: gold;" text="Sing in" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="22.0" />
                </font>
             </Button>
-            <Label layoutX="157.0" layoutY="313.0" text="Already have an account?" textFill="WHITE">
+            <Label layoutX="57.0" layoutY="149.0" text="Identification:" textFill="WHITE">
                <font>
-                  <Font name="System Italic" size="18.0" />
+                  <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="179.0" layoutY="345.0" mnemonicParsing="false" onAction="#showLogIn" prefHeight="47.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Sing in" textFill="WHITE">
-               <font>
-                  <Font name="System Bold Italic" size="22.0" />
-               </font>
-            </Button>
+            <TextField fx:id="txtIDRegister" alignment="CENTER" layoutX="186.0" layoutY="146.0" prefHeight="31.0" prefWidth="198.0" promptText="ID" />
          </children>
       </Pane>
    </children>

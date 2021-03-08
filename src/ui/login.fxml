@@ -29,12 +29,12 @@
             </Label>
             <PasswordField fx:id="txtPasswordLogin" layoutX="235.0" layoutY="205.0" prefHeight="31.0" prefWidth="180.0" />
             <TextField fx:id="txtNameUserLogin" layoutX="235.0" layoutY="166.0" prefHeight="31.0" prefWidth="180.0" />
-            <Button layoutX="110.0" layoutY="270.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="48.0" prefWidth="112.0" style="-fx-background-color: blue;" text="Sing In" textFill="WHITE">
+            <Button layoutX="123.0" layoutY="270.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="48.0" prefWidth="112.0" style="-fx-background-color: gold;" text="Sing Up" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="22.0" />
                </font>
             </Button>
-            <Button layoutX="301.0" layoutY="270.0" mnemonicParsing="false" onAction="#singUp" style="-fx-background-color: blue;" text="Sing Up" textFill="WHITE">
+            <Button layoutX="269.0" layoutY="270.0" mnemonicParsing="false" onAction="#logIn" style="-fx-background-color: gold;" text="Log In" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="22.0" />
                </font>

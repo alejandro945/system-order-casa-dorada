@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listOrders" prefHeight="523.0" prefWidth="478.0" styleClass="background3" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listOrders" prefHeight="523.0" prefWidth="478.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colCodeOrders" prefWidth="91.0" text="CODE" />
             <TableColumn fx:id="colStateOrders" prefWidth="78.0" text="STATE" />
@@ -49,22 +49,22 @@
       <TextField fx:id="txtCostumerNameOrders" layoutX="491.0" layoutY="177.0" />
       <TextField fx:id="txtEmployeeOrders" layoutX="493.0" layoutY="249.0" />
       <TextField fx:id="txtDateOrders" layoutX="491.0" layoutY="322.0" />
-      <Button layoutX="502.0" layoutY="357.0" mnemonicParsing="false" onAction="#addOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Añadir" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="357.0" mnemonicParsing="false" onAction="#createOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="398.0" mnemonicParsing="false" onAction="#actualizeOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Actualizar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="398.0" mnemonicParsing="false" onAction="#updateOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="435.0" mnemonicParsing="false" onAction="#inhabilitOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Deshabilitar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="435.0" mnemonicParsing="false" onAction="#disableOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Eliminar" textFill="WHITE">
+      <Button layoutX="502.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

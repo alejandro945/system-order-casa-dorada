@@ -9,17 +9,19 @@ public class Restaurant {
     private List<Employee> employees;
     private List<Order> orders;
     private List<Ingredients> ingredients;
+    private List<User> users;
 
-    public Restaurant(List<Product> products, List<Costumer> costumers, List<Employee> employees, List<Order> orders,
-            List<Ingredients> ingredients) {
+    public Restaurant() {
         products = new ArrayList<Product>();
         costumers = new ArrayList<Costumer>();
         employees = new ArrayList<Employee>();
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
+        users = new ArrayList<User>();
     }
 
-    public Restaurant() {
+    public List<User> getUsers() {
+        return users;
     }
 
     public List<Product> getProducts() {
@@ -60,6 +62,44 @@ public class Restaurant {
 
     public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void addNewUser(String name, String lastName, int id, String userName, String password) {
+        users.add(new User(name, lastName, id, userName, password));
+    }
+
+    public Boolean searchUser(String userName) {
+        boolean found = false;
+        if (users == null) {
+            found = false;
+        } else {
+            for (int i = 0; i < users.size() && !found; i++) {
+                if (users.get(i).getUserName().equals(userName)) {
+                    found = true;
+                }
+            }
+        }
+        return found;
+    }
+
+    public User userVerification(String userName, String password) {
+        User logged = null;
+        boolean found = false;
+        for (int i = 0; i < users.size() && !found; i++) {
+            if (users.get(i).getUserName().equals(userName)) {
+                logged = users.get(i);
+                found = true;
+            }
+        }
+        return logged;
+    }
+
+    public int getCode() {
+        int count = 0;
+        for (int i = 0; i < users.size(); i++) {
+            count++;
+        }
+        return count + 1;
     }
 
     public String addProduct(String name, ProductType type, List<Ingredients> ingredients, ProductSize size, int price,
