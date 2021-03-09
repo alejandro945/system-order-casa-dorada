@@ -9,7 +9,6 @@ public class Restaurant {
     private List<Employee> employees;
     private List<Order> orders;
     private List<Ingredients> ingredients;
-    private List<User> users;
 
     public Restaurant() {
         products = new ArrayList<Product>();
@@ -17,11 +16,6 @@ public class Restaurant {
         employees = new ArrayList<Employee>();
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
-        users = new ArrayList<User>();
-    }
-
-    public List<User> getUsers() {
-        return users;
     }
 
     public List<Product> getProducts() {
@@ -64,17 +58,18 @@ public class Restaurant {
         this.ingredients = ingredients;
     }
 
-    public void addNewUser(String name, String lastName, int id, String userName, String password) {
-        users.add(new User(name, lastName, id, userName, password));
+    public void addNewUser(String name, String lastName, int id, String userName, String password, String path) {
+        employees.add(new User(name, lastName, id, userName, password, path));
     }
 
     public Boolean searchUser(String userName) {
         boolean found = false;
-        if (users == null) {
+        if (employees == null) {
             found = false;
         } else {
-            for (int i = 0; i < users.size() && !found; i++) {
-                if (users.get(i).getUserName().equals(userName)) {
+            for (int i = 0; i < employees.size() && !found; i++) {
+                User user = (User) employees.get(i);
+                if (user.getUserName().equals(userName)) {
                     found = true;
                 }
             }
@@ -85,9 +80,10 @@ public class Restaurant {
     public User userVerification(String userName, String password) {
         User logged = null;
         boolean found = false;
-        for (int i = 0; i < users.size() && !found; i++) {
-            if (users.get(i).getUserName().equals(userName)) {
-                logged = users.get(i);
+        for (int i = 0; i < employees.size() && !found; i++) {
+            User user = (User) employees.get(i);
+            if (user.getUserName().equals(userName)) {
+                logged = user;
                 found = true;
             }
         }
@@ -96,7 +92,7 @@ public class Restaurant {
 
     public int getCode() {
         int count = 0;
-        for (int i = 0; i < users.size(); i++) {
+        for (int i = 0; i < orders.size(); i++) {
             count++;
         }
         return count + 1;

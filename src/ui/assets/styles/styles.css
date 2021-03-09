@@ -1,8 +1,14 @@
-
+.background{
+-fx-background-color: #000
+}
+.background2{
+    -fx-background-image: url("../img/ground3.jpg");
+}
 .background3{
-    -fx-background-image: url("../img/La-casa-dorada.jpg");
+    -fx-background-image: url("../img/main-ground.jpg");
+    -fx-background-size: cover, auto;
 }
 
-.background4{
-    -fx-background-image: url("../img/fondo3.jpg");
+.background4{ 
+    -fx-background-image: url("../img/ground2.jpg");
 }
