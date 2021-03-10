@@ -67,7 +67,7 @@ public class ControllerRestaurantGUI implements Initializable {
     private TableColumn<Product, Ingredients> colIngredientsProducts;
 
     @FXML
-    private TableColumn<Product, ProductSize> colSizeProducts;
+    private TableColumn<Product, String> colSizeProducts;
 
     @FXML
     private TableColumn<Product, User> colCreatorProducts;
@@ -76,17 +76,35 @@ public class ControllerRestaurantGUI implements Initializable {
     private TextField txtNameProducts;
 
     @FXML
-    private TextField txtProductType;
-
-    @FXML
-    private TextField txtIngredientsProducts;
-
-    @FXML
     private TextField txtSizeProducts;
 
     @FXML
     private TextField txtPriceProducts;
 
+    @FXML
+    private ComboBox<String> comboIngredients;
+
+    @FXML
+    private Label showMessage;
+
+    @FXML
+    private ComboBox<String> comboProductType;
+    // INGREDIENTS
+    @FXML
+    private TableView<Ingredients> listIngredients;
+
+    @FXML
+    private TableColumn<Ingredients, String> colNameIngredients;
+
+    @FXML
+    private TableColumn<Ingredients, User> colCreatorIngredients;
+
+    @FXML
+    private TableColumn<Ingredients, User> colEditorIngredients;
+
+    @FXML
+    private TextField txtNameIngredients;
+    // REDUX
     public Restaurant restaurant;
     private String pathRender;
 
@@ -120,6 +138,15 @@ public class ControllerRestaurantGUI implements Initializable {
     }
 
     @FXML
+    void showIngredientsCrud(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("listIngredients.fxml"));
+        fxmlLoader.setController(this);
+        Parent root = fxmlLoader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+    }
+
+    @FXML
     public void logIn(ActionEvent event) throws IOException {
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         if (user != null) {
@@ -130,6 +157,7 @@ public class ControllerRestaurantGUI implements Initializable {
             mainPane.getChildren().setAll(root);
             txtNameUserRegister.setText("");
             txtPasswordRegister.setText("");
+            restaurant.setLoggedUser(user);
             // this.lblName.setText(user.getUserName()); implementar label and user icon
         } else {
             Alert alert = new Alert(AlertType.ERROR);
@@ -143,7 +171,7 @@ public class ControllerRestaurantGUI implements Initializable {
     @FXML
     public void createAccount(ActionEvent event) throws IOException {
         boolean validateFields = registerValidation(txtNameRegister.getText(), txtLastNameRegister.getText(),
-                txtIDRegister.getText(), txtNameUserRegister.getText(), txtPasswordRegister.getText());
+                txtIDRegister.getText(), txtNameUserRegister.getText(), txtPasswordRegister.getText(), this.pathRender);
         if (!validateFields) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Warning Dialog");
@@ -182,7 +210,8 @@ public class ControllerRestaurantGUI implements Initializable {
         }
     }
 
-    public boolean registerValidation(String name, String lastName, String id, String userName, String password) {
+    public boolean registerValidation(String name, String lastName, String id, String userName, String password,
+            String pathRender) {
         boolean complete = true;
         if (name.equals("") || lastName.equals("") || id.equals("") || userName.equals("") || password.equals("")
                 || pathRender.equals("")) {
@@ -219,11 +248,6 @@ public class ControllerRestaurantGUI implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-
-    }
-
     @FXML
     void createProducts(ActionEvent event) {
 
@@ -244,15 +268,62 @@ public class ControllerRestaurantGUI implements Initializable {
 
     }
 
-    public void initTable() throws IOException {
+    public void initProductTable() throws IOException {
         ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
         listProducts.setItems(products);
         colPriceProducts.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
         colNameProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         colProductType.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
         colIngredientsProducts.setCellValueFactory(new PropertyValueFactory<Product, Ingredients>("ingredients"));
-        colSizeProducts.setCellValueFactory(new PropertyValueFactory<Product, ProductSize>("size"));
+        colSizeProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
         colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("creator"));
     }
 
+    public void initComboIngredientBox() {
+        ObservableList<String> ingredientBox = FXCollections.observableArrayList(restaurant.getIngredientsFormated());
+        comboIngredients.setValue("Select an option");
+        comboIngredients.setItems(ingredientBox);
+    }
+
+    @FXML
+    void setIngredient(ActionEvent event) {
+
+    }
+
+    @FXML
+    void createIngredients(ActionEvent event) throws IOException {
+        restaurant.addIngrendient(txtNameIngredients.getText(), restaurant.getLoggedUser());
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("The ingredient have been added succesfully");
+        alert.showAndWait();
+        initIngredietTable();
+    }
+
+    @FXML
+    void deleteIngredients(ActionEvent event) {
+        // restaurant.deleteIngredient(positionIngredient);
+    }
+
+    @FXML
+    void disableIntegredients(ActionEvent event) {
+
+    }
+
+    @FXML
+    void updateIngredients(ActionEvent event) {
+        // restaurant.setInfoIngredient(ingredient, name, lastEditor)
+    }
+
+    public void initIngredietTable() throws IOException {
+        ObservableList<Ingredients> ingredients = FXCollections.observableArrayList(restaurant.getIngredients());
+        listIngredients.setItems(ingredients);
+        colNameIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, String>("name"));
+        colCreatorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("creator"));
+        colEditorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("lastEditor"));
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+
+    }
 }

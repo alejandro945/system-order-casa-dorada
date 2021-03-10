@@ -53,4 +53,9 @@ public class Ingredients implements Comparable<Ingredients> {
         return getName().compareTo(i.getName());
     }
 
+    @Override
+    public String toString() {
+        return "\"" + getName() + "\"" + "," + " ";
+    }
+
 }

@@ -9,6 +9,7 @@ public class Restaurant {
     private List<Employee> employees;
     private List<Order> orders;
     private List<Ingredients> ingredients;
+    private User logged;
 
     public Restaurant() {
         products = new ArrayList<Product>();
@@ -62,6 +63,14 @@ public class Restaurant {
         employees.add(new User(name, lastName, id, userName, password, path));
     }
 
+    public void setLoggedUser(User user) {
+        this.logged = user;
+    }
+
+    public User getLoggedUser() {
+        return this.logged;
+    }
+
     public Boolean searchUser(String userName) {
         boolean found = false;
         if (employees == null) {
@@ -98,7 +107,7 @@ public class Restaurant {
         return count + 1;
     }
 
-    public String addProduct(String name, ProductType type, List<Ingredients> ingredients, ProductSize size, int price,
+    public String addProduct(String name, ProductType type, List<Ingredients> ingredients, String size, int price,
             User creator) {
         String msg = "";
         Product newProduct = null;
@@ -124,7 +133,7 @@ public class Restaurant {
     }
 
     public String setProductInfo(Product product, String newName, ProductType newType, List<Ingredients> newIngredients,
-            ProductSize newSize, int newPrice, User lastEditor) {
+            String newSize, int newPrice, User lastEditor) {
         product.setName(newName);
         product.setType(newType);
         product.setIngredients(newIngredients);
@@ -142,6 +151,14 @@ public class Restaurant {
     public String setState(Product product, boolean newState) {
         product.setState(newState);
         return "The product state have been changed";
+    }
+
+    public String getIngredientsFormated() {
+        String ingredients = "";
+        for (Ingredients ingredient : this.ingredients) {
+            ingredients += ingredient.toString();
+        }
+        return ingredients;
     }
 
     public String addIngrendient(String name, User creator) {

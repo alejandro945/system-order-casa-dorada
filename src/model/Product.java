@@ -6,14 +6,13 @@ public class Product implements Comparable<Product> {
     private String name;
     private ProductType type;
     private List<Ingredients> ingredients;
-    private ProductSize size;
+    private String size;
     private int price;
     private User creator;
     private User lastEditor;
     private boolean state;
 
-    public Product(String name, ProductType type, List<Ingredients> ingredients, ProductSize size, int price,
-            User creator) {
+    public Product(String name, ProductType type, List<Ingredients> ingredients, String size, int price, User creator) {
         this.name = name;
         this.type = type;
         this.ingredients = ingredients;
@@ -63,11 +62,11 @@ public class Product implements Comparable<Product> {
         this.ingredients = ingredients;
     }
 
-    public ProductSize getSize() {
+    public String getSize() {
         return this.size;
     }
 
-    public void setSize(ProductSize size) {
+    public void setSize(String size) {
         this.size = size;
     }
 

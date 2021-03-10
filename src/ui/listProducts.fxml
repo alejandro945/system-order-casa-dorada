@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,67 +10,64 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProducts" layoutX="-11.0" prefHeight="523.0" prefWidth="485.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProducts" layoutX="-11.0" prefHeight="670.0" prefWidth="587.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colPriceProducts" prefWidth="78.0" text="PRICE" />
-            <TableColumn fx:id="colNameProducts" prefWidth="57.0" text="NAME" />
-            <TableColumn fx:id="colProductType" prefWidth="119.0" text="PRODUCT TYPE" />
-            <TableColumn fx:id="colIngredientsProducts" minWidth="8.0" prefWidth="98.0" text="INGREDIENTS" />
-            <TableColumn fx:id="colSizeProducts" prefWidth="59.0" text="SIZE" />
-            <TableColumn fx:id="colCreatorProducts" prefWidth="71.0" text="USER" />
-            <TableColumn fx:id="colSizeProducts1" prefWidth="220.0" text="SIZE" />
+            <TableColumn fx:id="colPriceProducts" prefWidth="101.99996948242188" text="PRICE" />
+            <TableColumn fx:id="colNameProducts" prefWidth="77.0" text="NAME" />
+            <TableColumn fx:id="colProductType" prefWidth="81.0" text="PRODUCT TYPE" />
+            <TableColumn fx:id="colIngredientsProducts" minWidth="8.0" prefWidth="143.0" text="INGREDIENTS" />
+            <TableColumn fx:id="colSizeProducts" prefWidth="65.0" text="SIZE" />
+            <TableColumn fx:id="colCreatorProducts" prefWidth="125.0" text="USER" />
          </columns>
       </TableView>
-      <Label layoutX="489.0" layoutY="14.0" text="Name:">
+      <Label layoutX="650.0" layoutY="57.0" text="Name:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="491.0" layoutY="78.0" prefHeight="21.0" prefWidth="107.0" text="Product Type:">
+      <Label layoutX="578.0" layoutY="107.0" prefHeight="36.0" prefWidth="138.0" text="Product Type:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="489.0" layoutY="142.0" text="Ingredients:">
+      <Label layoutX="600.0" layoutY="156.0" text="Ingredients:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="495.0" layoutY="203.0" text="Size:">
+      <Label layoutX="660.0" layoutY="212.0" text="Size:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="492.0" layoutY="262.0" text="Price:">
+      <Label layoutX="655.0" layoutY="260.0" text="Price:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameProducts" layoutX="491.0" layoutY="44.0" />
-      <TextField fx:id="txtProductType" layoutX="491.0" layoutY="107.0" />
-      <TextField fx:id="txtIngredientsProducts" layoutX="491.0" layoutY="171.0" />
-      <TextField fx:id="txtSizeProducts" layoutX="491.0" layoutY="224.0" />
-      <TextField fx:id="txtPriceProducts" layoutX="495.0" layoutY="283.0" />
-      <Button layoutX="502.0" layoutY="357.0" mnemonicParsing="false" onAction="#createProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <TextField fx:id="txtNameProducts" layoutX="715.0" layoutY="56.0" />
+      <TextField fx:id="txtSizeProducts" layoutX="715.0" layoutY="211.0" />
+      <TextField fx:id="txtPriceProducts" layoutX="715.0" layoutY="259.0" />
+      <Button layoutX="668.0" layoutY="308.0" mnemonicParsing="false" onAction="#createProducts" prefHeight="54.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="398.0" mnemonicParsing="false" onAction="#updateProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button layoutX="668.0" layoutY="379.0" mnemonicParsing="false" onAction="#updateProducts" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="435.0" mnemonicParsing="false" onAction="#disableProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
+      <Button layoutX="668.0" layoutY="463.0" mnemonicParsing="false" onAction="#disableProducts" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteProducts" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button layoutX="668.0" layoutY="556.0" mnemonicParsing="false" onAction="#deleteProducts" prefHeight="65.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="25.0" />
          </font>
       </Button>
       <Label fx:id="showMessage" layoutX="495.0" layoutY="316.0" prefHeight="25.0" prefWidth="206.0">
@@ -76,5 +75,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
+      <ComboBox layoutX="715.0" layoutY="155.0" prefHeight="31.0" prefWidth="186.0" />
+      <ChoiceBox layoutX="715.0" layoutY="107.0" prefHeight="31.0" prefWidth="186.0" />
    </children>
 </Pane>
