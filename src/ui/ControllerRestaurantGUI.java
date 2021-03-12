@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -88,6 +89,11 @@ public class ControllerRestaurantGUI implements Initializable {
     private Label showMessage;
 
     @FXML
+    private Label userNameDashBoard;
+
+    
+
+    @FXML
     private ComboBox<String> comboProductType;
     // INGREDIENTS
     @FXML
@@ -146,15 +152,24 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
     }
 
+    public void showDashBoard() throws IOException, ClassNotFoundException{
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("dashBoard.fxml"));
+        fxmlloader.setController(this);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        loadData();
+    }
+
+    public void loadData() throws FileNotFoundException, ClassNotFoundException, IOException{
+        restaurant.loadPeople();
+    }
+
     @FXML
-    public void logIn(ActionEvent event) throws IOException {
+    public void logIn(ActionEvent event) throws IOException, ClassNotFoundException {
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         if (user != null) {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("dashBoard.fxml"));
-            fxmlloader.setController(this);
-            Parent root = fxmlloader.load();
-            mainPane.getChildren().clear();
-            mainPane.getChildren().setAll(root);
+            showDashBoard();
             txtNameUserRegister.setText("");
             txtPasswordRegister.setText("");
             restaurant.setLoggedUser(user);
@@ -166,6 +181,15 @@ public class ControllerRestaurantGUI implements Initializable {
             alert.setContentText("Name of users and/or password invalid");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    void logOut(ActionEvent event) throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("login.fxml"));
+        fxmlloader.setController(this);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
     }
 
     @FXML
@@ -201,6 +225,7 @@ public class ControllerRestaurantGUI implements Initializable {
                 alert2.showAndWait();
             }
             trimRegisterTxt();
+            restaurant.savePeople();
         } else {
             Alert alert3 = new Alert(AlertType.ERROR);
             alert3.setTitle("Warning Dialog");

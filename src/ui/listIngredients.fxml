@@ -8,39 +8,39 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listIngredients" onMouseClicked="#getingredients" prefHeight="670.0" prefWidth="618.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listIngredients" onMouseClicked="#getingredients" prefHeight="670.0" prefWidth="705.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colNameIngredients" minWidth="0.0" prefWidth="190.0" text="NAME" />
-            <TableColumn fx:id="colCreatorIngredients" prefWidth="209.0" text="CREATOR" />
-            <TableColumn fx:id="colEditorIngredients" prefWidth="218.0" text="EDITOR" />
+            <TableColumn fx:id="colNameIngredients" minWidth="0.0" prefWidth="242.0" text="NAME" />
+            <TableColumn fx:id="colCreatorIngredients" prefWidth="236.0" text="CREATOR" />
+            <TableColumn fx:id="colEditorIngredients" prefWidth="226.0" text="EDITOR" />
          </columns>
       </TableView>
-      <Label layoutX="639.0" layoutY="92.0" text="Name:">
+      <Label layoutX="777.0" layoutY="101.0" text="Name:">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold Italic" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameIngredients" layoutX="723.0" layoutY="93.0" />
-      <Button layoutX="690.0" layoutY="205.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="65.0" prefWidth="197.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <TextField fx:id="txtNameIngredients" layoutX="748.0" layoutY="139.0" />
+      <Button layoutX="751.0" layoutY="349.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="30.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="690.0" layoutY="287.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="65.0" prefWidth="197.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button layoutX="749.0" layoutY="412.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="30.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="690.0" layoutY="368.0" mnemonicParsing="false" onAction="#disableIntegredients" prefHeight="65.0" prefWidth="197.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
+      <Button layoutX="749.0" layoutY="471.0" mnemonicParsing="false" onAction="#disableIntegredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="30.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="690.0" layoutY="455.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="65.0" prefWidth="197.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button layoutX="748.0" layoutY="530.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="30.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
    </children>

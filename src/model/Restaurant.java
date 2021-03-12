@@ -1,20 +1,22 @@
 package model;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
     private List<Product> products;
-    private List<Costumer> costumers;
-    private List<Employee> employees;
+    private List<Person> people;
     private List<Order> orders;
     private List<Ingredients> ingredients;
     private User logged;
+    public static final String FILE_SEPARATOR = "\\ ";
+    public static final String SAVE_PATH_FILE = "data/users.report";
+
 
     public Restaurant() {
         products = new ArrayList<Product>();
-        costumers = new ArrayList<Costumer>();
-        employees = new ArrayList<Employee>();
+        people = new ArrayList<Person>();
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
     }
@@ -27,20 +29,12 @@ public class Restaurant {
         this.products = products;
     }
 
-    public List<Costumer> getCostumers() {
-        return this.costumers;
+    public List<Person> getPeople() {
+        return this.people;
     }
 
-    public void setCostumers(List<Costumer> costumers) {
-        this.costumers = costumers;
-    }
-
-    public List<Employee> getEmployees() {
-        return this.employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setPeople(List<Person> people) {
+        this.people = people;
     }
 
     public List<Order> getOrders() {
@@ -60,7 +54,7 @@ public class Restaurant {
     }
 
     public void addNewUser(String name, String lastName, int id, String userName, String password, String path) {
-        employees.add(new User(name, lastName, id, userName, password, path));
+        people.add(new User(name, lastName, id, userName, password, path));
     }
 
     public void setLoggedUser(User user) {
@@ -71,15 +65,30 @@ public class Restaurant {
         return this.logged;
     }
 
+    public void savePeople() throws FileNotFoundException, IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
+        oos.writeObject(people);
+        oos.close();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadPeople() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SAVE_PATH_FILE));
+        people = (List<Person>) ois.readObject();
+        ois.close();
+    }
+
     public Boolean searchUser(String userName) {
         boolean found = false;
-        if (employees == null) {
+        if (people == null) {
             found = false;
         } else {
-            for (int i = 0; i < employees.size() && !found; i++) {
-                User user = (User) employees.get(i);
-                if (user.getUserName().equals(userName)) {
-                    found = true;
+            for (int i = 0; i < people.size() && !found; i++) {
+                if (people.get(i) instanceof User) {
+                    User user = (User) people.get(i);
+                    if (user.getUserName().equals(userName)) {
+                        found = true;
+                    }
                 }
             }
         }
@@ -89,11 +98,13 @@ public class Restaurant {
     public User userVerification(String userName, String password) {
         User logged = null;
         boolean found = false;
-        for (int i = 0; i < employees.size() && !found; i++) {
-            User user = (User) employees.get(i);
-            if (user.getUserName().equals(userName)) {
-                logged = user;
-                found = true;
+        for (int i = 0; i < people.size() && !found; i++) {
+            if (people.get(i) instanceof User) {
+                User user = (User) people.get(i);
+                if (user.getUserName().equals(userName)) {
+                    logged = user;
+                    found = true;
+                }
             }
         }
         return logged;

@@ -12,3 +12,13 @@
 .background4{ 
     -fx-background-image: url("../img/ground2.jpg");
 }
+
+.background5{ 
+    -fx-background-image: url("../img/restaurant.jpg");
+    -fx-background-size: cover, auto;
+}
+
+.background5{ 
+    -fx-background-image: url("../img/restaurant2.jpg");
+    -fx-background-size: cover, auto;
+}

@@ -5,51 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Java",
             "type": "java",
+            "name": "Launch Main",
             "request": "launch",
-            "stopOnEntry": true,
-            "jdkPath": "${env:JAVA_HOME}/bin",
-            "cwd": "${fileDirname}",
-            "startupClass": "${fileBasenameNoExtension}",
-            "classpath": [
-                ".",
-                "${fileDirname}"
-            ]
+            "mainClass": "ui.Main",
+            "vmArgs": "--module-path C:/Users/USUARIO/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
+            "projectName": "system-order-casa-dorada_11187d08"
         },
-        {
-            "name": "Java Console App",
-            "type": "java",
-            "request": "launch",
-            "stopOnEntry": true,
-            "jdkPath": "${env:JAVA_HOME}/bin",
-            "cwd": "${fileDirname}",
-            "startupClass": "${fileBasenameNoExtension}",
-            "classpath": [
-                ".",
-                "${fileDirname}"
-            ],
-            "externalConsole": true
-        },
+        
         {
             "type": "java",
             "name": "Launch Current File",
-            "jdkPath": "${env:JAVA_HOME}/bin",
-            "cwd": "${fileDirname}",
-            "startupClass": "${fileBasenameNoExtension}",
             "request": "launch",
             "mainClass": "${file}"
         },
-        {
-            "type": "java",
-            "name": "Launch Main",
-            "jdkPath": "${env:JAVA_HOME}/bin",
-            "cwd": "${fileDirname}",
-            "startupClass": "${fileBasenameNoExtension}",
-            "request": "launch",
-            "mainClass": "ui.Main",
-             "vmArgs": "--module-path C:/Users/alejo/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
-            "projectName": "system-order-casa-dorada_143c71f0"
-        }
     ]
 }

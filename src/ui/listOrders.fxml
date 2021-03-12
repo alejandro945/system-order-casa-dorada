@@ -8,63 +8,66 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listOrders" prefHeight="523.0" prefWidth="478.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listOrders" prefHeight="670.0" prefWidth="749.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colCodeOrders" prefWidth="91.0" text="CODE" />
-            <TableColumn fx:id="colStateOrders" prefWidth="78.0" text="STATE" />
-            <TableColumn fx:id="colCostumerNameOrders" prefWidth="124.0" text="COSTUMER NAME" />
-            <TableColumn fx:id="colEmployeeOrders" prefWidth="95.0" text="EMPLOYEE" />
-            <TableColumn fx:id="colDateOrders" prefWidth="105.0" text="DATE" />
+            <TableColumn fx:id="colCodeOrders" prefWidth="83.0" text="CODE" />
+            <TableColumn fx:id="colStateOrders" prefWidth="93.0" text="STATE" />
+            <TableColumn fx:id="colCostumerNameOrders" prefWidth="122.0" text="COSTUMER NAME" />
+            <TableColumn fx:id="colEmployeeOrders" prefWidth="102.0" text="EMPLOYEE" />
+            <TableColumn fx:id="colDateOrders" prefWidth="114.0" text="DATE" />
+            <TableColumn fx:id="colCreatorOrders" prefWidth="49.0" text="USER" />
+            <TableColumn fx:id="colLastEditorOrders" prefWidth="100.0" text="LAST EDITOR" />
+            <TableColumn fx:id="colLastEditorOrders1" prefWidth="85.0" text="STATE" />
          </columns>
       </TableView>
-      <Label layoutX="489.0" layoutY="14.0" prefHeight="21.0" prefWidth="47.0" text="Code:">
+      <Label layoutX="769.0" layoutY="14.0" prefHeight="21.0" prefWidth="47.0" text="Code:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="491.0" layoutY="86.0" text="State:">
+      <Label layoutX="772.0" layoutY="84.0" text="State:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="491.0" layoutY="149.0" text="Costumer name:">
+      <Label layoutX="768.0" layoutY="148.0" text="Costumer name:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="489.0" layoutY="214.0" prefHeight="21.0" prefWidth="79.0" text="Employee:">
+      <Label layoutX="764.0" layoutY="221.0" prefHeight="21.0" prefWidth="79.0" text="Employee:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="493.0" layoutY="288.0" text="Date:">
+      <Label layoutX="764.0" layoutY="288.0" text="Date:">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCodeOrders" layoutX="491.0" layoutY="44.0" />
-      <TextField fx:id="txtStateOrders" layoutX="491.0" layoutY="114.0" />
-      <TextField fx:id="txtCostumerNameOrders" layoutX="491.0" layoutY="177.0" />
-      <TextField fx:id="txtEmployeeOrders" layoutX="493.0" layoutY="249.0" />
-      <TextField fx:id="txtDateOrders" layoutX="491.0" layoutY="322.0" />
-      <Button layoutX="502.0" layoutY="357.0" mnemonicParsing="false" onAction="#createOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <TextField fx:id="txtCodeOrders" layoutX="765.0" layoutY="42.0" />
+      <TextField fx:id="txtStateOrders" layoutX="765.0" layoutY="105.0" />
+      <TextField fx:id="txtCostumerNameOrders" layoutX="765.0" layoutY="182.0" />
+      <TextField fx:id="txtEmployeeOrders" layoutX="765.0" layoutY="250.0" />
+      <TextField fx:id="txtDateOrders" layoutX="765.0" layoutY="310.0" />
+      <Button layoutX="768.0" layoutY="398.0" mnemonicParsing="false" onAction="#createOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="398.0" mnemonicParsing="false" onAction="#updateOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button layoutX="768.0" layoutY="455.0" mnemonicParsing="false" onAction="#updateOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="435.0" mnemonicParsing="false" onAction="#disableOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
+      <Button layoutX="768.0" layoutY="511.0" mnemonicParsing="false" onAction="#disableOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Disable" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="478.0" mnemonicParsing="false" onAction="#deleteOrders" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button layoutX="772.0" layoutY="567.0" mnemonicParsing="false" onAction="#deleteOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
