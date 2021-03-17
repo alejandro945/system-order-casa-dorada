@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class Restaurant {
     private List<Product> products;
     private List<Person> people;
@@ -11,8 +14,7 @@ public class Restaurant {
     private List<Ingredients> ingredients;
     private User logged;
     public static final String FILE_SEPARATOR = "\\ ";
-    public static final String SAVE_PATH_FILE = "data/users.report";
-
+    public static final String SAVE_PATH_FILE = "src/data/users.report";
 
     public Restaurant() {
         products = new ArrayList<Product>();
@@ -66,14 +68,30 @@ public class Restaurant {
     }
 
     public void savePeople() throws FileNotFoundException, IOException {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
-        oos.writeObject(people);
-        oos.close();
+        ObjectOutputStream oos = null;
+        File file = new File(getClass().getResource("/data/users.report").getFile());
+        if (file.exists()) {
+            System.out.println(" El archivo si existe. ");
+        }
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(getPeople());
+            oos.close();
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("We could not find the path");
+            alert.showAndWait();
+        } finally {
+            if (oos != null) {
+                oos.close();
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
-    public void loadPeople() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SAVE_PATH_FILE));
+    public void loadPeople() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(new File(getClass().getResource("/data/users.report").getFile())));
         people = (List<Person>) ois.readObject();
         ois.close();
     }
@@ -98,12 +116,14 @@ public class Restaurant {
     public User userVerification(String userName, String password) {
         User logged = null;
         boolean found = false;
-        for (int i = 0; i < people.size() && !found; i++) {
-            if (people.get(i) instanceof User) {
-                User user = (User) people.get(i);
-                if (user.getUserName().equals(userName)) {
-                    logged = user;
-                    found = true;
+        if (!people.isEmpty()) {
+            for (int i = 0; i < people.size() && !found; i++) {
+                if (people.get(i) instanceof User) {
+                    User user = (User) people.get(i);
+                    if (user.getUserName().equals(userName)) {
+                        logged = user;
+                        found = true;
+                    }
                 }
             }
         }

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.*;
 import model.*;
+import controller.*;
 
 public class Main extends Application {
 
@@ -22,6 +23,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
         fxmlloader.setController(restaurantGUI);
         Parent root = fxmlloader.load();

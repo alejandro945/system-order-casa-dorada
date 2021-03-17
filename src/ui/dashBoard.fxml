@@ -10,46 +10,41 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TabPane prefHeight="635.0" prefWidth="930.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Account">
-               <content>
-                  <AnchorPane prefHeight="731.0" prefWidth="930.0">
-                     <children>
-                        <MenuBar prefHeight="25.0" prefWidth="930.0">
-                          <menus>
-                            <Menu mnemonicParsing="false" text="File">
-                              <items>
-                                <MenuItem mnemonicParsing="false" text="Manage Products" />
-                                    <MenuItem mnemonicParsing="false" onAction="#showIngredientsCrud" text="Manage Ingredients" />
-                                    <MenuItem mnemonicParsing="false" text="Manage Orders" />
-                                    <MenuItem mnemonicParsing="false" text="Manage Costumers" />
-                              </items>
-                            </Menu>
-                          </menus>
-                        </MenuBar>
-                        <Button layoutX="817.0" layoutY="44.0" mnemonicParsing="false" onAction="#logOut" prefHeight="38.0" prefWidth="91.0" style="-fx-background-color: blue;" text="Log out" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold Italic" size="17.0" />
-                           </font>
-                        </Button>
-                        <Label fx:id="userNameDashBoard" layoutX="719.0" layoutY="48.0" prefHeight="31.0" prefWidth="88.0" text="User name">
-                           <font>
-                              <Font name="System Bold Italic" size="17.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="62.0" fitWidth="84.0" layoutX="616.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                        <ButtonBar layoutX="68.0" layoutY="187.0" prefHeight="40.0" prefWidth="200.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-   </children>
-</VBox>
+<TabPane prefHeight="635.0" prefWidth="930.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <tabs>
+      <Tab text="Account">
+         <content>
+            <AnchorPane prefHeight="731.0" prefWidth="930.0">
+               <children>
+                  <MenuBar prefHeight="25.0" prefWidth="930.0">
+                     <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Manage Products" />
+                              <MenuItem mnemonicParsing="false" onAction="#showIngredientsCrud" text="Manage Ingredients" />
+                              <MenuItem mnemonicParsing="false" text="Manage Orders" />
+                              <MenuItem mnemonicParsing="false" text="Manage Costumers" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <Button layoutX="817.0" layoutY="44.0" mnemonicParsing="false" onAction="#logOut" prefHeight="38.0" prefWidth="91.0" style="-fx-background-color: blue;" text="Log out" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="userNameDashBoard" layoutX="719.0" layoutY="48.0" prefHeight="31.0" prefWidth="88.0" text="User name">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="62.0" fitWidth="84.0" layoutX="616.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ButtonBar layoutX="68.0" layoutY="187.0" prefHeight="40.0" prefWidth="200.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
