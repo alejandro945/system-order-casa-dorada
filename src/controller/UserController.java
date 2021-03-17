@@ -71,8 +71,8 @@ public class UserController {
         cGui.loadData();
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         if (user != null) {
-            cGui.showDashBoard();
             restaurant.setLoggedUser(user);
+            cGui.showDashBoard();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -156,7 +156,7 @@ public class UserController {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             imgRegister.setImage(new Image(selectedFile.toURI().toString()));
-            pathRender = selectedFile.getPath();
+            pathRender = selectedFile.getAbsolutePath();
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Image not found");

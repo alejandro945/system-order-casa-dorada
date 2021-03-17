@@ -14,7 +14,7 @@ public class Restaurant {
     private List<Ingredients> ingredients;
     private User logged;
     public static final String FILE_SEPARATOR = "\\ ";
-    public static final String SAVE_PATH_FILE = "src/data/users.report";
+    public static final String SAVE_PATH_FILE = "/bin/data/users.report";
 
     public Restaurant() {
         products = new ArrayList<Product>();
@@ -69,14 +69,14 @@ public class Restaurant {
 
     public void savePeople() throws FileNotFoundException, IOException {
         ObjectOutputStream oos = null;
-        File file = new File(getClass().getResource("/data/users.report").getFile());
+        System.out.println(this.getClass().getResource("/data/users.report").getFile());
+        File file = new File(SAVE_PATH_FILE);
         if (file.exists()) {
             System.out.println(" El archivo si existe. ");
         }
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(getPeople());
-            oos.close();
+            oos.writeObject(people);
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("We could not find the path");
@@ -120,7 +120,7 @@ public class Restaurant {
             for (int i = 0; i < people.size() && !found; i++) {
                 if (people.get(i) instanceof User) {
                     User user = (User) people.get(i);
-                    if (user.getUserName().equals(userName)) {
+                    if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                         logged = user;
                         found = true;
                     }

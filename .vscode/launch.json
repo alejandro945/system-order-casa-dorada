@@ -45,10 +45,9 @@
             "name": "Launch Main",
             "jdkPath": "${env:JAVA_HOME}/bin",
             "cwd": "${fileDirname}",
+            "vmArgs": "--module-path C:/Users/alejo/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "startupClass": "${fileBasenameNoExtension}",
-            "request": "launch",
             "mainClass": "ui.Main",
-             "vmArgs": "--module-path C:/Users/alejo/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "projectName": "system-order-casa-dorada_143c71f0"
         }
     ]

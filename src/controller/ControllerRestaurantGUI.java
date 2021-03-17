@@ -15,15 +15,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import model.*;
 
 public class ControllerRestaurantGUI implements Initializable {
-    @FXML
-    private Label label;
-
-    @FXML
-    private VBox pnl_scroll;
     // RENDER PANE
     @FXML
     private Pane mainPane;
@@ -116,6 +110,7 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         loadData();
+        dashController.initUser();
     }
 
     public void loadData() throws FileNotFoundException, ClassNotFoundException, IOException {

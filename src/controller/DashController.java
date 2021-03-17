@@ -12,12 +12,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import model.Restaurant;
 
 public class DashController implements Initializable {
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
-
+    @FXML
+    private Circle btnCloseLogin;
     @FXML
     private Label lblUser;
 
@@ -55,7 +57,7 @@ public class DashController implements Initializable {
                 pnl_scroll.getChildren().add(nodes[i]);
 
             } catch (IOException ex) {
-                Logger.getLogger(ControllerRestaurantGUI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DashController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -71,9 +73,22 @@ public class DashController implements Initializable {
 
     }
 
+    public void initUser() {
+        System.out.println(restaurant.getLoggedUser().getImage());
+        userIcon.setImage(new Image("file:///" + restaurant.getLoggedUser().getImage()));
+        lblUser.setText(restaurant.getLoggedUser().getName());
+        lblId.setText(String.valueOf(restaurant.getLoggedUser().getId()));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         refreshNodes();
+    }
+
+    @FXML
+    void handleMouseClick(MouseEvent event) {
+        if (event.getSource() == btnCloseLogin) {
+            System.exit(0);
+        }
     }
 }

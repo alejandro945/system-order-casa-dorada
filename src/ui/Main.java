@@ -3,6 +3,7 @@ package ui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.*;
 import model.*;
 import controller.*;
@@ -23,12 +24,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
         fxmlloader.setController(restaurantGUI);
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
         restaurantGUI.welcomeToLogin();
     }
