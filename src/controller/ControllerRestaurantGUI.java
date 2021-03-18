@@ -103,24 +103,28 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
     }
 
+    public Parent showItem() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/Item.fxml"));
+        Parent root = fxmlloader.load();
+        return root;
+    }
+
+
     public void showDashBoard() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/home.fxml"));
         fxmlloader.setController(dashController);
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        loadData();
         dashController.initUser();
     }
 
     public void loadData() throws FileNotFoundException, ClassNotFoundException, IOException {
-        if (!restaurant.getPeople().isEmpty()) {
-            restaurant.loadPeople();
-        }
+        restaurant.loadUsers();
     }
 
     public void saveData() throws FileNotFoundException, ClassNotFoundException, IOException {
-        restaurant.savePeople();
+        restaurant.saveUsers();
     }
 
     @FXML

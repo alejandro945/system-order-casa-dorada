@@ -117,7 +117,7 @@ public class UserController {
                 alert2.showAndWait();
             }
             trimRegisterTxt();
-            restaurant.savePeople();
+            restaurant.saveUsers();
         } else {
             Alert alert3 = new Alert(AlertType.ERROR);
             alert3.setTitle("Warning Dialog");

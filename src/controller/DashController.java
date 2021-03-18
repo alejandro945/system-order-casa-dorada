@@ -1,5 +1,6 @@
 package controller;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import model.Restaurant;
@@ -20,6 +22,10 @@ public class DashController implements Initializable {
     private ControllerRestaurantGUI cGui;
     @FXML
     private Circle btnCloseLogin;
+
+    @FXML
+    private Circle btnMinimizeLogin;
+
     @FXML
     private Label lblUser;
 
@@ -46,14 +52,14 @@ public class DashController implements Initializable {
         this.cGui = cGui;
     }
 
-    private void refreshNodes() {
+    private void refreshNodes() throws ClassNotFoundException {
         pnl_scroll.getChildren().clear();
 
         Node[] nodes = new Node[15];
 
         for (int i = 0; i < 10; i++) {
             try {
-                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("/ui/Item.fxml"));
+                nodes[i] = (Node) cGui.showItem();
                 pnl_scroll.getChildren().add(nodes[i]);
 
             } catch (IOException ex) {
@@ -64,7 +70,7 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void handleButtonAction(MouseEvent event) {
+    void handleButtonAction(MouseEvent event) throws ClassNotFoundException {
         refreshNodes();
     }
 
@@ -74,7 +80,6 @@ public class DashController implements Initializable {
     }
 
     public void initUser() {
-        System.out.println(restaurant.getLoggedUser().getImage());
         userIcon.setImage(new Image("file:///" + restaurant.getLoggedUser().getImage()));
         lblUser.setText(restaurant.getLoggedUser().getName());
         lblId.setText(String.valueOf(restaurant.getLoggedUser().getId()));
@@ -82,7 +87,6 @@ public class DashController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        refreshNodes();
     }
 
     @FXML
@@ -91,4 +95,36 @@ public class DashController implements Initializable {
             System.exit(0);
         }
     }
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+    
+    @FXML
+    private AnchorPane parent;
+
+    private void makeStageDrageable() {
+        parent.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        parent.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Launch.stage.setX(event.getScreenX() - xOffset);
+                Launch.stage.setY(event.getScreenY() - yOffset);
+                Launch.stage.setOpacity(0.7f);
+            }
+        });
+        parent.setOnDragDone((e) -> {
+            Launch.stage.setOpacity(1.0f);
+        });
+        parent.setOnMouseReleased((e) -> {
+            Launch.stage.setOpacity(1.0f);
+        });
+
+    }
+
 }

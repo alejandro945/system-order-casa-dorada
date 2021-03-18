@@ -28,7 +28,7 @@
                         <Circle fill="#27c941" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
                      </children>
                   </HBox>
-                  <ImageView fitHeight="432.0" fitWidth="396.0" layoutX="6.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="487.0" fitWidth="396.0" layoutX="6.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@assets/img/login.png" />
                      </image>
@@ -39,50 +39,6 @@
          <center>
             <StackPane fx:id="pnlStack" prefHeight="314.0" prefWidth="98.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="pnlSingin" prefHeight="650.0" prefWidth="425.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="338.0" prefHeight="35.0" prefWidth="245.0" promptText="Password">
-                           <font>
-                              <Font name="Arial" size="22.0" />
-                           </font>
-                        </PasswordField>
-                        <TextField fx:id="txtNameUserLogin" alignment="CENTER" layoutX="140.0" layoutY="253.0" prefHeight="35.0" prefWidth="245.0" promptText="UserName">
-                           <font>
-                              <Font name="Arial" size="22.0" />
-                           </font>
-                        </TextField>
-                        <Button fx:id="btnRegister" layoutX="146.0" layoutY="571.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Register now" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold Italic" size="30.0" />
-                           </font>
-                        </Button>
-                        <Button layoutX="147.0" layoutY="426.0" mnemonicParsing="false" onAction="#logIn" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Sing in" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold Italic" size="30.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="100.0" layoutY="512.0" text="Do not have an account?" textFill="#3a1c9d">
-                           <font>
-                              <Font name="System Italic" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="195.0" layoutY="104.0" prefHeight="58.0" prefWidth="132.0" text="Hello!" textFill="#3a1c9d">
-                           <font>
-                              <Font name="System Bold Italic" size="40.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="115.0" layoutY="175.0" text="Sing into your Account" textFill="#3a1c9d">
-                           <font>
-                              <Font name="System Italic" size="30.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="77.0" fitWidth="397.0" layoutX="64.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@assets/img/casa-dorada-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                   <Pane fx:id="pnlSingup" prefHeight="77.0" prefWidth="107.0" style="-fx-background-color: #fff;">
                      <children>
                         <TextField fx:id="txtNameRegister" alignment="CENTER" layoutX="236.0" layoutY="146.0" prefHeight="39.0" prefWidth="189.0" promptText="Name">
@@ -164,6 +120,50 @@
                               <Font size="18.0" />
                            </font>
                         </TextField>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pnlSingin" prefHeight="650.0" prefWidth="425.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="338.0" prefHeight="35.0" prefWidth="245.0" promptText="Password">
+                           <font>
+                              <Font name="Arial" size="22.0" />
+                           </font>
+                        </PasswordField>
+                        <TextField fx:id="txtNameUserLogin" alignment="CENTER" layoutX="140.0" layoutY="253.0" prefHeight="35.0" prefWidth="245.0" promptText="UserName">
+                           <font>
+                              <Font name="Arial" size="22.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="btnRegister" layoutX="146.0" layoutY="571.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Register now" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="30.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="147.0" layoutY="426.0" mnemonicParsing="false" onAction="#logIn" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Sing in" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="30.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="100.0" layoutY="512.0" text="Do not have an account?" textFill="#3a1c9d">
+                           <font>
+                              <Font name="System Italic" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="195.0" layoutY="104.0" prefHeight="58.0" prefWidth="132.0" text="Hello!" textFill="#3a1c9d">
+                           <font>
+                              <Font name="System Bold Italic" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="115.0" layoutY="175.0" text="Sing into your Account" textFill="#3a1c9d">
+                           <font>
+                              <Font name="System Italic" size="30.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="77.0" fitWidth="397.0" layoutX="64.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/img/casa-dorada-removebg-preview.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                </children>

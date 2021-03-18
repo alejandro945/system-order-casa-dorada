@@ -32,4 +32,5 @@ public abstract class Person implements Serializable {
         this.lastName = lastName;
     }
 
+
 }

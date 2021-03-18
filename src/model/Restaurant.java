@@ -9,18 +9,18 @@ import javafx.scene.control.Alert.AlertType;
 
 public class Restaurant {
     private List<Product> products;
-    private List<Person> people;
     private List<Order> orders;
     private List<Ingredients> ingredients;
+    private List<User> users;
     private User logged;
     public static final String FILE_SEPARATOR = "\\ ";
-    public static final String SAVE_PATH_FILE = "/bin/data/users.report";
+    public static final String SAVE_PATH_FILE = "data/users.report";
 
     public Restaurant() {
         products = new ArrayList<Product>();
-        people = new ArrayList<Person>();
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
+        users = new ArrayList<User>();
     }
 
     public List<Product> getProducts() {
@@ -31,12 +31,12 @@ public class Restaurant {
         this.products = products;
     }
 
-    public List<Person> getPeople() {
-        return this.people;
+    public List<User> getUsers() {
+        return this.users;
     }
 
-    public void setPeople(List<Person> people) {
-        this.people = people;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public List<Order> getOrders() {
@@ -56,7 +56,7 @@ public class Restaurant {
     }
 
     public void addNewUser(String name, String lastName, int id, String userName, String password, String path) {
-        people.add(new User(name, lastName, id, userName, password, path));
+        users.add(new User(name, lastName, id, userName, password, path));
     }
 
     public void setLoggedUser(User user) {
@@ -67,43 +67,36 @@ public class Restaurant {
         return this.logged;
     }
 
-    public void savePeople() throws FileNotFoundException, IOException {
+    public void saveUsers() throws FileNotFoundException, IOException {
         ObjectOutputStream oos = null;
-        System.out.println(this.getClass().getResource("/data/users.report").getFile());
         File file = new File(SAVE_PATH_FILE);
-        if (file.exists()) {
-            System.out.println(" El archivo si existe. ");
-        }
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(people);
+            oos.writeObject(users);
+            oos.close();
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("We could not find the path");
             alert.showAndWait();
-        } finally {
-            if (oos != null) {
-                oos.close();
-            }
         }
     }
 
     @SuppressWarnings("unchecked")
-    public void loadPeople() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream(new File(getClass().getResource("/data/users.report").getFile())));
-        people = (List<Person>) ois.readObject();
+    public void loadUsers() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
+        users = (List<User>) ois.readObject();
         ois.close();
+
     }
 
     public Boolean searchUser(String userName) {
         boolean found = false;
-        if (people == null) {
+        if (users == null) {
             found = false;
         } else {
-            for (int i = 0; i < people.size() && !found; i++) {
-                if (people.get(i) instanceof User) {
-                    User user = (User) people.get(i);
+            for (int i = 0; i < users.size() && !found; i++) {
+                if (users.get(i) instanceof User) {
+                    User user = (User) users.get(i);
                     if (user.getUserName().equals(userName)) {
                         found = true;
                     }
@@ -116,10 +109,10 @@ public class Restaurant {
     public User userVerification(String userName, String password) {
         User logged = null;
         boolean found = false;
-        if (!people.isEmpty()) {
-            for (int i = 0; i < people.size() && !found; i++) {
-                if (people.get(i) instanceof User) {
-                    User user = (User) people.get(i);
+        if (!users.isEmpty()) {
+            for (int i = 0; i < users.size() && !found; i++) {
+                if (users.get(i) instanceof User) {
+                    User user = (User) users.get(i);
                     if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                         logged = user;
                         found = true;
