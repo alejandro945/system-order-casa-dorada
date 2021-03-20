@@ -1,6 +1,5 @@
 package controller;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import model.Restaurant;
@@ -20,6 +18,8 @@ import model.Restaurant;
 public class DashController implements Initializable {
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
+    
+
     @FXML
     private Circle btnCloseLogin;
 
@@ -85,10 +85,6 @@ public class DashController implements Initializable {
         lblId.setText(String.valueOf(restaurant.getLoggedUser().getId()));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
-
     @FXML
     void handleMouseClick(MouseEvent event) {
         if (event.getSource() == btnCloseLogin) {
@@ -96,35 +92,13 @@ public class DashController implements Initializable {
         }
     }
 
-    private double xOffset = 0;
-    private double yOffset = 0;
-    
     @FXML
-    private AnchorPane parent;
+    public void showListCostumers(ActionEvent event) throws IOException, ClassNotFoundException {
+        cGui.showCostumers();   
+    }
 
-    private void makeStageDrageable() {
-        parent.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        parent.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Launch.stage.setX(event.getScreenX() - xOffset);
-                Launch.stage.setY(event.getScreenY() - yOffset);
-                Launch.stage.setOpacity(0.7f);
-            }
-        });
-        parent.setOnDragDone((e) -> {
-            Launch.stage.setOpacity(1.0f);
-        });
-        parent.setOnMouseReleased((e) -> {
-            Launch.stage.setOpacity(1.0f);
-        });
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
     }
 
 }

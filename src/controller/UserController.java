@@ -1,19 +1,27 @@
 package controller;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Optional;
 
 import animatefx.animation.*;
-import javafx.event.*;
-import javafx.fxml.*;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.*;
-import javafx.scene.image.*;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.shape.*;
-import javafx.stage.*;
-import model.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import model.Restaurant;
+import model.User;
 
 public class UserController {
     @FXML
@@ -68,7 +76,7 @@ public class UserController {
 
     @FXML
     public void logIn(ActionEvent event) throws IOException, ClassNotFoundException {
-        cGui.loadData();
+        restaurant.loadUsers();
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         if (user != null) {
             restaurant.setLoggedUser(user);

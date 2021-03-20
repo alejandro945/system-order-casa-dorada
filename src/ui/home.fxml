@@ -16,36 +16,21 @@
 
 <AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="650.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="342.0" layoutY="7.0" prefHeight="145.0" prefWidth="289.0" styleClass="linear-grad" stylesheets="@assets/styles/styles.css" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="7.0">
+      <VBox layoutX="-1.0" layoutY="290.0" prefHeight="360.0" prefWidth="252.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="290.0">
          <children>
-            <Button layoutX="760.0" layoutY="68.0" mnemonicParsing="false" onAction="#logOut" prefHeight="42.0" prefWidth="99.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Log Out" />
-            <HBox layoutX="14.0" layoutY="14.0" prefHeight="28.0" prefWidth="91.0" spacing="10.0">
-               <children>
-                  <Circle fx:id="btnCloseLogin" fill="#f65d57" onMouseClicked="#handleMouseClick" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
-                  <Circle fx:id="btnMinimizeLogin" fill="#fdbb2d" onMouseClicked="#handleMouseClick" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
-                  <Circle fill="#27c941" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
-               </children>
-            </HBox>
-         </children>
-      </Pane>
-      <VBox layoutX="-1.0" layoutY="145.0" prefHeight="438.0" prefWidth="252.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="146.0">
-         <children>
-            <Label prefHeight="30.0" prefWidth="252.0" text="PROJECTS" textFill="#171717">
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="218.0" text="PROJECTS" textFill="#171717">
                <font>
                   <Font name="Arial Italic" size="15.0" />
                </font>
                <padding>
                   <Insets left="40.0" />
                </padding>
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin>
             </Label>
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Products">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="37.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/img/icons8_Share_64px.png" />
+                        <Image url="@assets/img/restaurant_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -53,7 +38,7 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Products">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Ingredients">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -65,19 +50,7 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Button>
-         <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Products">
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/img/icons8_Share_64px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Button>
-           <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Products">
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#showListCostumers" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Costumers">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -145,17 +118,60 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Button>
+           <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Products">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/img/icons8_Share_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
-      <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="207.0" style="-fx-background-color: #fff;">
+      <ScrollPane layoutX="251.0" layoutY="479.0" prefHeight="166.0" prefWidth="678.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="479.0">
+         <content>
+            <VBox fx:id="pnl_scroll" prefHeight="395.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="462.0" layoutY="95.0" mnemonicParsing="false" onAction="#logOut" prefHeight="42.0" prefWidth="99.0" styleClass="button3" stylesheets="@assets/styles/styles.css" text="Log Out" />
+      <Pane layoutY="-5.0" prefHeight="200.0" prefWidth="930.0" styleClass="linear-grad" stylesheets="@assets/styles/styles.css" />
+      <HBox layoutX="25.0" layoutY="14.0" prefHeight="28.0" prefWidth="91.0" spacing="10.0">
          <children>
-            <Label fx:id="lblUser" layoutX="115.0" layoutY="73.0" prefHeight="42.0" prefWidth="91.0" text="User" textFill="#430505">
+            <Circle fx:id="btnCloseLogin" fill="#f65d57" onMouseClicked="#handleMouseClick" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
+            <Circle fx:id="btnMinimizeLogin" fill="#fdbb2d" onMouseClicked="#handleMouseClick" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
+            <Circle fill="#27c941" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
+         </children>
+      </HBox>
+      <Pane layoutX="657.0" layoutY="13.0" prefHeight="219.0" prefWidth="258.0" style="-fx-background-color: #fff; -fx-background-radius: 20;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+         <children>
+            <ImageView fitHeight="176.0" fitWidth="168.0" layoutX="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/buscador_formar_header.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="3.0" layoutY="152.0" prefHeight="53.0" prefWidth="252.0" text="Dashboard Menu">
+               <font>
+                  <Font name="Arial Bold Italic" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="98.0" layoutY="93.0" prefHeight="139.0" prefWidth="252.0" style="-fx-background-color: #fff; -fx-border-radius: 20;">
+         <children>
+            <Label fx:id="lblUser" alignment="CENTER" layoutX="126.0" layoutY="42.0" prefHeight="42.0" prefWidth="125.0" text="User" textFill="#430505">
                <font>
                   <Font name="Arial" size="21.0" />
                </font>
             </Label>
-            <ImageView fx:id="userIcon" fitHeight="99.0" fitWidth="56.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="lblId" layoutX="93.0" layoutY="62.0" prefHeight="16.0" prefWidth="135.0" text="id" textFill="#540b0b">
+            <ImageView fx:id="userIcon" fitHeight="101.0" fitWidth="115.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="lblId" alignment="CENTER" layoutX="131.0" layoutY="91.0" prefHeight="16.0" prefWidth="115.0" text="id" textFill="#540b0b">
                <font>
                   <Font name="Arial" size="13.0" />
                </font>
@@ -165,38 +181,5 @@
             <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
          </effect>
       </Pane>
-      <ScrollPane layoutX="251.0" layoutY="527.0" prefHeight="118.0" prefWidth="678.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="527.0">
-         <content>
-            <VBox fx:id="pnl_scroll" prefHeight="354.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;" />
-         </content>
-      </ScrollPane>
-      <HBox layoutX="250.0" layoutY="195.0" prefHeight="30.0" prefWidth="810.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="2.0">
-         <children>
-            <Label fx:id="lbl_currentprojects" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="207.0" text="Current Projects(10)" textFill="#171717">
-               <font>
-                  <Font name="Arial Bold" size="10.0" />
-               </font>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-            </Label>
-            <Label fx:id="lbl_pending" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="207.0" text="Pending Projects(12)" textFill="#171717">
-               <font>
-                  <Font name="Arial" size="11.0" />
-               </font>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-            </Label>
-            <Label fx:id="lbl_completed" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="207.0" text="Completed Projects(2)" textFill="#171717">
-               <font>
-                  <Font name="Arial" size="9.0" />
-               </font>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-            </Label>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>

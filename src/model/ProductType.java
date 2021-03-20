@@ -5,11 +5,15 @@ public class ProductType {
     private User creator;
     private User lastEditor;
     private boolean state;
+    private String code;
 
-    public ProductType(String name, User creator) {
+
+    public ProductType(String name, User creator, User lastEditor, boolean state, String code) {
         this.name = name;
         this.creator = creator;
-        this.state = true;
+        this.lastEditor = lastEditor;
+        this.state = state;
+        this.code = code;
     }
 
     public String getName() {
@@ -36,6 +40,10 @@ public class ProductType {
         this.lastEditor = lastEditor;
     }
 
+    public boolean isState() {
+        return this.state;
+    }
+
     public boolean getState() {
         return this.state;
     }
@@ -43,5 +51,14 @@ public class ProductType {
     public void setState(boolean state) {
         this.state = state;
     }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+   
 
 }

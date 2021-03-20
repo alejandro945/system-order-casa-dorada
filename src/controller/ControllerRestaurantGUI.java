@@ -14,14 +14,19 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import model.*;
 
 public class ControllerRestaurantGUI implements Initializable {
     // RENDER PANE
     @FXML
     private Pane mainPane;
+
     // PRODUCTS
+
     @FXML
     private TableView<Product> listProducts;
 
@@ -60,7 +65,9 @@ public class ControllerRestaurantGUI implements Initializable {
 
     @FXML
     private ComboBox<String> comboProductType;
+
     // INGREDIENTS
+
     @FXML
     private TableView<Ingredients> listIngredients;
 
@@ -75,32 +82,32 @@ public class ControllerRestaurantGUI implements Initializable {
 
     @FXML
     private TextField txtNameIngredients;
+
     // REDUX
+
     private Restaurant restaurant;
     private UserController userController;
     private DashController dashController;
+    private CostumerController costumerController;
 
     public ControllerRestaurantGUI(Restaurant restaurant) {
         this.restaurant = restaurant;
         userController = new UserController(restaurant, this);
         dashController = new DashController(restaurant, this);
+        costumerController = new CostumerController(restaurant, this);
     }
+
+    //ALL ABOUT USERS
 
     public void welcomeToLogin() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/login2.fxml"));
         fxmlLoader.setController(userController);
         Parent login = fxmlLoader.load();
         mainPane.getChildren().setAll(login);
-
     }
 
-    @FXML
-    void showIngredientsCrud(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/listIngredients.fxml"));
-        fxmlLoader.setController(this);
-        Parent root = fxmlLoader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
+    public Window getPane() {
+        return mainPane.getScene().getWindow();
     }
 
     public Parent showItem() throws IOException, ClassNotFoundException {
@@ -108,7 +115,6 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         return root;
     }
-
 
     public void showDashBoard() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/home.fxml"));
@@ -118,34 +124,60 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         dashController.initUser();
     }
-
-    public void loadData() throws FileNotFoundException, ClassNotFoundException, IOException {
-        restaurant.loadUsers();
-    }
-
-    public void saveData() throws FileNotFoundException, ClassNotFoundException, IOException {
-        restaurant.saveUsers();
-    }
+    
+    // PRODUCTS
 
     @FXML
-    void createProducts(ActionEvent event) {
+    public void createProducts(ActionEvent event) {
 
     }
 
     @FXML
-    void deleteProducts(ActionEvent event) {
+    public void deleteProducts(ActionEvent event) {
 
     }
 
     @FXML
-    void disableProducts(ActionEvent event) {
+    public void disableProducts(ActionEvent event) {
 
     }
 
     @FXML
-    void updateProducts(ActionEvent event) {
+    public void updateProducts(ActionEvent event) {
 
     }
+
+    @FXML
+    void showProducts(ActionEvent event) throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listProducts.fxml"));
+        fxmlloader.setController(this);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        initProductTable();
+    }
+
+    @FXML
+    void selectedProduct(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            Product auxProduct = listProducts.getSelectionModel().getSelectedItem();
+
+        }
+    }
+
+    /*
+     * @FXML void importProducts(ActionEvent event) throws IOException { FileChooser
+     * fc = new FileChooser(); File selectedFile =
+     * fc.showOpenDialog(mainPane.getScene().getWindow()); if (selectedFile != null)
+     * { Alert alert = new Alert(AlertType.INFORMATION);
+     * alert.setTitle("Import products");
+     * restaurant.importDataProducts(selectedFile.getAbsolutePath());
+     * alert.setContentText("The products data was imported succesfully");
+     * alert.showAndWait(); showProducts(event); } else { Alert alert = new
+     * Alert(AlertType.ERROR); alert.setTitle("Import products");
+     * alert.setContentText("The products data was NOT imported. An error occurred"
+     * ); alert.showAndWait(); } }
+     */
 
     public void initProductTable() throws IOException {
         ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
@@ -158,39 +190,49 @@ public class ControllerRestaurantGUI implements Initializable {
         colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("creator"));
     }
 
-    public void initComboIngredientBox() {
-        ObservableList<String> ingredientBox = FXCollections.observableArrayList(restaurant.getIngredientsFormated());
-        comboIngredients.setValue("Select an option");
-        comboIngredients.setItems(ingredientBox);
-    }
+    // INGREDIENTS
 
     @FXML
-    void setIngredient(ActionEvent event) {
+    public void setIngredient(ActionEvent event) {
 
     }
 
-    @FXML
-    void createIngredients(ActionEvent event) throws IOException {
-        restaurant.addIngrendient(txtNameIngredients.getText(), restaurant.getLoggedUser());
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setHeaderText("The ingredient have been added succesfully");
-        alert.showAndWait();
-        initIngredietTable();
-    }
+    /*
+     * @FXML public void createIngredients(ActionEvent event) throws IOException {
+     * restaurant.addIngrendient(txtNameIngredients.getText(),
+     * restaurant.getLoggedUser()); Alert alert = new Alert(AlertType.CONFIRMATION);
+     * alert.setHeaderText("The ingredient have been added succesfully");
+     * alert.showAndWait(); initIngredietTable(); }
+     */
 
     @FXML
-    void deleteIngredients(ActionEvent event) {
+    public void deleteIngredients(ActionEvent event) {
         // restaurant.deleteIngredient(positionIngredient);
     }
 
     @FXML
-    void disableIntegredients(ActionEvent event) {
+    public void disableIntegredients(ActionEvent event) {
 
     }
 
     @FXML
-    void updateIngredients(ActionEvent event) {
+    public void updateIngredients(ActionEvent event) {
         // restaurant.setInfoIngredient(ingredient, name, lastEditor)
+    }
+
+    @FXML
+    void showIngredientsCrud(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/listIngredients.fxml"));
+        fxmlLoader.setController(this);
+        Parent root = fxmlLoader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+    }
+
+    public void initComboIngredientBox() {
+        ObservableList<String> ingredientBox = FXCollections.observableArrayList(restaurant.getIngredientsFormated());
+        comboIngredients.setValue("Select an option");
+        comboIngredients.setItems(ingredientBox);
     }
 
     public void initIngredietTable() throws IOException {
@@ -199,6 +241,18 @@ public class ControllerRestaurantGUI implements Initializable {
         colNameIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, String>("name"));
         colCreatorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("creator"));
         colEditorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("lastEditor"));
+    }
+
+    // COSTUMERS
+
+    public void showCostumers() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listCostumers.fxml"));
+        fxmlloader.setController(costumerController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadCostumers();
+        costumerController.initCostumersTable();
     }
 
     @Override

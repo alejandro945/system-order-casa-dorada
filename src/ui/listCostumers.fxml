@@ -10,47 +10,49 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listCostumers" prefHeight="670.0" prefWidth="719.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listCostumers" prefHeight="670.0" prefWidth="719.0" stylesheets="@assets/styles/styles.css">
         <columns>
-          <TableColumn fx:id="colNameCostumer" prefWidth="86.0" text="NAME" />
-          <TableColumn fx:id="colLastNameCostumer" prefWidth="136.0" text="LAST NAME" />
-            <TableColumn fx:id="colIDCostumer" text="ID" />
-            <TableColumn fx:id="colTelephoneCostumer" prefWidth="95.0" text="TELEPHONE" />
-            <TableColumn fx:id="colSuggestionsCostumer" prefWidth="114.0" text="SUGGESTIONS" />
-            <TableColumn fx:id="colCreatorCostumers" prefWidth="99.0" text="CREATOR" />
-            <TableColumn fx:id="colLastEditorCostumers" prefWidth="108.0" text="LAST EDITOR" />
+          <TableColumn fx:id="colNameCostumer" prefWidth="83.0" text="NAME" />
+          <TableColumn fx:id="colLastNameCostumer" prefWidth="91.0" text="LAST NAME" />
+            <TableColumn fx:id="colIDCostumer" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colAddressCostumer" prefWidth="100.0" text="ADDRESS" />
+            <TableColumn fx:id="colTelephoneCostumer" prefWidth="109.0" text="TELEPHONE" />
+            <TableColumn fx:id="colSuggestionsCostumer" prefWidth="100.0" text="SUGGESTIONS" />
+            <TableColumn fx:id="colCreatorCostumers" prefWidth="73.0" text="CREATOR" />
+            <TableColumn fx:id="colLastEditorCostumers" prefWidth="87.0" text="LAST EDITOR" />
+            <TableColumn fx:id="colIDCostumer1" prefWidth="160.0" text="ID" />
         </columns>
       </TableView>
-      <Label layoutX="752.0" layoutY="20.0" text="Name:">
+      <Label layoutX="749.0" layoutY="14.0" text="Name:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="752.0" layoutY="93.0" text="Last name: ">
+      <Label layoutX="750.0" layoutY="78.0" text="Last name: ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="752.0" layoutY="156.0" text="ID:">
+      <Label layoutX="748.0" layoutY="141.0" text="ID:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="752.0" layoutY="228.0" text="Telephone:">
+      <Label layoutX="741.0" layoutY="199.0" text="Telephone:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="751.0" layoutY="301.0" text="Suggestions: ">
+      <Label layoutX="744.0" layoutY="255.0" text="Suggestions: ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameCostumer" layoutX="752.0" layoutY="53.0" />
-      <TextField fx:id="txtLastNameCostumer" layoutX="752.0" layoutY="124.0" />
-      <TextField fx:id="txtIdCostumer" layoutX="752.0" layoutY="189.0" />
-      <TextField fx:id="txtTelephoneCostumer" layoutX="752.0" layoutY="262.0" />
-      <TextField fx:id="txtSuggestionsCostumer" layoutX="752.0" layoutY="335.0" />
+      <TextField fx:id="txtNameCostumer" layoutX="752.0" layoutY="41.0" />
+      <TextField fx:id="txtLastNameCostumer" layoutX="752.0" layoutY="106.0" />
+      <TextField fx:id="txtIdCostumer" layoutX="749.0" layoutY="168.0" />
+      <TextField fx:id="txtTelephoneCostumer" layoutX="745.0" layoutY="230.0" />
+      <TextField fx:id="txtSuggestionsCostumer" layoutX="745.0" layoutY="289.0" />
       <Button layoutX="752.0" layoutY="398.0" mnemonicParsing="false" onAction="#createCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
@@ -71,5 +73,11 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
+      <TextField fx:id="txtAddressCostumer" layoutX="749.0" layoutY="360.0" />
+      <Label layoutX="752.0" layoutY="325.0" text="Address">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

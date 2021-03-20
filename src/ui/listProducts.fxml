@@ -12,16 +12,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProducts" layoutX="-11.0" prefHeight="670.0" prefWidth="718.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProducts" layoutX="-11.0" onMouseClicked="#selectedProduct" prefHeight="670.0" prefWidth="718.0" styleClass="background4" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colPriceProducts" prefWidth="82.0" text="PRICE" />
-            <TableColumn fx:id="colNameProducts" prefWidth="97.0" text="NAME" />
+            <TableColumn fx:id="colPriceProducts" prefWidth="100.0" text="         PRICE" />
+            <TableColumn fx:id="colNameProducts" prefWidth="53.0" text="NAME" />
             <TableColumn fx:id="colProductType" prefWidth="98.0" text="PRODUCT TYPE" />
             <TableColumn fx:id="colIngredientsProducts" minWidth="8.0" prefWidth="98.0" text="INGREDIENTS" />
             <TableColumn fx:id="colSizeProducts" prefWidth="81.0" text="SIZE" />
             <TableColumn fx:id="colCreatorProducts" prefWidth="78.0" text="USER" />
-            <TableColumn fx:id="colCreatorProducts1" prefWidth="78.0" text="CREATOR" />
-            <TableColumn fx:id="colCreatorProducts11" prefWidth="105.0" text="LAST EDITOR" />
+            <TableColumn fx:id="colCreatorProducts1" prefWidth="113.0" text="CREATOR" />
+            <TableColumn fx:id="colCreatorProducts11" prefWidth="96.0" text="LAST EDITOR" />
          </columns>
       </TableView>
       <Label layoutX="765.0" layoutY="23.0" text="Name:">

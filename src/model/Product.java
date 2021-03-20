@@ -1,25 +1,50 @@
 package model;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class Product implements Comparable<Product> {
-    private String name;
-    private ProductType type;
-    private List<Ingredients> ingredients;
-    private String size;
-    private int price;
+public class Product implements Serializable,Comparable<Product> {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private BaseProduct baseProduct;
+    private ProductSize productSize;
+    private double price;
     private User creator;
     private User lastEditor;
     private boolean state;
 
-    public Product(String name, ProductType type, List<Ingredients> ingredients, String size, int price, User creator) {
-        this.name = name;
-        this.type = type;
-        this.ingredients = ingredients;
-        this.size = size;
+    public Product(BaseProduct baseProduct, ProductSize productSize, double price, User creator, User lastEditor, boolean state) {
+        this.baseProduct = baseProduct;
+        this.productSize = productSize;
         this.price = price;
         this.creator = creator;
-        this.state = true;
+        this.lastEditor = lastEditor;
+        this.state = state;
+    }
+
+    public BaseProduct getBaseProduct() {
+        return this.baseProduct;
+    }
+
+    public void setBaseProduct(BaseProduct baseProduct) {
+        this.baseProduct = baseProduct;
+    }
+
+    public ProductSize getProductSize() {
+        return this.productSize;
+    }
+
+    public void setProductSize(ProductSize productSize) {
+        this.productSize = productSize;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public User getCreator() {
@@ -38,44 +63,8 @@ public class Product implements Comparable<Product> {
         this.lastEditor = lastEditor;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ProductType getType() {
-        return this.type;
-    }
-
-    public void setType(ProductType type) {
-        this.type = type;
-    }
-
-    public List<Ingredients> getIngredients() {
-        return this.ingredients;
-    }
-
-    public void setIngredients(List<Ingredients> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public String getSize() {
-        return this.size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public int getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+    public boolean isState() {
+        return this.state;
     }
 
     public boolean getState() {
@@ -85,10 +74,16 @@ public class Product implements Comparable<Product> {
     public void setState(boolean state) {
         this.state = state;
     }
-
+    
     @Override
     public int compareTo(Product p) {
-        return getPrice() - p.getPrice();
+        if(price < p.getPrice()){
+            return -1;
+        }
+        if(price > p.getPrice()){
+            return 1;
+        }
+        return 0;
     }
 
 }

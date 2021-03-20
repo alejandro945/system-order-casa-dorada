@@ -1,6 +1,6 @@
 package model;
 
-public class Costumer extends Person {
+public class Costumer extends Person implements Comparable<Costumer> {
     /**
      *
      */
@@ -9,12 +9,12 @@ public class Costumer extends Person {
     private String address;
     private int telephone;
     private String suggestions;
-    private User creator;
-    private User lastEditor;
+    private String creator;
+    private String lastEditor;
     private boolean state;
 
     public Costumer(String name, String lastName, int id, String address, int telephone, String suggestions,
-            User creator) {
+            String creator) {
         super(name, lastName);
         this.id = id;
         this.address = address;
@@ -22,6 +22,7 @@ public class Costumer extends Person {
         this.suggestions = suggestions;
         this.creator = creator;
         this.state = true;
+        this.lastEditor = creator;
     }
 
     public int getId() {
@@ -56,19 +57,19 @@ public class Costumer extends Person {
         this.suggestions = suggestions;
     }
 
-    public User getCreator() {
+    public String getCreator() {
         return this.creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(String creator) {
         this.creator = creator;
     }
 
-    public User getLastEditor() {
+    public String getLastEditor() {
         return this.lastEditor;
     }
 
-    public void setLastEditor(User lastEditor) {
+    public void setLastEditor(String lastEditor) {
         this.lastEditor = lastEditor;
     }
 
@@ -78,6 +79,12 @@ public class Costumer extends Person {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public int compareTo(Costumer c) {
+
+        return this.getName().compareTo(c.getName());
     }
 
 }
