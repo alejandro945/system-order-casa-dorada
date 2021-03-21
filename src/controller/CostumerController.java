@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -20,6 +18,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 public class CostumerController {
+    private Costumer preSelectCostumer;
+
+    private int idxCostumer;
+
+    @FXML
+    private CheckBox cbDisable;
 
     @FXML
     private TableView<Costumer> listCostumers;
@@ -66,6 +70,9 @@ public class CostumerController {
     @FXML
     private TextField txtAddressCostumer;
 
+    @FXML
+    private Button btnCreate;
+
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
 
@@ -74,43 +81,114 @@ public class CostumerController {
         this.cGui = cGui;
     }
 
+    public int getIdxCostumer() {
+        return this.idxCostumer;
+    }
+
+    public void setIdxCostumer(int idxCostumer) {
+        this.idxCostumer = idxCostumer;
+    }
+
+    public Costumer getPreSelectCostumer() {
+        return this.preSelectCostumer;
+    }
+
+    public void setPreSelectCostumer(Costumer preSelectCostumer) {
+        this.preSelectCostumer = preSelectCostumer;
+    }
+
     @FXML
     public void createCostumer(ActionEvent event) throws IOException {
-        restaurant.addCostumer(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
-                Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
-                Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
-                restaurant.getLoggedUser().getName());
+        boolean validateFields = costumerValidation(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
+                txtIdCostumer.getText(), txtAddressCostumer.getText(), txtTelephoneCostumer.getText(),
+                txtSuggestionsCostumer.getText());
+        if (!validateFields) {
+            Alert alert2 = new Alert(AlertType.WARNING);
+            alert2.setTitle("Warning Dialog");
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Hey!! Please complete all fields for create a costumer");
+            alert2.showAndWait();
+        } else if (validateFields) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            String msg = restaurant.addCostumer(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
+                    Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
+                    Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
+                    restaurant.getLoggedUser().getName());
+            alert.setContentText(msg);
+            trimCostumerForm();
+            alert.showAndWait();
+            restaurant.saveCostumers();
+            initCostumersTable();
+        }
+
+    }
+
+    public boolean costumerValidation(String name, String lastName, String id, String address, String telephone,
+            String suggestion) {
+        boolean complete = true;
+        if (name.equals("") || lastName.equals("") || id.equals("") || address.equals("") || telephone.equals("")
+                || suggestion.equals("")) {
+            complete = false;
+        }
+        return complete;
+    }
+
+    @FXML
+    public void deleteCostumer(ActionEvent event) throws FileNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.deleteCostumer(getIdxCostumer());
+        alert.setContentText(msg);
+        trimCostumerForm();
+        alert.showAndWait();
+        restaurant.saveCostumers();
+        initCostumersTable();
+    }
+
+    @FXML
+    public void setStateCostumer(ActionEvent event) throws FileNotFoundException, IOException {
+        String msg = "";
+        if (cbDisable.isSelected()) {
+            msg = restaurant.disableCostumer(preSelectCostumer);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        } else {
+            msg = restaurant.enableCostumer(preSelectCostumer);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        }
         trimCostumerForm();
         restaurant.saveCostumers();
         initCostumersTable();
     }
 
     @FXML
-    public void deleteCostumer(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void disableCostumer(ActionEvent event) {
-
-    }
-
-    @FXML
     void selectedCostumer(MouseEvent event) throws IOException {
-            if(event.getClickCount() == 2){
-            Costumer sltCostumer = listCostumers.getSelectionModel().getSelectedItem();
+        Costumer sltCostumer = listCostumers.getSelectionModel().getSelectedItem();
+        if (sltCostumer != null) {
+            int idxCostumer = listCostumers.getSelectionModel().getSelectedIndex();
+            setIdxCostumer(idxCostumer);
+            setPreSelectCostumer(sltCostumer);
             setForm(sltCostumer);
-            }
+            btnCreate.setDisable(true);
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("The row selected does not have any costumer");
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    public void updateCostumer(ActionEvent event) throws IOException {
-        Costumer selectCostumer = listCostumers.getSelectionModel().getSelectedItem();
-        restaurant.setInfoCostumer(selectCostumer, txtNameCostumer.getText(), txtLastNameCostumer.getText(),
+    public void updateCostumer(ActionEvent event) throws IOException, ClassNotFoundException {
+        restaurant.setInfoCostumer(getPreSelectCostumer(), txtNameCostumer.getText(), txtLastNameCostumer.getText(),
                 Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                 Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
                 restaurant.getLoggedUser().getName());
+        restaurant.saveCostumers();
+        restaurant.loadCostumers();
         trimCostumerForm();
+        setPreSelectCostumer(null);
         initCostumersTable();
     }
 
@@ -121,6 +199,7 @@ public class CostumerController {
         txtAddressCostumer.setText(selectCostumer.getAddress());
         txtTelephoneCostumer.setText(String.valueOf(selectCostumer.getTelephone()));
         txtSuggestionsCostumer.setText(selectCostumer.getSuggestions());
+        cbDisable.setSelected(!selectCostumer.getState());
     }
 
     public void initCostumersTable() throws IOException {
@@ -143,6 +222,17 @@ public class CostumerController {
         txtAddressCostumer.setText("");
         txtTelephoneCostumer.setText("");
         txtSuggestionsCostumer.setText("");
+        btnCreate.setDisable(false);
+    }
+
+    @FXML
+    void deselectCostumer(ActionEvent event) {
+        trimCostumerForm();
+    }
+
+    @FXML
+    void exportCostumers(ActionEvent event) {
+
     }
 
     @FXML
@@ -167,6 +257,11 @@ public class CostumerController {
     public void exportCostumers(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         pw.close();
+    }
+
+    @FXML
+    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+        cGui.showDashBoard();
     }
 
 }

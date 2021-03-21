@@ -12,16 +12,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
+import javafx.scene.shape.Circle;
 import javafx.stage.Window;
 import model.*;
 
 public class ControllerRestaurantGUI implements Initializable {
     // RENDER PANE
+    @FXML
+    private AnchorPane mainAnchor;
+    @FXML
+    private Circle btnCloseLogin;
+
     @FXML
     private Pane mainPane;
 
@@ -97,10 +102,10 @@ public class ControllerRestaurantGUI implements Initializable {
         costumerController = new CostumerController(restaurant, this);
     }
 
-    //ALL ABOUT USERS
+    // ALL ABOUT USERS
 
     public void welcomeToLogin() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/login2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/login.fxml"));
         fxmlLoader.setController(userController);
         Parent login = fxmlLoader.load();
         mainPane.getChildren().setAll(login);
@@ -124,7 +129,13 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         dashController.initUser();
     }
-    
+
+    @FXML
+    void handleMouseClick(MouseEvent event) {
+        if (event.getSource() == btnCloseLogin) {
+            System.exit(0);
+        }
+    }
     // PRODUCTS
 
     @FXML

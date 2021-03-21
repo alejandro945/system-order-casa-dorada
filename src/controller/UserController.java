@@ -25,9 +25,6 @@ import model.User;
 
 public class UserController {
     @FXML
-    private Circle btnCloseLogin;
-
-    @FXML
     private StackPane pnlStack;
 
     @FXML
@@ -94,6 +91,7 @@ public class UserController {
 
     @FXML
     public void createAccount(ActionEvent event) throws IOException, ClassNotFoundException {
+        restaurant.loadUsers();
         boolean validateFields = registerValidation(txtNameRegister.getText(), txtLastNameRegister.getText(),
                 txtIDRegister.getText(), txtNameUserRegister.getText(), txtPasswordRegister.getText(), this.pathRender);
         if (!validateFields) {
@@ -186,9 +184,6 @@ public class UserController {
         if (event.getSource() == btnBackToLogin) {
             new FadeIn(pnlSingin).play();
             pnlSingin.toFront();
-        }
-        if (event.getSource() == btnCloseLogin) {
-            System.exit(0);
         }
     }
 

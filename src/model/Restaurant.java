@@ -305,31 +305,49 @@ public class Restaurant {
         } else {
             int i = 0;
             newCostumer = new Costumer(name, lastName, id, address, telephone, suggestions, creator);
-            while (i < costumers.size() && newCostumer.compareTo(costumers.get(i)) > 0) {
+            while (i < costumers.size() && newCostumer.compareTo(costumers.get(i)) < 0) {
                 i++;
             }
-            for (int j = 0; j < costumers.size(); j++) {
+            boolean added = false;
+            for (int j = 0; j < costumers.size() && !added; j++) {
                 if (newCostumer.getName().equalsIgnoreCase(costumers.get(j).getName())) {
-                    msg = "You can not added a product with the same name";
+                    msg = "You can not added a Costumer with the same name";
                 } else {
                     costumers.add(i, newCostumer);
-                    msg = "The product " + newCostumer.getName() + " have been added succesfully";
+                    added = true;
+                    msg = "The Costumer " + newCostumer.getName() + " have been added succesfully";
                 }
             }
         }
         return msg;
     }
 
-    public String setInfoCostumer(Costumer costumer, String name, String lastName, int id, String address,
-            int telephone, String suggestions, String lastEditor) {
-        costumer.setName(name);
-        costumer.setLastName(lastName);
-        costumer.setId(id);
-        costumer.setAddress(address);
-        costumer.setTelephone(telephone);
-        costumer.setSuggestions(suggestions);
-        costumer.setLastEditor(lastEditor);
+    public String setInfoCostumer(Costumer costumer, String newName, String newLastName, int newId, String newAddress,
+            int newTelephone, String newSuggestions, String newLastEditor) {
+        costumer.setName(newName);
+        costumer.setLastName(newLastName);
+        costumer.setId(newId);
+        costumer.setAddress(newAddress);
+        costumer.setTelephone(newTelephone);
+        costumer.setSuggestions(newSuggestions);
+        costumer.setLastEditor(newLastEditor);
         return "The Costumer have been edited succesfully";
+    }
+
+    public String deleteCostumer(int positionCostumer) {
+        costumers.remove(positionCostumer);
+        return "The Costumer have been deleted succesfully";
+    }
+
+    public String disableCostumer(Costumer costumer) {
+        costumer.setState(false);
+        return "The Costumer have been disabled succesfully";
+
+    }
+
+    public String enableCostumer(Costumer costumer) {
+        costumer.setState(true);
+        return "The Costumer have been enabled succesfully";
     }
 
 }
