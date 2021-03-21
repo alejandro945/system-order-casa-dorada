@@ -13,10 +13,12 @@ public class Restaurant {
     private List<Ingredients> ingredients;
     private List<User> users;
     private List<Costumer> costumers;
+    private List<Employee> employees;
     private User logged;
     public static final String FILE_SEPARATOR = "\\;";
     public static final String SAVE_PATH_FILE = "data/users.report";
     public static final String SAVE_PATH_FILE_COSTUMERS = "data/costumers.report";
+    public static final String SAVE_PATH_FILE_EMPLOYEES = "data/employees.report";
 
     public Restaurant() {
         products = new ArrayList<Product>();
@@ -24,6 +26,7 @@ public class Restaurant {
         ingredients = new ArrayList<Ingredients>();
         users = new ArrayList<User>();
         costumers = new ArrayList<Costumer>();
+        employees = new ArrayList<Employee>();
     }
 
     public List<Product> getProducts() {
@@ -66,6 +69,14 @@ public class Restaurant {
         this.costumers = costumers;
     }
 
+    public List<Employee> getEmployees() {
+        return this.employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     public User getLogged() {
         return this.logged;
     }
@@ -84,6 +95,50 @@ public class Restaurant {
 
     public User getLoggedUser() {
         return this.logged;
+    }
+
+    // USERS
+
+    public String addUser(String name, String lastName, int id, String userName) {
+        String msg = "";
+        User newUser = new User(name, lastName, id, userName);
+        boolean added = false;
+        for (int j = 0; j < users.size() && !added; j++) {
+            if (newUser.getId() == users.get(j).getId()) {
+                msg = "You can not add the user with the same id";
+            } else {
+                newUser = new User(name, lastName, id, userName);
+                users.add(j, newUser);
+                msg = "The user " + newUser.getName() + " have been added succesfully";
+            }
+        }
+        return msg;
+    }
+
+    public String setUserInfo(User user, String newName, String newLastName, int newId, String newUserName,
+            String newLastEditor) {
+        user.setName(newName);
+        user.setLastName(newLastName);
+        user.setId(newId);
+        user.setUserName(newUserName);
+        user.setLastEditor(newLastEditor);
+        return "The user have been edited succesfully";
+    }
+
+    public String deleteUser(int positionUser) {
+        users.remove(positionUser);
+        return "The user have been deleted succesfully";
+    }
+
+    public String disableUser(User user) {
+        user.setState(false);
+        return "The user have been disabled succesfully";
+
+    }
+
+    public String enableUser(User user) {
+        user.setState(true);
+        return "The user have been enabled succesfully";
     }
 
     public void saveUsers() throws FileNotFoundException, IOException {
@@ -348,6 +403,68 @@ public class Restaurant {
     public String enableCostumer(Costumer costumer) {
         costumer.setState(true);
         return "The Costumer have been enabled succesfully";
+    }
+
+    // EMPLOYEES
+
+    public String addEmployee(String name, String lastName, int id) {
+        String msg = "";
+        Employee newEmployee = new Employee(name, lastName, id);
+        boolean added = false;
+        for (int j = 0; j < employees.size() && !added; j++) {
+            if (newEmployee.getId() == employees.get(j).getId()) {
+                msg = "You can not added the employee with the same id";
+            } else {
+                newEmployee = new Employee(name, lastName, id);
+                employees.add(j, newEmployee);
+                msg = "The employee " + newEmployee.getName() + " have been added succesfully";
+            }
+        }
+        return msg;
+    }
+
+    public String setInfoEmployee(Employee employee, String newName, String newLastName, int newId, String lastEditor) {
+        employee.setName(newName);
+        employee.setLastName(newLastName);
+        employee.setId(newId);
+        return "The employee have been edited succesfully";
+    }
+
+    public String deleteEmployee(int positionCostumer) {
+        employees.remove(positionCostumer);
+        return "The employee have been deleted succesfully";
+    }
+
+    public String disableEmployee(Employee employee) {
+        employee.setState(false);
+        return "The employee have been disabled succesfully";
+
+    }
+
+    public String enableEmployee(Employee employee) {
+        employee.setState(true);
+        return "The employee have been enabled succesfully";
+    }
+
+    public void saveEmployees() throws FileNotFoundException, IOException {
+        ObjectOutputStream oos = null;
+        File file = new File(SAVE_PATH_FILE_EMPLOYEES);
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(employees);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("We could not find the path");
+            alert.showAndWait();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadEmployees() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_EMPLOYEES)));
+        employees = (List<Employee>) ois.readObject();
+        ois.close();
     }
 
 }

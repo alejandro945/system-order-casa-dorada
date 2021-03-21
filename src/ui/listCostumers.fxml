@@ -35,27 +35,27 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="589.0" layoutY="275.0" text="ID:">
+      <Label layoutX="586.0" layoutY="246.0" text="ID:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="584.0" layoutY="371.0" text="Telephone:">
+      <Label layoutX="579.0" layoutY="315.0" text="Telephone:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="750.0" layoutY="369.0" text="Suggestions: ">
+      <Label layoutX="757.0" layoutY="315.0" text="Suggestions: ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtNameCostumer" layoutX="584.0" layoutY="212.0" prefHeight="25.0" prefWidth="142.0" />
       <TextField fx:id="txtLastNameCostumer" layoutX="752.0" layoutY="212.0" prefHeight="25.0" prefWidth="142.0" />
-      <TextField fx:id="txtIdCostumer" layoutX="584.0" layoutY="304.0" prefHeight="25.0" prefWidth="142.0" />
-      <TextField fx:id="txtTelephoneCostumer" layoutX="584.0" layoutY="403.0" prefHeight="25.0" prefWidth="142.0" />
-      <TextField fx:id="txtSuggestionsCostumer" layoutX="753.0" layoutY="402.0" prefHeight="25.0" prefWidth="142.0" />
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="661.0" layoutY="460.0" mnemonicParsing="false" onAction="#createCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <TextField fx:id="txtIdCostumer" layoutX="580.0" layoutY="274.0" prefHeight="25.0" prefWidth="142.0" />
+      <TextField fx:id="txtTelephoneCostumer" layoutX="580.0" layoutY="344.0" prefHeight="25.0" prefWidth="142.0" />
+      <TextField fx:id="txtSuggestionsCostumer" layoutX="746.0" layoutY="344.0" prefHeight="25.0" prefWidth="142.0" />
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="665.0" layoutY="382.0" mnemonicParsing="false" onAction="#createCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -67,7 +67,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="580.0" layoutY="517.0" mnemonicParsing="false" onAction="#updateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="584.0" layoutY="439.0" mnemonicParsing="false" onAction="#updateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -79,7 +79,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="742.0" layoutY="517.0" mnemonicParsing="false" onAction="#deleteCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button contentDisplay="RIGHT" layoutX="746.0" layoutY="439.0" mnemonicParsing="false" onAction="#deleteCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -91,13 +91,13 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="txtAddressCostumer" layoutX="754.0" layoutY="304.0" prefHeight="25.0" prefWidth="142.0" />
-      <Label layoutX="757.0" layoutY="276.0" text="Address:">
+      <TextField fx:id="txtAddressCostumer" layoutX="752.0" layoutY="274.0" prefHeight="25.0" prefWidth="142.0" />
+      <Label layoutX="758.0" layoutY="246.0" text="Address:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="661.0" layoutY="577.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="665.0" layoutY="499.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
@@ -149,6 +149,18 @@
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/img/delete_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button contentDisplay="RIGHT" layoutX="649.0" layoutY="577.0" mnemonicParsing="false" onAction="#searchCostumer" prefHeight="41.0" prefWidth="175.0" style="-fx-background-color: red;" text="Search Costumer" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/search_40px.png" />
                </image>
             </ImageView>
          </graphic>

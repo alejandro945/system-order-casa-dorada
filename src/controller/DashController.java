@@ -42,7 +42,7 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void logOut(ActionEvent event) throws IOException {
+    public void logOut(ActionEvent event) throws IOException {
         cGui.welcomeToLogin();
     }
 
@@ -55,6 +55,16 @@ public class DashController implements Initializable {
     @FXML
     public void showListCostumers(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showCostumers();
+    }
+
+    @FXML
+    public void showListUsers(ActionEvent event) throws ClassNotFoundException, IOException {
+        cGui.showUsers();
+    }
+
+    @FXML
+    void showListEmployees(ActionEvent event) throws ClassNotFoundException, IOException {
+        cGui.showEmployees();
     }
 
     @Override

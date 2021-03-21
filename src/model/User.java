@@ -18,6 +18,11 @@ public class User extends Employee {
         this.state = true;
     }
 
+    public User(String name, String lastName, int id, String userName){
+        super(name, lastName, id);
+        this.userName = userName;
+    }
+
     public String getUserName() {
         return this.userName;
     }

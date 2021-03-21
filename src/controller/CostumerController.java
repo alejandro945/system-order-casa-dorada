@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -18,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 public class CostumerController {
+
     private Costumer preSelectCostumer;
 
     private int idxCostumer;
@@ -164,7 +164,7 @@ public class CostumerController {
     }
 
     @FXML
-    void selectedCostumer(MouseEvent event) throws IOException {
+    public void selectedCostumer(MouseEvent event) throws IOException {
         Costumer sltCostumer = listCostumers.getSelectionModel().getSelectedItem();
         if (sltCostumer != null) {
             int idxCostumer = listCostumers.getSelectionModel().getSelectedIndex();
@@ -174,6 +174,8 @@ public class CostumerController {
             btnCreate.setDisable(true);
         } else {
             Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Warning");
             alert.setContentText("The row selected does not have any costumer");
             alert.showAndWait();
         }
@@ -226,12 +228,12 @@ public class CostumerController {
     }
 
     @FXML
-    void deselectCostumer(ActionEvent event) {
+    public void deselectCostumer(ActionEvent event) {
         trimCostumerForm();
     }
 
     @FXML
-    void exportCostumers(ActionEvent event) {
+    public void exportCostumers(ActionEvent event) {
 
     }
 
@@ -263,5 +265,4 @@ public class CostumerController {
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
-
 }

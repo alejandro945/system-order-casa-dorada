@@ -11,16 +11,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectedEmployee" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listUsers" onMouseClicked="#selectedUser" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listEmployees" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colNameUser" prefWidth="74.0" text="NAME" />
-            <TableColumn fx:id="colLastNameUser" prefWidth="111.0" text="LAST NAME" />
-            <TableColumn fx:id="colIDUser" prefWidth="86.0" text="ID" />
-            <TableColumn fx:id="colUserName" minWidth="7.0" prefWidth="102.0" text="USER NAME" />
-            <TableColumn fx:id="colCreatorUser" minWidth="7.0" prefWidth="84.0" text="CREATOR" />
-            <TableColumn fx:id="colLastEditorUser" minWidth="7.0" prefWidth="378.0" text="LAST EDITOR" />
+            <TableColumn fx:id="colNameEmployee" prefWidth="125.0" text="NAME" />
+            <TableColumn fx:id="colLastNameEmployee" prefWidth="107.0" text="LAST NAME" />
+            <TableColumn fx:id="colIDEmployee" prefWidth="87.0" text="ID" />
+            <TableColumn fx:id="colCreatorEmployee" minWidth="7.0" prefWidth="106.0" text="CREATOR" />
+            <TableColumn fx:id="colLastEditorEmployee" minWidth="7.0" prefWidth="308.0" text="LAST EDITOR" />
          </columns>
       </TableView>
       <Label layoutX="585.0" layoutY="241.0" text="Name:">
@@ -38,31 +37,25 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="762.0" layoutY="336.0" text="User name:">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtNameUser" layoutX="581.0" layoutY="276.0" />
-      <TextField fx:id="txtLastNameUser" layoutX="766.0" layoutY="276.0" />
-      <TextField fx:id="txtIDUser" layoutX="581.0" layoutY="376.0" />
-      <TextField fx:id="txtUserName" layoutX="766.0" layoutY="376.0" />
-      <Label layoutX="683.0" layoutY="19.0" text="Users Crud">
+      <TextField fx:id="txtNameEmployee" layoutX="581.0" layoutY="276.0" />
+      <TextField fx:id="txtLastNameEmployee" layoutX="766.0" layoutY="276.0" />
+      <TextField fx:id="txtIDEmployee" layoutX="581.0" layoutY="376.0" />
+      <Label layoutX="664.0" layoutY="19.0" text="Employees Crud">
          <font>
             <Font name="System Bold Italic" size="21.0" />
          </font>
       </Label>
-      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="593.0" layoutY="34.0" onMouseClicked="#backUserToDash" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="593.0" layoutY="34.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/img/back_40px.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="142.0" fitWidth="134.0" layoutX="669.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/card-color-influence.png" />
+            <Image url="@assets/img/create_96px.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="42.0" layoutY="580.0" mnemonicParsing="false" onAction="#importUsers" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="42.0" layoutY="580.0" mnemonicParsing="false" onAction="#importEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -74,7 +67,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="201.0" layoutY="580.0" mnemonicParsing="false" onAction="#exportUsers" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="201.0" layoutY="580.0" mnemonicParsing="false" onAction="#exportEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -86,7 +79,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="356.0" layoutY="580.0" mnemonicParsing="false" onAction="#deselectUser" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="356.0" layoutY="580.0" mnemonicParsing="false" onAction="#deselectEmployee" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -98,7 +91,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="681.0" layoutY="480.0" mnemonicParsing="false" onAction="#createUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="681.0" layoutY="480.0" mnemonicParsing="false" onAction="#createEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -110,7 +103,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="600.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="600.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -122,7 +115,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="772.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button contentDisplay="RIGHT" layoutX="772.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -134,7 +127,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisableUser" alignment="CENTER" contentDisplay="CENTER" layoutX="684.0" layoutY="600.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateUser" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisableEmployee" alignment="CENTER" contentDisplay="CENTER" layoutX="684.0" layoutY="600.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
