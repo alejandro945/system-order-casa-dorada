@@ -245,55 +245,20 @@ public class ControllerRestaurantGUI implements Initializable {
 
     // INGREDIENTS
 
-    @FXML
-    public void setIngredient(ActionEvent event) {
-
-    }
-
-    /*
-     * @FXML public void createIngredients(ActionEvent event) throws IOException {
-     * restaurant.addIngrendient(txtNameIngredients.getText(),
-     * restaurant.getLoggedUser()); Alert alert = new Alert(AlertType.CONFIRMATION);
-     * alert.setHeaderText("The ingredient have been added succesfully");
-     * alert.showAndWait(); initIngredietTable(); }
-     */
-
-    @FXML
-    public void deleteIngredients(ActionEvent event) {
-        // restaurant.deleteIngredient(positionIngredient);
-    }
-
-    @FXML
-    public void disableIntegredients(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void updateIngredients(ActionEvent event) {
-        // restaurant.setInfoIngredient(ingredient, name, lastEditor)
-    }
-
-    @FXML
-    void showIngredientsCrud(ActionEvent event) throws IOException {
+    void showIngredients() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/listIngredients.fxml"));
-        fxmlLoader.setController(this);
+        fxmlLoader.setController(ingredientController);
         Parent root = fxmlLoader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
+        restaurant.loadIngredients();
+        ingredientController.initIngredientsTable();
     }
 
     public void initComboIngredientBox() {
         ObservableList<String> ingredientBox = FXCollections.observableArrayList(restaurant.getIngredientsFormated());
         comboIngredients.setValue("Select an option");
         comboIngredients.setItems(ingredientBox);
-    }
-
-    public void initIngredietTable() throws IOException {
-        ObservableList<Ingredients> ingredients = FXCollections.observableArrayList(restaurant.getIngredients());
-        listIngredients.setItems(ingredients);
-        colNameIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, String>("name"));
-        colCreatorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("creator"));
-        colEditorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("lastEditor"));
     }
 
     // COSTUMERS

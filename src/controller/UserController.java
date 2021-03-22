@@ -92,7 +92,7 @@ public class UserController {
     private TableColumn<User, String> colLastNameUser;
 
     @FXML
-    private TableColumn<User, Integer> colIDUser;
+    private TableColumn<User, Long> colIDUser;
 
     @FXML
     private TableColumn<User, String> colUserName;
@@ -125,6 +125,12 @@ public class UserController {
 
     @FXML
     private Button btnCreate;
+
+    @FXML
+    private Button btnUpdate;
+
+    @FXML
+    private Button btnDelete;
 
     @FXML
     private CheckBox cbDisableUser;
@@ -240,6 +246,7 @@ public class UserController {
         txtPasswordRegister.setText("");
         pathRender = "";
         imgRegister.setImage(null);
+        
     }
 
     @FXML
@@ -297,6 +304,9 @@ public class UserController {
             setPreSelectUser(sltUser);
             setForm(sltUser);
             btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+            cbDisableUser.setDisable(false);
         }
     }
 
@@ -388,9 +398,12 @@ public class UserController {
         txtIDUser.setText("");
         txtUserName.setText("");
         txtPassword.setText("");
-        btnCreate.setDisable(false);
         pathRender = "";
         imgRegister.setImage(null);
+        btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        cbDisableUser.setDisable(true);
     }
 
     @FXML
@@ -448,7 +461,7 @@ public class UserController {
         listUsers.setItems(users);
         colNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         colLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
-        colIDUser.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+        colIDUser.setCellValueFactory(new PropertyValueFactory<User, Long>("id"));
         colUserName.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
         colIconUser.setCellValueFactory(new PropertyValueFactory<User, String>("image"));
         colCreatorUser.setCellValueFactory(new PropertyValueFactory<User, String>("creator"));

@@ -55,6 +55,12 @@ public class EmployeeController {
     private Button btnCreate;
 
     @FXML
+    private Button btnUpdate;
+
+    @FXML
+    private Button btnDelete;
+
+    @FXML
     private CheckBox cbDisableEmployee;
 
     private Restaurant restaurant;
@@ -121,6 +127,9 @@ public class EmployeeController {
         txtLastNameEmployee.setText("");
         txtIDEmployee.setText("");
         btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        cbDisableEmployee.setDisable(true);
     }
 
     @FXML
@@ -132,6 +141,9 @@ public class EmployeeController {
             setPreSelectEmployee(sltEmployee);
             setForm(sltEmployee);
             btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+            cbDisableEmployee.setDisable(false);
         }
     }
 

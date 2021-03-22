@@ -30,25 +30,25 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="749.0" layoutY="198.0" text="Last name: ">
+      <Label layoutX="714.0" layoutY="198.0" text="Last name: ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="571.0" layoutY="276.0" prefHeight="21.0" prefWidth="34.0" text="ID:">
+      <Label layoutX="569.0" layoutY="287.0" prefHeight="21.0" prefWidth="34.0" text="ID:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="750.0" layoutY="276.0" text="User name:">
+      <Label layoutX="715.0" layoutY="287.0" text="User name:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameUser" layoutX="569.0" layoutY="233.0" />
-      <TextField fx:id="txtLastNameUser" layoutX="754.0" layoutY="233.0" />
-      <TextField fx:id="txtIDUser" layoutX="569.0" layoutY="316.0" />
-      <TextField fx:id="txtUserName" layoutX="754.0" layoutY="316.0" />
+      <TextField fx:id="txtNameUser" layoutX="569.0" layoutY="233.0" prefHeight="25.0" prefWidth="121.0" />
+      <TextField fx:id="txtLastNameUser" layoutX="716.0" layoutY="233.0" prefHeight="25.0" prefWidth="113.0" />
+      <TextField fx:id="txtIDUser" layoutX="569.0" layoutY="316.0" prefHeight="25.0" prefWidth="121.0" />
+      <TextField fx:id="txtUserName" layoutX="712.0" layoutY="316.0" prefHeight="25.0" prefWidth="121.0" />
       <Label layoutX="683.0" layoutY="19.0" text="Users Crud">
          <font>
             <Font name="System Bold Italic" size="21.0" />
@@ -112,7 +112,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="573.0" layoutY="517.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="573.0" layoutY="517.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -124,7 +124,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="745.0" layoutY="517.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="745.0" layoutY="517.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -136,7 +136,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisableUser" alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="580.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateUser" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisableUser" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="657.0" layoutY="580.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateUser" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
@@ -152,6 +152,6 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
-      <PasswordField fx:id="txtPassword" layoutX="569.0" layoutY="392.0" />
+      <PasswordField fx:id="txtPassword" layoutX="569.0" layoutY="392.0" prefHeight="25.0" prefWidth="121.0" />
    </children>
 </Pane>

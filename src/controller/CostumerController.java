@@ -41,7 +41,7 @@ public class CostumerController implements Initializable {
     private TableColumn<Costumer, String> colLastNameCostumer;
 
     @FXML
-    private TableColumn<Costumer, Integer> colIDCostumer;
+    private TableColumn<Costumer, Long> colIDCostumer;
 
     @FXML
     private TableColumn<Costumer, Integer> colTelephoneCostumer;
@@ -75,6 +75,12 @@ public class CostumerController implements Initializable {
 
     @FXML
     private TextField txtAddressCostumer;
+
+    @FXML
+    private Button btnUpdate;
+
+    @FXML
+    private Button btnDelete;
 
     @FXML
     private Button btnCreate;
@@ -180,6 +186,9 @@ public class CostumerController implements Initializable {
             setPreSelectCostumer(sltCostumer);
             setForm(sltCostumer);
             btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+            cbDisable.setDisable(false);
         }
     }
 
@@ -216,8 +225,11 @@ public class CostumerController implements Initializable {
         txtAddressCostumer.setText("");
         txtTelephoneCostumer.setText("");
         txtSuggestionsCostumer.setText("");
-        cbDisable.setSelected(false);
         btnCreate.setDisable(false);
+        cbDisable.setSelected(true);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        
     }
 
     @FXML
@@ -265,7 +277,7 @@ public class CostumerController implements Initializable {
                 .observableArrayList(restaurant.getCostumers(restaurant.getPeople()));
         colNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("name"));
         colLastNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastName"));
-        colIDCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("id"));
+        colIDCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Long>("id"));
         colAddressCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("address"));
         colTelephoneCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("telephone"));
         colSuggestionsCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("suggestions"));

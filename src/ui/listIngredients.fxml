@@ -44,7 +44,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="590.0" layoutY="527.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="590.0" layoutY="527.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -56,7 +56,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="762.0" layoutY="527.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="762.0" layoutY="527.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -68,7 +68,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="674.0" layoutY="590.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="590.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>

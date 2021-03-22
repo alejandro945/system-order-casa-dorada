@@ -15,6 +15,7 @@ public class Restaurant {
     private User logged;
     public static final String FILE_SEPARATOR = "\\;";
     public static final String SAVE_PATH_FILE_PEOPLE = "data/people.report";
+    public static final String SAVE_PATH_FILE_INGREDIENTS = "data/ingredients.report";
 
     public Restaurant() {
         products = new ArrayList<Product>();
@@ -133,8 +134,8 @@ public class Restaurant {
         return msg;
     }
 
-    public String setUserInfo(User user, String newName, String newLastName, int newId, String newUserName, String path,
-            String newLastEditor) {
+    public String setUserInfo(User user, String newName, String newLastName, int newId, String newUserName,
+            String path, String newLastEditor) {
         if (!validateid(user) && !searchUser(newUserName)) {
             user.setName(newName);
             user.setLastName(newLastName);
@@ -291,7 +292,7 @@ public class Restaurant {
 
     public int getCode() {
         int count = 0;
-        for (int i = 0; i < orders.size(); i++) {
+        for (int i = 0; i < ingredients.size(); i++) {
             count++;
         }
         return count + 1;
@@ -362,34 +363,91 @@ public class Restaurant {
         return ingredients;
     }
 
-    /*
-     * public String addIngrendient(String name, User creator) { String msg = "";
-     * Ingredients newIngredient = null; if (ingredients.isEmpty()) { newIngredient
-     * = new Ingredients(name, creator); ingredients.add(newIngredient); } else {
-     * int i = 0; newIngredient = new Ingredients(name, creator); while (i <
-     * ingredients.size() && newIngredient.compareTo(ingredients.get(i)) < 0) { i++;
-     * } for (int j = 0; j < products.size(); j++) { / if
-     * (newIngredient.getName().equalsIgnoreCase(products.get(j).getName())) { msg =
-     * "You can not added an ingredient with the same name"; } else {
-     * ingredients.add(i, newIngredient); msg = "The ingredient " +
-     * newIngredient.getName() + " have been added succesfully"; } } } return msg; }
-     */
+    public String addIngredient(int code, String name, String creator) {
+        String msg = "";
+        Ingredients newIngredient = new Ingredients(code, name, creator);
+        if (ingredients.isEmpty()) {
+            ingredients.add(newIngredient);
+            msg = "The ingredient " + newIngredient.getName() + " have been added succesfully";
+        } else {
+            boolean added = false;
+            for (int j = 0; j < ingredients.size() && !added; j++) {
+                if (newIngredient.getName().equalsIgnoreCase(ingredients.get(j).getName())) {
+                    msg = "You can not added an ingredient with the same name";
+                    added = true;
+                } else {
+                    ingredients.add(newIngredient);
+                    msg = "The ingredient " + newIngredient.getName() + " have been added succesfully";
+                    added = true;
+                }
+            }
+        }
+        return msg;
+    }
 
-    public String setInfoIngredient(Ingredients ingredient, String name, User lastEditor) {
+    public String setInfoIngredient(Ingredients ingredient, String name, String lastEditor) {
         ingredient.setName(name);
         ingredient.setLastEditor(lastEditor);
         return "The Ingredient have been edited succesfully";
     }
 
     public String deleteIngredient(int positionIngredient) {
-        products.remove(positionIngredient);
+        ingredients.remove(positionIngredient);
+        setCodePosition();
         return "The Ingredient have been deleted succesfully";
     }
 
-    public String setState(Ingredients ingredient, boolean newState) {
-        ingredient.setState(newState);
-        return "The Ingredient state have been changed";
+    public String disableIngredient(Ingredients ingredient) {
+        ingredient.setState(false);
+        return "The Ingredient have been disabled succesfully";
     }
+
+    public String enableIngredient(Ingredients ingredient) {
+        ingredient.setState(true);
+        return "The Ingredient have been enabled succesfully";
+    }
+
+    public void saveIngredients() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectOutputStream oos = null;
+        File file = new File(SAVE_PATH_FILE_INGREDIENTS);
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(ingredients);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("We could not find the path");
+            alert.showAndWait();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadIngredients() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_INGREDIENTS)));
+        ingredients = (List<Ingredients>) ois.readObject();
+        ois.close();
+    }
+
+    public void setCodePosition() {
+        int code = 1;
+        for (Ingredients ingredient : ingredients) {
+            ingredient.setCode(code);
+            code++;
+        }
+    }
+
+    /*
+     * public void sortIngredientCode(){ int code1, code2; for (int i = 1; i <
+     * ingredients.size(); i++) { for (int j = i; j > 0 &&
+     * ingredients.get(j-1).getCode() > ingredients.get(j).getCode() ; j--) { code1
+     * = ingredients.get(j).getCode(); code2 = ingredients.get(j-1).getCode(); int
+     * temp = code1; code1 = code2; code2 = temp;
+     * ingredients.get(j).setCode(code1);; ingredients.get(j-1).setCode(code2); }
+     * 
+     * }
+     * 
+     * }
+     */
 
     // COSTUMERS
 

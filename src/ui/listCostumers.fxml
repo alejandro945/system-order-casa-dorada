@@ -67,7 +67,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="584.0" layoutY="439.0" mnemonicParsing="false" onAction="#updateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="584.0" layoutY="439.0" mnemonicParsing="false" onAction="#updateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -79,7 +79,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="746.0" layoutY="439.0" mnemonicParsing="false" onAction="#deleteCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="746.0" layoutY="439.0" mnemonicParsing="false" onAction="#deleteCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -97,7 +97,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="665.0" layoutY="499.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="665.0" layoutY="499.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateCostumer" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>

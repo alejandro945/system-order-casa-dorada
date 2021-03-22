@@ -1,38 +1,57 @@
 package model;
 
-public class Ingredients implements Comparable<Ingredients> {
+import java.io.Serializable;
+
+public class Ingredients implements Serializable{
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private int code;
     private String name;
-    private User creator;
-    private User lastEditor;
+    private String creator;
+    private String lastEditor;
     private boolean state;
 
-    public Ingredients(String name, User creator) {
+
+
+    public Ingredients(int code, String name, String creator) {
+        this.code = code;
         this.name = name;
         this.creator = creator;
+        this.lastEditor = creator;
         this.state = true;
     }
 
+    public int getCode() {
+        return this.code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public User getCreator() {
+    public String getCreator() {
         return this.creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(String creator) {
         this.creator = creator;
     }
 
-    public User getLastEditor() {
+    public String getLastEditor() {
         return this.lastEditor;
     }
 
-    public void setLastEditor(User lastEditor) {
+    public void setLastEditor(String lastEditor) {
         this.lastEditor = lastEditor;
     }
 
@@ -47,15 +66,6 @@ public class Ingredients implements Comparable<Ingredients> {
     public void setState(boolean state) {
         this.state = state;
     }
-
-    @Override
-    public int compareTo(Ingredients i) {
-        return getName().compareTo(i.getName());
-    }
-
-    @Override
-    public String toString() {
-        return "\"" + getName() + "\"" + "," + " ";
-    }
-
+    
+  
 }

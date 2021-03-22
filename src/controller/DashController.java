@@ -67,6 +67,11 @@ public class DashController implements Initializable {
         cGui.showEmployees();
     }
 
+    @FXML
+    void showIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
+        cGui.showIngredients();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
