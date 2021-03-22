@@ -15,21 +15,21 @@
    <children>
       <TableView fx:id="listIngredients" onMouseClicked="#selectedIngredients" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
          <columns>
+            <TableColumn fx:id="colCodeIngredients" prefWidth="101.0" text="CODE" />
             <TableColumn fx:id="colNameIngredients" minWidth="0.0" prefWidth="122.0" text="NAME" />
             <TableColumn fx:id="colCreatorIngredients" prefWidth="174.0" text="CREATOR" />
             <TableColumn fx:id="colEditorIngredients" prefWidth="156.0" text="EDITOR" />
-            <TableColumn fx:id="colCodeIngredients" prefWidth="101.0" text="CODE" />
          </columns>
       </TableView>
-      <Label layoutX="632.0" layoutY="248.0" text="Name:">
+      <Label layoutX="701.0" layoutY="270.0" text="Name:">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameIngredients" layoutX="632.0" layoutY="276.0" prefHeight="25.0" prefWidth="184.0" />
-      <Label layoutX="648.0" layoutY="24.0" text="Ingredients Crud">
+      <TextField fx:id="txtNameIngredients" layoutX="633.0" layoutY="323.0" prefHeight="48.0" prefWidth="213.0" />
+      <Label layoutX="635.0" layoutY="22.0" text="Ingredients Crud">
          <font>
-            <Font name="System Bold Italic" size="21.0" />
+            <Font name="System Bold Italic" size="25.0" />
          </font>
       </Label>
       <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="671.0" layoutY="470.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
@@ -73,12 +73,12 @@
             <Font size="16.0" />
          </font>
       </CheckBox>
-      <ImageView fitHeight="150.0" fitWidth="172.0" layoutX="657.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="154.0" fitWidth="184.0" layoutX="642.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/cutlery_96px.png" />
+            <Image url="@assets/img/img1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="583.0" layoutY="24.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="575.0" layoutY="25.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/img/back_40px.png" />
          </image>
@@ -119,11 +119,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="634.0" layoutY="314.0" text="Code:">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtCodeIngredients" layoutX="632.0" layoutY="344.0" prefHeight="25.0" prefWidth="184.0" />
    </children>
 </Pane>

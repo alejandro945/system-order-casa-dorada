@@ -9,13 +9,13 @@ public class Order {
     private List<Integer> amount;
     private Costumer costumer;
     private Employee employee;
-    private Date date;
+    private String date;
     private String suggestion;
     private User creator;
     private User lastEditor;
 
     public Order(int code, State state, List<Product> products, List<Integer> amount, Costumer costumer,
-            Employee employee, Date date, String suggestion, User creator) {
+            Employee employee, String date, String suggestion, User creator) {
         this.code = code;
         this.state = state;
         this.products = products;
@@ -75,11 +75,11 @@ public class Order {
         this.employee = employee;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

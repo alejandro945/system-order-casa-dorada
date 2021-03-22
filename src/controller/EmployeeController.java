@@ -87,7 +87,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void createEmployee(ActionEvent event) throws FileNotFoundException, IOException {
+    void createEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean validateFields = employeeValidation(txtNameEmployee.getText(), txtLastNameEmployee.getText(),
                 txtIDEmployee.getText());
         if (!validateFields) {
@@ -98,12 +98,12 @@ public class EmployeeController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addEmployee(txtNameEmployee.getText(), txtLastNameEmployee.getText(),
-                    Integer.parseInt(txtIDEmployee.getText()));
+            String msg = restaurant.addPerson(txtNameEmployee.getText(), txtLastNameEmployee.getText(),
+                    Integer.parseInt(txtIDEmployee.getText()), restaurant.getLoggedUser().getName());
             alert.setContentText(msg);
             trimEmployeeForm();
             alert.showAndWait();
-            restaurant.saveEmployees();
+            restaurant.savePeople();
             initEmployeeTable();
         }
     }
@@ -132,12 +132,6 @@ public class EmployeeController {
             setPreSelectEmployee(sltEmployee);
             setForm(sltEmployee);
             btnCreate.setDisable(true);
-        } else {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Warning");
-            alert.setContentText("The row selected does not have any costumer");
-            alert.showAndWait();
         }
     }
 
@@ -164,7 +158,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void setStateEmployee(ActionEvent event) throws FileNotFoundException, IOException {
+    void setStateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         String msg = "";
         if (cbDisableEmployee.isSelected()) {
             msg = restaurant.disableEmployee(preSelectEmployee);
@@ -178,34 +172,39 @@ public class EmployeeController {
             alert.showAndWait();
         }
         trimEmployeeForm();
-        restaurant.saveEmployees();
+        restaurant.savePeople();
         initEmployeeTable();
     }
 
     @FXML
     void updateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
-        restaurant.setInfoEmployee(getPreSelectEmployee(), txtNameEmployee.getText(), txtLastNameEmployee.getText(),
-                Integer.parseInt(txtIDEmployee.getText()), restaurant.getLoggedUser().getName());
-        restaurant.saveEmployees();
-        restaurant.loadEmployees();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.setInfoEmployee(getPreSelectEmployee(), txtNameEmployee.getText(),
+                txtLastNameEmployee.getText(), Integer.parseInt(txtIDEmployee.getText()),
+                restaurant.getLoggedUser().getName());
+        alert.setContentText(msg);
+        alert.showAndWait();
+        restaurant.savePeople();
+        restaurant.loadPeople();
         trimEmployeeForm();
         setPreSelectEmployee(null);
         initEmployeeTable();
     }
 
     @FXML
-    void deleteEmployee(ActionEvent event) throws FileNotFoundException, IOException {
+    void deleteEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteUser(getIdxEmployee());
+        String msg = restaurant.deleteEmployee(getPreSelectEmployee());
         alert.setContentText(msg);
         trimEmployeeForm();
         alert.showAndWait();
-        restaurant.saveEmployees();
+        restaurant.savePeople();
         initEmployeeTable();
     }
 
     public void initEmployeeTable() throws IOException {
-        ObservableList<Employee> employees = FXCollections.observableArrayList(restaurant.getEmployees());
+        ObservableList<Employee> employees = FXCollections
+                .observableArrayList(restaurant.getEmployees(restaurant.getPeople()));
         listEmployees.setItems(employees);
         colNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
         colLastNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));

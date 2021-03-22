@@ -20,7 +20,7 @@
       </ScrollPane>
       <Pane layoutY="14.0" prefHeight="182.0" prefWidth="921.0" styleClass="linear-grad" stylesheets="@assets/styles/styles.css">
          <children>
-            <ImageView fitHeight="141.0" fitWidth="433.0" layoutX="244.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="141.0" fitWidth="433.0" layoutX="259.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/img/casa-dorada-removebg-preview.png" />
                </image>

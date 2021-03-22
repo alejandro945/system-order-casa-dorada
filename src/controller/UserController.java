@@ -45,6 +45,9 @@ public class UserController {
     private Pane pnlSingin;
 
     @FXML
+    private Pane pnlLogin;
+
+    @FXML
     private ImageView btnBackToLogin;
 
     // LOGIN
@@ -95,6 +98,9 @@ public class UserController {
     private TableColumn<User, String> colUserName;
 
     @FXML
+    private TableColumn<User, String> colIconUser;
+
+    @FXML
     private TableColumn<User, String> colCreatorUser;
 
     @FXML
@@ -110,7 +116,12 @@ public class UserController {
     private TextField txtIDUser;
 
     @FXML
+    private PasswordField txtPassword;
+
+    @FXML
     private TextField txtUserName;
+    @FXML
+    private ImageView iconUser;
 
     @FXML
     private Button btnCreate;
@@ -145,11 +156,17 @@ public class UserController {
 
     @FXML
     public void logIn(ActionEvent event) throws IOException, ClassNotFoundException {
-        restaurant.loadUsers();
+        restaurant.loadPeople();
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
-        if (user != null) {
+        if (user != null && user.getState() == true) {
             restaurant.setLoggedUser(user);
             cGui.showDashBoard();
+        } else if (user.getState() == false) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("The user " + user.getName() + " is disable");
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -163,7 +180,7 @@ public class UserController {
 
     @FXML
     public void createAccount(ActionEvent event) throws IOException, ClassNotFoundException {
-        restaurant.loadUsers();
+        restaurant.loadPeople();
         boolean validateFields = registerValidation(txtNameRegister.getText(), txtLastNameRegister.getText(),
                 txtIDRegister.getText(), txtNameUserRegister.getText(), txtPasswordRegister.getText(), this.pathRender);
         if (!validateFields) {
@@ -179,9 +196,9 @@ public class UserController {
             alert.setContentText("Ups!! The password is weak, it must be at least 8 characters");
             alert.showAndWait();
         } else if (!restaurant.searchUser(txtNameUserRegister.getText())) {
-            restaurant.addNewUser(txtNameRegister.getText(), txtLastNameRegister.getText(),
+            restaurant.addPerson(txtNameRegister.getText(), txtLastNameRegister.getText(),
                     Integer.parseInt(txtIDRegister.getText()), txtNameUserRegister.getText(),
-                    txtPasswordRegister.getText(), pathRender);
+                    txtPasswordRegister.getText(), pathRender, "Created By Reg");
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText("Look, Consider the following");
@@ -195,7 +212,7 @@ public class UserController {
                 alert2.showAndWait();
             }
             trimRegisterTxt();
-            restaurant.saveUsers();
+            restaurant.savePeople();
         } else {
             Alert alert3 = new Alert(AlertType.ERROR);
             alert3.setTitle("Warning Dialog");
@@ -234,7 +251,7 @@ public class UserController {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             imgRegister.setImage(new Image(selectedFile.toURI().toString()));
-            pathRender = selectedFile.getAbsolutePath();
+            pathRender = selectedFile.getPath();
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Image not found");
@@ -251,6 +268,10 @@ public class UserController {
         }
     }
 
+    public void disableButton() {
+        btnRegister.setDisable(true);
+    }
+
     @FXML
     void handleMouseClick(MouseEvent event) {
         if (event.getSource() == btnBackToLogin) {
@@ -259,7 +280,8 @@ public class UserController {
         }
     }
 
-    // LIST USER
+    // LIST
+    // USER----------------------------------------------------------------------
 
     @FXML
     public void backUserToDash(MouseEvent event) throws ClassNotFoundException, IOException {
@@ -275,12 +297,6 @@ public class UserController {
             setPreSelectUser(sltUser);
             setForm(sltUser);
             btnCreate.setDisable(true);
-        } else {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Warning");
-            alert.setContentText("The row selected does not have any costumer");
-            alert.showAndWait();
         }
     }
 
@@ -297,40 +313,73 @@ public class UserController {
         txtLastNameUser.setText(selectUser.getLastName());
         txtIDUser.setText(String.valueOf(selectUser.getId()));
         txtUserName.setText(selectUser.getUserName());
+        imgRegister.setImage(new Image(("file:///" + selectUser.getImage())));
+        pathRender = selectUser.getImage();
         cbDisableUser.setSelected(!selectUser.getState());
     }
 
     @FXML
-    public void createUser(ActionEvent event) throws FileNotFoundException, IOException {
-        boolean validateFields = userValidation(txtNameUser.getText(), txtLastNameUser.getText(),
-                txtIDUser.getText(), txtUserName.getText());
+    public void createUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+        boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
+                txtIDUser.getText(), txtUserName.getText(), txtPassword.getText(), this.pathRender);
         if (!validateFields) {
-            Alert alert2 = new Alert(AlertType.WARNING);
-            alert2.setTitle("Warning Dialog");
-            alert2.setHeaderText("Warning");
-            alert2.setContentText("Hey!! Please complete all fields for create a costumer");
-            alert2.showAndWait();
-        } else if (validateFields) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addUser(txtNameUser.getText(), txtLastNameUser.getText(),
-                    Integer.parseInt(txtIDUser.getText()), txtUserName.getText());
-            alert.setContentText(msg);
-            trimUserForm();
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Warning");
+            alert.setContentText("Hey!! Please complete all fields for create your account");
             alert.showAndWait();
-            restaurant.saveUsers();
-            initUserTable();
+        } else if (txtPassword.getText().length() < 8) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Warning");
+            alert.setContentText("Ups!! The password is weak, it must be at least 8 characters");
+            alert.showAndWait();
+        } else if (!restaurant.searchUser(txtUserName.getText())) {
+            String msg = restaurant.addPerson(txtNameUser.getText(), txtLastNameUser.getText(),
+                    Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), txtPassword.getText(), pathRender,
+                    restaurant.getLoggedUser().getName());
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText("Look, Consider the following");
+            alert.setContentText(msg);
+            alert.showAndWait();
+            trimUserForm();
+            restaurant.savePeople();
+        } else {
+            Alert alert3 = new Alert(AlertType.ERROR);
+            alert3.setTitle("Warning Dialog");
+            alert3.setHeaderText("Error");
+            alert3.setContentText("The user already exist");
+            alert3.showAndWait();
         }
+        initUserTable();
     }
 
     @FXML
     public void updateUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
-        restaurant.setUserInfo(getPreSelectUser(), txtNameUser.getText(), txtLastNameUser.getText(),
-                Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), restaurant.getLoggedUser().getName());
-        restaurant.saveUsers();
-        restaurant.loadUsers();
-        trimUserForm();
-        setPreSelectUser(null);
-        initUserTable();
+        boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
+                txtIDUser.getText(), txtUserName.getText(), txtPassword.getText(), this.pathRender);
+        if (validateFields) {
+            String msg = restaurant.setUserInfo(getPreSelectUser(), txtNameUser.getText(), txtLastNameUser.getText(),
+                    Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), pathRender,
+                    restaurant.getLoggedUser().getName());
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+            restaurant.savePeople();
+            restaurant.loadPeople();
+            trimUserForm();
+            setPreSelectUser(null);
+            initUserTable();
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Warning");
+            alert.setContentText("Hey!! Please complete all fields for create your account");
+            alert.showAndWait();
+        }
+
     }
 
     public void trimUserForm() {
@@ -338,17 +387,20 @@ public class UserController {
         txtLastNameUser.setText("");
         txtIDUser.setText("");
         txtUserName.setText("");
+        txtPassword.setText("");
         btnCreate.setDisable(false);
+        pathRender = "";
+        imgRegister.setImage(null);
     }
 
     @FXML
-    void deleteUser(ActionEvent event) throws FileNotFoundException, IOException {
+    void deleteUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteUser(getIdxUser());
+        String msg = restaurant.deleteUser(getPreSelectUser());
         alert.setContentText(msg);
         trimUserForm();
         alert.showAndWait();
-        restaurant.saveUsers();
+        restaurant.savePeople();
         initUserTable();
     }
 
@@ -368,7 +420,7 @@ public class UserController {
     }
 
     @FXML
-    public void setStateUser(ActionEvent event) throws FileNotFoundException, IOException {
+    public void setStateUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         String msg = "";
         if (cbDisableUser.isSelected()) {
             msg = restaurant.disableUser(preSelectUser);
@@ -382,7 +434,7 @@ public class UserController {
             alert.showAndWait();
         }
         trimUserForm();
-        restaurant.saveUsers();
+        restaurant.savePeople();
         initUserTable();
     }
 
@@ -392,12 +444,13 @@ public class UserController {
     }
 
     public void initUserTable() throws IOException {
-        ObservableList<User> users = FXCollections.observableArrayList(restaurant.getUsers());
+        ObservableList<User> users = FXCollections.observableArrayList(restaurant.getUsers(restaurant.getPeople()));
         listUsers.setItems(users);
         colNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         colLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
         colIDUser.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
         colUserName.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
+        colIconUser.setCellValueFactory(new PropertyValueFactory<User, String>("image"));
         colCreatorUser.setCellValueFactory(new PropertyValueFactory<User, String>("creator"));
         colLastEditorUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastEditor"));
     }

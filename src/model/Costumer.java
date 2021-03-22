@@ -87,4 +87,9 @@ public class Costumer extends Person implements Comparable<Costumer> {
         return this.getName().compareTo(c.getName());
     }
 
+    @Override
+    public Costumer getPerson() {
+        return this;
+    }
+
 }

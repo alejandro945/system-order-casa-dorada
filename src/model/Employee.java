@@ -10,10 +10,12 @@ public class Employee extends Person {
     private String lastEditor;
     private boolean state;
 
-
-    public Employee(String name, String lastName, int id) {
+    public Employee(String name, String lastName, int id, String creator) {
         super(name, lastName);
         this.id = id;
+        this.creator = creator;
+        this.lastEditor = creator;
+        this.state = true;
     }
 
     public int getId() {
@@ -40,7 +42,6 @@ public class Employee extends Person {
         this.lastEditor = lastEditor;
     }
 
-
     public boolean isState() {
         return this.state;
     }
@@ -53,6 +54,9 @@ public class Employee extends Person {
         this.state = state;
     }
 
-   
+    @Override
+    public Employee getPerson() {
+        return this;
+    }
 
 }

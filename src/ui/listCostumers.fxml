@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listCostumers" layoutX="7.0" layoutY="9.0" onMouseClicked="#selectedCostumer" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listCostumers" layoutX="7.0" layoutY="83.0" onMouseClicked="#selectedCostumer" prefHeight="478.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
         <columns>
           <TableColumn fx:id="colNameCostumer" prefWidth="83.0" text="NAME" />
           <TableColumn fx:id="colLastNameCostumer" prefWidth="91.0" text="LAST NAME" />
@@ -153,10 +153,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="649.0" layoutY="577.0" mnemonicParsing="false" onAction="#searchCostumer" prefHeight="41.0" prefWidth="175.0" style="-fx-background-color: red;" text="Search Costumer" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
+      <Label contentDisplay="RIGHT" layoutX="23.0" layoutY="28.0" text="Search Costumer">
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -164,6 +161,10 @@
                </image>
             </ImageView>
          </graphic>
-      </Button>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="filteredField" layoutX="221.0" layoutY="30.0" prefHeight="25.0" prefWidth="307.0" />
    </children>
 </Pane>

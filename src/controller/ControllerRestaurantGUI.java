@@ -2,25 +2,32 @@ package controller;
 
 import java.io.*;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Window;
 import model.*;
 
 public class ControllerRestaurantGUI implements Initializable {
+    // DATE AND HOUR
+    @FXML
+    private Label lblHour;
+
+    private String hours, minutes, seconds;
+
+    @FXML
+    private Label lblDate;
     // RENDER PANE
     @FXML
     private AnchorPane mainAnchor;
@@ -95,6 +102,7 @@ public class ControllerRestaurantGUI implements Initializable {
     private DashController dashController;
     private CostumerController costumerController;
     private EmployeeController employeeController;
+    private IngredientsController ingredientController;
 
     public ControllerRestaurantGUI(Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -102,8 +110,26 @@ public class ControllerRestaurantGUI implements Initializable {
         dashController = new DashController(restaurant, this);
         costumerController = new CostumerController(restaurant, this);
         employeeController = new EmployeeController(restaurant, this);
+        ingredientController = new IngredientsController(restaurant, this);
     }
 
+    public void hour() {
+        Calendar calendar = new GregorianCalendar();
+        Date currentTime = new Date();
+        calendar.setTime(currentTime);
+        hours = calendar.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendar.get(Calendar.HOUR_OF_DAY)
+                : "0" + calendar.get(Calendar.HOUR_OF_DAY);
+        minutes = calendar.get(Calendar.MINUTE) > 9 ? "" + calendar.get(Calendar.MINUTE)
+                : "0" + calendar.get(Calendar.MINUTE);
+        seconds = calendar.get(Calendar.SECOND) > 9 ? "" + calendar.get(Calendar.SECOND)
+                : "0" + calendar.get(Calendar.SECOND);
+    }
+
+    public String date() {
+        Date date = new Date();
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/YYYY");
+        return formatDate.format(date);
+    }
     // ALL ABOUT USERS
 
     public void welcomeToLogin() throws IOException {
@@ -111,6 +137,9 @@ public class ControllerRestaurantGUI implements Initializable {
         fxmlLoader.setController(userController);
         Parent login = fxmlLoader.load();
         mainPane.getChildren().setAll(login);
+        if (restaurant.getPeopleFile().length() != 0) {
+            userController.disableButton();
+        }
     }
 
     public Window getPane() {
@@ -145,7 +174,7 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadUsers();
+        restaurant.loadPeople();
         userController.initUserTable();
     }
 
@@ -275,11 +304,10 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadCostumers();
-        costumerController.initCostumersTable();
+        restaurant.loadPeople();
     }
 
-    //EMPLOYEES
+    // EMPLOYEES
 
     public void showEmployees() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listEmployees.fxml"));
@@ -287,12 +315,33 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadEmployees();
+        restaurant.loadPeople();
         employeeController.initEmployeeTable();
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        lblDate.setText(date());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000000; i++) {
+                    hour();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            lblHour.setText(hours + ":" + minutes + ":" + seconds);
+                        }
+                    });
+                }
+            }
+        }).start();
     }
+
 }

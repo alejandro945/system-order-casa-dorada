@@ -6,8 +6,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.collections.*;
+import javafx.collections.transformation.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -16,11 +19,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
-public class CostumerController {
+public class CostumerController implements Initializable {
 
     private Costumer preSelectCostumer;
 
     private int idxCostumer;
+
+    @FXML
+    private TextField filteredField;
 
     @FXML
     private CheckBox cbDisable;
@@ -98,7 +104,7 @@ public class CostumerController {
     }
 
     @FXML
-    public void createCostumer(ActionEvent event) throws IOException {
+    public void createCostumer(ActionEvent event) throws IOException, ClassNotFoundException {
         boolean validateFields = costumerValidation(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
                 txtIdCostumer.getText(), txtAddressCostumer.getText(), txtTelephoneCostumer.getText(),
                 txtSuggestionsCostumer.getText());
@@ -110,15 +116,17 @@ public class CostumerController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addCostumer(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
+            String msg = restaurant.addPerson(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
                     Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                     Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
                     restaurant.getLoggedUser().getName());
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Inforation");
             alert.setContentText(msg);
             trimCostumerForm();
             alert.showAndWait();
-            restaurant.saveCostumers();
-            initCostumersTable();
+            restaurant.savePeople();
+            cGui.showCostumers();
         }
 
     }
@@ -134,18 +142,18 @@ public class CostumerController {
     }
 
     @FXML
-    public void deleteCostumer(ActionEvent event) throws FileNotFoundException, IOException {
+    public void deleteCostumer(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteCostumer(getIdxCostumer());
+        String msg = restaurant.deleteCostumer(getPreSelectCostumer());
         alert.setContentText(msg);
         trimCostumerForm();
         alert.showAndWait();
-        restaurant.saveCostumers();
-        initCostumersTable();
+        restaurant.savePeople();
+        cGui.showCostumers();
     }
 
     @FXML
-    public void setStateCostumer(ActionEvent event) throws FileNotFoundException, IOException {
+    public void setStateCostumer(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableCostumer(preSelectCostumer);
@@ -159,8 +167,8 @@ public class CostumerController {
             alert.showAndWait();
         }
         trimCostumerForm();
-        restaurant.saveCostumers();
-        initCostumersTable();
+        restaurant.savePeople();
+        cGui.showCostumers();
     }
 
     @FXML
@@ -172,26 +180,23 @@ public class CostumerController {
             setPreSelectCostumer(sltCostumer);
             setForm(sltCostumer);
             btnCreate.setDisable(true);
-        } else {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Warning");
-            alert.setContentText("The row selected does not have any costumer");
-            alert.showAndWait();
         }
     }
 
     @FXML
     public void updateCostumer(ActionEvent event) throws IOException, ClassNotFoundException {
-        restaurant.setInfoCostumer(getPreSelectCostumer(), txtNameCostumer.getText(), txtLastNameCostumer.getText(),
-                Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.setInfoCostumer(getPreSelectCostumer(), txtNameCostumer.getText(),
+                txtLastNameCostumer.getText(), Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                 Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
                 restaurant.getLoggedUser().getName());
-        restaurant.saveCostumers();
-        restaurant.loadCostumers();
+        alert.setContentText(msg);
+        alert.showAndWait();
+        restaurant.savePeople();
+        restaurant.loadPeople();
         trimCostumerForm();
         setPreSelectCostumer(null);
-        initCostumersTable();
+        cGui.showCostumers();
     }
 
     public void setForm(Costumer selectCostumer) {
@@ -204,19 +209,6 @@ public class CostumerController {
         cbDisable.setSelected(!selectCostumer.getState());
     }
 
-    public void initCostumersTable() throws IOException {
-        ObservableList<Costumer> costumers = FXCollections.observableArrayList(restaurant.getCostumers());
-        listCostumers.setItems(costumers);
-        colNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("name"));
-        colLastNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastName"));
-        colIDCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("id"));
-        colAddressCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("address"));
-        colTelephoneCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("telephone"));
-        colSuggestionsCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("suggestions"));
-        colCreatorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("creator"));
-        colLastEditorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastEditor"));
-    }
-
     public void trimCostumerForm() {
         txtNameCostumer.setText("");
         txtLastNameCostumer.setText("");
@@ -224,6 +216,7 @@ public class CostumerController {
         txtAddressCostumer.setText("");
         txtTelephoneCostumer.setText("");
         txtSuggestionsCostumer.setText("");
+        cbDisable.setSelected(false);
         btnCreate.setDisable(false);
     }
 
@@ -265,4 +258,54 @@ public class CostumerController {
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Costumer> costumers = FXCollections
+                .observableArrayList(restaurant.getCostumers(restaurant.getPeople()));
+        colNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("name"));
+        colLastNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastName"));
+        colIDCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("id"));
+        colAddressCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("address"));
+        colTelephoneCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("telephone"));
+        colSuggestionsCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("suggestions"));
+        colCreatorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("creator"));
+        colLastEditorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastEditor"));
+        listCostumers.setItems(costumers);
+        FilteredList<Costumer> filteredData = new FilteredList<>(costumers, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        filteredField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(costumer -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (costumer.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches first name.
+                } else if (costumer.getLastName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches last name.
+                } else if (String.valueOf(costumer.getId()).indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Costumer> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(listCostumers.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        listCostumers.setItems(sortedData);
+    }
+
 }

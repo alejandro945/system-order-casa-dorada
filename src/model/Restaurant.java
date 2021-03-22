@@ -11,22 +11,16 @@ public class Restaurant {
     private List<Product> products;
     private List<Order> orders;
     private List<Ingredients> ingredients;
-    private List<User> users;
-    private List<Costumer> costumers;
-    private List<Employee> employees;
+    private List<Person> people;
     private User logged;
     public static final String FILE_SEPARATOR = "\\;";
-    public static final String SAVE_PATH_FILE = "data/users.report";
-    public static final String SAVE_PATH_FILE_COSTUMERS = "data/costumers.report";
-    public static final String SAVE_PATH_FILE_EMPLOYEES = "data/employees.report";
+    public static final String SAVE_PATH_FILE_PEOPLE = "data/people.report";
 
     public Restaurant() {
         products = new ArrayList<Product>();
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
-        users = new ArrayList<User>();
-        costumers = new ArrayList<Costumer>();
-        employees = new ArrayList<Employee>();
+        people = new ArrayList<Person>();
     }
 
     public List<Product> getProducts() {
@@ -37,12 +31,37 @@ public class Restaurant {
         this.products = products;
     }
 
-    public List<User> getUsers() {
-        return this.users;
+    public List<User> getUsers(List<Person> people) {
+        List<User> userlist = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof User) {
+                User user = (User) (people.get(i));
+                userlist.add(user);
+            }
+        }
+        return userlist;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public List<Employee> getEmployees(List<Person> people) {
+        List<Employee> employeelist = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof Employee) {
+                Employee employee = (Employee) (people.get(i));
+                employeelist.add(employee);
+            }
+        }
+        return employeelist;
+    }
+
+    public List<Costumer> getCostumers(List<Person> people) {
+        List<Costumer> costumerlist = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof Costumer) {
+                Costumer costumer = (Costumer) (people.get(i));
+                costumerlist.add(costumer);
+            }
+        }
+        return costumerlist;
     }
 
     public List<Order> getOrders() {
@@ -61,20 +80,12 @@ public class Restaurant {
         this.ingredients = ingredients;
     }
 
-    public List<Costumer> getCostumers() {
-        return this.costumers;
+    public List<Person> getPeople() {
+        return this.people;
     }
 
-    public void setCostumers(List<Costumer> costumers) {
-        this.costumers = costumers;
-    }
-
-    public List<Employee> getEmployees() {
-        return this.employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setPeople(List<Person> people) {
+        this.people = people;
     }
 
     public User getLogged() {
@@ -85,10 +96,6 @@ public class Restaurant {
         this.logged = logged;
     }
 
-    public void addNewUser(String name, String lastName, int id, String userName, String password, String path) {
-        users.add(new User(name, lastName, id, userName, password, path));
-    }
-
     public void setLoggedUser(User user) {
         this.logged = user;
     }
@@ -97,43 +104,65 @@ public class Restaurant {
         return this.logged;
     }
 
+    public int getNumberCostumers() {
+        int count = 0;
+        for (Person person : people) {
+            if (person instanceof Costumer) {
+                count++;
+            }
+        }
+        return count;
+    }
     // USERS
 
-    public String addUser(String name, String lastName, int id, String userName) {
+    public String addPerson(String name, String lastName, int id, String userName, String password, String image,
+            String creator) throws FileNotFoundException, IOException {
         String msg = "";
-        User newUser = new User(name, lastName, id, userName);
-        boolean added = false;
-        for (int j = 0; j < users.size() && !added; j++) {
-            if (newUser.getId() == users.get(j).getId()) {
-                msg = "You can not add the user with the same id";
-            } else {
-                newUser = new User(name, lastName, id, userName);
-                users.add(j, newUser);
+        User newUser = new User(name, lastName, id, userName, password, image, creator);
+        if (people.size() > 0) {
+            boolean founded = validateid(newUser);
+            if (founded == false) {
+                people.add(newUser);
                 msg = "The user " + newUser.getName() + " have been added succesfully";
+            } else {
+                msg = "You can not added a User with the same id";
             }
+        } else {
+            people.add(newUser);
         }
         return msg;
     }
 
-    public String setUserInfo(User user, String newName, String newLastName, int newId, String newUserName,
+    public String setUserInfo(User user, String newName, String newLastName, int newId, String newUserName, String path,
             String newLastEditor) {
-        user.setName(newName);
-        user.setLastName(newLastName);
-        user.setId(newId);
-        user.setUserName(newUserName);
-        user.setLastEditor(newLastEditor);
-        return "The user have been edited succesfully";
+        if (!validateid(user) && !searchUser(newUserName)) {
+            user.setName(newName);
+            user.setLastName(newLastName);
+            user.setId(newId);
+            user.setUserName(newUserName);
+            user.setImage(path);
+            user.setLastEditor(newLastEditor);
+            return "The user have been edited succesfully";
+        } else {
+            return "The user could not been edited.(Same ID or Username)";
+        }
     }
 
-    public String deleteUser(int positionUser) {
-        users.remove(positionUser);
+    public String deleteUser(User useroToDelete) {
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof User) {
+                User user = (User) (people.get(i));
+                if (user == useroToDelete) {
+                    people.remove(useroToDelete);
+                }
+            }
+        }
         return "The user have been deleted succesfully";
     }
 
     public String disableUser(User user) {
         user.setState(false);
         return "The user have been disabled succesfully";
-
     }
 
     public String enableUser(User user) {
@@ -141,12 +170,17 @@ public class Restaurant {
         return "The user have been enabled succesfully";
     }
 
-    public void saveUsers() throws FileNotFoundException, IOException {
+    public File getPeopleFile() {
+        File file = new File(SAVE_PATH_FILE_PEOPLE);
+        return file;
+    }
+
+    public void savePeople() throws FileNotFoundException, IOException, ClassNotFoundException {
         ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE);
+        File file = new File(SAVE_PATH_FILE_PEOPLE);
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(users);
+            oos.writeObject(people);
             oos.close();
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -156,21 +190,22 @@ public class Restaurant {
     }
 
     @SuppressWarnings("unchecked")
-    public void loadUsers() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE)));
-        users = (List<User>) ois.readObject();
-        ois.close();
-
+    public void loadPeople() throws IOException, ClassNotFoundException {
+        if (getPeopleFile().length() > 0) {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PEOPLE)));
+            people = (List<Person>) ois.readObject();
+            ois.close();
+        }
     }
 
     public Boolean searchUser(String userName) {
         boolean found = false;
-        if (users == null) {
+        if (people.isEmpty()) {
             found = false;
         } else {
-            for (int i = 0; i < users.size() && !found; i++) {
-                if (users.get(i) instanceof User) {
-                    User user = (User) users.get(i);
+            for (int i = 0; i < people.size() && !found; i++) {
+                if (people.get(i) instanceof User) {
+                    User user = (User) people.get(i);
                     if (user.getUserName().equals(userName)) {
                         found = true;
                     }
@@ -183,10 +218,10 @@ public class Restaurant {
     public User userVerification(String userName, String password) {
         User logged = null;
         boolean found = false;
-        if (!users.isEmpty()) {
-            for (int i = 0; i < users.size() && !found; i++) {
-                if (users.get(i) instanceof User) {
-                    User user = users.get(i);
+        if (!people.isEmpty()) {
+            for (int i = 0; i < people.size() && !found; i++) {
+                if (people.get(i) instanceof User) {
+                    User user = (User) people.get(i);
                     if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                         logged = user;
                         found = true;
@@ -195,6 +230,63 @@ public class Restaurant {
             }
         }
         return logged;
+    }
+
+    public boolean validateid(Costumer costumer) {
+        boolean found = false;
+        for (int i = 0; i < people.size() && !found; i++) {
+            for (int j = 0; j < getEmployees(people).size(); j++) {
+                if (costumer.getId() == getEmployees(people).get(j).getId()) {
+                    found = true;
+                }
+            }
+            for (int j = 0; j < getCostumers(people).size(); j++) {
+                if (costumer != getCostumers(people).get(j)) {
+                    if (costumer.getId() == getCostumers(people).get(j).getId()) {
+                        found = true;
+                    }
+                }
+            }
+        }
+        return found;
+    }
+
+    public boolean validateid(Employee employee) {
+        boolean found = false;
+        for (int i = 0; i < people.size() && !found; i++) {
+            for (int j = 0; j < getEmployees(people).size(); j++) {
+                if (employee != getEmployees(people).get(j)) {
+                    if (employee.getId() == getEmployees(people).get(j).getId()) {
+                        found = true;
+                    }
+                }
+            }
+            for (int j = 0; j < getCostumers(people).size(); j++) {
+                if (employee.getId() == getCostumers(people).get(j).getId()) {
+                    found = true;
+                }
+            }
+        }
+        return found;
+    }
+
+    public boolean validateid(User user) {
+        boolean found = false;
+        for (int i = 0; i < people.size() && !found; i++) {
+            for (int j = 0; j < getEmployees(people).size(); j++) {
+                if (user != getEmployees(people).get(j)) {
+                    if (user.getId() == getEmployees(people).get(j).getId()) {
+                        found = true;
+                    }
+                }
+            }
+            for (int j = 0; j < getCostumers(people).size(); j++) {
+                if (user.getId() == getCostumers(people).get(j).getId()) {
+                    found = true;
+                }
+            }
+        }
+        return found;
     }
 
     public int getCode() {
@@ -301,27 +393,6 @@ public class Restaurant {
 
     // COSTUMERS
 
-    public void saveCostumers() throws FileNotFoundException, IOException {
-        ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_COSTUMERS);
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(costumers);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("We could not find the path");
-            alert.showAndWait();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void loadCostumers() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_COSTUMERS)));
-        costumers = (List<Costumer>) ois.readObject();
-        ois.close();
-    }
-
     public void importDataCostumers(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
@@ -335,7 +406,7 @@ public class Restaurant {
             String suggestion = parts[5];
             String creator = "";
             line = br.readLine();
-            addCostumer(name, lastName, id, address, telephone, suggestion, creator);
+            addPerson(name, lastName, id, address, telephone, suggestion, creator);
         }
         br.close();
     }
@@ -350,48 +421,58 @@ public class Restaurant {
      * pos; }
      */
 
-    public String addCostumer(String name, String lastName, int id, String address, int telephone, String suggestions,
+    public String addPerson(String name, String lastName, int id, String address, int telephone, String suggestions,
             String creator) {
-        String msg = "";
+        String msg = "We could not add the costumer";
         Costumer newCostumer = null;
-        if (costumers.isEmpty()) {
+        if (getNumberCostumers() == 0) {
             newCostumer = new Costumer(name, lastName, id, address, telephone, suggestions, creator);
-            costumers.add(newCostumer);
+            people.add(newCostumer);
+            msg = "The Costumer " + newCostumer.getName() + " have been added succesfully";
         } else {
             int i = 0;
             newCostumer = new Costumer(name, lastName, id, address, telephone, suggestions, creator);
-            while (i < costumers.size() && newCostumer.compareTo(costumers.get(i)) < 0) {
+            while (i < getNumberCostumers() && newCostumer.compareTo(getCostumers(getPeople()).get(i)) < 0) {
                 i++;
             }
-            boolean added = false;
-            for (int j = 0; j < costumers.size() && !added; j++) {
-                if (newCostumer.getName().equalsIgnoreCase(costumers.get(j).getName())) {
-                    msg = "You can not added a Costumer with the same name";
-                } else {
-                    costumers.add(i, newCostumer);
-                    added = true;
-                    msg = "The Costumer " + newCostumer.getName() + " have been added succesfully";
-                }
+            boolean repeated = validateid(newCostumer);
+            if (repeated == false) {
+                people.add(i, newCostumer);
+                msg = "The Costumer " + newCostumer.getName() + " have been added succesfully";
+            } else {
+                msg = "You can not added a costumer with the same id";
             }
+
         }
         return msg;
     }
 
     public String setInfoCostumer(Costumer costumer, String newName, String newLastName, int newId, String newAddress,
             int newTelephone, String newSuggestions, String newLastEditor) {
-        costumer.setName(newName);
-        costumer.setLastName(newLastName);
-        costumer.setId(newId);
-        costumer.setAddress(newAddress);
-        costumer.setTelephone(newTelephone);
-        costumer.setSuggestions(newSuggestions);
-        costumer.setLastEditor(newLastEditor);
-        return "The Costumer have been edited succesfully";
+        if (validateid(costumer) == false) {
+            costumer.setName(newName);
+            costumer.setLastName(newLastName);
+            costumer.setId(newId);
+            costumer.setAddress(newAddress);
+            costumer.setTelephone(newTelephone);
+            costumer.setSuggestions(newSuggestions);
+            costumer.setLastEditor(newLastEditor);
+            return "The Costumer have been edited succesfully";
+        } else {
+            return "The Costumer could not been edited";
+        }
     }
 
-    public String deleteCostumer(int positionCostumer) {
-        costumers.remove(positionCostumer);
-        return "The Costumer have been deleted succesfully";
+    public String deleteCostumer(Costumer costumerToDelete) {
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof Costumer) {
+                Costumer costumer = (Costumer) (people.get(i));
+                if (costumer == costumerToDelete) {
+                    people.remove(costumerToDelete);
+                }
+            }
+        }
+        return "The costumer have been deleted succesfully";
     }
 
     public String disableCostumer(Costumer costumer) {
@@ -407,31 +488,39 @@ public class Restaurant {
 
     // EMPLOYEES
 
-    public String addEmployee(String name, String lastName, int id) {
+    public String addPerson(String name, String lastName, int id, String creator) {
         String msg = "";
-        Employee newEmployee = new Employee(name, lastName, id);
-        boolean added = false;
-        for (int j = 0; j < employees.size() && !added; j++) {
-            if (newEmployee.getId() == employees.get(j).getId()) {
-                msg = "You can not added the employee with the same id";
-            } else {
-                newEmployee = new Employee(name, lastName, id);
-                employees.add(j, newEmployee);
-                msg = "The employee " + newEmployee.getName() + " have been added succesfully";
-            }
+        Employee newEmployee = new Employee(name, lastName, id, creator);
+        boolean found = validateid(newEmployee);
+        if (found == false) {
+            people.add(newEmployee);
+            msg = "The employee " + newEmployee.getName() + " have been added succesfully";
+        } else {
+            msg = "You can not added the employee with the same id";
         }
         return msg;
     }
 
     public String setInfoEmployee(Employee employee, String newName, String newLastName, int newId, String lastEditor) {
-        employee.setName(newName);
-        employee.setLastName(newLastName);
-        employee.setId(newId);
-        return "The employee have been edited succesfully";
+        if (validateid(employee) == false) {
+            employee.setName(newName);
+            employee.setLastName(newLastName);
+            employee.setId(newId);
+            return "The employee have been edited succesfully";
+        } else {
+            return "The employee could not been edited";
+        }
     }
 
-    public String deleteEmployee(int positionCostumer) {
-        employees.remove(positionCostumer);
+    public String deleteEmployee(Employee employeeToDelete) {
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof Employee) {
+                Employee employee = (Employee) (people.get(i));
+                if (employee == employeeToDelete) {
+                    people.remove(employeeToDelete);
+                }
+            }
+        }
         return "The employee have been deleted succesfully";
     }
 
@@ -444,27 +533,6 @@ public class Restaurant {
     public String enableEmployee(Employee employee) {
         employee.setState(true);
         return "The employee have been enabled succesfully";
-    }
-
-    public void saveEmployees() throws FileNotFoundException, IOException {
-        ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_EMPLOYEES);
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(employees);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("We could not find the path");
-            alert.showAndWait();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void loadEmployees() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_EMPLOYEES)));
-        employees = (List<Employee>) ois.readObject();
-        ois.close();
     }
 
 }

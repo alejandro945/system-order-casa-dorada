@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectedEmployee" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectedEmployee" prefHeight="650.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listEmployees" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listEmployees" onMouseClicked="#selectedEmployee" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colNameEmployee" prefWidth="125.0" text="NAME" />
             <TableColumn fx:id="colLastNameEmployee" prefWidth="107.0" text="LAST NAME" />
@@ -27,19 +27,19 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="761.0" layoutY="241.0" text="Last name: ">
+      <Label layoutX="751.0" layoutY="241.0" text="Last name: ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="583.0" layoutY="336.0" prefHeight="21.0" prefWidth="34.0" text="ID:">
+      <Label layoutX="585.0" layoutY="325.0" prefHeight="21.0" prefWidth="34.0" text="ID:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameEmployee" layoutX="581.0" layoutY="276.0" />
-      <TextField fx:id="txtLastNameEmployee" layoutX="766.0" layoutY="276.0" />
-      <TextField fx:id="txtIDEmployee" layoutX="581.0" layoutY="376.0" />
+      <TextField fx:id="txtNameEmployee" layoutX="581.0" layoutY="276.0" prefHeight="25.0" prefWidth="134.0" />
+      <TextField fx:id="txtLastNameEmployee" layoutX="748.0" layoutY="276.0" prefHeight="25.0" prefWidth="134.0" />
+      <TextField fx:id="txtIDEmployee" layoutX="581.0" layoutY="362.0" prefHeight="25.0" prefWidth="134.0" />
       <Label layoutX="664.0" layoutY="19.0" text="Employees Crud">
          <font>
             <Font name="System Bold Italic" size="21.0" />
@@ -52,7 +52,7 @@
       </ImageView>
       <ImageView fitHeight="142.0" fitWidth="134.0" layoutX="669.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/create_96px.png" />
+            <Image url="@assets/img/design-min.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="42.0" layoutY="580.0" mnemonicParsing="false" onAction="#importEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
@@ -91,7 +91,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="681.0" layoutY="480.0" mnemonicParsing="false" onAction="#createEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="660.0" layoutY="451.0" mnemonicParsing="false" onAction="#createEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -103,7 +103,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="600.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="579.0" layoutY="508.0" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -115,7 +115,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="772.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button contentDisplay="RIGHT" layoutX="751.0" layoutY="508.0" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -127,7 +127,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisableEmployee" alignment="CENTER" contentDisplay="CENTER" layoutX="684.0" layoutY="600.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisableEmployee" alignment="CENTER" contentDisplay="CENTER" layoutX="663.0" layoutY="571.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateEmployee" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>

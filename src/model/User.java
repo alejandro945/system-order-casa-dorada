@@ -10,17 +10,12 @@ public class User extends Employee {
     private String image;
     private boolean state;
 
-    public User(String name, String lastName, int id, String userName, String password, String image) {
-        super(name, lastName, id);
+    public User(String name, String lastName, int id, String userName, String password, String image, String creator) {
+        super(name, lastName, id, creator);
         this.userName = userName;
         this.password = password;
         this.image = image;
         this.state = true;
-    }
-
-    public User(String name, String lastName, int id, String userName){
-        super(name, lastName, id);
-        this.userName = userName;
     }
 
     public String getUserName() {
@@ -53,6 +48,11 @@ public class User extends Employee {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public User getPerson() {
+        return this;
     }
 
 }
