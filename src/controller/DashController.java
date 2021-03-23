@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,7 +57,8 @@ public class DashController implements Initializable {
     }
 
     public void initUser() {
-        userIcon.setImage(new Image("file:///" + restaurant.getLoggedUser().getImage()));
+        File file = new File(restaurant.getLoggedUser().getImage());
+        userIcon.setImage(new Image("file:///" + file.getAbsolutePath()));
         lblUser.setText(restaurant.getLoggedUser().getName());
         lblId.setText(String.valueOf(restaurant.getLoggedUser().getId()));
     }
@@ -87,7 +89,17 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showProductTypes(ActionEvent event) {
+    void showProductTypes(ActionEvent event) throws IOException {
+        cGui.showProductTypes();
+    }
+
+    @FXML
+    void showOrders(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showProductSizes(ActionEvent event) {
 
     }
 
@@ -97,7 +109,8 @@ public class DashController implements Initializable {
         set1.getData().add(new XYChart.Data<>("Users", restaurant.getUsers()));
         set1.getData().add(new XYChart.Data<>("Employees", restaurant.getEmployees()));
         set1.getData().add(new XYChart.Data<>("Costumers", restaurant.getCostumers()));
-        set1.getData().add(new XYChart.Data<>("Ingreients", restaurant.getNumberIngredients()));
+        set1.getData().add(new XYChart.Data<>("Ingredients", restaurant.getNumberIngredients()));
+        set1.getData().add(new XYChart.Data<>("Product Types", restaurant.getNumberProductType()));
         barChart.getData().addAll(set1);
     }
 

@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.collections.*;
@@ -44,14 +45,11 @@ public class ProductTypeController {
     @FXML
     private CheckBox cbDisable;
 
-
-
     private ProductType preSelectProductType;
     private int idxProductType;
 
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
-
 
     public ProductTypeController(Restaurant restaurant, ControllerRestaurantGUI cGui) {
         this.restaurant = restaurant;
@@ -90,13 +88,68 @@ public class ProductTypeController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addProductType(txtNameProductType.getText(),restaurant.getLoggedUser().getName(), restaurant.getCode());
+            String msg = restaurant.addProductType(txtNameProductType.getText(), restaurant.getLoggedUser().getName(),
+                    restaurant.getCodeProductType());
             alert.setContentText(msg);
-            trimProductTypeForm() ;
+            trimProductTypeForm();
             alert.showAndWait();
             restaurant.saveProductType();
             initProductTypeTable();
         }
+    }
+
+    @FXML
+    void updateProductType(ActionEvent event) throws ClassNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.setProductType(getPreSelectProductType(), txtNameProductType.getText(),
+                restaurant.getLoggedUser().getName());
+        alert.setContentText(msg);
+        alert.showAndWait();
+        restaurant.saveProductType();
+        restaurant.loadProductType();
+        trimProductTypeForm();
+        setPreSelectProductType(null);
+        initProductTypeTable();
+    }
+
+    @FXML
+    void selectedProducType(MouseEvent event) {
+        ProductType sltProductType = listProductType.getSelectionModel().getSelectedItem();
+        if (sltProductType != null) {
+            int idxProductType = listProductType.getSelectionModel().getSelectedIndex();
+            setIdxProductType(idxProductType);
+            setPreSelectProductType(sltProductType);
+            setForm(sltProductType);
+            btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+            cbDisable.setDisable(false);
+        }
+    }
+
+    public void setForm(ProductType selectProductType) {
+        txtNameProductType.setText(selectProductType.getName());
+        cbDisable.setSelected(!selectProductType.getState());
+    }
+
+    @FXML
+    void setStateProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        String msg = "";
+        if (cbDisable.isSelected()) {
+            msg = restaurant.disableProductType(preSelectProductType);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        } else {
+            msg = restaurant.enableProductType(preSelectProductType);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        }
+        trimProductTypeForm();
+        restaurant.saveProductType();
+        ;
+        initProductTypeTable();
     }
 
     public boolean productTypeValidation(String name) {
@@ -116,13 +169,19 @@ public class ProductTypeController {
     }
 
     @FXML
-    void deleteProductType(ActionEvent event) {
-
+    void deleteProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.deleteProductType(getIdxProductType());
+        alert.setContentText(msg);
+        trimProductTypeForm();
+        alert.showAndWait();
+        restaurant.saveProductType();
+        initProductTypeTable();
     }
 
     @FXML
     void deselectProductType(ActionEvent event) {
-
+        trimProductTypeForm();
     }
 
     @FXML
@@ -132,21 +191,6 @@ public class ProductTypeController {
 
     @FXML
     void importProductType(ActionEvent event) {
-
-    }
-
-    @FXML
-    void selectedProducType(MouseEvent event) {
-
-    }
-
-    @FXML
-    void setStateProductType(ActionEvent event) {
-
-    }
-
-    @FXML
-    void updateProductType(ActionEvent event) {
 
     }
 

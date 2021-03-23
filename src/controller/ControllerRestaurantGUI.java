@@ -36,7 +36,6 @@ public class ControllerRestaurantGUI implements Initializable {
 
     // PRODUCTS
 
-   
     // REDUX
 
     private Restaurant restaurant;
@@ -59,7 +58,7 @@ public class ControllerRestaurantGUI implements Initializable {
         productController = new ProductController(restaurant, this);
     }
 
-    //HOUR AND DATE
+    // HOUR AND DATE
 
     public void hour() {
         Calendar calendar = new GregorianCalendar();
@@ -110,6 +109,7 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         dashController.initUser();
         restaurant.loadIngredients();
+        restaurant.loadProductType();
         dashController.initDashoboard();
     }
 
@@ -120,7 +120,7 @@ public class ControllerRestaurantGUI implements Initializable {
         }
     }
 
-    //USERS
+    // USERS
 
     public void showUsers() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
@@ -141,6 +141,15 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         productController.initProductTable();
+    }
+
+    public void showProductTypes() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listTypeProducts.fxml"));
+        fxmlloader.setController(productTypeController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        productTypeController.initProductTypeTable();
     }
 
     // INGREDIENTS

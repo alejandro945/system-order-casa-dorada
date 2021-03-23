@@ -2,6 +2,7 @@ package controller;
 
 import java.io.*;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import animatefx.animation.*;
 import javafx.collections.*;
@@ -148,6 +149,10 @@ public class UserController {
         this.preSelectUser = preSelectUser;
     }
 
+    public void setPathRender(String pathRender) {
+        this.pathRender = pathRender;
+    }
+
     @FXML
     public void logIn(ActionEvent event) throws IOException, ClassNotFoundException {
         restaurant.loadPeople();
@@ -269,7 +274,15 @@ public class UserController {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             imgRegister.setImage(new Image(selectedFile.toURI().toString()));
-            pathRender = selectedFile.getPath();
+            String path = selectedFile.getPath();
+            String[] parts = path.split(Pattern.quote(File.separator));
+            for (int i = 0; i < parts.length; i++) {
+                int render = (parts.length) - (i + 1);
+                if (render < 5) {
+                    pathRender += parts[i] + "\\";
+                }
+            }
+            setPathRender(pathRender);
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Image not found");
@@ -389,7 +402,8 @@ public class UserController {
         txtLastNameUser.setText(selectUser.getLastName());
         txtIDUser.setText(String.valueOf(selectUser.getId()));
         txtUserName.setText(selectUser.getUserName());
-        imgRegister.setImage(new Image(("file:///" + selectUser.getImage())));
+        File file = new File(selectUser.getImage());
+        imgRegister.setImage(new Image(("file:///" + file.getAbsolutePath())));
         pathRender = selectUser.getImage();
         cbDisableUser.setSelected(!selectUser.getState());
     }

@@ -175,7 +175,7 @@ public class Restaurant {
         return file;
     }
 
-    public File getProductTypeFile(){
+    public File getProductTypeFile() {
         File file = new File(SAVE_PATH_FILE_PRODUCT_TYPE);
         return file;
     }
@@ -228,10 +228,10 @@ public class Restaurant {
 
     public void saveProductType() throws FileNotFoundException, IOException, ClassNotFoundException {
         ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_INGREDIENTS);
+        File file = new File(SAVE_PATH_FILE_PRODUCT_TYPE);
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(ingredients);
+            oos.writeObject(productType);
             oos.close();
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -242,9 +242,9 @@ public class Restaurant {
 
     @SuppressWarnings("unchecked")
     public void loadProductType() throws IOException, ClassNotFoundException {
-        if (getIngredientFile().length() > 0) {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_INGREDIENTS)));
-            ingredients = (List<Ingredients>) ois.readObject();
+        if (getProductTypeFile().length() > 0) {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PRODUCT_TYPE)));
+            productType = (List<ProductType>) ois.readObject();
             ois.close();
         }
     }
@@ -783,9 +783,9 @@ public class Restaurant {
      * pos; }
      */
 
-     //-----------------------------------------PRODUCT_TYPE----------------------------------------------
+    // -----------------------------------------PRODUCT_TYPE----------------------------------------------
 
-     public String addProductType(String name, String creator, int code) {
+    public String addProductType(String name, String creator, int code) {
         String msg = "";
         ProductType newProductType = new ProductType(name, creator, code);
         if (productType.isEmpty()) {
@@ -824,7 +824,7 @@ public class Restaurant {
         return "The product type have been disabled succesfully";
     }
 
-    public String enableProductType( ProductType pType) {
+    public String enableProductType(ProductType pType) {
         pType.setState(true);
         return "The product type have been enabled succesfully";
     }

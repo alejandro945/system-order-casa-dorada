@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.*;
 import model.*;
+
 import controller.*;
 
 public class Main extends Application {
