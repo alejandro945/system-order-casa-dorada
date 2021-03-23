@@ -25,6 +25,7 @@ public class Order {
         this.date = date;
         this.suggestion = suggestion;
         this.creator = creator;
+        this.lastEditor = creator;
     }
 
     public int getCode() {

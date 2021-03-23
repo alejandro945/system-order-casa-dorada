@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
@@ -14,6 +15,14 @@ import model.Restaurant;
 public class DashController implements Initializable {
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
+    @FXML
+    private BarChart<String, Integer> barChart;
+
+    @FXML
+    private CategoryAxis x;
+
+    @FXML
+    private NumberAxis y;
 
     @FXML
     private Label lblUser;
@@ -42,7 +51,7 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    public void logOut(ActionEvent event) throws IOException {
+    public void logOut(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.welcomeToLogin();
     }
 
@@ -72,8 +81,19 @@ public class DashController implements Initializable {
         cGui.showIngredients();
     }
 
+    @SuppressWarnings("unchecked")
+    public void initDashoboard() {
+        XYChart.Series<String, Integer> set1 = new XYChart.Series<>();
+        set1.getData().add(new XYChart.Data<>("Users", restaurant.getUsers()));
+        set1.getData().add(new XYChart.Data<>("Employees", restaurant.getEmployees()));
+        set1.getData().add(new XYChart.Data<>("Costumers", restaurant.getCostumers()));
+        set1.getData().add(new XYChart.Data<>("Ingreients", restaurant.getNumberIngredients()));
+        barChart.getData().addAll(set1);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 }

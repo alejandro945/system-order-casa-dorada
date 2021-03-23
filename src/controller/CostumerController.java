@@ -155,6 +155,8 @@ public class CostumerController implements Initializable {
         trimCostumerForm();
         alert.showAndWait();
         restaurant.savePeople();
+        restaurant.loadPeople();
+        initCostumersTable();
         cGui.showCostumers();
     }
 
@@ -194,17 +196,17 @@ public class CostumerController implements Initializable {
 
     @FXML
     public void updateCostumer(ActionEvent event) throws IOException, ClassNotFoundException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoCostumer(getPreSelectCostumer(), txtNameCostumer.getText(),
                 txtLastNameCostumer.getText(), Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                 Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
                 restaurant.getLoggedUser().getName());
+        Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.savePeople();
         restaurant.loadPeople();
         trimCostumerForm();
-        setPreSelectCostumer(null);
+        initCostumersTable();
         cGui.showCostumers();
     }
 
@@ -229,7 +231,7 @@ public class CostumerController implements Initializable {
         cbDisable.setSelected(true);
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
-        
+
     }
 
     @FXML
@@ -271,8 +273,7 @@ public class CostumerController implements Initializable {
         cGui.showDashBoard();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public ObservableList<Costumer> initCostumersTable() {
         ObservableList<Costumer> costumers = FXCollections
                 .observableArrayList(restaurant.getCostumers(restaurant.getPeople()));
         colNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("name"));
@@ -284,20 +285,19 @@ public class CostumerController implements Initializable {
         colCreatorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("creator"));
         colLastEditorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastEditor"));
         listCostumers.setItems(costumers);
-        FilteredList<Costumer> filteredData = new FilteredList<>(costumers, b -> true);
+        return costumers;
+    }
 
-        // 2. Set the filter Predicate whenever the filter changes.
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Costumer> costumers = initCostumersTable();
+        FilteredList<Costumer> filteredData = new FilteredList<>(costumers, b -> true);
         filteredField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(costumer -> {
-                // If filter text is empty, display all persons.
-
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
-                // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
-
                 if (costumer.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true; // Filter matches first name.
                 } else if (costumer.getLastName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
@@ -308,15 +308,8 @@ public class CostumerController implements Initializable {
                     return false; // Does not match.
             });
         });
-
-        // 3. Wrap the FilteredList in a SortedList.
         SortedList<Costumer> sortedData = new SortedList<>(filteredData);
-
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // Otherwise, sorting the TableView would have no effect.
         sortedData.comparatorProperty().bind(listCostumers.comparatorProperty());
-
-        // 5. Add sorted (and filtered) data to the table.
         listCostumers.setItems(sortedData);
     }
 

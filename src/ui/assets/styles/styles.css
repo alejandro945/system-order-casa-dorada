@@ -36,9 +36,15 @@
 -fx-background-radius :  30 0 0 30;
 }
 
+.home{
+    -fx-bar-fill: #8170d4cb
+}
+
+
+
 .button2
 {
--fx-background-color : #393351;
+-fx-background-color : #4b3f7a;
 -fx-background-radius :  20;
 }
 .button2:hover
@@ -206,3 +212,6 @@
     -fx-border-radius: 100%;
     -fx-border-width: 5px;
 }
+
+.default-color0.chart-bar { -fx-bar-fill: #8170d4cb, #4bdf38cb, #f5f23bcb, #eb4848cb};
+

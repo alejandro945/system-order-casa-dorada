@@ -132,13 +132,15 @@ public class ControllerRestaurantGUI implements Initializable {
     }
     // ALL ABOUT USERS
 
-    public void welcomeToLogin() throws IOException {
+    public void welcomeToLogin() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/login.fxml"));
         fxmlLoader.setController(userController);
         Parent login = fxmlLoader.load();
         mainPane.getChildren().setAll(login);
-        if (restaurant.getPeopleFile().length() != 0) {
+        if (restaurant.getPeopleFile().length() > 0 & restaurant.usersDisabled() == false) {
             userController.disableButton();
+        } else {
+            userController.enableButton();
         }
     }
 
@@ -159,6 +161,8 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         dashController.initUser();
+        restaurant.loadIngredients();
+        dashController.initDashoboard();
     }
 
     @FXML
@@ -264,12 +268,12 @@ public class ControllerRestaurantGUI implements Initializable {
     // COSTUMERS
 
     public void showCostumers() throws IOException, ClassNotFoundException {
+        restaurant.loadPeople();
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listCostumers.fxml"));
         fxmlloader.setController(costumerController);
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadPeople();
     }
 
     // EMPLOYEES

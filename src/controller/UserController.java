@@ -163,25 +163,34 @@ public class UserController {
     @FXML
     public void logIn(ActionEvent event) throws IOException, ClassNotFoundException {
         restaurant.loadPeople();
+        boolean validation = validateLoginFields(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
-        if (user != null && user.getState() == true) {
-            restaurant.setLoggedUser(user);
-            cGui.showDashBoard();
-        } else if (user.getState() == false) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
-            alert.setContentText("The user " + user.getName() + " is disable");
+        if (!validation) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Warning");
+            alert.setContentText("Hey!! Please complete all fields for sign in");
             alert.showAndWait();
-        } else {
+        } else if (user == null) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("Error");
             alert.setContentText("Name of user and/or password invalid");
             alert.showAndWait();
+        } else {
+            if (user != null && user.getState() == true) {
+                restaurant.setLoggedUser(user);
+                cGui.showDashBoard();
+            } else if (user.getState() == false) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error");
+                alert.setContentText("The user " + user.getName() + " is disable");
+                alert.showAndWait();
+            }
+            txtNameUserRegister.setText("");
+            txtPasswordRegister.setText("");
         }
-        txtNameUserRegister.setText("");
-        txtPasswordRegister.setText("");
     }
 
     @FXML
@@ -202,7 +211,7 @@ public class UserController {
             alert.setContentText("Ups!! The password is weak, it must be at least 8 characters");
             alert.showAndWait();
         } else if (!restaurant.searchUser(txtNameUserRegister.getText())) {
-            restaurant.addPerson(txtNameRegister.getText(), txtLastNameRegister.getText(),
+            String msg = restaurant.addPerson(txtNameRegister.getText(), txtLastNameRegister.getText(),
                     Integer.parseInt(txtIDRegister.getText()), txtNameUserRegister.getText(),
                     txtPasswordRegister.getText(), pathRender, "Created By Reg");
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -210,12 +219,18 @@ public class UserController {
             alert.setHeaderText("Look, Consider the following");
             alert.setContentText("Are you sure to save this user?");
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
+            if (result.get() == ButtonType.OK && !msg.equals("You can not added a User with the same id")) {
                 Alert alert2 = new Alert(AlertType.INFORMATION);
                 alert2.setTitle("Redux and React");
                 alert2.setHeaderText("The User " + txtNameUserRegister.getText() + " have been added sucesfully");
                 alert2.setContentText("Take it easy bro!");
                 alert2.showAndWait();
+            } else {
+                Alert alert3 = new Alert(AlertType.WARNING);
+                alert3.setTitle("Warning Dialog");
+                alert3.setHeaderText("Warning");
+                alert3.setContentText(msg);
+                alert3.showAndWait();
             }
             trimRegisterTxt();
             restaurant.savePeople();
@@ -226,6 +241,14 @@ public class UserController {
             alert3.setContentText("The user already exist");
             alert3.showAndWait();
         }
+    }
+
+    public boolean validateLoginFields(String userName, String password) {
+        boolean complete = true;
+        if (userName.equals("") || password.equals("")) {
+            complete = false;
+        }
+        return complete;
     }
 
     public boolean registerValidation(String name, String lastName, String id, String userName, String password,
@@ -246,7 +269,7 @@ public class UserController {
         txtPasswordRegister.setText("");
         pathRender = "";
         imgRegister.setImage(null);
-        
+
     }
 
     @FXML
@@ -277,6 +300,10 @@ public class UserController {
 
     public void disableButton() {
         btnRegister.setDisable(true);
+    }
+
+    public void enableButton() {
+        btnRegister.setDisable(false);
     }
 
     @FXML
@@ -369,24 +396,25 @@ public class UserController {
     public void updateUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
                 txtIDUser.getText(), txtUserName.getText(), txtPassword.getText(), this.pathRender);
+        User newUser = new User(txtNameUser.getText(), txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()),
+                txtUserName.getText(), txtPassword.getText(), pathRender, restaurant.getLoggedUser().getName());
         if (validateFields) {
-            String msg = restaurant.setUserInfo(getPreSelectUser(), txtNameUser.getText(), txtLastNameUser.getText(),
-                    Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), pathRender,
+            String msg = restaurant.setUserInfo(newUser, getPreSelectUser(), txtNameUser.getText(),
+                    txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), pathRender,
                     restaurant.getLoggedUser().getName());
-            Alert alert = new Alert(AlertType.WARNING);
+            Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText(msg);
             alert.showAndWait();
             restaurant.savePeople();
             restaurant.loadPeople();
             trimUserForm();
-            setPreSelectUser(null);
             initUserTable();
         } else {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Warning");
-            alert.setContentText("Hey!! Please complete all fields for create your account");
+            alert.setContentText("Hey!! Please complete all fields for update");
             alert.showAndWait();
         }
 

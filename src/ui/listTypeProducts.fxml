@@ -13,26 +13,26 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProductType" onMouseClicked="#selectedProductYpe" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProductType" layoutX="21.0" layoutY="22.0" onMouseClicked="#selectedProducType" prefHeight="530.0" prefWidth="533.0" stylesheets="@assets/styles/styles.css">
          <columns>
+            <TableColumn fx:id="colCode" prefWidth="107.0" text="CODE" />
             <TableColumn fx:id="colNameProductType" minWidth="0.0" prefWidth="132.0" text="NAME" />
             <TableColumn fx:id="colCreatorProductType" prefWidth="179.0" text="CREATOR" />
             <TableColumn fx:id="colEditorProducType" prefWidth="132.0" text="EDITOR" />
-            <TableColumn fx:id="colCode" prefWidth="107.0" text="CODE" />
          </columns>
       </TableView>
-      <Label layoutX="638.0" layoutY="239.0" text="Name:">
+      <Label layoutX="644.0" layoutY="265.0" text="Name:">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameProductType" layoutX="640.0" layoutY="276.0" prefHeight="25.0" prefWidth="184.0" />
+      <TextField fx:id="txtNameProductType" layoutX="646.0" layoutY="315.0" prefHeight="41.0" prefWidth="199.0" />
       <Label layoutX="648.0" layoutY="24.0" text="Product type Crud">
          <font>
             <Font name="System Bold Italic" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="671.0" layoutY="470.0" mnemonicParsing="false" onAction="#createProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="661.0" layoutY="436.0" mnemonicParsing="false" onAction="#createProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -44,7 +44,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="590.0" layoutY="527.0" mnemonicParsing="false" onAction="#updateProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="580.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -56,7 +56,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button contentDisplay="RIGHT" layoutX="762.0" layoutY="527.0" mnemonicParsing="false" onAction="#deleteProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button contentDisplay="RIGHT" disable="true" layoutX="752.0" layoutY="493.0" mnemonicParsing="false" onAction="#deleteProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -68,12 +68,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="674.0" layoutY="590.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="664.0" layoutY="556.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateProductType" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
       </CheckBox>
-      <ImageView fitHeight="150.0" fitWidth="172.0" layoutX="657.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="167.0" fitWidth="142.0" layoutX="678.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/img/img3.png" />
          </image>
@@ -119,11 +119,5 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="638.0" layoutY="314.0" text="Code:">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtCodeProductType" layoutX="638.0" layoutY="350.0" prefHeight="25.0" prefWidth="184.0" />
    </children>
 </Pane>
