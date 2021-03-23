@@ -1,28 +1,17 @@
 package controller;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.*;
 
 public class EmployeeController {
-
-    private Employee preSelectEmployee;
-
-    private int idxEmployee;
 
     @FXML
     private TableView<Employee> listEmployees;
@@ -62,6 +51,9 @@ public class EmployeeController {
 
     @FXML
     private CheckBox cbDisableEmployee;
+
+    private Employee preSelectEmployee;
+    private int idxEmployee;
 
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
@@ -155,21 +147,6 @@ public class EmployeeController {
     }
 
     @FXML
-    void deselectEmployee(ActionEvent event) {
-        trimEmployeeForm();
-    }
-
-    @FXML
-    void exportEmployee(ActionEvent event) {
-
-    }
-
-    @FXML
-    void importEmployee(ActionEvent event) {
-
-    }
-
-    @FXML
     void setStateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         String msg = "";
         if (cbDisableEmployee.isSelected()) {
@@ -212,6 +189,21 @@ public class EmployeeController {
         alert.showAndWait();
         restaurant.savePeople();
         initEmployeeTable();
+    }
+
+    @FXML
+    void deselectEmployee(ActionEvent event) {
+        trimEmployeeForm();
+    }
+
+    @FXML
+    void exportEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    void importEmployee(ActionEvent event) {
+
     }
 
     public void initEmployeeTable() throws IOException {

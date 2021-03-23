@@ -1,33 +1,21 @@
 package controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Optional;
 
 import animatefx.animation.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
-import model.Restaurant;
-import model.User;
+import model.*;
 
 public class UserController {
 
@@ -323,39 +311,6 @@ public class UserController {
     }
 
     @FXML
-    void selectedUser(MouseEvent event) {
-        User sltUser = listUsers.getSelectionModel().getSelectedItem();
-        if (sltUser != null) {
-            int idxUser = listUsers.getSelectionModel().getSelectedIndex();
-            setIdxUser(idxUser);
-            setPreSelectUser(sltUser);
-            setForm(sltUser);
-            btnCreate.setDisable(true);
-            btnDelete.setDisable(false);
-            btnUpdate.setDisable(false);
-            cbDisableUser.setDisable(false);
-        }
-    }
-
-    public boolean userValidation(String name, String lastName, String id, String userName) {
-        boolean complete = true;
-        if (name.equals("") || lastName.equals("") || id.equals("") || userName.equals("")) {
-            complete = false;
-        }
-        return complete;
-    }
-
-    public void setForm(User selectUser) {
-        txtNameUser.setText(selectUser.getName());
-        txtLastNameUser.setText(selectUser.getLastName());
-        txtIDUser.setText(String.valueOf(selectUser.getId()));
-        txtUserName.setText(selectUser.getUserName());
-        imgRegister.setImage(new Image(("file:///" + selectUser.getImage())));
-        pathRender = selectUser.getImage();
-        cbDisableUser.setSelected(!selectUser.getState());
-    }
-
-    @FXML
     public void createUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
                 txtIDUser.getText(), txtUserName.getText(), txtPassword.getText(), this.pathRender);
@@ -392,6 +347,72 @@ public class UserController {
         initUserTable();
     }
 
+    public boolean userValidation(String name, String lastName, String id, String userName) {
+        boolean complete = true;
+        if (name.equals("") || lastName.equals("") || id.equals("") || userName.equals("")) {
+            complete = false;
+        }
+        return complete;
+    }
+
+    public void trimUserForm() {
+        txtNameUser.setText("");
+        txtLastNameUser.setText("");
+        txtIDUser.setText("");
+        txtUserName.setText("");
+        txtPassword.setText("");
+        pathRender = "";
+        imgRegister.setImage(null);
+        btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        cbDisableUser.setDisable(true);
+    }
+
+    @FXML
+    void selectedUser(MouseEvent event) {
+        User sltUser = listUsers.getSelectionModel().getSelectedItem();
+        if (sltUser != null) {
+            int idxUser = listUsers.getSelectionModel().getSelectedIndex();
+            setIdxUser(idxUser);
+            setPreSelectUser(sltUser);
+            setForm(sltUser);
+            btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+            cbDisableUser.setDisable(false);
+        }
+    }
+
+    public void setForm(User selectUser) {
+        txtNameUser.setText(selectUser.getName());
+        txtLastNameUser.setText(selectUser.getLastName());
+        txtIDUser.setText(String.valueOf(selectUser.getId()));
+        txtUserName.setText(selectUser.getUserName());
+        imgRegister.setImage(new Image(("file:///" + selectUser.getImage())));
+        pathRender = selectUser.getImage();
+        cbDisableUser.setSelected(!selectUser.getState());
+    }
+
+    @FXML
+    public void setStateUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+        String msg = "";
+        if (cbDisableUser.isSelected()) {
+            msg = restaurant.disableUser(preSelectUser);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        } else {
+            msg = restaurant.enableUser(preSelectUser);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        }
+        trimUserForm();
+        restaurant.savePeople();
+        initUserTable();
+    }
+
     @FXML
     public void updateUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
@@ -417,21 +438,6 @@ public class UserController {
             alert.setContentText("Hey!! Please complete all fields for update");
             alert.showAndWait();
         }
-
-    }
-
-    public void trimUserForm() {
-        txtNameUser.setText("");
-        txtLastNameUser.setText("");
-        txtIDUser.setText("");
-        txtUserName.setText("");
-        txtPassword.setText("");
-        pathRender = "";
-        imgRegister.setImage(null);
-        btnCreate.setDisable(false);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
-        cbDisableUser.setDisable(true);
     }
 
     @FXML
@@ -446,6 +452,11 @@ public class UserController {
     }
 
     @FXML
+    void searchCostumer(ActionEvent event) {
+
+    }
+
+    @FXML
     public void deselectUser(ActionEvent event) {
         trimUserForm();
     }
@@ -457,30 +468,6 @@ public class UserController {
 
     @FXML
     public void importUsers(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void setStateUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
-        String msg = "";
-        if (cbDisableUser.isSelected()) {
-            msg = restaurant.disableUser(preSelectUser);
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText(msg);
-            alert.showAndWait();
-        } else {
-            msg = restaurant.enableUser(preSelectUser);
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText(msg);
-            alert.showAndWait();
-        }
-        trimUserForm();
-        restaurant.savePeople();
-        initUserTable();
-    }
-
-    @FXML
-    void searchCostumer(ActionEvent event) {
 
     }
 

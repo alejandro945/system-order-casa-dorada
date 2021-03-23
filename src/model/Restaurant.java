@@ -12,10 +12,12 @@ public class Restaurant {
     private List<Order> orders;
     private List<Ingredients> ingredients;
     private List<Person> people;
+    private List<ProductType> productType;
     private User logged;
     public static final String FILE_SEPARATOR = "\\;";
     public static final String SAVE_PATH_FILE_PEOPLE = "data/people.report";
     public static final String SAVE_PATH_FILE_INGREDIENTS = "data/ingredients.report";
+    public static final String SAVE_PATH_FILE_PRODUCT_TYPE = "data/productType.report";
 
     // ------------------------------------------CONSTRUCTOR-------------------------------------
     public Restaurant() {
@@ -23,6 +25,7 @@ public class Restaurant {
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
         people = new ArrayList<Person>();
+        productType = new ArrayList<ProductType>();
     }
 
     // ----------------------------------------GETS&SETS-----------------------------------------
@@ -145,6 +148,22 @@ public class Restaurant {
         return this.logged;
     }
 
+    public List<ProductType> getProductType() {
+        return this.productType;
+    }
+
+    public void setProductType(List<ProductType> productType) {
+        this.productType = productType;
+    }
+
+    public int getNumberProductType() {
+        int count = 0;
+        for (int i = 0; i < productType.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
     // ---------------------------------------------PERSISTENCE------------------------------------------------
     public File getPeopleFile() {
         File file = new File(SAVE_PATH_FILE_PEOPLE);
@@ -153,6 +172,11 @@ public class Restaurant {
 
     public File getIngredientFile() {
         File file = new File(SAVE_PATH_FILE_INGREDIENTS);
+        return file;
+    }
+
+    public File getProductTypeFile(){
+        File file = new File(SAVE_PATH_FILE_PRODUCT_TYPE);
         return file;
     }
 
@@ -195,6 +219,29 @@ public class Restaurant {
 
     @SuppressWarnings("unchecked")
     public void loadIngredients() throws IOException, ClassNotFoundException {
+        if (getIngredientFile().length() > 0) {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_INGREDIENTS)));
+            ingredients = (List<Ingredients>) ois.readObject();
+            ois.close();
+        }
+    }
+
+    public void saveProductType() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectOutputStream oos = null;
+        File file = new File(SAVE_PATH_FILE_INGREDIENTS);
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(ingredients);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("We could not find the path");
+            alert.showAndWait();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadProductType() throws IOException, ClassNotFoundException {
         if (getIngredientFile().length() > 0) {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_INGREDIENTS)));
             ingredients = (List<Ingredients>) ois.readObject();
@@ -362,7 +409,7 @@ public class Restaurant {
         return logged;
     }
 
-    // -----------------------------------------------------COSTUMER---------------------------------------
+    // -----------------------------------------------------COSTUMERS---------------------------------------
     public int getNumberCostumers() {
         int count = 0;
         for (Person person : people) {
@@ -494,6 +541,11 @@ public class Restaurant {
             addPerson(name, lastName, id, address, telephone, suggestion, creator);
         }
         br.close();
+    }
+
+    public void exportCostumers(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.close();
     }
 
     // -------------------------------------------EMPLOYEEES-----------------------------------------------------
@@ -730,4 +782,66 @@ public class Restaurant {
      * if(x.compareTo(costumers.get(m)>0)){ i = m+1; } else{ j = m-1; } } return
      * pos; }
      */
+
+     //-----------------------------------------PRODUCT_TYPE----------------------------------------------
+
+     public String addProductType(String name, String creator, int code) {
+        String msg = "";
+        ProductType newProductType = new ProductType(name, creator, code);
+        if (productType.isEmpty()) {
+            productType.add(newProductType);
+            msg = "The product type " + newProductType.getName() + " have been added succesfully";
+        } else {
+            boolean added = false;
+            for (int j = 0; j < ingredients.size() && !added; j++) {
+                if (newProductType.getName().equalsIgnoreCase(productType.get(j).getName())) {
+                    msg = "You can not added an product type with the same name";
+                    added = true;
+                } else {
+                    productType.add(newProductType);
+                    msg = "The product type " + newProductType.getName() + " have been added succesfully";
+                    added = true;
+                }
+            }
+        }
+        return msg;
+    }
+
+    public String setProductType(ProductType productType, String name, String lastEditor) {
+        productType.setName(name);
+        productType.setLastEditor(lastEditor);
+        return "The product type have been edited succesfully";
+    }
+
+    public String deleteProductType(int positionProductType) {
+        productType.remove(positionProductType);
+        setCodePosition();
+        return "The product type have been deleted succesfully";
+    }
+
+    public String disableProductType(ProductType pType) {
+        pType.setState(false);
+        return "The product type have been disabled succesfully";
+    }
+
+    public String enableProductType( ProductType pType) {
+        pType.setState(true);
+        return "The product type have been enabled succesfully";
+    }
+
+    public void setCodeProductTypePosition() {
+        int code = 1;
+        for (ProductType ptype : productType) {
+            ptype.setCode(code);
+            code++;
+        }
+    }
+
+    public int getCodeProductType() {
+        int count = 0;
+        for (int i = 0; i < productType.size(); i++) {
+            count++;
+        }
+        return count + 1;
+    }
 }

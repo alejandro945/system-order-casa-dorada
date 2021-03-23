@@ -3,12 +3,8 @@ package controller;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.io.*;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
@@ -77,14 +73,6 @@ public class IngredientsController {
         cGui.showDashBoard();
     }
 
-    public boolean ingredientValidation(String name) {
-        boolean complete = true;
-        if (name.equals("")) {
-            complete = false;
-        }
-        return complete;
-    }
-
     @FXML
     void createIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
         boolean validateFields = ingredientValidation(txtNameIngredients.getText());
@@ -96,7 +84,8 @@ public class IngredientsController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addIngredient(restaurant.getCode(),txtNameIngredients.getText(), restaurant.getLoggedUser().getName());
+            String msg = restaurant.addIngredient(restaurant.getCode(), txtNameIngredients.getText(),
+                    restaurant.getLoggedUser().getName());
             alert.setContentText(msg);
             trimIngredientsForm();
             alert.showAndWait();
@@ -105,30 +94,20 @@ public class IngredientsController {
         }
     }
 
-    @FXML
-    void deleteIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteIngredient(getIdxIngredient());
-        alert.setContentText(msg);
-        trimIngredientsForm();
-        alert.showAndWait();
-        restaurant.saveIngredients();
-        initIngredientsTable();
+    public boolean ingredientValidation(String name) {
+        boolean complete = true;
+        if (name.equals("")) {
+            complete = false;
+        }
+        return complete;
     }
 
-    @FXML
-    void deselectIngredient(ActionEvent event) {
-        trimIngredientsForm();
-    }
-
-    @FXML
-    void exportIngredients(ActionEvent event) {
-
-    }
-
-    @FXML
-    void importIngredients(ActionEvent event) {
-
+    public void trimIngredientsForm() {
+        txtNameIngredients.setText("");
+        btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        cbDisable.setDisable(true);
     }
 
     @FXML
@@ -144,14 +123,6 @@ public class IngredientsController {
             btnUpdate.setDisable(false);
             cbDisable.setDisable(false);
         }
-    }
-
-    public void trimIngredientsForm() {
-        txtNameIngredients.setText("");
-        btnCreate.setDisable(false);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
-        cbDisable.setDisable(true);
     }
 
     public void setForm(Ingredients selectIngredient) {
@@ -181,7 +152,8 @@ public class IngredientsController {
     @FXML
     void updateIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.setInfoIngredient(getPreSelectIngredient(), txtNameIngredients.getText(), restaurant.getLogged().getName());
+        String msg = restaurant.setInfoIngredient(getPreSelectIngredient(), txtNameIngredients.getText(),
+                restaurant.getLogged().getName());
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveIngredients();
@@ -189,6 +161,32 @@ public class IngredientsController {
         trimIngredientsForm();
         setPreSelectIngredient(null);
         initIngredientsTable();
+    }
+
+    @FXML
+    void deleteIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.deleteIngredient(getIdxIngredient());
+        alert.setContentText(msg);
+        trimIngredientsForm();
+        alert.showAndWait();
+        restaurant.saveIngredients();
+        initIngredientsTable();
+    }
+
+    @FXML
+    void deselectIngredient(ActionEvent event) {
+        trimIngredientsForm();
+    }
+
+    @FXML
+    void exportIngredients(ActionEvent event) {
+
+    }
+
+    @FXML
+    void importIngredients(ActionEvent event) {
+
     }
 
     public void initIngredientsTable() throws IOException {

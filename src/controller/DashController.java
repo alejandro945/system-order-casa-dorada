@@ -81,6 +81,16 @@ public class DashController implements Initializable {
         cGui.showIngredients();
     }
 
+    @FXML
+    void showProducts(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showProductTypes(ActionEvent event) {
+
+    }
+
     @SuppressWarnings("unchecked")
     public void initDashoboard() {
         XYChart.Series<String, Integer> set1 = new XYChart.Series<>();

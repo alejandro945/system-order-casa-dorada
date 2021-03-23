@@ -5,7 +5,6 @@ import model.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -110,6 +109,11 @@ public class CostumerController implements Initializable {
     }
 
     @FXML
+    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+        cGui.showDashBoard();
+    }
+
+    @FXML
     public void createCostumer(ActionEvent event) throws IOException, ClassNotFoundException {
         boolean validateFields = costumerValidation(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
                 txtIdCostumer.getText(), txtAddressCostumer.getText(), txtTelephoneCostumer.getText(),
@@ -147,17 +151,17 @@ public class CostumerController implements Initializable {
         return complete;
     }
 
-    @FXML
-    public void deleteCostumer(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteCostumer(getPreSelectCostumer());
-        alert.setContentText(msg);
-        trimCostumerForm();
-        alert.showAndWait();
-        restaurant.savePeople();
-        restaurant.loadPeople();
-        initCostumersTable();
-        cGui.showCostumers();
+    public void trimCostumerForm() {
+        txtNameCostumer.setText("");
+        txtLastNameCostumer.setText("");
+        txtIdCostumer.setText("");
+        txtAddressCostumer.setText("");
+        txtTelephoneCostumer.setText("");
+        txtSuggestionsCostumer.setText("");
+        btnCreate.setDisable(false);
+        cbDisable.setSelected(true);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
     }
 
     @FXML
@@ -179,6 +183,7 @@ public class CostumerController implements Initializable {
         cGui.showCostumers();
     }
 
+
     @FXML
     public void selectedCostumer(MouseEvent event) throws IOException {
         Costumer sltCostumer = listCostumers.getSelectionModel().getSelectedItem();
@@ -192,6 +197,16 @@ public class CostumerController implements Initializable {
             btnUpdate.setDisable(false);
             cbDisable.setDisable(false);
         }
+    }
+
+    public void setForm(Costumer selectCostumer) {
+        txtNameCostumer.setText(selectCostumer.getName());
+        txtLastNameCostumer.setText(selectCostumer.getLastName());
+        txtIdCostumer.setText(String.valueOf(selectCostumer.getId()));
+        txtAddressCostumer.setText(selectCostumer.getAddress());
+        txtTelephoneCostumer.setText(String.valueOf(selectCostumer.getTelephone()));
+        txtSuggestionsCostumer.setText(selectCostumer.getSuggestions());
+        cbDisable.setSelected(!selectCostumer.getState());
     }
 
     @FXML
@@ -210,28 +225,17 @@ public class CostumerController implements Initializable {
         cGui.showCostumers();
     }
 
-    public void setForm(Costumer selectCostumer) {
-        txtNameCostumer.setText(selectCostumer.getName());
-        txtLastNameCostumer.setText(selectCostumer.getLastName());
-        txtIdCostumer.setText(String.valueOf(selectCostumer.getId()));
-        txtAddressCostumer.setText(selectCostumer.getAddress());
-        txtTelephoneCostumer.setText(String.valueOf(selectCostumer.getTelephone()));
-        txtSuggestionsCostumer.setText(selectCostumer.getSuggestions());
-        cbDisable.setSelected(!selectCostumer.getState());
-    }
-
-    public void trimCostumerForm() {
-        txtNameCostumer.setText("");
-        txtLastNameCostumer.setText("");
-        txtIdCostumer.setText("");
-        txtAddressCostumer.setText("");
-        txtTelephoneCostumer.setText("");
-        txtSuggestionsCostumer.setText("");
-        btnCreate.setDisable(false);
-        cbDisable.setSelected(true);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
-
+    @FXML
+    public void deleteCostumer(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.deleteCostumer(getPreSelectCostumer());
+        alert.setContentText(msg);
+        trimCostumerForm();
+        alert.showAndWait();
+        restaurant.savePeople();
+        restaurant.loadPeople();
+        initCostumersTable();
+        cGui.showCostumers();
     }
 
     @FXML
@@ -261,16 +265,6 @@ public class CostumerController implements Initializable {
             alert.setContentText("The costumers data was NOT imported. An error occurred");
             alert.showAndWait();
         }
-    }
-
-    public void exportCostumers(String fileName) throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter(fileName);
-        pw.close();
-    }
-
-    @FXML
-    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
-        cGui.showDashBoard();
     }
 
     public ObservableList<Costumer> initCostumersTable() {

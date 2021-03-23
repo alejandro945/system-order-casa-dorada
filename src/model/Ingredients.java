@@ -13,8 +13,6 @@ public class Ingredients implements Serializable{
     private String lastEditor;
     private boolean state;
 
-
-
     public Ingredients(int code, String name, String creator) {
         this.code = code;
         this.name = name;

@@ -7,12 +7,9 @@ import java.util.*;
 import java.util.Date;
 
 import javafx.application.Platform;
-import javafx.collections.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
@@ -39,62 +36,7 @@ public class ControllerRestaurantGUI implements Initializable {
 
     // PRODUCTS
 
-    @FXML
-    private TableView<Product> listProducts;
-
-    @FXML
-    private TableColumn<Product, Integer> colPriceProducts;
-
-    @FXML
-    private TableColumn<Product, String> colNameProducts;
-
-    @FXML
-    private TableColumn<Product, String> colProductType;
-
-    @FXML
-    private TableColumn<Product, Ingredients> colIngredientsProducts;
-
-    @FXML
-    private TableColumn<Product, String> colSizeProducts;
-
-    @FXML
-    private TableColumn<Product, User> colCreatorProducts;
-
-    @FXML
-    private TextField txtNameProducts;
-
-    @FXML
-    private TextField txtSizeProducts;
-
-    @FXML
-    private TextField txtPriceProducts;
-
-    @FXML
-    private ComboBox<String> comboIngredients;
-
-    @FXML
-    private Label showMessage;
-
-    @FXML
-    private ComboBox<String> comboProductType;
-
-    // INGREDIENTS
-
-    @FXML
-    private TableView<Ingredients> listIngredients;
-
-    @FXML
-    private TableColumn<Ingredients, String> colNameIngredients;
-
-    @FXML
-    private TableColumn<Ingredients, User> colCreatorIngredients;
-
-    @FXML
-    private TableColumn<Ingredients, User> colEditorIngredients;
-
-    @FXML
-    private TextField txtNameIngredients;
-
+   
     // REDUX
 
     private Restaurant restaurant;
@@ -103,6 +45,8 @@ public class ControllerRestaurantGUI implements Initializable {
     private CostumerController costumerController;
     private EmployeeController employeeController;
     private IngredientsController ingredientController;
+    private ProductTypeController productTypeController;
+    private ProductController productController;
 
     public ControllerRestaurantGUI(Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -111,7 +55,11 @@ public class ControllerRestaurantGUI implements Initializable {
         costumerController = new CostumerController(restaurant, this);
         employeeController = new EmployeeController(restaurant, this);
         ingredientController = new IngredientsController(restaurant, this);
+        productTypeController = new ProductTypeController(restaurant, this);
+        productController = new ProductController(restaurant, this);
     }
+
+    //HOUR AND DATE
 
     public void hour() {
         Calendar calendar = new GregorianCalendar();
@@ -172,6 +120,8 @@ public class ControllerRestaurantGUI implements Initializable {
         }
     }
 
+    //USERS
+
     public void showUsers() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
         fxmlloader.setController(userController);
@@ -184,67 +134,13 @@ public class ControllerRestaurantGUI implements Initializable {
 
     // PRODUCTS
 
-    @FXML
-    public void createProducts(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void deleteProducts(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void disableProducts(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void updateProducts(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void showProducts(ActionEvent event) throws IOException {
+    public void showProducts() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listProducts.fxml"));
-        fxmlloader.setController(this);
+        fxmlloader.setController(productController);
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        initProductTable();
-    }
-
-    @FXML
-    public void selectedProduct(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            Product auxProduct = listProducts.getSelectionModel().getSelectedItem();
-
-        }
-    }
-
-    /*
-     * @FXML void importProducts(ActionEvent event) throws IOException { FileChooser
-     * fc = new FileChooser(); File selectedFile =
-     * fc.showOpenDialog(mainPane.getScene().getWindow()); if (selectedFile != null)
-     * { Alert alert = new Alert(AlertType.INFORMATION);
-     * alert.setTitle("Import products");
-     * restaurant.importDataProducts(selectedFile.getAbsolutePath());
-     * alert.setContentText("The products data was imported succesfully");
-     * alert.showAndWait(); showProducts(event); } else { Alert alert = new
-     * Alert(AlertType.ERROR); alert.setTitle("Import products");
-     * alert.setContentText("The products data was NOT imported. An error occurred"
-     * ); alert.showAndWait(); } }
-     */
-
-    public void initProductTable() throws IOException {
-        ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
-        listProducts.setItems(products);
-        colPriceProducts.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
-        colNameProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        colProductType.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
-        colIngredientsProducts.setCellValueFactory(new PropertyValueFactory<Product, Ingredients>("ingredients"));
-        colSizeProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("size"));
-        colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("creator"));
+        productController.initProductTable();
     }
 
     // INGREDIENTS
@@ -257,12 +153,6 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         restaurant.loadIngredients();
         ingredientController.initIngredientsTable();
-    }
-
-    public void initComboIngredientBox() {
-        ObservableList<String> ingredientBox = FXCollections.observableArrayList(restaurant.getIngredientsFormated());
-        comboIngredients.setValue("Select an option");
-        comboIngredients.setItems(ingredientBox);
     }
 
     // COSTUMERS
