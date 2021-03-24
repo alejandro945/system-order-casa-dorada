@@ -51,6 +51,18 @@ public class ProductController {
     @FXML
     private ComboBox<String> comboProductType;
 
+    @FXML
+    private Button btnUpdate;
+
+    @FXML
+    private Button btnDelete;
+
+    @FXML
+    private Button btnCreate;
+
+    @FXML
+    private CheckBox cbDisable;
+
     private Product preSelectProduct;
     private int idxProduct;
 
@@ -61,7 +73,6 @@ public class ProductController {
         this.restaurant = restaurant;
         this.cGui = controllerRestaurantGUI;
     }
-
 
     public Product getPreSelectProduct() {
         return this.preSelectProduct;
@@ -79,6 +90,15 @@ public class ProductController {
         this.idxProduct = idxProduct;
     }
 
+    @FXML
+    void backCostuToDash(MouseEvent event) {
+
+    }
+
+    @FXML
+    void setStateProducts(ActionEvent event) {
+
+    }
 
     @FXML
     public void createProducts(ActionEvent event) {
@@ -87,11 +107,6 @@ public class ProductController {
 
     @FXML
     public void deleteProducts(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void disableProducts(ActionEvent event) {
 
     }
 
@@ -116,10 +131,22 @@ public class ProductController {
 
     @FXML
     public void selectedProduct(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            Product auxProduct = listProducts.getSelectionModel().getSelectedItem();
 
-        }
+    }
+
+    @FXML
+    void deselectProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void exportProducts(ActionEvent event) {
+
+    }
+
+    @FXML
+    void importProducts(ActionEvent event) {
+
     }
 
     public void initComboIngredientBox() {

@@ -73,12 +73,12 @@ public class ProductTypeController {
     }
 
     @FXML
-    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+    public void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
 
     @FXML
-    void createProductType(ActionEvent event) throws IOException, ClassNotFoundException {
+    public void createProductType(ActionEvent event) throws IOException, ClassNotFoundException {
         boolean validateFields = productTypeValidation(txtNameProductType.getText());
         if (!validateFields) {
             Alert alert2 = new Alert(AlertType.WARNING);
@@ -98,8 +98,24 @@ public class ProductTypeController {
         }
     }
 
+    public boolean productTypeValidation(String name) {
+        boolean complete = true;
+        if (name.equals("")) {
+            complete = false;
+        }
+        return complete;
+    }
+
+    public void trimProductTypeForm() {
+        txtNameProductType.setText("");
+        btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        cbDisable.setDisable(true);
+    }
+
     @FXML
-    void updateProductType(ActionEvent event) throws ClassNotFoundException, IOException {
+    public void updateProductType(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setProductType(getPreSelectProductType(), txtNameProductType.getText(),
                 restaurant.getLoggedUser().getName());
@@ -113,7 +129,7 @@ public class ProductTypeController {
     }
 
     @FXML
-    void selectedProducType(MouseEvent event) {
+    public void selectedProductType(MouseEvent event) {
         ProductType sltProductType = listProductType.getSelectionModel().getSelectedItem();
         if (sltProductType != null) {
             int idxProductType = listProductType.getSelectionModel().getSelectedIndex();
@@ -133,7 +149,7 @@ public class ProductTypeController {
     }
 
     @FXML
-    void setStateProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void setStateProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableProductType(preSelectProductType);
@@ -148,25 +164,10 @@ public class ProductTypeController {
         }
         trimProductTypeForm();
         restaurant.saveProductType();
-        ;
         initProductTypeTable();
     }
 
-    public boolean productTypeValidation(String name) {
-        boolean complete = true;
-        if (name.equals("")) {
-            complete = false;
-        }
-        return complete;
-    }
-
-    public void trimProductTypeForm() {
-        txtNameProductType.setText("");
-        btnCreate.setDisable(false);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
-        cbDisable.setDisable(true);
-    }
+    
 
     @FXML
     void deleteProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {

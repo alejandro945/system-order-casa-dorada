@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProductType" layoutX="21.0" layoutY="22.0" onMouseClicked="#selectedProductType" prefHeight="530.0" prefWidth="533.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProductType" layoutX="21.0" layoutY="22.0" onMouseClicked="#selectedProductSize" prefHeight="530.0" prefWidth="533.0" stylesheets="@assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colCode" prefWidth="107.0" text="CODE" />
             <TableColumn fx:id="colNameProductType" minWidth="0.0" prefWidth="132.0" text="NAME" />

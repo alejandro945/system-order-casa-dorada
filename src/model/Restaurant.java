@@ -13,11 +13,13 @@ public class Restaurant {
     private List<Ingredients> ingredients;
     private List<Person> people;
     private List<ProductType> productType;
+    private List<ProductSize> productSize;
     private User logged;
-    public static final String FILE_SEPARATOR = "\\;";
+    public static final String FILE_SEPARATOR = ",";
     public static final String SAVE_PATH_FILE_PEOPLE = "data/people.report";
     public static final String SAVE_PATH_FILE_INGREDIENTS = "data/ingredients.report";
     public static final String SAVE_PATH_FILE_PRODUCT_TYPE = "data/productType.report";
+    public static final String SAVE_PATH_FILE_PRODUCT_SIZE = "data/productSize.report";
 
     // ------------------------------------------CONSTRUCTOR-------------------------------------
     public Restaurant() {
@@ -26,6 +28,7 @@ public class Restaurant {
         ingredients = new ArrayList<Ingredients>();
         people = new ArrayList<Person>();
         productType = new ArrayList<ProductType>();
+        productSize = new ArrayList<ProductSize>();
     }
 
     // ----------------------------------------GETS&SETS-----------------------------------------
@@ -104,16 +107,16 @@ public class Restaurant {
         return this.ingredients;
     }
 
+    public void setIngredients(List<Ingredients> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public int getNumberIngredients() {
         int count = 0;
         for (int i = 0; i < ingredients.size(); i++) {
             count++;
         }
         return count;
-    }
-
-    public void setIngredients(List<Ingredients> ingredients) {
-        this.ingredients = ingredients;
     }
 
     public List<Person> getPeople() {
@@ -164,6 +167,23 @@ public class Restaurant {
         return count;
     }
 
+    public List<ProductSize> getProductSize() {
+        return this.productSize;
+    }
+
+    public void setProductSize(List<ProductSize> productSize) {
+        this.productSize = productSize;
+    }
+
+    public int getNumberProductSize() {
+        int count = 0;
+        for (int i = 0; i < productSize.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+
     // ---------------------------------------------PERSISTENCE------------------------------------------------
     public File getPeopleFile() {
         File file = new File(SAVE_PATH_FILE_PEOPLE);
@@ -177,6 +197,11 @@ public class Restaurant {
 
     public File getProductTypeFile() {
         File file = new File(SAVE_PATH_FILE_PRODUCT_TYPE);
+        return file;
+    }
+
+    public File getProductSizeFile() {
+        File file = new File(SAVE_PATH_FILE_PRODUCT_SIZE);
         return file;
     }
 
@@ -245,6 +270,29 @@ public class Restaurant {
         if (getProductTypeFile().length() > 0) {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PRODUCT_TYPE)));
             productType = (List<ProductType>) ois.readObject();
+            ois.close();
+        }
+    }
+
+    public void saveProductSize() throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectOutputStream oos = null;
+        File file = new File(SAVE_PATH_FILE_PRODUCT_SIZE);
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(productSize);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("We could not find the path");
+            alert.showAndWait();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void loadProductSize() throws IOException, ClassNotFoundException {
+        if (getProductSizeFile().length() > 0) {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PRODUCT_SIZE)));
+            productSize = (List<ProductSize>) ois.readObject();
             ois.close();
         }
     }
@@ -536,15 +584,19 @@ public class Restaurant {
             String address = parts[3];
             int telephone = Integer.parseInt(parts[4]);
             String suggestion = parts[5];
-            String creator = "";
+            String creator = "Imported by file";
             line = br.readLine();
             addPerson(name, lastName, id, address, telephone, suggestion, creator);
         }
         br.close();
     }
 
-    public void exportCostumers(String fileName) throws FileNotFoundException {
+    public void exportDataCostumers(String fileName) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getCostumers(people).size(); i++) {
+            Costumer c = getCostumers(people).get(i);
+            pw.println(c.getName()+" ");
+        }
         pw.close();
     }
 
@@ -815,7 +867,7 @@ public class Restaurant {
 
     public String deleteProductType(int positionProductType) {
         productType.remove(positionProductType);
-        setCodePosition();
+        setCodeProductTypePosition();
         return "The product type have been deleted succesfully";
     }
 
@@ -844,4 +896,67 @@ public class Restaurant {
         }
         return count + 1;
     }
+
+    // -----------------------------------------PRODUCT_SIZE----------------------------------------------
+
+    public String addProductSize(String name, int code, String creator) {
+        String msg = "";
+        ProductSize newProductSize = new ProductSize(name, code, creator);
+        if (productSize.isEmpty()) {
+            productSize.add(newProductSize);
+            msg = "The product size " + newProductSize.getName() + " have been added succesfully";
+        } else {
+            boolean added = false;
+            for (int j = 0; j < productSize.size() && !added; j++) {
+                if (newProductSize.getName().equalsIgnoreCase(productSize.get(j).getName())) {
+                    msg = "You can not added an product size with the same name";
+                    added = true;
+                } else {
+                    productSize.add(newProductSize);
+                    msg = "The product size " + newProductSize.getName() + " have been added succesfully";
+                    added = true;
+                }
+            }
+        }
+        return msg;
+    }
+
+    public String setProductSize(ProductSize productSize, String name, String lastEditor) {
+        productSize.setName(name);
+        productSize.setLastEditor(lastEditor);
+        return "The product size have been edited succesfully";
+    }
+
+    public String deleteProductSize(int positionProductSize) {
+        productSize.remove(positionProductSize);
+        setCodeProductSizePosition();
+        return "The product size have been deleted succesfully";
+    }
+
+    public String disableProductSize(ProductSize pSize) {
+        pSize.setState(false);
+        return "The product size have been disabled succesfully";
+    }
+
+    public String enableProductSize(ProductSize pSize) {
+        pSize.setState(true);
+        return "The product size have been enabled succesfully";
+    }
+
+    public void setCodeProductSizePosition() {
+        int code = 1;
+        for (ProductSize pSize : productSize) {
+            pSize.setCode(code);
+            code++;
+        }
+    }
+
+    public int getCodeProductSize() {
+        int count = 0;
+        for (int i = 0; i < productSize.size(); i++) {
+            count++;
+        }
+        return count + 1;
+    }
+
 }

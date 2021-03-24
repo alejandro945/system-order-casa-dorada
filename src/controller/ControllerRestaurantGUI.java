@@ -46,6 +46,7 @@ public class ControllerRestaurantGUI implements Initializable {
     private IngredientsController ingredientController;
     private ProductTypeController productTypeController;
     private ProductController productController;
+    private ProductSizeController productSizeController;
 
     public ControllerRestaurantGUI(Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -56,6 +57,7 @@ public class ControllerRestaurantGUI implements Initializable {
         ingredientController = new IngredientsController(restaurant, this);
         productTypeController = new ProductTypeController(restaurant, this);
         productController = new ProductController(restaurant, this);
+        productSizeController = new ProductSizeController(restaurant, this);
     }
 
     // HOUR AND DATE
@@ -120,18 +122,6 @@ public class ControllerRestaurantGUI implements Initializable {
         }
     }
 
-    // USERS
-
-    public void showUsers() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
-        fxmlloader.setController(userController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadPeople();
-        userController.initUserTable();
-    }
-
     // PRODUCTS
 
     public void showProducts() throws IOException {
@@ -140,8 +130,9 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        productController.initProductTable();
     }
+
+    //PRODUCT TYPE
 
     public void showProductTypes() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listTypeProducts.fxml"));
@@ -150,6 +141,17 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         productTypeController.initProductTypeTable();
+    }
+
+    //PRODUCT SIZE
+
+    public void showProductSizes() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listProductSize.fxml"));
+        fxmlloader.setController(productSizeController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        productSizeController.initProductSizeTable();
     }
 
     // INGREDIENTS
@@ -185,6 +187,18 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         restaurant.loadPeople();
         employeeController.initEmployeeTable();
+    }
+
+     // USERS
+
+     public void showUsers() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
+        fxmlloader.setController(userController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadPeople();
+        userController.initUserTable();
     }
 
     @Override

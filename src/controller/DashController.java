@@ -94,12 +94,12 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showOrders(ActionEvent event) {
-
+    void showProductSizes(ActionEvent event) throws IOException {
+        cGui.showProductSizes();
     }
 
     @FXML
-    void showProductSizes(ActionEvent event) {
+    void showOrders(ActionEvent event) {
 
     }
 
@@ -111,6 +111,7 @@ public class DashController implements Initializable {
         set1.getData().add(new XYChart.Data<>("Costumers", restaurant.getCostumers()));
         set1.getData().add(new XYChart.Data<>("Ingredients", restaurant.getNumberIngredients()));
         set1.getData().add(new XYChart.Data<>("Product Types", restaurant.getNumberProductType()));
+        set1.getData().add(new XYChart.Data<>("Product Size", restaurant.getNumberProductSize()));
         barChart.getData().addAll(set1);
     }
 

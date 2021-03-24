@@ -244,8 +244,21 @@ public class CostumerController implements Initializable {
     }
 
     @FXML
-    public void exportCostumers(ActionEvent event) {
-
+    public void exportCostumers(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();		
+		File selectedFile = fc.showSaveDialog(cGui.getPane());
+		if (selectedFile !=null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Export Costumers");
+			restaurant.exportDataCostumers(selectedFile.getAbsolutePath());
+			alert.setContentText("The costumers data was exported succesfully");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Export Costumers");
+			alert.setContentText("The costumers data was NOT exported. An error occurred");
+			alert.showAndWait();
+		}
     }
 
     @FXML
@@ -258,6 +271,8 @@ public class CostumerController implements Initializable {
             restaurant.importDataCostumers(selectedFile.getAbsolutePath());
             alert.setContentText("The costumers data was imported succesfully");
             alert.showAndWait();
+            restaurant.savePeople();
+            restaurant.loadPeople();
             cGui.showCostumers();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
