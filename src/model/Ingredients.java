@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Ingredients implements Serializable{
+public class Ingredients implements Serializable {
     /**
      *
      */
@@ -64,6 +64,10 @@ public class Ingredients implements Serializable{
     public void setState(boolean state) {
         this.state = state;
     }
-    
-  
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }

@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class ProductType implements Serializable{
+public class ProductType implements Serializable {
     /**
      *
      */
@@ -64,6 +64,10 @@ public class ProductType implements Serializable{
     public void setCode(int code) {
         this.code = code;
     }
-   
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 
 }

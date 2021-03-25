@@ -32,6 +32,6 @@ public abstract class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public abstract Person getPerson();
+    public abstract String toString();
 
 }

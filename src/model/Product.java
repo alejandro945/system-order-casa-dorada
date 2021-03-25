@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Product implements Serializable,Comparable<Product> {
+public class Product implements Serializable, Comparable<Product> {
     /**
      *
      */
@@ -14,7 +14,8 @@ public class Product implements Serializable,Comparable<Product> {
     private User lastEditor;
     private boolean state;
 
-    public Product(BaseProduct baseProduct, ProductSize productSize, double price, User creator, User lastEditor, boolean state) {
+    public Product(BaseProduct baseProduct, ProductSize productSize, double price, User creator, User lastEditor,
+            boolean state) {
         this.baseProduct = baseProduct;
         this.productSize = productSize;
         this.price = price;
@@ -74,16 +75,21 @@ public class Product implements Serializable,Comparable<Product> {
     public void setState(boolean state) {
         this.state = state;
     }
-    
+
     @Override
     public int compareTo(Product p) {
-        if(price < p.getPrice()){
+        if (price < p.getPrice()) {
             return -1;
         }
-        if(price > p.getPrice()){
+        if (price > p.getPrice()) {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return getBaseProduct().toString();
     }
 
 }

@@ -84,17 +84,17 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showProducts(ActionEvent event) {
-
+    void showProducts(ActionEvent event) throws IOException {
+        cGui.showProducts();
     }
 
     @FXML
-    void showProductTypes(ActionEvent event) throws IOException {
+    void showProductTypes(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showProductTypes();
     }
 
     @FXML
-    void showProductSizes(ActionEvent event) throws IOException {
+    void showProductSizes(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showProductSizes();
     }
 

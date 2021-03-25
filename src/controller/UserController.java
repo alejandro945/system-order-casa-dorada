@@ -206,7 +206,7 @@ public class UserController {
         } else if (!restaurant.searchUser(txtNameUserRegister.getText())) {
             String msg = restaurant.addPerson(txtNameRegister.getText(), txtLastNameRegister.getText(),
                     Integer.parseInt(txtIDRegister.getText()), txtNameUserRegister.getText(),
-                    txtPasswordRegister.getText(), pathRender, "Created By Reg");
+                    txtPasswordRegister.getText(), pathRender, null);
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText("Look, Consider the following");
@@ -342,7 +342,7 @@ public class UserController {
         } else if (!restaurant.searchUser(txtUserName.getText())) {
             String msg = restaurant.addPerson(txtNameUser.getText(), txtLastNameUser.getText(),
                     Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), txtPassword.getText(), pathRender,
-                    restaurant.getLoggedUser().getName());
+                    restaurant.getLoggedUser());
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText("Look, Consider the following");
@@ -432,7 +432,7 @@ public class UserController {
         boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
                 txtIDUser.getText(), txtUserName.getText(), txtPassword.getText(), this.pathRender);
         User newUser = new User(txtNameUser.getText(), txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()),
-                txtUserName.getText(), txtPassword.getText(), pathRender, restaurant.getLoggedUser().getName());
+                txtUserName.getText(), txtPassword.getText(), pathRender, restaurant.getLoggedUser());
         if (validateFields) {
             String msg = restaurant.setUserInfo(newUser, getPreSelectUser(), txtNameUser.getText(),
                     txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), pathRender,

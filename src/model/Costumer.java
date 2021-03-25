@@ -88,8 +88,8 @@ public class Costumer extends Person implements Comparable<Costumer> {
     }
 
     @Override
-    public Costumer getPerson() {
-        return this;
+    public String toString() {
+        return getName();
     }
 
 }

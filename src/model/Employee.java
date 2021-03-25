@@ -6,11 +6,11 @@ public class Employee extends Person {
      */
     private static final long serialVersionUID = 1L;
     private int id;
-    private String creator;
-    private String lastEditor;
+    private User creator;
+    private User lastEditor;
     private boolean state;
 
-    public Employee(String name, String lastName, int id, String creator) {
+    public Employee(String name, String lastName, int id, User creator) {
         super(name, lastName);
         this.id = id;
         this.creator = creator;
@@ -26,19 +26,19 @@ public class Employee extends Person {
         this.id = id;
     }
 
-    public String getCreator() {
+    public User getCreator() {
         return this.creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 
-    public String getLastEditor() {
+    public User getLastEditor() {
         return this.lastEditor;
     }
 
-    public void setLastEditor(String lastEditor) {
+    public void setLastEditor(User lastEditor) {
         this.lastEditor = lastEditor;
     }
 
@@ -55,8 +55,8 @@ public class Employee extends Person {
     }
 
     @Override
-    public Employee getPerson() {
-        return this;
+    public String toString() {
+        return getName();
     }
 
 }

@@ -3,12 +3,11 @@ package model;
 import java.util.List;
 
 public class BaseProduct {
-    
-    private String name; 
+
+    private String name;
     private ProductType productType;
     private List<Ingredients> ingredients;
     private int code;
-
 
     public BaseProduct(String name, ProductType productType, List<Ingredients> ingredients, int code) {
         this.name = name;
@@ -47,6 +46,10 @@ public class BaseProduct {
 
     public void setCode(int code) {
         this.code = code;
-    }   
+    }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

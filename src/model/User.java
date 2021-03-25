@@ -10,7 +10,7 @@ public class User extends Employee {
     private String image;
     private boolean state;
 
-    public User(String name, String lastName, int id, String userName, String password, String image, String creator) {
+    public User(String name, String lastName, int id, String userName, String password, String image, User creator) {
         super(name, lastName, id, creator);
         this.userName = userName;
         this.password = password;
@@ -51,8 +51,12 @@ public class User extends Employee {
     }
 
     @Override
-    public User getPerson() {
-        return this;
+    public String toString() {
+        if (this.equals(null)) {
+            return "Imported or Signup";
+        } else {
+            return getName();
+        }
     }
 
 }

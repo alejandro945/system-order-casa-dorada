@@ -183,7 +183,6 @@ public class Restaurant {
         return count;
     }
 
-
     // ---------------------------------------------PERSISTENCE------------------------------------------------
     public File getPeopleFile() {
         File file = new File(SAVE_PATH_FILE_PEOPLE);
@@ -299,7 +298,7 @@ public class Restaurant {
 
     // -------------------------------------------------USERS--------------------------------------------------
     public String addPerson(String name, String lastName, int id, String userName, String password, String image,
-            String creator) throws FileNotFoundException, IOException {
+            User creator) throws FileNotFoundException, IOException {
         String msg = "";
         User newUser = new User(name, lastName, id, userName, password, image, creator);
         if (people.size() > 0) {
@@ -317,7 +316,7 @@ public class Restaurant {
     }
 
     public String setUserInfo(User newUser, User pastUser, String newName, String newLastName, int newId,
-            String newUserName, String path, String newLastEditor) {
+            String newUserName, String path, User newLastEditor) {
         if (!validateidUpdating(newUser, pastUser) && !searchUser(newUser, pastUser)) {
             pastUser.setName(newName);
             pastUser.setLastName(newLastName);
@@ -595,7 +594,7 @@ public class Restaurant {
         PrintWriter pw = new PrintWriter(fileName);
         for (int i = 0; i < getCostumers(people).size(); i++) {
             Costumer c = getCostumers(people).get(i);
-            pw.println(c.getName()+" ");
+            pw.println(c.getName() + " ");
         }
         pw.close();
     }

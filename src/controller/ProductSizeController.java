@@ -88,8 +88,8 @@ public class ProductSizeController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addProductType(txtNameProductSize.getText(), restaurant.getLoggedUser().getName(),
-                    restaurant.getCodeProductType());
+            String msg = restaurant.addProductSize(txtNameProductSize.getText(), restaurant.getCodeProductSize(),
+                    restaurant.getLoggedUser().getName());
             alert.setContentText(msg);
             trimProductSizeForm();
             alert.showAndWait();
@@ -130,6 +130,7 @@ public class ProductSizeController {
         }
         trimProductSizeForm();
         restaurant.saveProductSize();
+        restaurant.loadProductSize();
         initProductSizeTable();
     }
 
@@ -154,7 +155,8 @@ public class ProductSizeController {
     }
 
     @FXML
-    public void setStateProductSize(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void setStateProductSize(ActionEvent event)
+            throws FileNotFoundException, ClassNotFoundException, IOException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableProductSize(preSelectProductSize);
@@ -175,7 +177,7 @@ public class ProductSizeController {
     @FXML
     public void deleteProductSize(ActionEvent event) throws IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteProductType(getIdxProductSize());
+        String msg = restaurant.deleteProductSize(getIdxProductSize());
         alert.setContentText(msg);
         trimProductSizeForm();
         alert.showAndWait();
@@ -184,7 +186,7 @@ public class ProductSizeController {
     }
 
     @FXML
-    public void importProductTSize(ActionEvent event) {
+    public void importProductSize(ActionEvent event) {
 
     }
 

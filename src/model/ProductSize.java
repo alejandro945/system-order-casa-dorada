@@ -1,17 +1,23 @@
 package model;
 
-public class ProductSize{
+import java.io.Serializable;
 
+public class ProductSize implements Serializable {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String name;
     int code;
     String creator;
     String lastEditor;
     boolean state;
-    
+
     public ProductSize(String name, int code, String creator) {
         this.name = name;
         this.code = code;
-        this.creator =  creator;
+        this.creator = creator;
         this.lastEditor = creator;
         this.state = true;
     }
@@ -56,7 +62,9 @@ public class ProductSize{
         this.state = state;
     }
 
-
-    
+    @Override
+    public String toString() {
+        return getName();
+    }
 
 }

@@ -1,8 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private int code;
     private State state;
     private List<Product> products;
@@ -106,6 +111,11 @@ public class Order {
 
     public void setLastEditor(User lastEditor) {
         this.lastEditor = lastEditor;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(getCode());
     }
 
 }
