@@ -9,12 +9,12 @@ public class Costumer extends Person implements Comparable<Costumer> {
     private String address;
     private int telephone;
     private String suggestions;
-    private String creator;
-    private String lastEditor;
+    private User creator;
+    private User lastEditor;
     private boolean state;
 
     public Costumer(String name, String lastName, int id, String address, int telephone, String suggestions,
-            String creator) {
+            User creator) {
         super(name, lastName);
         this.id = id;
         this.address = address;
@@ -57,19 +57,19 @@ public class Costumer extends Person implements Comparable<Costumer> {
         this.suggestions = suggestions;
     }
 
-    public String getCreator() {
+    public User getCreator() {
         return this.creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 
-    public String getLastEditor() {
+    public User getLastEditor() {
         return this.lastEditor;
     }
 
-    public void setLastEditor(String lastEditor) {
+    public void setLastEditor(User lastEditor) {
         this.lastEditor = lastEditor;
     }
 

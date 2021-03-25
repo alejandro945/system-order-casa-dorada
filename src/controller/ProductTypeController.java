@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import model.ProductType;
 
 public class ProductTypeController {
@@ -25,10 +27,10 @@ public class ProductTypeController {
     private TableColumn<ProductType, String> colNameProductType;
 
     @FXML
-    private TableColumn<ProductType, String> colCreatorProductType;
+    private TableColumn<ProductType, User> colCreatorProductType;
 
     @FXML
-    private TableColumn<ProductType, String> colEditorProducType;
+    private TableColumn<ProductType, User> colEditorProducType;
 
     @FXML
     private TextField txtNameProductType;
@@ -88,7 +90,7 @@ public class ProductTypeController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addProductType(txtNameProductType.getText(), restaurant.getLoggedUser().getName(),
+            String msg = restaurant.addProductType(txtNameProductType.getText(), restaurant.getLoggedUser(),
                     restaurant.getCodeProductType());
             alert.setContentText(msg);
             trimProductTypeForm();
@@ -118,7 +120,7 @@ public class ProductTypeController {
     public void updateProductType(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setProductType(getPreSelectProductType(), txtNameProductType.getText(),
-                restaurant.getLoggedUser().getName());
+                restaurant.getLoggedUser());
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveProductType();
@@ -186,13 +188,42 @@ public class ProductTypeController {
     }
 
     @FXML
-    void exportProductType(ActionEvent event) {
-
+    void exportProductType(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();		
+		File selectedFile = fc.showSaveDialog(cGui.getPane());
+		if (selectedFile !=null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Export product type");
+			restaurant.exportDataProductType(selectedFile.getAbsolutePath());
+			alert.setContentText("The  product type data was exported succesfully");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Export product type");
+			alert.setContentText("The  product type data was NOT exported. An error occurred");
+			alert.showAndWait();
+		}
     }
 
     @FXML
-    void importProductType(ActionEvent event) {
-
+    void importProductType(ActionEvent event) throws ClassNotFoundException, IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import  product type");
+            restaurant.importDataProductType(selectedFile.getAbsolutePath());
+            alert.setContentText("The  product type data was imported succesfully");
+            alert.showAndWait();
+            restaurant.saveProductType();
+            restaurant.loadProductType();
+            initProductTypeTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import  product type");
+            alert.setContentText("The  product type data was NOT imported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     public void initProductTypeTable() throws IOException {
@@ -200,7 +231,7 @@ public class ProductTypeController {
         listProductType.setItems(productType);
         colCode.setCellValueFactory(new PropertyValueFactory<ProductType, Integer>("code"));
         colNameProductType.setCellValueFactory(new PropertyValueFactory<ProductType, String>("name"));
-        colCreatorProductType.setCellValueFactory(new PropertyValueFactory<ProductType, String>("creator"));
-        colEditorProducType.setCellValueFactory(new PropertyValueFactory<ProductType, String>("lastEditor"));
+        colCreatorProductType.setCellValueFactory(new PropertyValueFactory<ProductType, User>("creator"));
+        colEditorProducType.setCellValueFactory(new PropertyValueFactory<ProductType, User>("lastEditor"));
     }
 }

@@ -18,6 +18,10 @@ public class User extends Employee {
         this.state = true;
     }
 
+    public User(){
+
+    }
+
     public String getUserName() {
         return this.userName;
     }
@@ -52,11 +56,10 @@ public class User extends Employee {
 
     @Override
     public String toString() {
-        if (this.equals(null)) {
-            return "Imported or Signup";
+        if (getName()==null) {
+            return "Created by register";
         } else {
             return getName();
         }
     }
-
 }

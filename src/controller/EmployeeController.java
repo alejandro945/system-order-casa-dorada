@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import model.*;
 
 public class EmployeeController {
@@ -26,10 +27,10 @@ public class EmployeeController {
     private TableColumn<Employee, Integer> colIDEmployee;
 
     @FXML
-    private TableColumn<Employee, String> colCreatorEmployee;
+    private TableColumn<Employee, User> colCreatorEmployee;
 
     @FXML
-    private TableColumn<Employee, String> colLastEditorEmployee;
+    private TableColumn<Employee, User> colLastEditorEmployee;
 
     @FXML
     private TextField txtNameEmployee;
@@ -97,7 +98,7 @@ public class EmployeeController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addPerson(txtNameEmployee.getText(), txtLastNameEmployee.getText(),
-                    Integer.parseInt(txtIDEmployee.getText()), restaurant.getLoggedUser().getName());
+                    Integer.parseInt(txtIDEmployee.getText()), restaurant.getLoggedUser());
             alert.setContentText(msg);
             trimEmployeeForm();
             alert.showAndWait();
@@ -170,7 +171,7 @@ public class EmployeeController {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoEmployee(getPreSelectEmployee(), txtNameEmployee.getText(),
                 txtLastNameEmployee.getText(), Integer.parseInt(txtIDEmployee.getText()),
-                restaurant.getLoggedUser().getName());
+                restaurant.getLoggedUser());
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.savePeople();
@@ -197,13 +198,42 @@ public class EmployeeController {
     }
 
     @FXML
-    void exportEmployee(ActionEvent event) {
-
+    void exportEmployee(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();		
+		File selectedFile = fc.showSaveDialog(cGui.getPane());
+		if (selectedFile !=null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Export employees");
+			restaurant.exportDataEmployees(selectedFile.getAbsolutePath());
+			alert.setContentText("The employees data was exported succesfully");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Export Employees");
+			alert.setContentText("The employees data was NOT exported. An error occurred");
+			alert.showAndWait();
+		}
     }
 
     @FXML
-    void importEmployee(ActionEvent event) {
-
+    void importEmployee(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import employees");
+            restaurant.importDataEmployees(selectedFile.getAbsolutePath());
+            alert.setContentText("The employees data was imported succesfully");
+            alert.showAndWait();
+            restaurant.savePeople();
+            restaurant.loadPeople();
+            initEmployeeTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import employees");
+            alert.setContentText("The employees data was NOT imported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     public void initEmployeeTable() throws IOException {
@@ -213,8 +243,8 @@ public class EmployeeController {
         colNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
         colLastNameEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
         colIDEmployee.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
-        colCreatorEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("creator"));
-        colLastEditorEmployee.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastEditor"));
+        colCreatorEmployee.setCellValueFactory(new PropertyValueFactory<Employee, User>("creator"));
+        colLastEditorEmployee.setCellValueFactory(new PropertyValueFactory<Employee, User>("lastEditor"));
     }
 
 }

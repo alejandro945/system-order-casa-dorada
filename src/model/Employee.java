@@ -18,6 +18,10 @@ public class Employee extends Person {
         this.state = true;
     }
 
+    public Employee(){
+        
+    }
+
     public int getId() {
         return this.id;
     }
@@ -56,7 +60,6 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return getName();
+        return null;
     }
-
 }

@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 public class ProductSizeController {
 
@@ -25,10 +27,10 @@ public class ProductSizeController {
     private TableColumn<ProductSize, String> colNameProductSize;
 
     @FXML
-    private TableColumn<ProductSize, String> colCreatorProductSize;
+    private TableColumn<ProductSize, User> colCreatorProductSize;
 
     @FXML
-    private TableColumn<ProductSize, String> colEditorProductSize;
+    private TableColumn<ProductSize, User> colEditorProductSize;
 
     @FXML
     private TextField txtNameProductSize;
@@ -89,7 +91,7 @@ public class ProductSizeController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addProductSize(txtNameProductSize.getText(), restaurant.getCodeProductSize(),
-                    restaurant.getLoggedUser().getName());
+                    restaurant.getLoggedUser());
             alert.setContentText(msg);
             trimProductSizeForm();
             alert.showAndWait();
@@ -186,13 +188,42 @@ public class ProductSizeController {
     }
 
     @FXML
-    public void importProductSize(ActionEvent event) {
-
+    public void importProductSize(ActionEvent event) throws IOException, ClassNotFoundException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import product size");
+            restaurant.importDataProductSize(selectedFile.getAbsolutePath());
+            alert.setContentText("The product size data was imported succesfully");
+            alert.showAndWait();
+            restaurant.saveProductSize();
+            restaurant.loadProductSize();
+            initProductSizeTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import product size");
+            alert.setContentText("The product size data was NOT imported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    public void exportProductSize(ActionEvent event) {
-
+    public void exportProductSize(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();		
+		File selectedFile = fc.showSaveDialog(cGui.getPane());
+		if (selectedFile !=null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Export product size");
+			restaurant.exportDataProductSize(selectedFile.getAbsolutePath());
+			alert.setContentText("The product size data was exported succesfully");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Export product size");
+			alert.setContentText("The product size data was NOT exported. An error occurred");
+			alert.showAndWait();
+		}
     }
 
     @FXML
@@ -205,7 +236,7 @@ public class ProductSizeController {
         listProductSize.setItems(productSize);
         colCodeProductSize.setCellValueFactory(new PropertyValueFactory<ProductSize, Integer>("code"));
         colNameProductSize.setCellValueFactory(new PropertyValueFactory<ProductSize, String>("name"));
-        colCreatorProductSize.setCellValueFactory(new PropertyValueFactory<ProductSize, String>("creator"));
-        colEditorProductSize.setCellValueFactory(new PropertyValueFactory<ProductSize, String>("lastEditor"));
+        colCreatorProductSize.setCellValueFactory(new PropertyValueFactory<ProductSize, User>("creator"));
+        colEditorProductSize.setCellValueFactory(new PropertyValueFactory<ProductSize, User>("lastEditor"));
     }
 }

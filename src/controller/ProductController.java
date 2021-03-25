@@ -36,10 +36,10 @@ public class ProductController {
     private TableColumn<Product, ProductSize> colSizeProducts;
 
     @FXML
-    private TableColumn<Product, String> colCreatorProducts;
+    private TableColumn<Product, User> colCreatorProducts;
 
     @FXML
-    private TableColumn<Product, String> colEditorProduct;
+    private TableColumn<Product, User> colEditorProduct;
 
     @FXML
     private TextField txtNameProducts;
@@ -188,7 +188,7 @@ public class ProductController {
         colProductType.setCellValueFactory(new PropertyValueFactory<Product, ProductType>("type"));
         colIngredientsProducts.setCellValueFactory(new PropertyValueFactory<Product, Ingredients>("ingredients"));
         colSizeProducts.setCellValueFactory(new PropertyValueFactory<Product, ProductSize>("productSize"));
-        colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("creator"));
-        colEditorProduct.setCellValueFactory(new PropertyValueFactory<Product, String>("lastEditor"));
+        colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("creator"));
+        colEditorProduct.setCellValueFactory(new PropertyValueFactory<Product, User>("lastEditor"));
     }
 }

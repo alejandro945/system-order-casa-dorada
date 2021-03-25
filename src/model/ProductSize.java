@@ -8,13 +8,13 @@ public class ProductSize implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    String name;
-    int code;
-    String creator;
-    String lastEditor;
-    boolean state;
+    private String name;
+    private int code;
+    private User creator;
+    private User lastEditor;
+    private boolean state;
 
-    public ProductSize(String name, int code, String creator) {
+    public ProductSize(String name, int code, User creator) {
         this.name = name;
         this.code = code;
         this.creator = creator;
@@ -38,19 +38,19 @@ public class ProductSize implements Serializable {
         this.code = code;
     }
 
-    public String getCreator() {
+    public User getCreator() {
         return this.creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 
-    public String getLastEditor() {
+    public User getLastEditor() {
         return this.lastEditor;
     }
 
-    public void setLastEditor(String lastEditor) {
+    public void setLastEditor(User lastEditor) {
         this.lastEditor = lastEditor;
     }
 

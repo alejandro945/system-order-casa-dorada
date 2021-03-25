@@ -40,7 +40,7 @@ public class CostumerController implements Initializable {
     private TableColumn<Costumer, String> colLastNameCostumer;
 
     @FXML
-    private TableColumn<Costumer, Long> colIDCostumer;
+    private TableColumn<Costumer, Integer> colIDCostumer;
 
     @FXML
     private TableColumn<Costumer, Integer> colTelephoneCostumer;
@@ -49,10 +49,10 @@ public class CostumerController implements Initializable {
     private TableColumn<Costumer, String> colSuggestionsCostumer;
 
     @FXML
-    private TableColumn<Costumer, String> colCreatorCostumers;
+    private TableColumn<Costumer, User> colCreatorCostumers;
 
     @FXML
-    private TableColumn<Costumer, String> colLastEditorCostumers;
+    private TableColumn<Costumer, User> colLastEditorCostumers;
 
     @FXML
     private TableColumn<Costumer, String> colAddressCostumer;
@@ -129,7 +129,7 @@ public class CostumerController implements Initializable {
             String msg = restaurant.addPerson(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
                     Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                     Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
-                    restaurant.getLoggedUser().getName());
+                    restaurant.getLoggedUser());
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText("Inforation");
             alert.setContentText(msg);
@@ -214,7 +214,7 @@ public class CostumerController implements Initializable {
         String msg = restaurant.setInfoCostumer(getPreSelectCostumer(), txtNameCostumer.getText(),
                 txtLastNameCostumer.getText(), Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                 Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
-                restaurant.getLoggedUser().getName());
+                restaurant.getLoggedUser());
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -249,13 +249,13 @@ public class CostumerController implements Initializable {
 		File selectedFile = fc.showSaveDialog(cGui.getPane());
 		if (selectedFile !=null) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export Costumers");
+			alert.setTitle("Export costumers");
 			restaurant.exportDataCostumers(selectedFile.getAbsolutePath());
 			alert.setContentText("The costumers data was exported succesfully");
 			alert.showAndWait();
 		}else {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export Costumers");
+			alert.setTitle("Export costumers");
 			alert.setContentText("The costumers data was NOT exported. An error occurred");
 			alert.showAndWait();
 		}
@@ -287,12 +287,12 @@ public class CostumerController implements Initializable {
                 .observableArrayList(restaurant.getCostumers(restaurant.getPeople()));
         colNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("name"));
         colLastNameCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastName"));
-        colIDCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Long>("id"));
+        colIDCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("id"));
         colAddressCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("address"));
         colTelephoneCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, Integer>("telephone"));
         colSuggestionsCostumer.setCellValueFactory(new PropertyValueFactory<Costumer, String>("suggestions"));
-        colCreatorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("creator"));
-        colLastEditorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, String>("lastEditor"));
+        colCreatorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, User>("creator"));
+        colLastEditorCostumers.setCellValueFactory(new PropertyValueFactory<Costumer, User>("lastEditor"));
         listCostumers.setItems(costumers);
         return costumers;
     }

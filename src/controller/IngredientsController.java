@@ -7,6 +7,7 @@ import java.io.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.fxml.FXML;
 import model.*;
 
@@ -21,10 +22,10 @@ public class IngredientsController {
     private TableColumn<Ingredients, String> colNameIngredients;
 
     @FXML
-    private TableColumn<Ingredients, String> colCreatorIngredients;
+    private TableColumn<Ingredients, User> colCreatorIngredients;
 
     @FXML
-    private TableColumn<Ingredients, String> colEditorIngredients;
+    private TableColumn<Ingredients, User> colEditorIngredients;
 
     @FXML
     private TextField txtNameIngredients;
@@ -85,7 +86,7 @@ public class IngredientsController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addIngredient(restaurant.getCode(), txtNameIngredients.getText(),
-                    restaurant.getLoggedUser().getName());
+                    restaurant.getLoggedUser());
             alert.setContentText(msg);
             trimIngredientsForm();
             alert.showAndWait();
@@ -153,7 +154,7 @@ public class IngredientsController {
     void updateIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoIngredient(getPreSelectIngredient(), txtNameIngredients.getText(),
-                restaurant.getLogged().getName());
+                restaurant.getLogged());
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveIngredients();
@@ -180,13 +181,42 @@ public class IngredientsController {
     }
 
     @FXML
-    void exportIngredients(ActionEvent event) {
-
+    void exportIngredients(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();		
+		File selectedFile = fc.showSaveDialog(cGui.getPane());
+		if (selectedFile !=null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Export ingredients");
+			restaurant.exportDataIngredients(selectedFile.getAbsolutePath());
+			alert.setContentText("The ingredients data was exported succesfully");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Export ingredients");
+			alert.setContentText("The ingredients data was NOT exported. An error occurred");
+			alert.showAndWait();
+		}
     }
 
     @FXML
-    void importIngredients(ActionEvent event) {
-
+    void importIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import ingredients");
+            restaurant.importDataIngredients(selectedFile.getAbsolutePath());
+            alert.setContentText("The ingredients data was imported succesfully");
+            alert.showAndWait();
+            restaurant.saveIngredients();
+            restaurant.loadIngredients();
+            initIngredientsTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import ingredients");
+            alert.setContentText("The ingredients data was NOT imported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     public void initIngredientsTable() throws IOException {
@@ -194,8 +224,8 @@ public class IngredientsController {
         listIngredients.setItems(ingredients);
         colCodeIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, Integer>("code"));
         colNameIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, String>("name"));
-        colCreatorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, String>("creator"));
-        colEditorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, String>("lastEditor"));
+        colCreatorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("creator"));
+        colEditorIngredients.setCellValueFactory(new PropertyValueFactory<Ingredients, User>("lastEditor"));
     }
 
 }

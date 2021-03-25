@@ -81,7 +81,7 @@ public class UserController {
     private TableColumn<User, String> colLastNameUser;
 
     @FXML
-    private TableColumn<User, Long> colIDUser;
+    private TableColumn<User, Integer> colIDUser;
 
     @FXML
     private TableColumn<User, String> colUserName;
@@ -90,10 +90,10 @@ public class UserController {
     private TableColumn<User, String> colIconUser;
 
     @FXML
-    private TableColumn<User, String> colCreatorUser;
+    private TableColumn<User, User> colCreatorUser;
 
     @FXML
-    private TableColumn<User, String> colLastEditorUser;
+    private TableColumn<User, User> colLastEditorUser;
 
     @FXML
     private TextField txtNameUser;
@@ -188,6 +188,7 @@ public class UserController {
 
     @FXML
     public void createAccount(ActionEvent event) throws IOException, ClassNotFoundException {
+        User user = new User();
         restaurant.loadPeople();
         boolean validateFields = registerValidation(txtNameRegister.getText(), txtLastNameRegister.getText(),
                 txtIDRegister.getText(), txtNameUserRegister.getText(), txtPasswordRegister.getText(), this.pathRender);
@@ -206,7 +207,7 @@ public class UserController {
         } else if (!restaurant.searchUser(txtNameUserRegister.getText())) {
             String msg = restaurant.addPerson(txtNameRegister.getText(), txtLastNameRegister.getText(),
                     Integer.parseInt(txtIDRegister.getText()), txtNameUserRegister.getText(),
-                    txtPasswordRegister.getText(), pathRender, null);
+                    txtPasswordRegister.getText(), pathRender, user);
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText("Look, Consider the following");
@@ -436,7 +437,7 @@ public class UserController {
         if (validateFields) {
             String msg = restaurant.setUserInfo(newUser, getPreSelectUser(), txtNameUser.getText(),
                     txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), pathRender,
-                    restaurant.getLoggedUser().getName());
+                    restaurant.getLoggedUser());
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText(msg);
@@ -476,13 +477,42 @@ public class UserController {
     }
 
     @FXML
-    public void exportUsers(ActionEvent event) {
-
+    public void exportUsers(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();		
+		File selectedFile = fc.showSaveDialog(cGui.getPane());
+		if (selectedFile !=null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Export users");
+			restaurant.exportDataUsers(selectedFile.getAbsolutePath());
+			alert.setContentText("The users data was exported succesfully");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Export users");
+			alert.setContentText("The users data was NOT exported. An error occurred");
+			alert.showAndWait();
+		}
     }
 
     @FXML
-    public void importUsers(ActionEvent event) {
-
+    public void importUsers(ActionEvent event) throws ClassNotFoundException, IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import users");
+            restaurant.importDataUsers(selectedFile.getAbsolutePath());
+            alert.setContentText("The users data was imported succesfully");
+            alert.showAndWait();
+            restaurant.savePeople();
+            restaurant.loadPeople();
+            initUserTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import users");
+            alert.setContentText("The users data was NOT imported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     public void initUserTable() throws IOException {
@@ -490,11 +520,11 @@ public class UserController {
         listUsers.setItems(users);
         colNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         colLastNameUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastName"));
-        colIDUser.setCellValueFactory(new PropertyValueFactory<User, Long>("id"));
+        colIDUser.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
         colUserName.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
         colIconUser.setCellValueFactory(new PropertyValueFactory<User, String>("image"));
-        colCreatorUser.setCellValueFactory(new PropertyValueFactory<User, String>("creator"));
-        colLastEditorUser.setCellValueFactory(new PropertyValueFactory<User, String>("lastEditor"));
+        colCreatorUser.setCellValueFactory(new PropertyValueFactory<User, User>("creator"));
+        colLastEditorUser.setCellValueFactory(new PropertyValueFactory<User, User>("lastEditor"));
     }
 
 }

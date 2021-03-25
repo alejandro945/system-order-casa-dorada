@@ -352,6 +352,33 @@ public class Restaurant {
         return "The user have been enabled succesfully";
     }
 
+    public void importDataUsers(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            String lastName = parts[1];
+            int id = Integer.parseInt(parts[2]);
+            String userName = parts[3];
+            String password = parts[4];
+            String image = parts[5];
+            User creator = null;
+            line = br.readLine();
+            addPerson(name, lastName, id, userName, password, image, creator);
+        }
+        br.close();
+    }
+
+    public void exportDataUsers(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getUsers(people).size(); i++) {
+            User u = getUsers(people).get(i);
+            pw.println(u.getName() + " ");
+        }
+        pw.close();
+    }
+
     public Boolean searchUser(User newUser, User pastUser) {
         boolean found = false;
         if (people.isEmpty()) {
@@ -468,7 +495,7 @@ public class Restaurant {
     }
 
     public String addPerson(String name, String lastName, int id, String address, int telephone, String suggestions,
-            String creator) {
+            User creator) {
         String msg = "We could not add the costumer";
         Costumer newCostumer = null;
         if (getNumberCostumers() == 0) {
@@ -494,7 +521,7 @@ public class Restaurant {
     }
 
     public String setInfoCostumer(Costumer pastCostumer, String newName, String newLastName, int newId,
-            String newAddress, int newTelephone, String newSuggestions, String newLastEditor) {
+            String newAddress, int newTelephone, String newSuggestions, User newLastEditor) {
         if (!validateidUpdating(newId, pastCostumer)) {
             pastCostumer.setName(newName);
             pastCostumer.setLastName(newLastName);
@@ -583,7 +610,7 @@ public class Restaurant {
             String address = parts[3];
             int telephone = Integer.parseInt(parts[4]);
             String suggestion = parts[5];
-            String creator = "Imported by file";
+            User creator = null;
             line = br.readLine();
             addPerson(name, lastName, id, address, telephone, suggestion, creator);
         }
@@ -600,7 +627,7 @@ public class Restaurant {
     }
 
     // -------------------------------------------EMPLOYEEES-----------------------------------------------------
-    public String addPerson(String name, String lastName, int id, String creator) {
+    public String addPerson(String name, String lastName, int id, User creator) {
         String msg = "";
         Employee newEmployee = new Employee(name, lastName, id, creator);
         boolean found = validateidCreating(newEmployee);
@@ -613,7 +640,7 @@ public class Restaurant {
         return msg;
     }
 
-    public String setInfoEmployee(Employee employee, String newName, String newLastName, int newId, String lastEditor) {
+    public String setInfoEmployee(Employee employee, String newName, String newLastName, int newId, User lastEditor) {
         if (!validateidUpdating(newId, employee)) {
             employee.setName(newName);
             employee.setLastName(newLastName);
@@ -646,6 +673,30 @@ public class Restaurant {
     public String enableEmployee(Employee employee) {
         employee.setState(true);
         return "The employee have been enabled succesfully";
+    }
+
+    public void importDataEmployees(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            String lastName = parts[1];
+            int id = Integer.parseInt(parts[2]);
+            User creator = null;
+            line = br.readLine();
+            addPerson(name, lastName, id, creator);
+        }
+        br.close();
+    }
+
+    public void exportDataEmployees(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getEmployees(people).size(); i++) {
+            Employee e = getEmployees(people).get(i);
+            pw.println(e.getName() + " ");
+        }
+        pw.close();
     }
 
     public boolean validateidCreating(Employee employee) {
@@ -697,7 +748,7 @@ public class Restaurant {
         return ingredients;
     }
 
-    public String addIngredient(int code, String name, String creator) {
+    public String addIngredient(int code, String name, User creator) {
         String msg = "";
         Ingredients newIngredient = new Ingredients(code, name, creator);
         if (ingredients.isEmpty()) {
@@ -719,7 +770,7 @@ public class Restaurant {
         return msg;
     }
 
-    public String setInfoIngredient(Ingredients ingredient, String name, String lastEditor) {
+    public String setInfoIngredient(Ingredients ingredient, String name, User lastEditor) {
         ingredient.setName(name);
         ingredient.setLastEditor(lastEditor);
         return "The Ingredient have been edited succesfully";
@@ -741,6 +792,29 @@ public class Restaurant {
         return "The Ingredient have been enabled succesfully";
     }
 
+    public void importDataIngredients(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            int code = Integer.parseInt(null);
+            String name = parts[0];
+            User creator = null;
+            line = br.readLine();
+            addIngredient(code, name, creator);
+        }
+        br.close();
+    }
+
+    public void exportDataIngredients(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getIngredients().size(); i++) {
+            Ingredients in = getIngredients().get(i);
+            pw.println(in.getName() + " ");
+        }
+        pw.close();
+    }
+
     public void setCodePosition() {
         int code = 1;
         for (Ingredients ingredient : ingredients) {
@@ -757,6 +831,7 @@ public class Restaurant {
         return count + 1;
     }
 
+ 
     // -------------------------------------------------------BASE-PRODUCT-------------------------------------------
 
     public BaseProduct addBaseProduct(String name, ProductType productType, List<Ingredients> ingredients, int code) {
@@ -801,42 +876,20 @@ public class Restaurant {
         product.setState(newState);
         return "The product state have been changed";
     }
-    /*
-     * public void importDataProducts(String fileName) throws IOException {
-     * BufferedReader br = new BufferedReader(new FileReader(fileName)); String line
-     * = br.readLine(); while(line != null){ String[] parts =
-     * line.split(FILE_SEPARATOR); String name = parts[0]; ProductType type =
-     * ProductType.toString(parts[1]); List<Ingredients> ingredients =
-     * Ingredients.toString(parts[2]); String size = parts[3]; int price =
-     * Integer.parseInt(parts[4]); User creator = User.toString(parts[5]); line =
-     * br.readLine(); addProduct(name, type, ingredients, size, price, creator); }
-     * br.close(); }
-     */
-    /*
-     * public void sortIngredientCode(){ int code1, code2; for (int i = 1; i <
-     * ingredients.size(); i++) { for (int j = i; j > 0 &&
-     * ingredients.get(j-1).getCode() > ingredients.get(j).getCode() ; j--) { code1
-     * = ingredients.get(j).getCode(); code2 = ingredients.get(j-1).getCode(); int
-     * temp = code1; code1 = code2; code2 = temp;
-     * ingredients.get(j).setCode(code1);; ingredients.get(j-1).setCode(code2); }
-     * 
-     * }
-     * 
-     * }
-     */
-    /*
-     * public int binarySearchCostumer(List<Costumer> costumers, Costumer x){ int
-     * pos = -1; int i = 0; int j = costumers.size()-1; while(i<= j && pos<0){ int m
-     * = (i+j)/2;
-     * 
-     * if(costumers.get(m).equals(x)){ pos = m; } else
-     * if(x.compareTo(costumers.get(m)>0)){ i = m+1; } else{ j = m-1; } } return
-     * pos; }
-     */
+    
+    public void sortProductByPrice(){
+        for(int i = 0; i < products.size(); i++){
+            for (int j=i; j > 0 && products.get(j-1).getPrice() > products.get(j).getPrice(); j--){
+                Product temp = products.get(j);
+                products.set(j, products.get(j-1));
+                products.set(j-1, temp);
+            }
+        }
+    }
 
     // -----------------------------------------PRODUCT_TYPE----------------------------------------------
 
-    public String addProductType(String name, String creator, int code) {
+    public String addProductType(String name, User creator, int code) {
         String msg = "";
         ProductType newProductType = new ProductType(name, creator, code);
         if (productType.isEmpty()) {
@@ -858,7 +911,7 @@ public class Restaurant {
         return msg;
     }
 
-    public String setProductType(ProductType productType, String name, String lastEditor) {
+    public String setProductType(ProductType productType, String name, User lastEditor) {
         productType.setName(name);
         productType.setLastEditor(lastEditor);
         return "The product type have been edited succesfully";
@@ -880,6 +933,29 @@ public class Restaurant {
         return "The product type have been enabled succesfully";
     }
 
+    public void importDataProductType(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            User creator = null;
+            int code = Integer.parseInt(null);
+            line = br.readLine();
+            addProductType(name, creator, code);
+        }
+        br.close();
+    }
+
+    public void exportDataProductType(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getProductType().size(); i++) {
+            ProductType pt = getProductType().get(i);
+            pw.println(pt.getName() + " ");
+        }
+        pw.close();
+    }
+
     public void setCodeProductTypePosition() {
         int code = 1;
         for (ProductType ptype : productType) {
@@ -898,7 +974,7 @@ public class Restaurant {
 
     // -----------------------------------------PRODUCT_SIZE----------------------------------------------
 
-    public String addProductSize(String name, int code, String creator) {
+    public String addProductSize(String name, int code, User creator) {
         String msg = "";
         ProductSize newProductSize = new ProductSize(name, code, creator);
         if (productSize.isEmpty()) {
@@ -920,7 +996,7 @@ public class Restaurant {
         return msg;
     }
 
-    public String setProductSize(ProductSize productSize, String name, String lastEditor) {
+    public String setProductSize(ProductSize productSize, String name, User lastEditor) {
         productSize.setName(name);
         productSize.setLastEditor(lastEditor);
         return "The product size have been edited succesfully";
@@ -940,6 +1016,29 @@ public class Restaurant {
     public String enableProductSize(ProductSize pSize) {
         pSize.setState(true);
         return "The product size have been enabled succesfully";
+    }
+
+    public void importDataProductSize(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            int code = Integer.parseInt(null);
+            User creator = null;
+            line = br.readLine();
+            addProductSize(name, code, creator);
+        }
+        br.close();
+    }
+
+    public void exportDataProductSize(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getProductSize().size(); i++) {
+            ProductSize ps = getProductSize().get(i);
+            pw.println(ps.getName() + " ");
+        }
+        pw.close();
     }
 
     public void setCodeProductSizePosition() {

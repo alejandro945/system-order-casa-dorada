@@ -8,12 +8,12 @@ public class ProductType implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     private String name;
-    private String creator;
-    private String lastEditor;
+    private User creator;
+    private User lastEditor;
     private boolean state;
     private int code;
 
-    public ProductType(String name, String creator, int code) {
+    public ProductType(String name, User creator, int code) {
         this.name = name;
         this.creator = creator;
         this.code = code;
@@ -29,19 +29,19 @@ public class ProductType implements Serializable {
         this.name = name;
     }
 
-    public String getCreator() {
+    public User getCreator() {
         return this.creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 
-    public String getLastEditor() {
+    public User getLastEditor() {
         return this.lastEditor;
     }
 
-    public void setLastEditor(String lastEditor) {
+    public void setLastEditor(User lastEditor) {
         this.lastEditor = lastEditor;
     }
 
