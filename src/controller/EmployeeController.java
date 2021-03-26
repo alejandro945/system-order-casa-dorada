@@ -98,7 +98,7 @@ public class EmployeeController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addPerson(txtNameEmployee.getText(), txtLastNameEmployee.getText(),
-                    Integer.parseInt(txtIDEmployee.getText()), restaurant.getLoggedUser());
+                    Integer.parseInt(txtIDEmployee.getText()), restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
             trimEmployeeForm();
             alert.showAndWait();
@@ -171,7 +171,7 @@ public class EmployeeController {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoEmployee(getPreSelectEmployee(), txtNameEmployee.getText(),
                 txtLastNameEmployee.getText(), Integer.parseInt(txtIDEmployee.getText()),
-                restaurant.getLoggedUser());
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.savePeople();
@@ -199,20 +199,20 @@ public class EmployeeController {
 
     @FXML
     void exportEmployee(ActionEvent event) throws FileNotFoundException {
-        FileChooser fc = new FileChooser();		
-		File selectedFile = fc.showSaveDialog(cGui.getPane());
-		if (selectedFile !=null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export employees");
-			restaurant.exportDataEmployees(selectedFile.getAbsolutePath());
-			alert.setContentText("The employees data was exported succesfully");
-			alert.showAndWait();
-		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export Employees");
-			alert.setContentText("The employees data was NOT exported. An error occurred");
-			alert.showAndWait();
-		}
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export employees");
+            restaurant.exportDataEmployees(selectedFile.getAbsolutePath());
+            alert.setContentText("The employees data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export Employees");
+            alert.setContentText("The employees data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML

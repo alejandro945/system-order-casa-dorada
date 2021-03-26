@@ -90,8 +90,8 @@ public class ProductTypeController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addProductType(txtNameProductType.getText(), restaurant.getLoggedUser(),
-                    restaurant.getCodeProductType());
+            String msg = restaurant.addProductType(txtNameProductType.getText(),
+                    restaurant.getLoggedUser(restaurant.getUserIndex()), restaurant.getCodeProductType());
             alert.setContentText(msg);
             trimProductTypeForm();
             alert.showAndWait();
@@ -120,7 +120,7 @@ public class ProductTypeController {
     public void updateProductType(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setProductType(getPreSelectProductType(), txtNameProductType.getText(),
-                restaurant.getLoggedUser());
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveProductType();
@@ -151,7 +151,8 @@ public class ProductTypeController {
     }
 
     @FXML
-    public void setStateProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void setStateProductType(ActionEvent event)
+            throws FileNotFoundException, ClassNotFoundException, IOException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableProductType(preSelectProductType);
@@ -168,8 +169,6 @@ public class ProductTypeController {
         restaurant.saveProductType();
         initProductTypeTable();
     }
-
-    
 
     @FXML
     void deleteProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
@@ -189,20 +188,20 @@ public class ProductTypeController {
 
     @FXML
     void exportProductType(ActionEvent event) throws FileNotFoundException {
-        FileChooser fc = new FileChooser();		
-		File selectedFile = fc.showSaveDialog(cGui.getPane());
-		if (selectedFile !=null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export product type");
-			restaurant.exportDataProductType(selectedFile.getAbsolutePath());
-			alert.setContentText("The  product type data was exported succesfully");
-			alert.showAndWait();
-		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export product type");
-			alert.setContentText("The  product type data was NOT exported. An error occurred");
-			alert.showAndWait();
-		}
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export product type");
+            restaurant.exportDataProductType(selectedFile.getAbsolutePath());
+            alert.setContentText("The  product type data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export product type");
+            alert.setContentText("The  product type data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML

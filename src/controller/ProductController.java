@@ -105,8 +105,9 @@ public class ProductController {
         this.idxProduct = idxProduct;
     }
 
-    public void initStateProduct(){
-        ObservableList<String> comBox = FXCollections.observableArrayList("Select an option","REQUESTED", "IN PROCCES", "SEND", "DELIVERED");
+    public void initStateProduct() {
+        ObservableList<String> comBox = FXCollections.observableArrayList("Select an option", "REQUESTED", "IN PROCCES",
+                "SEND", "DELIVERED");
         comBoxStateProduct.setValue("Select an option");
         comBoxStateProduct.setItems(comBox);
     }

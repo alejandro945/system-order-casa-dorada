@@ -86,7 +86,7 @@ public class IngredientsController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addIngredient(restaurant.getCode(), txtNameIngredients.getText(),
-                    restaurant.getLoggedUser());
+                    restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
             trimIngredientsForm();
             alert.showAndWait();
@@ -154,7 +154,7 @@ public class IngredientsController {
     void updateIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoIngredient(getPreSelectIngredient(), txtNameIngredients.getText(),
-                restaurant.getLogged());
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveIngredients();
@@ -185,7 +185,7 @@ public class IngredientsController {
         restaurant.sortIngredientByName();
         restaurant.saveIngredients();
         initIngredientsTable();
-        
+
     }
 
     @FXML
@@ -195,20 +195,20 @@ public class IngredientsController {
 
     @FXML
     void exportIngredients(ActionEvent event) throws FileNotFoundException {
-        FileChooser fc = new FileChooser();		
-		File selectedFile = fc.showSaveDialog(cGui.getPane());
-		if (selectedFile !=null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export ingredients");
-			restaurant.exportDataIngredients(selectedFile.getAbsolutePath());
-			alert.setContentText("The ingredients data was exported succesfully");
-			alert.showAndWait();
-		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export ingredients");
-			alert.setContentText("The ingredients data was NOT exported. An error occurred");
-			alert.showAndWait();
-		}
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export ingredients");
+            restaurant.exportDataIngredients(selectedFile.getAbsolutePath());
+            alert.setContentText("The ingredients data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export ingredients");
+            alert.setContentText("The ingredients data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML

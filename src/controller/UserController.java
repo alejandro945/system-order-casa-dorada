@@ -172,7 +172,6 @@ public class UserController {
             alert.showAndWait();
         } else {
             if (user != null && user.getState() == true) {
-                restaurant.getLoggedUser();
                 cGui.showDashBoard();
             } else if (user.getState() == false) {
                 Alert alert = new Alert(AlertType.ERROR);
@@ -343,7 +342,7 @@ public class UserController {
         } else if (!restaurant.searchUser(txtUserName.getText())) {
             String msg = restaurant.addPerson(txtNameUser.getText(), txtLastNameUser.getText(),
                     Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), txtPassword.getText(), pathRender,
-                    restaurant.getLoggedUser());
+                    restaurant.getLoggedUser(restaurant.getUserIndex()));
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText("Look, Consider the following");
@@ -433,11 +432,12 @@ public class UserController {
         boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
                 txtIDUser.getText(), txtUserName.getText(), txtPassword.getText(), this.pathRender);
         User newUser = new User(txtNameUser.getText(), txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()),
-                txtUserName.getText(), txtPassword.getText(), pathRender, restaurant.getLoggedUser());
+                txtUserName.getText(), txtPassword.getText(), pathRender,
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
         if (validateFields) {
             String msg = restaurant.setUserInfo(newUser, getPreSelectUser(), txtNameUser.getText(),
                     txtLastNameUser.getText(), Integer.parseInt(txtIDUser.getText()), txtUserName.getText(), pathRender,
-                    restaurant.getLoggedUser());
+                    restaurant.getLoggedUser(restaurant.getUserIndex()));
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText(msg);
@@ -478,20 +478,20 @@ public class UserController {
 
     @FXML
     public void exportUsers(ActionEvent event) throws FileNotFoundException {
-        FileChooser fc = new FileChooser();		
-		File selectedFile = fc.showSaveDialog(cGui.getPane());
-		if (selectedFile !=null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export users");
-			restaurant.exportDataUsers(selectedFile.getAbsolutePath());
-			alert.setContentText("The users data was exported succesfully");
-			alert.showAndWait();
-		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export users");
-			alert.setContentText("The users data was NOT exported. An error occurred");
-			alert.showAndWait();
-		}
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export users");
+            restaurant.exportDataUsers(selectedFile.getAbsolutePath());
+            alert.setContentText("The users data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export users");
+            alert.setContentText("The users data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML

@@ -15,7 +15,7 @@ public class Restaurant {
     private List<Person> people;
     private List<ProductType> productType;
     private List<ProductSize> productSize;
-    private User logged;
+    private int userIndex;
     public static final String FILE_SEPARATOR = ",";
     public static final String SAVE_PATH_FILE_PEOPLE = "data/people.report";
     public static final String SAVE_PATH_FILE_INGREDIENTS = "data/ingredients.report";
@@ -136,21 +136,13 @@ public class Restaurant {
         this.products = products;
     }
 
-    public User getLogged() {
-        return this.logged;
+    public User getLoggedUser(int index) {
+        return (User) people.get(index);
     }
 
-    public void setLogged(User logged) {
-        this.logged = logged;
+    public int getUserIndex() {
+        return this.userIndex;
     }
-
-    public void setLoggedUser(User user) {
-        this.logged = user;
-    }
-
-    public User getLoggedUser() {
-       return this.logged;
-    } 
 
     public List<ProductType> getProductType() {
         return this.productType;
@@ -336,10 +328,10 @@ public class Restaurant {
         for (int i = 0; i < people.size(); i++) {
             if (people.get(i) instanceof User) {
                 User user = (User) (people.get(i));
-                if (user == useroToDelete && getLoggedUser() == user) {
+                if (user == useroToDelete && getLoggedUser(userIndex) == user) {
                     // people.remove(useroToDelete);
                     msg = "son iguales";
-                    
+
                 } else {
                     msg = "The user can not been deleted";
                 }
@@ -473,20 +465,19 @@ public class Restaurant {
     }
 
     public User userVerification(String userName, String password) {
-        User logged = null;
         boolean found = false;
         if (!people.isEmpty()) {
             for (int i = 0; i < people.size() && !found; i++) {
                 if (people.get(i) instanceof User) {
                     User user = (User) people.get(i);
                     if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-                        logged = user;
+                        userIndex = i;
                         found = true;
                     }
                 }
             }
         }
-        return logged;
+        return getLoggedUser(userIndex);
     }
 
     // -----------------------------------------------------COSTUMERS---------------------------------------

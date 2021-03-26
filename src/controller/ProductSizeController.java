@@ -91,7 +91,7 @@ public class ProductSizeController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addProductSize(txtNameProductSize.getText(), restaurant.getCodeProductSize(),
-                    restaurant.getLoggedUser());
+                    restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
             trimProductSizeForm();
             alert.showAndWait();
@@ -120,7 +120,7 @@ public class ProductSizeController {
     public void updateProductSize(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setProductSize(getPreSelectProductSize(), txtNameProductSize.getText(),
-                restaurant.getLoggedUser());
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveProductSize();
@@ -204,20 +204,20 @@ public class ProductSizeController {
 
     @FXML
     public void exportProductSize(ActionEvent event) throws FileNotFoundException {
-        FileChooser fc = new FileChooser();		
-		File selectedFile = fc.showSaveDialog(cGui.getPane());
-		if (selectedFile !=null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export product size");
-			restaurant.exportDataProductSize(selectedFile.getAbsolutePath());
-			alert.setContentText("The product size data was exported succesfully");
-			alert.showAndWait();
-		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export product size");
-			alert.setContentText("The product size data was NOT exported. An error occurred");
-			alert.showAndWait();
-		}
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export product size");
+            restaurant.exportDataProductSize(selectedFile.getAbsolutePath());
+            alert.setContentText("The product size data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export product size");
+            alert.setContentText("The product size data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML

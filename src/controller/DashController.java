@@ -57,10 +57,10 @@ public class DashController implements Initializable {
     }
 
     public void initUser() {
-        File file = new File(restaurant.getLoggedUser().getImage());
+        File file = new File(restaurant.getLoggedUser(restaurant.getUserIndex()).getImage());
         userIcon.setImage(new Image("file:///" + file.getAbsolutePath()));
-        lblUser.setText(restaurant.getLoggedUser().getName());
-        lblId.setText(String.valueOf(restaurant.getLoggedUser().getId()));
+        lblUser.setText(restaurant.getLoggedUser(restaurant.getUserIndex()).getName());
+        lblId.setText(String.valueOf(restaurant.getLoggedUser(restaurant.getUserIndex()).getId()));
     }
 
     @FXML

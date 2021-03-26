@@ -129,7 +129,7 @@ public class CostumerController implements Initializable {
             String msg = restaurant.addPerson(txtNameCostumer.getText(), txtLastNameCostumer.getText(),
                     Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                     Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
-                    restaurant.getLoggedUser());
+                    restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText("Inforation");
             alert.setContentText(msg);
@@ -183,7 +183,6 @@ public class CostumerController implements Initializable {
         cGui.showCostumers();
     }
 
-
     @FXML
     public void selectedCostumer(MouseEvent event) throws IOException {
         Costumer sltCostumer = listCostumers.getSelectionModel().getSelectedItem();
@@ -214,7 +213,7 @@ public class CostumerController implements Initializable {
         String msg = restaurant.setInfoCostumer(getPreSelectCostumer(), txtNameCostumer.getText(),
                 txtLastNameCostumer.getText(), Integer.parseInt(txtIdCostumer.getText()), txtAddressCostumer.getText(),
                 Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
-                restaurant.getLoggedUser());
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -245,20 +244,20 @@ public class CostumerController implements Initializable {
 
     @FXML
     public void exportCostumers(ActionEvent event) throws FileNotFoundException {
-        FileChooser fc = new FileChooser();		
-		File selectedFile = fc.showSaveDialog(cGui.getPane());
-		if (selectedFile !=null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Export costumers");
-			restaurant.exportDataCostumers(selectedFile.getAbsolutePath());
-			alert.setContentText("The costumers data was exported succesfully");
-			alert.showAndWait();
-		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Export costumers");
-			alert.setContentText("The costumers data was NOT exported. An error occurred");
-			alert.showAndWait();
-		}
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export costumers");
+            restaurant.exportDataCostumers(selectedFile.getAbsolutePath());
+            alert.setContentText("The costumers data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export costumers");
+            alert.setContentText("The costumers data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML
