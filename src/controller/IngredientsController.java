@@ -176,6 +176,19 @@ public class IngredientsController {
     }
 
     @FXML
+    void sortIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("Confirmation");
+        alert.setContentText("The ingredients have been sort succesfully");
+        trimIngredientsForm();
+        alert.showAndWait();
+        restaurant.sortIngredientByName();
+        restaurant.saveIngredients();
+        initIngredientsTable();
+        
+    }
+
+    @FXML
     void deselectIngredient(ActionEvent event) {
         trimIngredientsForm();
     }

@@ -21,18 +21,18 @@
             <TableColumn fx:id="colEditorIngredients" prefWidth="156.0" text="EDITOR" />
          </columns>
       </TableView>
-      <Label layoutX="701.0" layoutY="270.0" text="Name:">
+      <Label layoutX="702.0" layoutY="254.0" text="Name:">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameIngredients" layoutX="633.0" layoutY="323.0" prefHeight="48.0" prefWidth="213.0" />
+      <TextField fx:id="txtNameIngredients" layoutX="627.0" layoutY="302.0" prefHeight="31.0" prefWidth="213.0" />
       <Label layoutX="635.0" layoutY="22.0" text="Ingredients Crud">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="671.0" layoutY="470.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="670.0" layoutY="356.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -44,7 +44,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="590.0" layoutY="527.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="589.0" layoutY="413.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -56,7 +56,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="762.0" layoutY="527.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="761.0" layoutY="413.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -68,7 +68,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="674.0" layoutY="590.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="673.0" layoutY="476.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
@@ -119,5 +119,15 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="btnSort" alignment="CENTER" contentDisplay="RIGHT" layoutX="640.0" layoutY="564.0" mnemonicParsing="false" onAction="#sortIngredients" prefHeight="41.0" prefWidth="194.0" style="-fx-background-color: red;" text="Sort Ingredients" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="801.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/img/sort.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

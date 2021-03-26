@@ -130,7 +130,7 @@
             <Font size="16.0" />
          </font>
       </CheckBox>
-      <ImageView fitHeight="119.0" fitWidth="206.0" layoutX="623.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="88.0" fitWidth="105.0" layoutX="540.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/img/buying_96px.png" />
          </image>
@@ -167,5 +167,11 @@
             </ImageView>
          </graphic>
       </Button>
+      <ComboBox fx:id="comBoxStateProduct" layoutX="703.0" layoutY="113.0" prefHeight="31.0" prefWidth="186.0" />
+      <Label layoutX="731.0" layoutY="81.0" prefHeight="25.0" prefWidth="129.0" text="Change State:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

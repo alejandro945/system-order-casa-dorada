@@ -2,6 +2,7 @@ package model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javafx.scene.control.Alert;
@@ -148,8 +149,8 @@ public class Restaurant {
     }
 
     public User getLoggedUser() {
-        return this.logged;
-    }
+       return this.logged;
+    } 
 
     public List<ProductType> getProductType() {
         return this.productType;
@@ -331,15 +332,20 @@ public class Restaurant {
     }
 
     public String deleteUser(User useroToDelete) {
+        String msg = "";
         for (int i = 0; i < people.size(); i++) {
             if (people.get(i) instanceof User) {
                 User user = (User) (people.get(i));
-                if (user == useroToDelete) {
-                    people.remove(useroToDelete);
+                if (user == useroToDelete && getLoggedUser() == user) {
+                    // people.remove(useroToDelete);
+                    msg = "son iguales";
+                    
+                } else {
+                    msg = "The user can not been deleted";
                 }
             }
         }
-        return "The user have been deleted succesfully";
+        return msg;
     }
 
     public String disableUser(User user) {
@@ -831,7 +837,11 @@ public class Restaurant {
         return count + 1;
     }
 
- 
+    public void sortIngredientByName() {
+        IngredientsComparator ic = new IngredientsComparator();
+        Collections.sort(ingredients, ic);
+    }
+
     // -------------------------------------------------------BASE-PRODUCT-------------------------------------------
 
     public BaseProduct addBaseProduct(String name, ProductType productType, List<Ingredients> ingredients, int code) {
@@ -876,13 +886,13 @@ public class Restaurant {
         product.setState(newState);
         return "The product state have been changed";
     }
-    
-    public void sortProductByPrice(){
-        for(int i = 0; i < products.size(); i++){
-            for (int j=i; j > 0 && products.get(j-1).getPrice() > products.get(j).getPrice(); j--){
+
+    public void sortProductByPrice() {
+        for (int i = 0; i < products.size(); i++) {
+            for (int j = i; j > 0 && products.get(j - 1).getPrice() > products.get(j).getPrice(); j--) {
                 Product temp = products.get(j);
-                products.set(j, products.get(j-1));
-                products.set(j-1, temp);
+                products.set(j, products.get(j - 1));
+                products.set(j - 1, temp);
             }
         }
     }

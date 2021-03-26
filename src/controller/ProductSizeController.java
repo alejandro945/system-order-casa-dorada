@@ -118,21 +118,15 @@ public class ProductSizeController {
 
     @FXML
     public void updateProductSize(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
-        String msg = "";
-        if (cbDisable.isSelected()) {
-            msg = restaurant.disableProductSize(preSelectProductSize);
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText(msg);
-            alert.showAndWait();
-        } else {
-            msg = restaurant.enableProductSize(preSelectProductSize);
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText(msg);
-            alert.showAndWait();
-        }
-        trimProductSizeForm();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.setProductSize(getPreSelectProductSize(), txtNameProductSize.getText(),
+                restaurant.getLoggedUser());
+        alert.setContentText(msg);
+        alert.showAndWait();
         restaurant.saveProductSize();
         restaurant.loadProductSize();
+        trimProductSizeForm();
+        setPreSelectProductSize(null);
         initProductSizeTable();
     }
 

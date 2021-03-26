@@ -18,11 +18,11 @@
          <columns>
             <TableColumn fx:id="colNameUser" prefWidth="74.0" text="NAME" />
             <TableColumn fx:id="colLastNameUser" prefWidth="111.0" text="LAST NAME" />
-            <TableColumn fx:id="colIDUser" prefWidth="87.99996948242188" text="ID" />
-            <TableColumn fx:id="colUserName" minWidth="7.0" prefWidth="96.7999267578125" text="USER NAME" />
-            <TableColumn fx:id="colIconUser" minWidth="5.5999755859375" prefWidth="76.00006103515625" text="ICON PATH" />
-            <TableColumn fx:id="colCreatorUser" minWidth="7.0" prefWidth="103.20001220703125" text="CREATOR" />
-            <TableColumn fx:id="colLastEditorUser" minWidth="0.0" prefWidth="0.0" text="LAST EDITOR" />
+            <TableColumn fx:id="colIDUser" prefWidth="48.0" text="ID" />
+            <TableColumn fx:id="colUserName" minWidth="7.0" prefWidth="91.0" text="USER NAME" />
+            <TableColumn fx:id="colIconUser" minWidth="5.5999755859375" text="ICON PATH" />
+            <TableColumn fx:id="colCreatorUser" minWidth="7.0" prefWidth="64.0" text="CREATOR" />
+            <TableColumn fx:id="colLastEditorUser" minWidth="43.0" prefWidth="60.0" text="LAST EDITOR" />
          </columns>
       </TableView>
       <Label layoutX="573.0" layoutY="198.0" text="Name:">

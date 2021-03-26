@@ -74,6 +74,9 @@ public class ProductController {
     @FXML
     private ComboBox<ProductSize> cbSize;
 
+    @FXML
+    private ComboBox<String> comBoxStateProduct;
+
     private Product preSelectProduct;
     private int idxProduct;
     private ArrayList<Ingredients> preListIngredients = new ArrayList<>();
@@ -102,6 +105,12 @@ public class ProductController {
         this.idxProduct = idxProduct;
     }
 
+    public void initStateProduct(){
+        ObservableList<String> comBox = FXCollections.observableArrayList("Select an option","REQUESTED", "IN PROCCES", "SEND", "DELIVERED");
+        comBoxStateProduct.setValue("Select an option");
+        comBoxStateProduct.setItems(comBox);
+    }
+
     @FXML
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
@@ -118,31 +127,17 @@ public class ProductController {
     }
 
     @FXML
-    public void deleteProducts(ActionEvent event) {
-
-    }
-
-    @FXML
     public void updateProducts(ActionEvent event) {
 
     }
 
-    /*
-     * @FXML void importProducts(ActionEvent event) throws IOException { FileChooser
-     * fc = new FileChooser(); File selectedFile =
-     * fc.showOpenDialog(mainPane.getScene().getWindow()); if (selectedFile != null)
-     * { Alert alert = new Alert(AlertType.INFORMATION);
-     * alert.setTitle("Import products");
-     * restaurant.importDataProducts(selectedFile.getAbsolutePath());
-     * alert.setContentText("The products data was imported succesfully");
-     * alert.showAndWait(); showProducts(event); } else { Alert alert = new
-     * Alert(AlertType.ERROR); alert.setTitle("Import products");
-     * alert.setContentText("The products data was NOT imported. An error occurred"
-     * ); alert.showAndWait(); } }
-     */
-
     @FXML
     public void selectedProduct(MouseEvent event) {
+
+    }
+
+    @FXML
+    public void deleteProducts(ActionEvent event) {
 
     }
 

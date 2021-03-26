@@ -172,7 +172,7 @@ public class UserController {
             alert.showAndWait();
         } else {
             if (user != null && user.getState() == true) {
-                restaurant.setLoggedUser(user);
+                restaurant.getLoggedUser();
                 cGui.showDashBoard();
             } else if (user.getState() == false) {
                 Alert alert = new Alert(AlertType.ERROR);
