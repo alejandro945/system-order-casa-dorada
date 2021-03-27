@@ -16,6 +16,7 @@ public class Restaurant {
     private List<ProductType> productType;
     private List<ProductSize> productSize;
     private int userIndex;
+    private int ingredientIndex;
     public static final String FILE_SEPARATOR = ",";
     public static final String SAVE_PATH_FILE_DATA = "data/CasaDorada.report";
 
@@ -134,16 +135,35 @@ public class Restaurant {
     }
 
     public User getLoggedUser(int index) {
-        if(index >= 0){
-        return (User) people.get(index);
-        }
-        else{
+        if (index >= 0) {
+            return (User) people.get(index);
+        } else {
             return null;
         }
     }
 
     public int getUserIndex() {
         return this.userIndex;
+    }
+
+    public Ingredients getIngredient(int i) {
+        if (i >= 0) {
+            return ingredients.get(i);
+        } else {
+            return null;
+        }
+    }
+
+    public int getIngredientIndex() {
+        return this.ingredientIndex;
+    }
+
+    public ProductSize getProductSize(int i) {
+        return productSize.get(i);
+    }
+
+    public ProductType getProductType(int i) {
+        return productType.get(i);
     }
 
     public List<ProductType> getProductType() {
@@ -445,6 +465,14 @@ public class Restaurant {
         return msg;
     }
 
+    public int getCostumerIndex(Costumer c) {
+        int i = 0;
+        while (i < getNumberCostumers() && c.compareTo(getCostumers(getPeople()).get(i)) < 0) {
+            i++;
+        }
+        return i;
+    }
+
     public String setInfoCostumer(Costumer pastCostumer, String newName, String newLastName, int newId,
             String newAddress, int newTelephone, String newSuggestions, User newLastEditor) {
         if (!validateidUpdating(newId, pastCostumer)) {
@@ -455,6 +483,7 @@ public class Restaurant {
             pastCostumer.setTelephone(newTelephone);
             pastCostumer.setSuggestions(newSuggestions);
             pastCostumer.setLastEditor(newLastEditor);
+            people.set(getCostumerIndex(pastCostumer), pastCostumer);
             return "The Costumer have been edited succesfully";
         } else {
             return "The Costumer could not been edited (Same id)";
@@ -690,9 +719,9 @@ public class Restaurant {
                     msg = "You can not added an ingredient with the same name";
                     added = true;
                     System.out.println(getLoggedUser(userIndex) == creator);
-                } 
+                }
             }
-            if(!added){
+            if (!added) {
                 ingredients.add(newIngredient);
                 msg = "The ingredient " + newIngredient.getName() + " have been added succesfully";
             }
@@ -766,39 +795,52 @@ public class Restaurant {
         Collections.sort(ingredients, ic);
     }
 
-    // -------------------------------------------------------BASE-PRODUCT-------------------------------------------
-
-    public BaseProduct addBaseProduct(String name, ProductType productType, List<Ingredients> ingredients, int code) {
-        BaseProduct baseProduct = new BaseProduct(name, productType, ingredients, code);
-        return baseProduct;
+    public Ingredients searchIndex(Ingredients ing) {
+        ingredientIndex = -1;
+        boolean found = false;
+        if (!ingredients.isEmpty()) {
+            for (int i = 0; i < ingredients.size() && !found; i++) {
+                if (ingredients.get(i).getName().equals(ing.getName())) {
+                    ingredientIndex = i;
+                    found = true;
+                }
+            }
+        }
+        return getIngredient(ingredientIndex);
     }
 
     // ---------------------------------------------------------PRODUCTS-----------------------------------------------
 
-    public String addProduct(BaseProduct baseProduct, ProductSize productSize, double price, User creator,
-            User lastEditor, boolean state) {
+    public String addProduct(String name, ProductType productType, List<Ingredients> ingredients, int code,
+            ProductSize productSize, double price, User creator) {
         String msg = "";
-        Product newProduct = null;
-        for (int j = 0; j < products.size(); j++) {
-            if (baseProduct.getName().equalsIgnoreCase(products.get(j).getBaseProduct().getName())) {
-                msg = "You can not added a product with the same name";
-            } else {
-                newProduct = new Product(baseProduct, productSize, price, creator, lastEditor, state);
-                products.add(j, newProduct);
-                msg = "The product " + newProduct.getBaseProduct().getName() + " have been added succesfully";
+        Product newProduct = new Product(name, productType, ingredients, code, productSize, price, creator);
+        if (products.isEmpty()) {
+            products.add(newProduct);
+            msg = "The product type " + newProduct.getName() + " have been added succesfully";
+        } else {
+            boolean added = false;
+            for (int j = 0; j < products.size() && !added; j++) {
+                if (newProduct.getName().equalsIgnoreCase(products.get(j).getName())) {
+                    msg = "You can not added an product type with the same name";
+                    added = true;
+                }
+            }
+            if (!added) {
+                products.add(newProduct);
+                msg = "The product type " + newProduct.getName() + " have been added succesfully";
             }
         }
-        
+        System.out.println(ingredients);
         return msg;
     }
 
-    public String setProductInfo(Product product, BaseProduct newBaseProduct, ProductSize newProductSize,
-            double newPrice, User lastEditor, boolean newState) {
-        product.setBaseProduct(newBaseProduct);
+    public String setProductInfo(Product product, String newName, ProductType newProductType,
+            List<Ingredients> newIngredients, int newCode, ProductSize newProductSize, double newPrice,
+            User lastEditor) {
         product.setProductSize(newProductSize);
         product.setPrice(newPrice);
         product.setLastEditor(lastEditor);
-        product.setState(newState);
         return "The Product have been edited succesfully";
     }
 
@@ -822,6 +864,14 @@ public class Restaurant {
         }
     }
 
+    public int getCodeProduct() {
+        int count = 0;
+        for (int i = 0; i < products.size(); i++) {
+            count++;
+        }
+        return count + 1;
+    }
+
     // -----------------------------------------PRODUCT_TYPE----------------------------------------------
 
     public String addProductType(String name, User creator, int code) {
@@ -838,7 +888,7 @@ public class Restaurant {
                     added = true;
                 }
             }
-            if(!added){
+            if (!added) {
                 productType.add(newProductType);
                 msg = "The product type " + newProductType.getName() + " have been added succesfully";
             }
@@ -921,9 +971,9 @@ public class Restaurant {
                 if (newProductSize.getName().equalsIgnoreCase(productSize.get(j).getName())) {
                     msg = "You can not added an product size with the same name";
                     added = true;
-                } 
+                }
             }
-            if(!added){
+            if (!added) {
                 productSize.add(newProductSize);
                 msg = "The product size " + newProductSize.getName() + " have been added succesfully";
             }

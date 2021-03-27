@@ -267,6 +267,7 @@ public class UserController {
 
     @FXML
     public void fileChooser(ActionEvent event) {
+        pathRender = "";
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG", "*.jpg"),

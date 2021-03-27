@@ -131,8 +131,9 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         productController.initComboIngredientBox();
+        productController.initComboSizesBox();
+        productController.initComboTypesBox();
         productController.initProductTable();
-        productController.initStateProduct();
     }
 
     // PRODUCT TYPE

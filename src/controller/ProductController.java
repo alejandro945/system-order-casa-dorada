@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +9,7 @@ import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.*;
@@ -30,7 +32,7 @@ public class ProductController {
     private TableColumn<Product, ProductType> colProductType;
 
     @FXML
-    private TableColumn<Product, Ingredients> colIngredientsProducts;
+    private TableColumn<Product, ObservableList<Ingredients>> colIngredientsProducts = new TableColumn<>("ingredients");
 
     @FXML
     private TableColumn<Product, ProductSize> colSizeProducts;
@@ -60,6 +62,9 @@ public class ProductController {
     private Button btnCreate;
 
     @FXML
+    private Button btnClean;
+
+    @FXML
     private CheckBox cbDisable;
 
     @FXML
@@ -74,12 +79,11 @@ public class ProductController {
     @FXML
     private ComboBox<ProductSize> cbSize;
 
-    @FXML
-    private ComboBox<String> comBoxStateProduct;
-
     private Product preSelectProduct;
     private int idxProduct;
     private ArrayList<Ingredients> preListIngredients = new ArrayList<>();
+    private ProductSize preProductSize;
+    private ProductType preProductType;
 
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
@@ -105,13 +109,6 @@ public class ProductController {
         this.idxProduct = idxProduct;
     }
 
-    public void initStateProduct() {
-        ObservableList<String> comBox = FXCollections.observableArrayList("Select an option", "REQUESTED", "IN PROCCES",
-                "SEND", "DELIVERED");
-        comBoxStateProduct.setValue("Select an option");
-        comBoxStateProduct.setItems(comBox);
-    }
-
     @FXML
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
@@ -123,8 +120,50 @@ public class ProductController {
     }
 
     @FXML
-    public void createProducts(ActionEvent event) {
+    public void createProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        boolean validateFields = productValidation(txtNameProducts.getText(), txtIngredients.getText(),
+                txtPriceProducts.getText());
+        if (!validateFields) {
+            Alert alert2 = new Alert(AlertType.WARNING);
+            alert2.setTitle("Warning Dialog");
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Hey!! Please complete all fields for create a costumer");
+            alert2.showAndWait();
+        } else if (validateFields) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            String msg = restaurant.addProduct(txtNameProducts.getText(), preProductType, preListIngredients,
+                    restaurant.getCodeProduct(), preProductSize, Double.parseDouble(txtPriceProducts.getText()),
+                    restaurant.getLoggedUser(restaurant.getUserIndex()));
+            alert.setContentText(msg);
+            alert.showAndWait();
+            trimProductForm();
+            restaurant.saveData();
+            initProductTable();
+        }
+    }
 
+    public boolean productValidation(String name, String ingredients, String price) {
+        boolean complete = true;
+        if (name.equals("") || ingredients.equals("") || price.equals("")
+                || cbSize.getSelectionModel().getSelectedItem() == null
+                || cbTypes.getSelectionModel().getSelectedItem() == null) {
+            complete = false;
+        }
+        return complete;
+    }
+
+    public void trimProductForm() {
+        txtNameProducts.setText("");
+        txtPriceProducts.setText("");
+        txtIngredients.setText("");
+        preListIngredients.clear();
+        cbSize.setValue(null);
+        cbTypes.setValue(null);
+        btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        btnClean.setDisable(true);
+        cbDisable.setDisable(true);
     }
 
     @FXML
@@ -161,18 +200,35 @@ public class ProductController {
     void comboEvent(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(comboIngredients)) {
-            preListIngredients.add(comboIngredients.getSelectionModel().getSelectedItem());
+            btnClean.setDisable(false);
+            preListIngredients.add(restaurant.searchIndex(comboIngredients.getSelectionModel().getSelectedItem()));
             txtIngredients.setText(Arrays.toString(preListIngredients.toArray()));
+        }
+        if (e.equals(cbSize)) {
+            preProductSize = cbSize.getSelectionModel().getSelectedItem();
+        }
+        if (e.equals(cbTypes)) {
+            preProductType = cbTypes.getSelectionModel().getSelectedItem();
         }
     }
 
     @FXML
     void cleanIngredients(ActionEvent event) {
-
+        preListIngredients.clear();
+        txtIngredients.setText("");
+        btnClean.setDisable(true);
     }
 
     public void initComboIngredientBox() {
         comboIngredients.getItems().addAll(restaurant.getIngredients());
+    }
+
+    public void initComboSizesBox() {
+        cbSize.getItems().addAll(restaurant.getProductSize());
+    }
+
+    public void initComboTypesBox() {
+        cbTypes.getItems().addAll(restaurant.getProductType());
     }
 
     public void initProductTable() throws IOException {
@@ -181,8 +237,8 @@ public class ProductController {
         colcode.setCellValueFactory(new PropertyValueFactory<Product, Integer>("code"));
         colPriceProducts.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
         colNameProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        colProductType.setCellValueFactory(new PropertyValueFactory<Product, ProductType>("type"));
-        colIngredientsProducts.setCellValueFactory(new PropertyValueFactory<Product, Ingredients>("ingredients"));
+        colProductType.setCellValueFactory(new PropertyValueFactory<Product, ProductType>("productType"));
+        colIngredientsProducts.setCellValueFactory(new PropertyValueFactory<>("ingredients"));
         colSizeProducts.setCellValueFactory(new PropertyValueFactory<Product, ProductSize>("productSize"));
         colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("creator"));
         colEditorProduct.setCellValueFactory(new PropertyValueFactory<Product, User>("lastEditor"));
