@@ -95,7 +95,7 @@ public class ProductTypeController {
             alert.setContentText(msg);
             trimProductTypeForm();
             alert.showAndWait();
-            restaurant.saveProductType();
+            restaurant.saveData();
             initProductTypeTable();
         }
     }
@@ -123,8 +123,8 @@ public class ProductTypeController {
                 restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
-        restaurant.saveProductType();
-        restaurant.loadProductType();
+        restaurant.saveData();
+        restaurant.loadData();
         trimProductTypeForm();
         setPreSelectProductType(null);
         initProductTypeTable();
@@ -166,7 +166,7 @@ public class ProductTypeController {
             alert.showAndWait();
         }
         trimProductTypeForm();
-        restaurant.saveProductType();
+        restaurant.saveData();
         initProductTypeTable();
     }
 
@@ -177,7 +177,7 @@ public class ProductTypeController {
         alert.setContentText(msg);
         trimProductTypeForm();
         alert.showAndWait();
-        restaurant.saveProductType();
+        restaurant.saveData();
         initProductTypeTable();
     }
 
@@ -214,8 +214,8 @@ public class ProductTypeController {
             restaurant.importDataProductType(selectedFile.getAbsolutePath());
             alert.setContentText("The  product type data was imported succesfully");
             alert.showAndWait();
-            restaurant.saveProductType();
-            restaurant.loadProductType();
+            restaurant.saveData();
+            restaurant.loadData();
             initProductTypeTable();
         } else {
             Alert alert = new Alert(AlertType.ERROR);

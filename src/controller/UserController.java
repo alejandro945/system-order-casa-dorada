@@ -155,7 +155,7 @@ public class UserController {
 
     @FXML
     public void logIn(ActionEvent event) throws IOException, ClassNotFoundException {
-        restaurant.loadPeople();
+        restaurant.loadData();
         boolean validation = validateLoginFields(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         User user = restaurant.userVerification(txtNameUserLogin.getText(), txtPasswordLogin.getText());
         if (!validation) {
@@ -188,7 +188,7 @@ public class UserController {
     @FXML
     public void createAccount(ActionEvent event) throws IOException, ClassNotFoundException {
         User user = new User();
-        restaurant.loadPeople();
+        restaurant.loadData();
         boolean validateFields = registerValidation(txtNameRegister.getText(), txtLastNameRegister.getText(),
                 txtIDRegister.getText(), txtNameUserRegister.getText(), txtPasswordRegister.getText(), this.pathRender);
         if (!validateFields) {
@@ -226,7 +226,7 @@ public class UserController {
                 alert3.showAndWait();
             }
             trimRegisterTxt();
-            restaurant.savePeople();
+            restaurant.saveData();
         } else {
             Alert alert3 = new Alert(AlertType.ERROR);
             alert3.setTitle("Warning Dialog");
@@ -349,7 +349,7 @@ public class UserController {
             alert.setContentText(msg);
             alert.showAndWait();
             trimUserForm();
-            restaurant.savePeople();
+            restaurant.saveData();
         } else {
             Alert alert3 = new Alert(AlertType.ERROR);
             alert3.setTitle("Warning Dialog");
@@ -423,7 +423,7 @@ public class UserController {
             alert.showAndWait();
         }
         trimUserForm();
-        restaurant.savePeople();
+        restaurant.saveData();
         initUserTable();
     }
 
@@ -442,8 +442,8 @@ public class UserController {
             alert.setTitle("Warning Dialog");
             alert.setHeaderText(msg);
             alert.showAndWait();
-            restaurant.savePeople();
-            restaurant.loadPeople();
+            restaurant.saveData();
+            restaurant.loadData();
             trimUserForm();
             initUserTable();
         } else {
@@ -462,7 +462,7 @@ public class UserController {
         alert.setContentText(msg);
         trimUserForm();
         alert.showAndWait();
-        restaurant.savePeople();
+        restaurant.saveData();
         initUserTable();
     }
 
@@ -504,8 +504,8 @@ public class UserController {
             restaurant.importDataUsers(selectedFile.getAbsolutePath());
             alert.setContentText("The users data was imported succesfully");
             alert.showAndWait();
-            restaurant.savePeople();
-            restaurant.loadPeople();
+            restaurant.saveData();
+            restaurant.loadData();
             initUserTable();
         } else {
             Alert alert = new Alert(AlertType.ERROR);

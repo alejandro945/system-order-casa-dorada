@@ -95,7 +95,7 @@ public class ProductSizeController {
             alert.setContentText(msg);
             trimProductSizeForm();
             alert.showAndWait();
-            restaurant.saveProductSize();
+            restaurant.saveData();
             initProductSizeTable();
         }
     }
@@ -123,8 +123,8 @@ public class ProductSizeController {
                 restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
-        restaurant.saveProductSize();
-        restaurant.loadProductSize();
+        restaurant.saveData();
+        restaurant.loadData();
         trimProductSizeForm();
         setPreSelectProductSize(null);
         initProductSizeTable();
@@ -166,7 +166,7 @@ public class ProductSizeController {
             alert.showAndWait();
         }
         trimProductSizeForm();
-        restaurant.saveProductSize();
+        restaurant.saveData();
         initProductSizeTable();
     }
 
@@ -177,7 +177,7 @@ public class ProductSizeController {
         alert.setContentText(msg);
         trimProductSizeForm();
         alert.showAndWait();
-        restaurant.saveProductSize();
+        restaurant.saveData();
         initProductSizeTable();
     }
 
@@ -191,8 +191,8 @@ public class ProductSizeController {
             restaurant.importDataProductSize(selectedFile.getAbsolutePath());
             alert.setContentText("The product size data was imported succesfully");
             alert.showAndWait();
-            restaurant.saveProductSize();
-            restaurant.loadProductSize();
+            restaurant.saveData();
+            restaurant.loadData();
             initProductSizeTable();
         } else {
             Alert alert = new Alert(AlertType.ERROR);

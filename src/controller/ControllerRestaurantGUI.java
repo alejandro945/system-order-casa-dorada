@@ -86,7 +86,7 @@ public class ControllerRestaurantGUI implements Initializable {
         fxmlLoader.setController(userController);
         Parent login = fxmlLoader.load();
         mainPane.getChildren().setAll(login);
-        if (restaurant.getPeopleFile().length() > 0 & restaurant.usersDisabled() == false) {
+        if (restaurant.getDataFile().length() > 0 & restaurant.usersDisabled() == false) {
             userController.disableButton();
         } else {
             userController.enableButton();
@@ -110,8 +110,8 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         dashController.initUser();
-        restaurant.loadIngredients();
-        restaurant.loadProductType();
+        restaurant.loadData();
+        restaurant.loadData();
         dashController.initDashoboard();
     }
 
@@ -143,7 +143,7 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadProductType();
+        restaurant.loadData();
         productTypeController.initProductTypeTable();
     }
 
@@ -155,7 +155,7 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadProductSize();
+        restaurant.loadData();
         productSizeController.initProductSizeTable();
     }
 
@@ -167,14 +167,14 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlLoader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadIngredients();
+        restaurant.loadData();
         ingredientController.initIngredientsTable();
     }
 
     // COSTUMERS
 
     public void showCostumers() throws IOException, ClassNotFoundException {
-        restaurant.loadPeople();
+        restaurant.loadData();
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listCostumers.fxml"));
         fxmlloader.setController(costumerController);
         Parent root = fxmlloader.load();
@@ -190,7 +190,7 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadPeople();
+        restaurant.loadData();
         employeeController.initEmployeeTable();
     }
 
@@ -202,7 +202,7 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        restaurant.loadPeople();
+        restaurant.loadData();
         userController.initUserTable();
     }
 

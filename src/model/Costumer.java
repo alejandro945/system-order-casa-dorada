@@ -25,6 +25,10 @@ public class Costumer extends Person implements Comparable<Costumer> {
         this.lastEditor = creator;
     }
 
+    public Costumer(){
+        
+    }
+
     public int getId() {
         return this.id;
     }

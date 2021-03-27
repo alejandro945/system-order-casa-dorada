@@ -17,10 +17,7 @@ public class Restaurant {
     private List<ProductSize> productSize;
     private int userIndex;
     public static final String FILE_SEPARATOR = ",";
-    public static final String SAVE_PATH_FILE_PEOPLE = "data/people.report";
-    public static final String SAVE_PATH_FILE_INGREDIENTS = "data/ingredients.report";
-    public static final String SAVE_PATH_FILE_PRODUCT_TYPE = "data/productType.report";
-    public static final String SAVE_PATH_FILE_PRODUCT_SIZE = "data/productSize.report";
+    public static final String SAVE_PATH_FILE_DATA = "data/CasaDorada.report";
 
     // ------------------------------------------CONSTRUCTOR-------------------------------------
     public Restaurant() {
@@ -137,7 +134,12 @@ public class Restaurant {
     }
 
     public User getLoggedUser(int index) {
+        if(index >= 0){
         return (User) people.get(index);
+        }
+        else{
+            return null;
+        }
     }
 
     public int getUserIndex() {
@@ -177,100 +179,19 @@ public class Restaurant {
     }
 
     // ---------------------------------------------PERSISTENCE------------------------------------------------
-    public File getPeopleFile() {
-        File file = new File(SAVE_PATH_FILE_PEOPLE);
+    public File getDataFile() {
+        File file = new File(SAVE_PATH_FILE_DATA);
         return file;
     }
 
-    public File getIngredientFile() {
-        File file = new File(SAVE_PATH_FILE_INGREDIENTS);
-        return file;
-    }
-
-    public File getProductTypeFile() {
-        File file = new File(SAVE_PATH_FILE_PRODUCT_TYPE);
-        return file;
-    }
-
-    public File getProductSizeFile() {
-        File file = new File(SAVE_PATH_FILE_PRODUCT_SIZE);
-        return file;
-    }
-
-    public void savePeople() throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void saveData() throws FileNotFoundException, IOException, ClassNotFoundException {
         ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_PEOPLE);
+        File file = new File(SAVE_PATH_FILE_DATA);
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(people);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("We could not find the path");
-            alert.showAndWait();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void loadPeople() throws IOException, ClassNotFoundException {
-        if (getPeopleFile().length() > 0) {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PEOPLE)));
-            people = (List<Person>) ois.readObject();
-            ois.close();
-        }
-    }
-
-    public void saveIngredients() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_INGREDIENTS);
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(ingredients);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("We could not find the path");
-            alert.showAndWait();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void loadIngredients() throws IOException, ClassNotFoundException {
-        if (getIngredientFile().length() > 0) {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_INGREDIENTS)));
-            ingredients = (List<Ingredients>) ois.readObject();
-            ois.close();
-        }
-    }
-
-    public void saveProductType() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_PRODUCT_TYPE);
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(productType);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("We could not find the path");
-            alert.showAndWait();
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void loadProductType() throws IOException, ClassNotFoundException {
-        if (getProductTypeFile().length() > 0) {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PRODUCT_TYPE)));
-            productType = (List<ProductType>) ois.readObject();
-            ois.close();
-        }
-    }
-
-    public void saveProductSize() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectOutputStream oos = null;
-        File file = new File(SAVE_PATH_FILE_PRODUCT_SIZE);
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(productSize);
             oos.close();
         } catch (FileNotFoundException e) {
@@ -281,9 +202,12 @@ public class Restaurant {
     }
 
     @SuppressWarnings("unchecked")
-    public void loadProductSize() throws IOException, ClassNotFoundException {
-        if (getProductSizeFile().length() > 0) {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_PRODUCT_SIZE)));
+    public void loadData() throws IOException, ClassNotFoundException {
+        if (getDataFile().length() > 0) {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_DATA)));
+            people = (List<Person>) ois.readObject();
+            ingredients = (List<Ingredients>) ois.readObject();
+            productType = (List<ProductType>) ois.readObject();
             productSize = (List<ProductSize>) ois.readObject();
             ois.close();
         }
@@ -328,12 +252,13 @@ public class Restaurant {
         for (int i = 0; i < people.size(); i++) {
             if (people.get(i) instanceof User) {
                 User user = (User) (people.get(i));
-                if (user == useroToDelete && getLoggedUser(userIndex) == user) {
-                    // people.remove(useroToDelete);
-                    msg = "son iguales";
-
+                if (user == useroToDelete && getLoggedUser(userIndex) != user) {
+                    User u = getLoggedUser(userIndex);
+                    people.remove(useroToDelete);
+                    userVerification(u.getUserName(), u.getPassword());
+                    msg = "The user have been deleted succesfully";
                 } else {
-                    msg = "The user can not been deleted";
+                    msg = "You can't delete you";
                 }
             }
         }
@@ -452,7 +377,7 @@ public class Restaurant {
     }
 
     public boolean usersDisabled() throws ClassNotFoundException, IOException {
-        loadPeople();
+        loadData();
         boolean disabled = false;
         for (User user : getUsers(people)) {
             if (user.getState() == true) {
@@ -465,6 +390,7 @@ public class Restaurant {
     }
 
     public User userVerification(String userName, String password) {
+        userIndex = -1;
         boolean found = false;
         if (!people.isEmpty()) {
             for (int i = 0; i < people.size() && !found; i++) {
@@ -507,7 +433,9 @@ public class Restaurant {
             }
             boolean repeated = validateidCreating(newCostumer);
             if (repeated == false) {
+                User u = getLoggedUser(userIndex);
                 people.add(i, newCostumer);
+                userVerification(u.getUserName(), u.getPassword());
                 msg = "The Costumer " + newCostumer.getName() + " have been added succesfully";
             } else {
                 msg = "You can not added a costumer with the same id";
@@ -538,7 +466,9 @@ public class Restaurant {
             if (people.get(i) instanceof Costumer) {
                 Costumer costumer = (Costumer) (people.get(i));
                 if (costumer == costumerToDelete) {
+                    User u = getLoggedUser(userIndex);
                     people.remove(costumerToDelete);
+                    userVerification(u.getUserName(), u.getPassword());
                 }
             }
         }
@@ -607,7 +537,7 @@ public class Restaurant {
             String address = parts[3];
             int telephone = Integer.parseInt(parts[4]);
             String suggestion = parts[5];
-            User creator = null;
+            User creator = new User();
             line = br.readLine();
             addPerson(name, lastName, id, address, telephone, suggestion, creator);
         }
@@ -654,7 +584,9 @@ public class Restaurant {
             if (people.get(i) instanceof Employee) {
                 Employee employee = (Employee) (people.get(i));
                 if (employee == employeeToDelete) {
+                    User u = getLoggedUser(userIndex);
                     people.remove(employeeToDelete);
+                    userVerification(u.getUserName(), u.getPassword());
                 }
             }
         }
@@ -757,11 +689,12 @@ public class Restaurant {
                 if (newIngredient.getName().equalsIgnoreCase(ingredients.get(j).getName())) {
                     msg = "You can not added an ingredient with the same name";
                     added = true;
-                } else {
-                    ingredients.add(newIngredient);
-                    msg = "The ingredient " + newIngredient.getName() + " have been added succesfully";
-                    added = true;
-                }
+                    System.out.println(getLoggedUser(userIndex) == creator);
+                } 
+            }
+            if(!added){
+                ingredients.add(newIngredient);
+                msg = "The ingredient " + newIngredient.getName() + " have been added succesfully";
             }
         }
         return msg;
@@ -855,6 +788,7 @@ public class Restaurant {
                 msg = "The product " + newProduct.getBaseProduct().getName() + " have been added succesfully";
             }
         }
+        
         return msg;
     }
 
@@ -898,15 +832,15 @@ public class Restaurant {
             msg = "The product type " + newProductType.getName() + " have been added succesfully";
         } else {
             boolean added = false;
-            for (int j = 0; j < ingredients.size() && !added; j++) {
+            for (int j = 0; j < productType.size() && !added; j++) {
                 if (newProductType.getName().equalsIgnoreCase(productType.get(j).getName())) {
                     msg = "You can not added an product type with the same name";
                     added = true;
-                } else {
-                    productType.add(newProductType);
-                    msg = "The product type " + newProductType.getName() + " have been added succesfully";
-                    added = true;
                 }
+            }
+            if(!added){
+                productType.add(newProductType);
+                msg = "The product type " + newProductType.getName() + " have been added succesfully";
             }
         }
         return msg;
@@ -987,11 +921,11 @@ public class Restaurant {
                 if (newProductSize.getName().equalsIgnoreCase(productSize.get(j).getName())) {
                     msg = "You can not added an product size with the same name";
                     added = true;
-                } else {
-                    productSize.add(newProductSize);
-                    msg = "The product size " + newProductSize.getName() + " have been added succesfully";
-                    added = true;
-                }
+                } 
+            }
+            if(!added){
+                productSize.add(newProductSize);
+                msg = "The product size " + newProductSize.getName() + " have been added succesfully";
             }
         }
         return msg;

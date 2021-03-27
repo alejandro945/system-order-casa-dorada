@@ -102,7 +102,7 @@ public class EmployeeController {
             alert.setContentText(msg);
             trimEmployeeForm();
             alert.showAndWait();
-            restaurant.savePeople();
+            restaurant.saveData();
             initEmployeeTable();
         }
     }
@@ -162,7 +162,7 @@ public class EmployeeController {
             alert.showAndWait();
         }
         trimEmployeeForm();
-        restaurant.savePeople();
+        restaurant.saveData();
         initEmployeeTable();
     }
 
@@ -174,8 +174,8 @@ public class EmployeeController {
                 restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
-        restaurant.savePeople();
-        restaurant.loadPeople();
+        restaurant.saveData();
+        restaurant.loadData();
         trimEmployeeForm();
         setPreSelectEmployee(null);
         initEmployeeTable();
@@ -188,7 +188,7 @@ public class EmployeeController {
         alert.setContentText(msg);
         trimEmployeeForm();
         alert.showAndWait();
-        restaurant.savePeople();
+        restaurant.saveData();
         initEmployeeTable();
     }
 
@@ -225,8 +225,8 @@ public class EmployeeController {
             restaurant.importDataEmployees(selectedFile.getAbsolutePath());
             alert.setContentText("The employees data was imported succesfully");
             alert.showAndWait();
-            restaurant.savePeople();
-            restaurant.loadPeople();
+            restaurant.saveData();
+            restaurant.loadData();
             initEmployeeTable();
         } else {
             Alert alert = new Alert(AlertType.ERROR);

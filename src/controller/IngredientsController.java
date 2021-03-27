@@ -88,9 +88,9 @@ public class IngredientsController {
             String msg = restaurant.addIngredient(restaurant.getCode(), txtNameIngredients.getText(),
                     restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
-            trimIngredientsForm();
             alert.showAndWait();
-            restaurant.saveIngredients();
+            trimIngredientsForm();
+            restaurant.saveData();
             initIngredientsTable();
         }
     }
@@ -146,7 +146,7 @@ public class IngredientsController {
             alert.showAndWait();
         }
         trimIngredientsForm();
-        restaurant.saveIngredients();
+        restaurant.saveData();
         initIngredientsTable();
     }
 
@@ -157,8 +157,8 @@ public class IngredientsController {
                 restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
-        restaurant.saveIngredients();
-        restaurant.loadIngredients();
+        restaurant.saveData();
+        restaurant.loadData();
         trimIngredientsForm();
         setPreSelectIngredient(null);
         initIngredientsTable();
@@ -171,7 +171,7 @@ public class IngredientsController {
         alert.setContentText(msg);
         trimIngredientsForm();
         alert.showAndWait();
-        restaurant.saveIngredients();
+        restaurant.saveData();
         initIngredientsTable();
     }
 
@@ -183,7 +183,7 @@ public class IngredientsController {
         trimIngredientsForm();
         alert.showAndWait();
         restaurant.sortIngredientByName();
-        restaurant.saveIngredients();
+        restaurant.saveData();
         initIngredientsTable();
 
     }
@@ -221,8 +221,8 @@ public class IngredientsController {
             restaurant.importDataIngredients(selectedFile.getAbsolutePath());
             alert.setContentText("The ingredients data was imported succesfully");
             alert.showAndWait();
-            restaurant.saveIngredients();
-            restaurant.loadIngredients();
+            restaurant.saveData();
+            restaurant.loadData();
             initIngredientsTable();
         } else {
             Alert alert = new Alert(AlertType.ERROR);

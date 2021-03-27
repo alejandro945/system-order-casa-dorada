@@ -131,11 +131,11 @@ public class CostumerController implements Initializable {
                     Integer.parseInt(txtTelephoneCostumer.getText()), txtSuggestionsCostumer.getText(),
                     restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Inforation");
+            alert.setHeaderText("Information");
             alert.setContentText(msg);
             trimCostumerForm();
             alert.showAndWait();
-            restaurant.savePeople();
+            restaurant.saveData();
             cGui.showCostumers();
         }
 
@@ -179,7 +179,7 @@ public class CostumerController implements Initializable {
             alert.showAndWait();
         }
         trimCostumerForm();
-        restaurant.savePeople();
+        restaurant.saveData();
         cGui.showCostumers();
     }
 
@@ -217,8 +217,8 @@ public class CostumerController implements Initializable {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setContentText(msg);
         alert.showAndWait();
-        restaurant.savePeople();
-        restaurant.loadPeople();
+        restaurant.saveData();
+        restaurant.loadData();
         trimCostumerForm();
         initCostumersTable();
         cGui.showCostumers();
@@ -231,8 +231,8 @@ public class CostumerController implements Initializable {
         alert.setContentText(msg);
         trimCostumerForm();
         alert.showAndWait();
-        restaurant.savePeople();
-        restaurant.loadPeople();
+        restaurant.saveData();
+        restaurant.loadData();
         initCostumersTable();
         cGui.showCostumers();
     }
@@ -270,8 +270,8 @@ public class CostumerController implements Initializable {
             restaurant.importDataCostumers(selectedFile.getAbsolutePath());
             alert.setContentText("The costumers data was imported succesfully");
             alert.showAndWait();
-            restaurant.savePeople();
-            restaurant.loadPeople();
+            restaurant.saveData();
+            restaurant.loadData();
             cGui.showCostumers();
         } else {
             Alert alert = new Alert(AlertType.ERROR);

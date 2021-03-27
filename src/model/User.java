@@ -57,7 +57,7 @@ public class User extends Employee {
     @Override
     public String toString() {
         if (getName()==null) {
-            return "Created by register";
+            return "Created by register or imported";
         } else {
             return getName();
         }
