@@ -113,6 +113,30 @@ public class Restaurant {
         return count;
     }
 
+    public int searchCostumer(Costumer c) {
+        int indexC = 0;
+        boolean render = false;
+        for (int i = 0; i < people.size() && !render; i++) {
+            if (people.get(i) instanceof Costumer) {
+                Costumer p = (Costumer) people.get(i);
+                if (p.getName().equalsIgnoreCase(c.getName())) {
+                    render = true;
+                    indexC = p.getId();
+                }
+            }
+        }
+        System.out.println(indexC);
+        return indexC;
+    }
+
+    public Costumer getC(int index) {
+        if (index >= 0) {
+            return getCostumers(people).get(index);
+        } else {
+            return null;
+        }
+    }
+
     // ----------------------------------------------------SOME-MINIMUM-METHODS:ORDERS--------------------------------------------------
 
     public List<Order> getOrders() {
@@ -191,12 +215,28 @@ public class Restaurant {
         this.products = products;
     }
 
+    public Product getProduct(int i) {
+        if (i >= 0) {
+            return products.get(i);
+        } else {
+            return null;
+        }
+    }
+
     public int getNumberProduct() {
         int count = 0;
         for (int i = 0; i < products.size(); i++) {
             count++;
         }
         return count;
+    }
+
+    public void setCodeProductPosition() {
+        int code = 1;
+        for (Product p : products) {
+            p.setCode(code);
+            code++;
+        }
     }
 
     // ---------------------------------------SOME-MINIMUM-METHODS:PRDODUCT_TYPE---------------------------------------------------
@@ -213,6 +253,17 @@ public class Restaurant {
             }
         }
         return pt;
+    }
+
+    public boolean searchProductType(String name) {
+        boolean render = false;
+        for (int i = 0; i < products.size() && !render; i++) {
+            Product p = products.get(i);
+            if (p.getProductType().getName().equalsIgnoreCase(name)) {
+                render = true;
+            }
+        }
+        return render;
     }
 
     public List<ProductType> getProductType() {
@@ -245,6 +296,17 @@ public class Restaurant {
             }
         }
         return ps;
+    }
+
+    public boolean searchProductSize(String name) {
+        boolean render = false;
+        for (int i = 0; i < products.size() && !render; i++) {
+            Product p = products.get(i);
+            if (p.getProductSize().getName().equalsIgnoreCase(name)) {
+                render = true;
+            }
+        }
+        return render;
     }
 
     public ProductSize getProductSize(int i) {
@@ -373,9 +435,8 @@ public class Restaurant {
             String userName = parts[3];
             String password = parts[4];
             String image = parts[5];
-            User creator = null;
             line = br.readLine();
-            addPerson(name, lastName, id, userName, password, image, creator);
+            addPerson(name, lastName, id, userName, password, image, getLoggedUser(userIndex));
         }
         br.close();
     }
@@ -633,9 +694,8 @@ public class Restaurant {
             String address = parts[3];
             int telephone = Integer.parseInt(parts[4]);
             String suggestion = parts[5];
-            User creator = new User();
             line = br.readLine();
-            addPerson(name, lastName, id, address, telephone, suggestion, creator);
+            addPerson(name, lastName, id, address, telephone, suggestion, getLoggedUser(userIndex));
         }
         br.close();
     }
@@ -647,6 +707,30 @@ public class Restaurant {
             pw.println(c.getName() + " ");
         }
         pw.close();
+    }
+
+    public Costumer searchBinary(int index) {
+        CostumersComparator cc = new CostumersComparator();
+        Collections.sort(getCostumers(getPeople()), cc);
+        boolean found = false;
+        int inicio = 0;
+        int fin = getCostumers(people).size() - 1;
+        int ind = 0;
+        int medio = (inicio + fin) / 2;
+        while (inicio <= fin && !found) {
+                if (getCostumers(people).get(medio).getId() == index) {
+                    found = true;
+                     ind = medio;
+                } else if (getCostumers(people).get(medio).getId() > index) {
+                    fin = medio - 1;
+                } else {
+                    inicio = medio + 1;
+                }
+                medio = (inicio + fin)/2;
+        }
+        System.out.println(ind);
+        return getC(ind);
+
     }
 
     // -------------------------------------------EMPLOYEEES-----------------------------------------------------
@@ -708,9 +792,8 @@ public class Restaurant {
             String name = parts[0];
             String lastName = parts[1];
             int id = Integer.parseInt(parts[2]);
-            User creator = null;
             line = br.readLine();
-            addPerson(name, lastName, id, creator);
+            addPerson(name, lastName, id, getLoggedUser(userIndex));
         }
         br.close();
     }
@@ -809,7 +892,7 @@ public class Restaurant {
             setCodePosition();
             return "The Ingredient have been deleted succesfully";
         } else {
-            return "The Ingredient have a reference";
+            return "The Ingredient have a reference by a product";
         }
 
     }
@@ -831,9 +914,8 @@ public class Restaurant {
             String[] parts = line.split(FILE_SEPARATOR);
             int code = Integer.parseInt(null);
             String name = parts[0];
-            User creator = null;
             line = br.readLine();
-            addIngredient(code, name, creator);
+            addIngredient(code, name, getLoggedUser(userIndex));
         }
         br.close();
     }
@@ -894,8 +976,8 @@ public class Restaurant {
         } else {
             boolean added = false;
             for (int j = 0; j < products.size() && !added; j++) {
-                if (newProduct.getName().equalsIgnoreCase(products.get(j).getName())) {
-                    msg = "You can not added an product with the same name";
+                if (newProduct.getName().equalsIgnoreCase(products.get(j).getName()) && newProduct.getProductSize() == products.get(j).getProductSize()) {
+                    msg = "You can not added an product, because alredy exists";
                     added = true;
                 }
             }
@@ -935,12 +1017,26 @@ public class Restaurant {
         return "The product have been enabled succesfully";
     }
 
-    public void setCodeProductPosition() {
-        int code = 1;
-        for (Product p : products) {
-            p.setCode(code);
-            code++;
+    public void importDataProduct(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            int code = Integer.parseInt(null);
+            line = br.readLine();
+            addProductSize(name, code, getLoggedUser(userIndex));
         }
+        br.close();
+    }
+
+    public void exportDataProduct(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getProductSize().size(); i++) {
+            ProductSize ps = getProductSize().get(i);
+            pw.println(ps.getName() + " ");
+        }
+        pw.close();
     }
 
     public void sortProductByPrice() {
@@ -959,6 +1055,20 @@ public class Restaurant {
             count++;
         }
         return count + 1;
+    }
+
+    public Product searchIndex(Product pro) {
+        int productIndex = -1;
+        boolean found = false;
+        if (!products.isEmpty()) {
+            for (int i = 0; i < products.size() && !found; i++) {
+                if (products.get(i).getName().equals(pro.getName())) {
+                    productIndex = i;
+                    found = true;
+                }
+            }
+        }
+        return getProduct(productIndex);
     }
 
     // -----------------------------------------PRODUCT_TYPE----------------------------------------------
@@ -991,10 +1101,15 @@ public class Restaurant {
         return "The product type have been edited succesfully";
     }
 
-    public String deleteProductType(int positionProductType) {
-        productType.remove(positionProductType);
-        setCodeProductTypePosition();
-        return "The product type have been deleted succesfully";
+    public String deleteProductType(int positionProductType, String name) {
+        boolean render = searchProductType(name);
+        if (render == false) {
+            productType.remove(positionProductType);
+            setCodeProductTypePosition();
+            return "The product type have been deleted succesfully";
+        } else {
+            return "The product type have a reference by a product";
+        }
     }
 
     public String disableProductType(ProductType pType) {
@@ -1076,10 +1191,15 @@ public class Restaurant {
         return "The product size have been edited succesfully";
     }
 
-    public String deleteProductSize(int positionProductSize) {
-        productSize.remove(positionProductSize);
-        setCodeProductSizePosition();
-        return "The product size have been deleted succesfully";
+    public String deleteProductSize(int positionProductSize, String name) {
+        boolean render = searchProductSize(name);
+        if (render == false) {
+            productSize.remove(positionProductSize);
+            setCodeProductSizePosition();
+            return "The product size have been deleted succesfully";
+        } else {
+            return "The product size have a reference by a product";
+        }
     }
 
     public String disableProductSize(ProductSize pSize) {
@@ -1099,9 +1219,8 @@ public class Restaurant {
             String[] parts = line.split(FILE_SEPARATOR);
             String name = parts[0];
             int code = Integer.parseInt(null);
-            User creator = null;
             line = br.readLine();
-            addProductSize(name, code, creator);
+            addProductSize(name, code, getLoggedUser(userIndex));
         }
         br.close();
     }
@@ -1131,4 +1250,24 @@ public class Restaurant {
         return count + 1;
     }
 
+    // ----------------------------------------------ORDERS----------------------------------------------------
+
+    public String addOrders(int code, State state, List<Product> products, List<Integer> amount, Costumer costumer,
+            Employee employee, String date, String suggestion, User creator, double totalPrice, String hour) {
+        String msg = "";
+        System.out.println(products.get(0).getName());
+        Order newOrder = new Order(code, state, products, amount, costumer, employee, date, suggestion, creator,
+                totalPrice, hour);
+        orders.add(newOrder);
+        msg = "The order " + newOrder.getCode() + " have been added succesfully";
+        return msg;
+    }
+
+    public int getCodeOrder() {
+        int count = 0;
+        for (int i = 0; i < orders.size(); i++) {
+            count++;
+        }
+        return count + 1;
+    }
 }

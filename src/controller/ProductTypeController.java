@@ -173,7 +173,7 @@ public class ProductTypeController {
     @FXML
     void deleteProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteProductType(getIdxProductType());
+        String msg = restaurant.deleteProductType(getIdxProductType(), preSelectProductType.getName());
         alert.setContentText(msg);
         trimProductTypeForm();
         alert.showAndWait();

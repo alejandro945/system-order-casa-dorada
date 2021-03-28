@@ -62,7 +62,6 @@ public class Product implements Serializable, Comparable<Product> {
         for (int i = 0; i < ingredients.size(); i++) {
             nameIngredients += ingredients.get(i).getName() + ",";
         }
-        // nameIngredients = nameIngredients.substring(0, nameIngredients.length() - 1);
         return nameIngredients;
     }
 
@@ -131,7 +130,7 @@ public class Product implements Serializable, Comparable<Product> {
 
     @Override
     public String toString() {
-        return getName();
+        return getName() + " " + getProductSize();
     }
 
 }

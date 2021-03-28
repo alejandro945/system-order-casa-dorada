@@ -18,6 +18,7 @@ import model.*;
 
 public class ControllerRestaurantGUI implements Initializable {
     // DATE AND HOUR
+
     @FXML
     private Label lblHour;
 
@@ -25,6 +26,7 @@ public class ControllerRestaurantGUI implements Initializable {
 
     @FXML
     private Label lblDate;
+
     // RENDER PANE
     @FXML
     private AnchorPane mainAnchor;
@@ -218,6 +220,15 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
         orderController.initStateOrder();
+        orderController.initEmployeeOrder();
+        orderController.initProductOrder();
+        orderController.initCostumerOrder();
+    }
+
+    //--------------------------------------------------------HOUR----------------------------------------
+
+    public String getHour(){
+        return lblHour.getText();
     }
 
     @Override

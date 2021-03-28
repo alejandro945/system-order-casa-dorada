@@ -6,58 +6,55 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listOrders" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff212100" height="194.0" layoutX="494.0" layoutY="336.0" stroke="#0f13eb" strokeType="INSIDE" width="430.0" />
+      <TableView fx:id="listOrders" onMouseClicked="#selectedOrder" prefHeight="532.0" prefWidth="482.0" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colCodeOrders" prefWidth="46.0" text="CODE" />
-            <TableColumn fx:id="colStateOrders" prefWidth="47.0" text="STATE" />
-            <TableColumn fx:id="colProductOrder" prefWidth="82.0" text="PRODUCTS" />
-            <TableColumn fx:id="colAmountOfProducts" prefWidth="63.0" text="AMOUNT" />
-            <TableColumn fx:id="colCostumerNameOrders" prefWidth="78.0" text="COSTUM. NAME" />
-            <TableColumn fx:id="colEmployeeOrders" prefWidth="72.0" text="EMPLOYEE" />
-            <TableColumn fx:id="colDateOrders" prefWidth="43.0" text="DATE" />
-            <TableColumn fx:id="colCreatorOrders" prefWidth="40.0" text="USER" />
-            <TableColumn fx:id="colLastEditorOrders" prefWidth="82.0" text="LAST EDITOR" />
+            <TableColumn fx:id="colCodeOrders" prefWidth="52.0" text="CODE" />
+            <TableColumn fx:id="colDateOrders" prefWidth="28.0" text="DATE" />
+            <TableColumn fx:id="colHourOrder" prefWidth="28.0" text="HOUR" />
+            <TableColumn fx:id="colStateOrders" prefWidth="41.0" text="STATE" />
+            <TableColumn fx:id="colProductOrder" prefWidth="60.0" text="PRODUCTS" />
+            <TableColumn fx:id="colAmountOfProducts" prefWidth="76.0" text="AMOUNT" />
+            <TableColumn fx:id="colCostumerNameOrders" prefWidth="46.0" text="COSTUM. NAME" />
+            <TableColumn fx:id="colEmployeeOrders" prefWidth="38.0" text="EMPLOYEE" />
+            <TableColumn fx:id="colSuggestionsOrder" minWidth="22.0" prefWidth="65.0" text="SUGGESTIONS" />
+            <TableColumn fx:id="colCreatorOrders" minWidth="0.0" prefWidth="18.0" text="USER" />
+            <TableColumn fx:id="colLastEditorOrders" prefWidth="27.0" text="LAST EDITOR" />
          </columns>
       </TableView>
-      <Label layoutX="576.0" layoutY="187.0" text="State:">
+      <Label layoutX="561.0" layoutY="262.0" text="State:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="753.0" layoutY="268.0" text="Costumer name:">
+      <Label layoutX="559.0" layoutY="75.0" text="Costumer name:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="574.0" layoutY="268.0" prefHeight="21.0" prefWidth="158.0" text="Amount of products: ">
+      <Label layoutX="679.0" layoutY="350.0" prefHeight="21.0" prefWidth="158.0" text="Amount of product: ">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="759.0" layoutY="187.0" text="Date:">
+      <ComboBox fx:id="comboBoxStateOrder" layoutX="534.0" layoutY="297.0" onAction="#comboAction" prefHeight="25.0" prefWidth="158.0" />
+      <Label layoutX="740.0" layoutY="262.0" prefHeight="21.0" prefWidth="79.0" text="Employee:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCostumerNameOrders" layoutX="752.0" layoutY="303.0" prefHeight="31.0" prefWidth="149.0" promptText="Write the name to search" />
-      <TextField fx:id="txtEmployeeOrders" layoutX="579.0" layoutY="376.0" prefHeight="31.0" prefWidth="149.0" />
-      <TextField fx:id="txtDateOrders" layoutX="756.0" layoutY="222.0" />
-      <ComboBox fx:id="comboBoxStateOrder" layoutX="567.0" layoutY="222.0" prefWidth="150.0" />
-      <Label layoutX="596.0" layoutY="342.0" prefHeight="21.0" prefWidth="79.0" text="Employee:">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtAmountProducts" layoutX="579.0" layoutY="303.0" prefHeight="31.0" prefWidth="149.0" />
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="681.0" layoutY="480.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <TextField fx:id="txtAmountProducts" layoutX="673.0" layoutY="374.0" prefHeight="31.0" prefWidth="168.0" />
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="611.0" layoutY="552.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="38.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -69,7 +66,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" layoutX="600.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateOrder" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" layoutX="610.0" layoutY="604.0" mnemonicParsing="false" onAction="#updateOrder" prefHeight="38.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -81,7 +78,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnDelete" contentDisplay="RIGHT" layoutX="772.0" layoutY="537.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" layoutX="747.0" layoutY="603.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -93,12 +90,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="684.0" layoutY="600.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateOrder" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" layoutX="747.0" layoutY="552.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateOrder" prefHeight="41.0" prefWidth="104.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
       </CheckBox>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="53.0" layoutY="587.0" mnemonicParsing="false" onAction="#importOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="53.0" layoutY="603.0" mnemonicParsing="false" onAction="#importOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -110,7 +107,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="212.0" layoutY="587.0" mnemonicParsing="false" onAction="#exportOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="212.0" layoutY="603.0" mnemonicParsing="false" onAction="#exportOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -122,7 +119,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="368.0" layoutY="587.0" mnemonicParsing="false" onAction="#deselectOrder" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="368.0" layoutY="603.0" mnemonicParsing="false" onAction="#deselectOrder" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -139,17 +136,12 @@
             <Font name="System Bold Italic" size="21.0" />
          </font>
       </Label>
-      <ImageView fitHeight="123.0" fitWidth="172.0" layoutX="666.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/img/purchase_order_40px.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="585.0" layoutY="36.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="510.0" layoutY="36.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/img/back_40px.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="760.0" layoutY="363.0" mnemonicParsing="false" onAction="#searchCostumer" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: red;" text="Search" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="728.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchCostumer" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: red;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -161,5 +153,57 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label layoutX="722.0" layoutY="115.0" prefHeight="21.0" prefWidth="98.0" text="Search time (ns)">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTime" disable="true" layoutX="821.0" layoutY="113.0" prefHeight="25.0" prefWidth="57.0" />
+      <ComboBox fx:id="comboBoxEmployeeOrders" layoutX="727.0" layoutY="297.0" onAction="#comboAction" prefHeight="25.0" prefWidth="157.0" />
+      <ComboBox fx:id="comboProductOrders" layoutX="498.0" layoutY="377.0" onAction="#comboAction" prefHeight="25.0" prefWidth="133.0" />
+      <Label layoutX="506.0" layoutY="350.0" prefHeight="21.0" prefWidth="158.0" text="Select product:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCart" alignment="CENTER" contentDisplay="RIGHT" layoutX="503.0" layoutY="426.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: orange;" text="Add to cart" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/shopping_cart_40px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextArea fx:id="txtAreaAmountProduct" disable="true" editable="false" layoutX="667.0" layoutY="414.0" prefHeight="106.0" prefWidth="248.0" wrapText="true" />
+      <TextArea fx:id="txtAreaCostumerInfo" disable="true" layoutX="600.0" layoutY="150.0" prefHeight="99.0" prefWidth="239.0" wrapText="true" />
+      <Label layoutX="512.0" layoutY="473.0" prefHeight="21.0" prefWidth="158.0" text="Total to pay:">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTotalToPay" disable="true" layoutX="503.0" layoutY="494.0" prefHeight="25.0" prefWidth="133.0" />
+      <Label layoutX="144.0" layoutY="552.0" text="Suggestions:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSuggestionsOrder" layoutX="251.0" layoutY="547.0" prefHeight="31.0" prefWidth="168.0" />
+      <Button fx:id="btnClean" alignment="CENTER" contentDisplay="RIGHT" layoutX="856.0" layoutY="371.0" mnemonicParsing="false" onAction="#cleanProducts" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: white;" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/sweep.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ComboBox fx:id="comboBoxCostumers" layoutX="536.0" layoutY="103.0" onAction="#comboAction" prefWidth="150.0" />
    </children>
 </Pane>

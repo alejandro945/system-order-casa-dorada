@@ -130,6 +130,7 @@ public class ProductController {
             alert.showAndWait();
         }
         restaurant.saveData();
+        restaurant.loadData();
         trimProductForm();
         initProductTable();
     }
@@ -142,7 +143,7 @@ public class ProductController {
             Alert alert2 = new Alert(AlertType.WARNING);
             alert2.setTitle("Warning Dialog");
             alert2.setHeaderText("Warning");
-            alert2.setContentText("Hey!! Please complete all fields for create a costumer");
+            alert2.setContentText("Hey!! Please complete all fields for create a product");
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);

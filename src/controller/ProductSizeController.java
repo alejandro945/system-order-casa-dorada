@@ -173,7 +173,7 @@ public class ProductSizeController {
     @FXML
     public void deleteProductSize(ActionEvent event) throws IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteProductSize(getIdxProductSize());
+        String msg = restaurant.deleteProductSize(getIdxProductSize(), preSelectProductSize.getName());
         alert.setContentText(msg);
         trimProductSizeForm();
         alert.showAndWait();

@@ -18,9 +18,11 @@ public class Order implements Serializable {
     private String suggestion;
     private User creator;
     private User lastEditor;
+    private double totalPrice;
+    private String hour;
 
     public Order(int code, State state, List<Product> products, List<Integer> amount, Costumer costumer,
-            Employee employee, String date, String suggestion, User creator) {
+            Employee employee, String date, String suggestion, User creator, double totalPrice, String hour) {
         this.code = code;
         this.state = state;
         this.products = products;
@@ -31,6 +33,8 @@ public class Order implements Serializable {
         this.suggestion = suggestion;
         this.creator = creator;
         this.lastEditor = creator;
+        this.totalPrice = totalPrice;
+        this.hour = hour;
     }
 
     public int getCode() {
@@ -53,12 +57,28 @@ public class Order implements Serializable {
         return this.products;
     }
 
+    public String getNameProducts() {
+        String nameProducts = "";
+        for (int i = 0; i < products.size(); i++) {
+            nameProducts += products.get(i).getName() + ",";
+        }
+        return nameProducts;
+    }
+
     public void setProducts(List<Product> products) {
         this.products = products;
     }
 
     public List<Integer> getAmount() {
         return this.amount;
+    }
+
+    public String getNameAmount() {
+        String nameAmount = "";
+        for (int i = 0; i < amount.size(); i++) {
+            nameAmount += amount.get(i) + ",";
+        }
+        return nameAmount;
     }
 
     public void setAmount(List<Integer> amount) {
@@ -111,6 +131,22 @@ public class Order implements Serializable {
 
     public void setLastEditor(User lastEditor) {
         this.lastEditor = lastEditor;
+    }
+
+    public double getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getHour() {
+        return this.hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 
     @Override
