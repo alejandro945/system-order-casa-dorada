@@ -30,7 +30,15 @@ public class Restaurant {
         productSize = new ArrayList<ProductSize>();
     }
 
-    // ----------------------------------------GETS&SETS-----------------------------------------
+    // -------------------------------------------SOME MINIMUM METHODS: PEOPLE-----------------------------------------------
+    public List<Person> getPeople() {
+        return this.people;
+    }
+
+    public void setPeople(List<Person> people) {
+        this.people = people;
+    }
+
     public List<User> getUsers(List<Person> people) {
         List<User> userlist = new ArrayList<>();
         for (int i = 0; i < people.size(); i++) {
@@ -50,6 +58,18 @@ public class Restaurant {
             }
         }
         return count;
+    }
+
+    public User getLoggedUser(int index) {
+        if (index >= 0) {
+            return (User) people.get(index);
+        } else {
+            return null;
+        }
+    }
+
+    public int getUserIndex() {
+        return this.userIndex;
     }
 
     public List<Employee> getEmployees(List<Person> people) {
@@ -94,6 +114,8 @@ public class Restaurant {
         return count;
     }
 
+    //----------------------------------------------------SOME MINIMUM METHODS: ORDERS--------------------------------------------------
+
     public List<Order> getOrders() {
         return this.orders;
     }
@@ -102,48 +124,13 @@ public class Restaurant {
         this.orders = orders;
     }
 
+    // --------------------------------------------------SOME MINIMUM METHODS: INGREDIENTS---------------------------------------------------
     public List<Ingredients> getIngredients() {
         return this.ingredients;
     }
 
     public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
-    }
-
-    public int getNumberIngredients() {
-        int count = 0;
-        for (int i = 0; i < ingredients.size(); i++) {
-            count++;
-        }
-        return count;
-    }
-
-    public List<Person> getPeople() {
-        return this.people;
-    }
-
-    public void setPeople(List<Person> people) {
-        this.people = people;
-    }
-
-    public List<Product> getProducts() {
-        return this.products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public User getLoggedUser(int index) {
-        if (index >= 0) {
-            return (User) people.get(index);
-        } else {
-            return null;
-        }
-    }
-
-    public int getUserIndex() {
-        return this.userIndex;
     }
 
     public Ingredients getIngredient(int i) {
@@ -154,13 +141,29 @@ public class Restaurant {
         }
     }
 
+    public int getNumberIngredients() {
+        int count = 0;
+        for (int i = 0; i < ingredients.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
     public int getIngredientIndex() {
         return this.ingredientIndex;
     }
 
-    public ProductSize getProductSize(int i) {
-        return productSize.get(i);
+    // --------------------------------------------SOME MINIMUM METHODS: PRODUCTS---------------------------------------------------
+
+    public List<Product> getProducts() {
+        return this.products;
     }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    // ---------------------------------------SOME MINIMUM METHODS: PRDODUCT_TYPE---------------------------------------------------
 
     public ProductType getProductType(int i) {
         return productType.get(i);
@@ -182,8 +185,14 @@ public class Restaurant {
         return count;
     }
 
+    // --------------------------------------------SOME MINIMUM METHODS: PRODUCT_SIZE----------------------------------------------
+
     public List<ProductSize> getProductSize() {
         return this.productSize;
+    }
+
+    public ProductSize getProductSize(int i) {
+        return productSize.get(i);
     }
 
     public void setProductSize(List<ProductSize> productSize) {

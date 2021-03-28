@@ -47,6 +47,7 @@ public class ControllerRestaurantGUI implements Initializable {
     private ProductTypeController productTypeController;
     private ProductController productController;
     private ProductSizeController productSizeController;
+    private OrderController orderController;
 
     public ControllerRestaurantGUI(Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -58,6 +59,7 @@ public class ControllerRestaurantGUI implements Initializable {
         productTypeController = new ProductTypeController(restaurant, this);
         productController = new ProductController(restaurant, this);
         productSizeController = new ProductSizeController(restaurant, this);
+        orderController = new OrderController(restaurant, this);
     }
 
     // HOUR AND DATE
@@ -97,6 +99,13 @@ public class ControllerRestaurantGUI implements Initializable {
         return mainPane.getScene().getWindow();
     }
 
+    @FXML
+    void handleMouseClick(MouseEvent event) {
+        if (event.getSource() == btnCloseLogin) {
+            System.exit(0);
+        }
+    }
+
     public Parent showItem() throws IOException, ClassNotFoundException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/Item.fxml"));
         Parent root = fxmlloader.load();
@@ -114,12 +123,40 @@ public class ControllerRestaurantGUI implements Initializable {
         restaurant.loadData();
         dashController.initDashoboard();
     }
+    
+    // COSTUMERS
 
-    @FXML
-    void handleMouseClick(MouseEvent event) {
-        if (event.getSource() == btnCloseLogin) {
-            System.exit(0);
-        }
+    public void showCostumers() throws IOException, ClassNotFoundException {
+        restaurant.loadData();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listCostumers.fxml"));
+        fxmlloader.setController(costumerController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+    }
+
+    // EMPLOYEES
+
+    public void showEmployees() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listEmployees.fxml"));
+        fxmlloader.setController(employeeController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        employeeController.initEmployeeTable();
+    }
+
+    // USERS
+
+    public void showUsers() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
+        fxmlloader.setController(userController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        userController.initUserTable();
     }
 
     // PRODUCTS
@@ -172,39 +209,15 @@ public class ControllerRestaurantGUI implements Initializable {
         ingredientController.initIngredientsTable();
     }
 
-    // COSTUMERS
+    //ORDERS
 
-    public void showCostumers() throws IOException, ClassNotFoundException {
-        restaurant.loadData();
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listCostumers.fxml"));
-        fxmlloader.setController(costumerController);
+    public void showOrders() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listOrders.fxml"));
+        fxmlloader.setController(orderController);
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-    }
-
-    // EMPLOYEES
-
-    public void showEmployees() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listEmployees.fxml"));
-        fxmlloader.setController(employeeController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        employeeController.initEmployeeTable();
-    }
-
-    // USERS
-
-    public void showUsers() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
-        fxmlloader.setController(userController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        userController.initUserTable();
+        orderController.initStateOrder();
     }
 
     @Override

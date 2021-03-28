@@ -99,8 +99,8 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showOrders(ActionEvent event) {
-
+    void showOrders(ActionEvent event) throws IOException {
+        cGui.showOrders();
     }
 
     @SuppressWarnings("unchecked")

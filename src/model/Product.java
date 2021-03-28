@@ -10,9 +10,9 @@ public class Product implements Serializable, Comparable<Product> {
     private static final long serialVersionUID = 1L;
     private String name;
     private ProductType productType;
+    private ProductSize productSize;
     private List<Ingredients> ingredients;
     private int code;
-    private ProductSize productSize;
     private double price;
     private User creator;
     private User lastEditor;

@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProducts" layoutX="11.0" layoutY="19.0" onMouseClicked="#selectedProduct" prefHeight="514.0" prefWidth="468.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProducts" layoutY="20.0" onMouseClicked="#selectedProduct" prefHeight="514.0" prefWidth="468.0" stylesheets="@assets/styles/styles.css">
          <columns>
-            <TableColumn fx:id="colcode" prefWidth="100.0" text="CODE" />
-            <TableColumn fx:id="colPriceProducts" prefWidth="100.0" text="         PRICE" />
-            <TableColumn fx:id="colNameProducts" prefWidth="53.0" text="NAME" />
-            <TableColumn fx:id="colProductType" prefWidth="98.0" text="PRODUCT TYPE" />
-            <TableColumn fx:id="colIngredientsProducts" minWidth="8.0" prefWidth="72.0" text="INGREDIENTS" />
-            <TableColumn fx:id="colSizeProducts" prefWidth="68.0" text="SIZE" />
-            <TableColumn fx:id="colCreatorProducts" minWidth="9.5999755859375" prefWidth="71.2000732421875" text="CREATOR" />
-            <TableColumn fx:id="colEditorProduct" minWidth="0.0" prefWidth="3.99993896484375" text="LAST EDITOR" />
+            <TableColumn fx:id="colcode" prefWidth="42.0" text="CODE" />
+            <TableColumn fx:id="colPriceProducts" prefWidth="53.0" text=" PRICE" />
+            <TableColumn fx:id="colNameProducts" prefWidth="59.0" text="NAME" />
+            <TableColumn fx:id="colProductType" prefWidth="58.0" text=" TYPE" />
+            <TableColumn fx:id="colIngredientsProducts" minWidth="8.0" prefWidth="95.0" text="INGREDIENTS" />
+            <TableColumn fx:id="colSizeProducts" prefWidth="40.0" text="SIZE" />
+            <TableColumn fx:id="colCreatorProducts" minWidth="0.0" prefWidth="60.0" text="CREATOR" />
+            <TableColumn fx:id="colEditorProducts" minWidth="0.0" prefWidth="60.0" text="LAST EDITOR" />
          </columns>
       </TableView>
       <Label layoutX="550.0" layoutY="173.0" text="Name:">
