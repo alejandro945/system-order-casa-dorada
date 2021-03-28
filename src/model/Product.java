@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product implements Serializable, Comparable<Product> {
@@ -18,11 +19,12 @@ public class Product implements Serializable, Comparable<Product> {
     private User lastEditor;
     private boolean state;
 
-    public Product(String name, ProductType productType, List<Ingredients> ingredients, int code,
+    public Product(String name, ProductType productType, List<Ingredients> ingredient, int code,
             ProductSize productSize, double price, User creator) {
+        this.ingredients = new ArrayList<>();
         this.name = name;
         this.productType = productType;
-        this.ingredients = ingredients;
+        this.ingredients = ingredient;
         this.code = code;
         this.productSize = productSize;
         this.price = price;
@@ -53,6 +55,15 @@ public class Product implements Serializable, Comparable<Product> {
 
     public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getNameIngredients() {
+        String nameIngredients = "";
+        for (int i = 0; i < ingredients.size(); i++) {
+            nameIngredients += ingredients.get(i).getName() + ",";
+        }
+        // nameIngredients = nameIngredients.substring(0, nameIngredients.length() - 1);
+        return nameIngredients;
     }
 
     public int getCode() {
@@ -120,7 +131,6 @@ public class Product implements Serializable, Comparable<Product> {
 
     @Override
     public String toString() {
-
         return getName();
     }
 

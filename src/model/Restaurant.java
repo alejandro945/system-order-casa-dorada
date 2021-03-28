@@ -16,13 +16,12 @@ public class Restaurant {
     private List<ProductType> productType;
     private List<ProductSize> productSize;
     private int userIndex;
-    private int ingredientIndex;
     public static final String FILE_SEPARATOR = ",";
     public static final String SAVE_PATH_FILE_DATA = "data/CasaDorada.report";
 
     // ------------------------------------------CONSTRUCTOR-------------------------------------
     public Restaurant() {
-        products = new ArrayList<Product>();
+        products = new ArrayList<>();
         orders = new ArrayList<Order>();
         ingredients = new ArrayList<Ingredients>();
         people = new ArrayList<Person>();
@@ -30,7 +29,7 @@ public class Restaurant {
         productSize = new ArrayList<ProductSize>();
     }
 
-    // -------------------------------------------SOME MINIMUM METHODS: PEOPLE-----------------------------------------------
+    // -------------------------------------------SOME-MINIMUM-METHODS:PEOPLE-----------------------------------------------
     public List<Person> getPeople() {
         return this.people;
     }
@@ -114,7 +113,7 @@ public class Restaurant {
         return count;
     }
 
-    //----------------------------------------------------SOME MINIMUM METHODS: ORDERS--------------------------------------------------
+    // ----------------------------------------------------SOME-MINIMUM-METHODS:ORDERS--------------------------------------------------
 
     public List<Order> getOrders() {
         return this.orders;
@@ -124,9 +123,32 @@ public class Restaurant {
         this.orders = orders;
     }
 
-    // --------------------------------------------------SOME MINIMUM METHODS: INGREDIENTS---------------------------------------------------
+    // --------------------------------------------------SOME-MINIMUM-METHODS:INGREDIENTS---------------------------------------------------
     public List<Ingredients> getIngredients() {
         return this.ingredients;
+    }
+
+    public List<Ingredients> getEnableIngredients() {
+        List<Ingredients> i = new ArrayList<>();
+        for (Ingredients ing : ingredients) {
+            if (ing.getState() == true) {
+                i.add(ing);
+            }
+        }
+        return i;
+    }
+
+    public boolean searchIngredient(String name) {
+        boolean render = false;
+        for (int i = 0; i < products.size() && !render; i++) {
+            Product p = products.get(i);
+            for (int j = 0; j < p.getIngredients().size(); j++) {
+                if (p.getIngredients().get(j).getName().equalsIgnoreCase(name)) {
+                    render = true;
+                }
+            }
+        }
+        return render;
     }
 
     public void setIngredients(List<Ingredients> ingredients) {
@@ -149,24 +171,48 @@ public class Restaurant {
         return count;
     }
 
-    public int getIngredientIndex() {
-        return this.ingredientIndex;
-    }
-
-    // --------------------------------------------SOME MINIMUM METHODS: PRODUCTS---------------------------------------------------
+    // --------------------------------------------SOME-MINIMUM-METHODS:PRODUCTS---------------------------------------------------
 
     public List<Product> getProducts() {
         return this.products;
+    }
+
+    public List<Product> getEnableProducts() {
+        List<Product> p = new ArrayList<>();
+        for (Product pro : products) {
+            if (pro.getState() == true) {
+                p.add(pro);
+            }
+        }
+        return p;
     }
 
     public void setProducts(List<Product> products) {
         this.products = products;
     }
 
-    // ---------------------------------------SOME MINIMUM METHODS: PRDODUCT_TYPE---------------------------------------------------
+    public int getNumberProduct() {
+        int count = 0;
+        for (int i = 0; i < products.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+    // ---------------------------------------SOME-MINIMUM-METHODS:PRDODUCT_TYPE---------------------------------------------------
 
     public ProductType getProductType(int i) {
         return productType.get(i);
+    }
+
+    public List<ProductType> getEnableProductTypes() {
+        List<ProductType> pt = new ArrayList<>();
+        for (ProductType proT : productType) {
+            if (proT.getState() == true) {
+                pt.add(proT);
+            }
+        }
+        return pt;
     }
 
     public List<ProductType> getProductType() {
@@ -185,10 +231,20 @@ public class Restaurant {
         return count;
     }
 
-    // --------------------------------------------SOME MINIMUM METHODS: PRODUCT_SIZE----------------------------------------------
+    // --------------------------------------------SOME-MINIMUM-METHODS:PRODUCT_SIZE----------------------------------------------
 
     public List<ProductSize> getProductSize() {
         return this.productSize;
+    }
+
+    public List<ProductSize> getEnableProductSizes() {
+        List<ProductSize> ps = new ArrayList<>();
+        for (ProductSize proS : productSize) {
+            if (proS.getState() == true) {
+                ps.add(proS);
+            }
+        }
+        return ps;
     }
 
     public ProductSize getProductSize(int i) {
@@ -219,6 +275,7 @@ public class Restaurant {
         try {
             oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(people);
+            oos.writeObject(products);
             oos.writeObject(ingredients);
             oos.writeObject(productType);
             oos.writeObject(productSize);
@@ -235,6 +292,7 @@ public class Restaurant {
         if (getDataFile().length() > 0) {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_DATA)));
             people = (List<Person>) ois.readObject();
+            products = (ArrayList<Product>) ois.readObject();
             ingredients = (List<Ingredients>) ois.readObject();
             productType = (List<ProductType>) ois.readObject();
             productSize = (List<ProductSize>) ois.readObject();
@@ -744,10 +802,16 @@ public class Restaurant {
         return "The Ingredient have been edited succesfully";
     }
 
-    public String deleteIngredient(int positionIngredient) {
-        ingredients.remove(positionIngredient);
-        setCodePosition();
-        return "The Ingredient have been deleted succesfully";
+    public String deleteIngredient(int positionIngredient, String name) {
+        boolean render = searchIngredient(name);
+        if (render == false) {
+            ingredients.remove(positionIngredient);
+            setCodePosition();
+            return "The Ingredient have been deleted succesfully";
+        } else {
+            return "The Ingredient have a reference";
+        }
+
     }
 
     public String disableIngredient(Ingredients ingredient) {
@@ -805,7 +869,7 @@ public class Restaurant {
     }
 
     public Ingredients searchIndex(Ingredients ing) {
-        ingredientIndex = -1;
+        int ingredientIndex = -1;
         boolean found = false;
         if (!ingredients.isEmpty()) {
             for (int i = 0; i < ingredients.size() && !found; i++) {
@@ -820,34 +884,36 @@ public class Restaurant {
 
     // ---------------------------------------------------------PRODUCTS-----------------------------------------------
 
-    public String addProduct(String name, ProductType productType, List<Ingredients> ingredients, int code,
+    public String addProduct(String name, ProductType productType, List<Ingredients> ingredient, int code,
             ProductSize productSize, double price, User creator) {
         String msg = "";
-        Product newProduct = new Product(name, productType, ingredients, code, productSize, price, creator);
+        Product newProduct = new Product(name, productType, ingredient, code, productSize, price, creator);
         if (products.isEmpty()) {
             products.add(newProduct);
-            msg = "The product type " + newProduct.getName() + " have been added succesfully";
+            msg = "The product " + newProduct.getName() + " have been added succesfully";
         } else {
             boolean added = false;
             for (int j = 0; j < products.size() && !added; j++) {
                 if (newProduct.getName().equalsIgnoreCase(products.get(j).getName())) {
-                    msg = "You can not added an product type with the same name";
+                    msg = "You can not added an product with the same name";
                     added = true;
                 }
             }
             if (!added) {
                 products.add(newProduct);
-                msg = "The product type " + newProduct.getName() + " have been added succesfully";
+                msg = "The product " + newProduct.getName() + " have been added succesfully";
             }
         }
-        System.out.println(ingredients);
         return msg;
     }
 
     public String setProductInfo(Product product, String newName, ProductType newProductType,
             List<Ingredients> newIngredients, int newCode, ProductSize newProductSize, double newPrice,
             User lastEditor) {
+        product.setName(newName);
+        product.setProductType(newProductType);
         product.setProductSize(newProductSize);
+        product.setIngredients(newIngredients);
         product.setPrice(newPrice);
         product.setLastEditor(lastEditor);
         return "The Product have been edited succesfully";
@@ -855,12 +921,26 @@ public class Restaurant {
 
     public String deleteProduct(int positionProduct) {
         products.remove(positionProduct);
+        setCodeProductPosition();
         return "The product have been deleted succesfully";
     }
 
-    public String setState(Product product, boolean newState) {
-        product.setState(newState);
-        return "The product state have been changed";
+    public String disableProduct(Product p) {
+        p.setState(false);
+        return "The product have been disabled succesfully";
+    }
+
+    public String enableProduct(Product p) {
+        p.setState(true);
+        return "The product have been enabled succesfully";
+    }
+
+    public void setCodeProductPosition() {
+        int code = 1;
+        for (Product p : products) {
+            p.setCode(code);
+            code++;
+        }
     }
 
     public void sortProductByPrice() {

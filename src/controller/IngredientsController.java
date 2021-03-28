@@ -167,7 +167,7 @@ public class IngredientsController {
     @FXML
     void deleteIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteIngredient(getIdxIngredient());
+        String msg = restaurant.deleteIngredient(getIdxIngredient(), preSelectIngredient.getName());
         alert.setContentText(msg);
         trimIngredientsForm();
         alert.showAndWait();
