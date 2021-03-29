@@ -479,6 +479,8 @@ public class UserController {
     @FXML
     public void exportUsers(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+        new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -497,6 +499,8 @@ public class UserController {
     @FXML
     public void importUsers(ActionEvent event) throws ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+        new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showOpenDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);

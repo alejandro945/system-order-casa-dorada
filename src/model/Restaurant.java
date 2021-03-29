@@ -532,7 +532,7 @@ public class Restaurant {
 
     public void exportDataUsers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "User name" + separator + "Password");
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "User name" + separator + "Password" + separator + "Image");
         for (int i = 0; i < getUsers(people).size(); i++) {
             User u = getUsers(people).get(i);
             if (u.getImage() != null) {
