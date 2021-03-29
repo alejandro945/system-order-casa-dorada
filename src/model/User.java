@@ -56,8 +56,8 @@ public class User extends Employee {
 
     @Override
     public String toString() {
-        if (getName() == null) {
-            return "Created by register or is not in the app";
+        if (getImage() == null) {
+            return "IMPORTED";
         } else {
             return getName();
         }

@@ -88,7 +88,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="356.0" layoutY="580.0" mnemonicParsing="false" onAction="#deselectUser" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="446.0" layoutY="580.0" mnemonicParsing="false" onAction="#deselectUser" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -153,5 +153,11 @@
          </font>
       </Button>
       <PasswordField fx:id="txtPassword" layoutX="569.0" layoutY="392.0" prefHeight="25.0" prefWidth="121.0" />
+      <TextField fx:id="separator" alignment="CENTER" layoutX="355.0" layoutY="601.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
+      <Label layoutX="350.0" layoutY="580.0" text="Export Separator">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

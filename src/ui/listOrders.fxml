@@ -22,7 +22,7 @@
             <TableColumn fx:id="colDateOrders" prefWidth="95.0" text="DATE" />
             <TableColumn fx:id="colHourOrder" prefWidth="95.0" text="HOUR" />
             <TableColumn fx:id="colStateOrders" prefWidth="90.0" text="STATE" />
-            <TableColumn fx:id="colProductOrder" prefWidth="95.0" text="PRODUCTS" />
+            <TableColumn fx:id="colProductOrder" prefWidth="165.0" text="PRODUCTS" />
             <TableColumn fx:id="colAmountOfProducts" prefWidth="93.0" text="AMOUNT" />
             <TableColumn fx:id="colCostumerNameOrders" prefWidth="85.0" text="COSTUM. NAME" />
             <TableColumn fx:id="colEmployeeOrders" prefWidth="85.0" text="EMPLOYEE" />
@@ -90,7 +90,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="34.0" layoutY="603.0" mnemonicParsing="false" onAction="#importOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="13.0" layoutY="603.0" mnemonicParsing="false" onAction="#importOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -102,7 +102,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="193.0" layoutY="603.0" mnemonicParsing="false" onAction="#exportOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="172.0" layoutY="603.0" mnemonicParsing="false" onAction="#exportOrders" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -114,7 +114,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="349.0" layoutY="603.0" mnemonicParsing="false" onAction="#deselectOrder" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="331.0" layoutY="603.0" mnemonicParsing="false" onAction="#deselectOrder" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -173,14 +173,14 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextArea fx:id="txtAreaAmountProduct" disable="true" editable="false" layoutX="667.0" layoutY="414.0" prefHeight="106.0" prefWidth="248.0" wrapText="true" />
+      <TextArea fx:id="txtAreaAmountProduct" editable="false" layoutX="667.0" layoutY="414.0" prefHeight="106.0" prefWidth="248.0" wrapText="true" />
       <TextArea fx:id="txtAreaCostumerInfo" disable="true" layoutX="694.0" layoutY="122.0" prefHeight="134.0" prefWidth="208.0" wrapText="true" />
-      <Label layoutX="512.0" layoutY="473.0" prefHeight="21.0" prefWidth="158.0" text="Total to pay:">
+      <Label layoutX="520.0" layoutY="471.0" prefHeight="21.0" prefWidth="124.0" text="Total to pay $:">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTotalToPay" disable="true" layoutX="503.0" layoutY="494.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="txtTotalToPay" editable="false" layoutX="503.0" layoutY="494.0" prefHeight="25.0" prefWidth="133.0" />
       <Label layoutX="593.0" layoutY="555.0" text="Suggestions:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
@@ -200,7 +200,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/sweep.png" />
+                  <Image url="@assets/img/2069293.png" />
                </image>
             </ImageView>
          </graphic>

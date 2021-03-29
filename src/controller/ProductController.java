@@ -172,8 +172,9 @@ public class ProductController {
     public void trimProductForm() {
         txtNameProducts.setText("");
         txtPriceProducts.setText("");
-        txtIngredients.setText("");
         preListIngredients.clear();
+        comboIngredients.setValue(null);
+        txtIngredients.setText("");
         cbSize.setValue(null);
         cbTypes.setValue(null);
         btnCreate.setDisable(false);
@@ -230,10 +231,12 @@ public class ProductController {
         String msg = restaurant.deleteProduct(getIdxProduct(), preSelectProduct.getName(),
                 String.valueOf(preSelectProduct.getProductType()));
         alert.setContentText(msg);
-        trimProductForm();
         alert.showAndWait();
-        restaurant.saveData();
-        initProductTable();
+        if (msg.equals("The product have been deleted succesfully")) {
+            trimProductForm();
+            restaurant.saveData();
+            initProductTable();
+        }
     }
 
     @FXML
@@ -261,9 +264,9 @@ public class ProductController {
     void comboEvent(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(comboIngredients)) {
+            initBtnClear();
             preListIngredients.add(restaurant.searchIndex(comboIngredients.getSelectionModel().getSelectedItem()));
             txtIngredients.setText(Arrays.toString(preListIngredients.toArray()));
-            initBtnClear();
         }
         if (e.equals(cbSize)) {
             preProductSize = cbSize.getSelectionModel().getSelectedItem();
@@ -275,8 +278,8 @@ public class ProductController {
 
     @FXML
     void cleanIngredients(ActionEvent event) {
-        preListIngredients.clear();
         txtIngredients.setText("");
+        preListIngredients.clear();
         btnClean.setDisable(true);
     }
 
@@ -292,8 +295,18 @@ public class ProductController {
         cbTypes.getItems().addAll(restaurant.getEnableProductTypes());
     }
 
-    public void initProductTable() throws IOException {
+    @FXML
+    void sortByPrice(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setHeaderText("Confirmation");
+        alert.setContentText("The Products have been sort succesfully");
+        alert.showAndWait();
         restaurant.sortProductByPrice();
+        restaurant.saveData();
+        initProductTable();
+    }
+
+    public void initProductTable() throws IOException {
         ObservableList<Product> products = FXCollections.observableArrayList(restaurant.getProducts());
         listProducts.setItems(products);
         colcode.setCellValueFactory(new PropertyValueFactory<Product, Integer>("code"));

@@ -107,6 +107,7 @@ public class OrderController {
 
     private Employee preEmployee;
     private List<Product> preProduct = new ArrayList<>();
+    private Product preProd;
     private State preState;
     private List<Integer> preAmount = new ArrayList<>();
     private Costumer preCostumer;
@@ -196,7 +197,7 @@ public class OrderController {
     void comboAction(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(comboProductOrders)) {
-            preProduct.add(restaurant.searchIndex(comboProductOrders.getSelectionModel().getSelectedItem()));
+            preProd = (restaurant.searchIndex(comboProductOrders.getSelectionModel().getSelectedItem()));
             initBtnClear();
         }
         if (e.equals(comboBoxStateOrder)) {
@@ -213,16 +214,24 @@ public class OrderController {
 
     @FXML
     void addToCart(ActionEvent event) {
-        preAmount.add(Integer.parseInt(txtAmountProducts.getText()));
-        int total = 0;
-        String msg = "";
-        for (int i = 0; i < preAmount.size(); i++) {
-            msg += "Cantidad: " + preAmount.get(i) + " " + "Producto: " + preProduct.get(i) + " " + "PU: "
-                    + preProduct.get(i).getPrice() + " ";
-            total += preProduct.get(i).getPrice() * preAmount.get(i);
+        if (preProd != null && !txtAmountProducts.getText().equals("")) {
+            preAmount.add(Integer.parseInt(txtAmountProducts.getText()));
+            preProduct.add(preProd);
+            int total = 0;
+            String msg = "";
+            for (int i = 0; i < preProduct.size(); i++) {
+                msg += "Cantidad: " + preAmount.get(i) + " " + "Producto: " + preProduct.get(i) + " " + "PU: "
+                        + preProduct.get(i).getPrice() + " ";
+                total += preProduct.get(i).getPrice() * preAmount.get(i);
+            }
+            txtAreaAmountProduct.setText(msg);
+            txtTotalToPay.setText(String.valueOf(total));
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setHeaderText("Complete Fields");
+            alert.setContentText("Hey you need to complete either the product a its amount");
+            alert.showAndWait();
         }
-        txtAreaAmountProduct.setText(msg);
-        txtTotalToPay.setText(String.valueOf(total));
     }
 
     @FXML
@@ -230,6 +239,7 @@ public class OrderController {
         preProduct.clear();
         txtAreaAmountProduct.setText("");
         preAmount.clear();
+        txtAmountProducts.setText("");
         txtTotalToPay.setText("");
         btnClean.setDisable(true);
     }
@@ -322,12 +332,13 @@ public class OrderController {
         txtAreaCostumerInfo.setText("");
         comboBoxStateOrder.setValue(null);
         comboBoxCostumers.setValue(null);
-        comboBoxEmployeeOrders.setValue(null);
+        preProduct.clear();
+        comboProductOrders.setValue(null);
         btnCreate.setDisable(false);
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
         btnClean.setDisable(true);
-        preProduct.clear();
+        comboBoxEmployeeOrders.setValue(null);
         txtAreaAmountProduct.setText("");
         preAmount.clear();
         txtTotalToPay.setText("");
@@ -339,8 +350,8 @@ public class OrderController {
     void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setOrderInfo(preSelectOrder, preState, preProduct, preAmount, preCostumer, preEmployee,
-                cGui.date(), txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()),
-                Double.parseDouble(txtTotalToPay.getText()), cGui.getHour());
+                txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()),
+                Double.parseDouble(txtTotalToPay.getText()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveData();
@@ -358,13 +369,15 @@ public class OrderController {
     @FXML
     void deleteOrder(ActionEvent event) throws IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteOrder(getIdxOrder());
+        String msg = restaurant.deleteOrder(getIdxOrder(), preSelectOrder.getState());
         alert.setContentText(msg);
-        trimOrderForm();
         alert.showAndWait();
-        restaurant.saveData();
-        restaurant.loadData();
-        initOrderTable();
+        if (msg.equals("The Order have been deleted succesfully")) {
+            trimOrderForm();
+            restaurant.saveData();
+            restaurant.loadData();
+            initOrderTable();
+        }
     }
 
     @FXML
@@ -379,13 +392,12 @@ public class OrderController {
 
     public void initStateOrder() {
         ObservableList<State> comBoxState = FXCollections.observableArrayList(State.REQUESTED, State.IN_PROCCESS,
-                State.SENT, State.DELIVERED);
+                State.SENT, State.DELIVERED, State.CANCELED);
         comboBoxStateOrder.setItems(comBoxState);
     }
 
     public void initEmployeeOrder() {
-        ObservableList<Employee> comBoxEmployee = FXCollections
-                .observableArrayList(restaurant.getEmployees(restaurant.getPeople()));
+        ObservableList<Employee> comBoxEmployee = FXCollections.observableArrayList(restaurant.getEnableEmployees());
         comboBoxEmployeeOrders.setItems(comBoxEmployee);
     }
 
@@ -395,8 +407,7 @@ public class OrderController {
     }
 
     public void initCostumerOrder() {
-        ObservableList<Costumer> comBoxCostumer = FXCollections
-                .observableArrayList(restaurant.getCostumers(restaurant.getPeople()));
+        ObservableList<Costumer> comBoxCostumer = FXCollections.observableArrayList(restaurant.getEnableCostumers());
         comboBoxCostumers.setItems(comBoxCostumer);
     }
 

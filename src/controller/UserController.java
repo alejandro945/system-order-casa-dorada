@@ -122,6 +122,9 @@ public class UserController {
     private Button btnDelete;
 
     @FXML
+    private TextField separator;
+
+    @FXML
     private CheckBox cbDisableUser;
 
     private Restaurant restaurant;
@@ -316,8 +319,7 @@ public class UserController {
         }
     }
 
-    // LIST
-    // USER----------------------------------------------------------------------
+    // LIST-USER----------------------------------------------------------------------
 
     @FXML
     public void backUserToDash(MouseEvent event) throws ClassNotFoundException, IOException {
@@ -403,9 +405,11 @@ public class UserController {
         txtLastNameUser.setText(selectUser.getLastName());
         txtIDUser.setText(String.valueOf(selectUser.getId()));
         txtUserName.setText(selectUser.getUserName());
-        File file = new File(selectUser.getImage());
-        imgRegister.setImage(new Image(("file:///" + file.getAbsolutePath())));
-        pathRender = selectUser.getImage();
+        if (selectUser.getImage() != null) {
+            File file = new File(selectUser.getImage());
+            imgRegister.setImage(new Image(("file:///" + file.getAbsolutePath())));
+            pathRender = selectUser.getImage();
+        }
         cbDisableUser.setSelected(!selectUser.getState());
     }
 
@@ -484,7 +488,7 @@ public class UserController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export users");
-            restaurant.exportDataUsers(selectedFile.getAbsolutePath());
+            restaurant.exportDataUsers(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The users data was exported succesfully");
             alert.showAndWait();
         } else {

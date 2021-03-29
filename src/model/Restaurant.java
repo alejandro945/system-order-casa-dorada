@@ -114,6 +114,16 @@ public class Restaurant {
         return costumerlist;
     }
 
+    public List<Costumer> getEnableCostumers() {
+        List<Costumer> c = new ArrayList<>();
+        for (Costumer cos : getCostumers(people)) {
+            if (cos.getState() == true) {
+                c.add(cos);
+            }
+        }
+        return c;
+    }
+
     public int getCostumers() {
         int count = 0;
         for (int i = 0; i < people.size(); i++) {
@@ -133,6 +143,16 @@ public class Restaurant {
             }
         }
         return render;
+    }
+
+    public List<Employee> getEnableEmployees() {
+        List<Employee> e = new ArrayList<>();
+        for (Employee em : getEmployees(people)) {
+            if (em.getState() == true) {
+                e.add(em);
+            }
+        }
+        return e;
     }
 
     public int searchCostumer(Costumer c) {
@@ -261,13 +281,12 @@ public class Restaurant {
         return count;
     }
 
-    public boolean searchProduct(String name, String nameSize) {
+    public boolean searchProduct(String name) {
         boolean render = false;
         for (int i = 0; i < orders.size() && !render; i++) {
             Order o = orders.get(i);
             for (int j = 0; j < o.getProducts().size(); j++) {
-                if (o.getProducts().get(j).getName().equalsIgnoreCase(name)
-                        && o.getProducts().get(j).getProductSize().getName().equalsIgnoreCase(nameSize)) {
+                if (o.getNameProducts().equalsIgnoreCase(name)) {
                     render = true;
                 }
             }
@@ -486,18 +505,23 @@ public class Restaurant {
             int id = Integer.parseInt(parts[2]);
             String userName = parts[3];
             String password = parts[4];
-            String image = parts[5];
             line = br.readLine();
-            addPerson(name, lastName, id, userName, password, image, getLoggedUser(userIndex));
+            addPerson(name, lastName, id, userName, password, "Imported", getLoggedUser(userIndex));
         }
         br.close();
     }
 
-    public void exportDataUsers(String fileName) throws FileNotFoundException {
+    public void exportDataUsers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
         for (int i = 0; i < getUsers(people).size(); i++) {
             User u = getUsers(people).get(i);
-            pw.println(u.getName() + " ");
+            if (u.getImage() != null) {
+                pw.println(u.getName() + separator + u.getLastName() + separator + u.getId() + separator
+                        + u.getUserName() + separator + u.getPassword() + separator + u.getImage());
+            } else {
+                pw.println(u.getName() + separator + u.getLastName() + separator + u.getId() + separator
+                        + u.getUserName() + separator + u.getPassword());
+            }
         }
         pw.close();
     }
@@ -1035,7 +1059,7 @@ public class Restaurant {
     public Ingredients searchIndex(Ingredients ing) {
         int ingredientIndex = -1;
         boolean found = false;
-        if (!ingredients.isEmpty()) {
+        if (!ingredients.isEmpty() && ing != null) {
             for (int i = 0; i < ingredients.size() && !found; i++) {
                 if (ingredients.get(i).getName().equals(ing.getName())) {
                     ingredientIndex = i;
@@ -1101,7 +1125,7 @@ public class Restaurant {
     }
 
     public String deleteProduct(int positionProduct, String name, String nameSize) {
-        boolean redux = searchProduct(name, nameSize);
+        boolean redux = searchProduct(name + "-" + nameSize);
         if (redux == false) {
             products.remove(positionProduct);
             setCodeProductPosition();
@@ -1165,9 +1189,10 @@ public class Restaurant {
     public Product searchIndex(Product pro) {
         int productIndex = -1;
         boolean found = false;
-        if (!products.isEmpty()) {
+        if (!products.isEmpty() && pro != null) {
             for (int i = 0; i < products.size() && !found; i++) {
-                if (products.get(i).getName().equals(pro.getName())) {
+                if (products.get(i).getName().equals(pro.getName())
+                        && products.get(i).getProductSize().equals(pro.getProductSize())) {
                     productIndex = i;
                     found = true;
                 }
@@ -1389,7 +1414,6 @@ public class Restaurant {
     public String addOrders(int code, State state, List<Product> products, List<Integer> amount, Costumer costumer,
             Employee employee, String date, String suggestion, User creator, double totalPrice, String hour) {
         String msg = "";
-        System.out.println(products.get(0).getName());
         Order newOrder = new Order(code, state, products, amount, costumer, employee, date, suggestion, creator,
                 totalPrice, hour);
         orders.add(newOrder);
@@ -1398,30 +1422,36 @@ public class Restaurant {
     }
 
     public String setOrderInfo(Order order, State newState, List<Product> newProducts, List<Integer> newAmount,
-            Costumer newCostumer, Employee newEmployee, String newDate, String newSuggestion, User newLastEditor,
-            double newTotalPrice, String newHour) {
+            Costumer newCostumer, Employee newEmployee, String newSuggestion, User newLastEditor,
+            double newTotalPrice) {
         String msg = "";
+        if (order.getState().equals(State.CANCELED)) {
+            order.setState(newState);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
+                    newTotalPrice);
+            msg = "The Orders have been edited succesfully";
+        }
         if (order.getState().equals(State.REQUESTED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
-                    newLastEditor, newTotalPrice, newHour);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
+                    newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else if (order.getState().equals(State.IN_PROCCESS) && !newState.equals(State.REQUESTED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
-                    newLastEditor, newTotalPrice, newHour);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
+                    newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else if (order.getState().equals(State.SENT) && !newState.equals(State.IN_PROCCESS)
                 && !newState.equals(State.REQUESTED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
-                    newLastEditor, newTotalPrice, newHour);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
+                    newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else if (order.getState().equals(State.DELIVERED) && !newState.equals(State.IN_PROCCESS)
                 && !newState.equals(State.REQUESTED) && !newState.equals(State.SENT)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
-                    newLastEditor, newTotalPrice, newHour);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
+                    newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else {
             msg = "You can not came back order status";
@@ -1430,23 +1460,24 @@ public class Restaurant {
     }
 
     public void setOrdersField(Order order, List<Product> newProducts, List<Integer> newAmount, Costumer newCostumer,
-            Employee newEmployee, String newDate, String newSuggestion, User newLastEditor, double newTotalPrice,
-            String newHour) {
+            Employee newEmployee, String newSuggestion, User newLastEditor, double newTotalPrice) {
         order.setProducts(newProducts);
         order.setAmount(newAmount);
         order.setCostumer(newCostumer);
         order.setEmployee(newEmployee);
-        order.setDate(newDate);
-        order.setHour(newHour);
         order.setSuggestion(newSuggestion);
         order.setTotalPrice(newTotalPrice);
         order.setLastEditor(newLastEditor);
     }
 
-    public String deleteOrder(int positionOrder) {
-        orders.remove(positionOrder);
-        setCodeOrderPosition();
-        return "The Order have been deleted succesfully";
+    public String deleteOrder(int positionOrder, State state) {
+        if (state.equals(State.CANCELED) || state.equals(State.DELIVERED)) {
+            orders.remove(positionOrder);
+            setCodeOrderPosition();
+            return "The Order have been deleted succesfully";
+        } else {
+            return "You can not delete an order with the following states: Requeted, In procces, Sent";
+        }
     }
 
     public void setCodeOrderPosition() {
