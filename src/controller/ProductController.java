@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import model.*;
 
 public class ProductController {
@@ -80,6 +82,9 @@ public class ProductController {
     @FXML
     private ComboBox<ProductSize> cbSize;
 
+    @FXML
+    private TextField separator;
+
     private Product preSelectProduct;
     private int idxProduct;
     private List<Ingredients> preListIngredients = new ArrayList<>();
@@ -113,26 +118,6 @@ public class ProductController {
     @FXML
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
-    }
-
-    @FXML
-    void setStateProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
-        String msg = "";
-        if (cbDisable.isSelected()) {
-            msg = restaurant.disableProduct(preSelectProduct);
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText(msg);
-            alert.showAndWait();
-        } else {
-            msg = restaurant.enableProduct(preSelectProduct);
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText(msg);
-            alert.showAndWait();
-        }
-        restaurant.saveData();
-        restaurant.loadData();
-        trimProductForm();
-        initProductTable();
     }
 
     @FXML
@@ -226,6 +211,26 @@ public class ProductController {
     }
 
     @FXML
+    void setStateProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        String msg = "";
+        if (cbDisable.isSelected()) {
+            msg = restaurant.disableProduct(preSelectProduct);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        } else {
+            msg = restaurant.enableProduct(preSelectProduct);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        }
+        restaurant.saveData();
+        restaurant.loadData();
+        trimProductForm();
+        initProductTable();
+    }
+
+    @FXML
     public void deleteProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteProduct(getIdxProduct(), preSelectProduct.getName(),
@@ -245,13 +250,42 @@ public class ProductController {
     }
 
     @FXML
-    void exportProducts(ActionEvent event) {
-
+    void exportProducts(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export product");
+            restaurant.exportDataProduct(selectedFile.getAbsolutePath(), separator.getText());
+            alert.setContentText("The product data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export product");
+            alert.setContentText("The product data was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    void importProducts(ActionEvent event) {
-
+    void importProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import product");
+            restaurant.importDataProduct(selectedFile.getAbsolutePath());
+            alert.setContentText("The product data was imported succesfully");
+            alert.showAndWait();
+            restaurant.saveData();
+            restaurant.loadData();
+            initProductTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import product");
+            alert.setContentText("The product data was NOT imported. An error occurred");
+            alert.showAndWait();
+        }
     }
 
     public void initBtnClear() {

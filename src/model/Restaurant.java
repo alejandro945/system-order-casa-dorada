@@ -96,8 +96,11 @@ public class Restaurant {
         boolean render = false;
         for (int i = 0; i < orders.size() && !render; i++) {
             Order o = orders.get(i);
-            if (o.getEmployee().getName().equalsIgnoreCase(name) && o.getState().equals(State.DELIVERED)) {
-                render = true;
+            for (int j = 0; j < getEmployees(people).size(); j++) {
+                if (o.getEmployee().getName().equalsIgnoreCase(name)) {
+                    if (!o.getState().equals(State.DELIVERED) || !o.getState().equals(State.CANCELED))
+                        render = true;
+                }
             }
         }
         return render;
@@ -138,18 +141,32 @@ public class Restaurant {
         boolean render = false;
         for (int i = 0; i < orders.size() && !render; i++) {
             Order o = orders.get(i);
-            if (o.getCostumer().getName().equalsIgnoreCase(name) && o.getState().equals(State.DELIVERED)) {
-                render = true;
+            for (int j = 0; j < getCostumers(people).size(); j++) {
+                if (o.getCostumer().getName().equalsIgnoreCase(name)) {
+                    if (!o.getState().equals(State.DELIVERED) || !o.getState().equals(State.CANCELED))
+                        render = true;
+                }
             }
         }
         return render;
     }
 
+    public Costumer searchCostumerByObj(Costumer c) {
+        Costumer cos = null;
+        for (Costumer cost : getCostumers(people)) {
+            if (cost.getId() == c.getId()) {
+                cos = c;
+            }
+        }
+        return cos;
+    }
+
+
     public List<Employee> getEnableEmployees() {
         List<Employee> e = new ArrayList<>();
-        for (Employee em : getEmployees(people)) {
-            if (em.getState() == true) {
-                e.add(em);
+        for (int i = 0; i < getEmployees(people).size(); i++) {
+            if (getEmployees(people).get(i).getState() == true) {
+                e.add(getEmployees(people).get(i));
             }
         }
         return e;
@@ -462,10 +479,11 @@ public class Restaurant {
     }
 
     public String deleteUser(User useroToDelete) {
+        boolean redux = false;
         String msg = "";
         boolean render = searchUserByName(useroToDelete.getName());
         if (render == false) {
-            for (int i = 0; i < people.size(); i++) {
+            for (int i = 0; i < people.size() && !redux; i++) {
                 if (people.get(i) instanceof User) {
                     User user = (User) (people.get(i));
                     if (user == useroToDelete && getLoggedUser(userIndex) != user) {
@@ -473,6 +491,7 @@ public class Restaurant {
                         people.remove(useroToDelete);
                         userVerification(u.getUserName(), u.getPassword());
                         msg = "The user have been deleted succesfully";
+                        redux = true;
                     } else {
                         msg = "You can't delete you";
                     }
@@ -513,6 +532,7 @@ public class Restaurant {
 
     public void exportDataUsers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "User name" + separator + "Password");
         for (int i = 0; i < getUsers(people).size(); i++) {
             User u = getUsers(people).get(i);
             if (u.getImage() != null) {
@@ -695,29 +715,32 @@ public class Restaurant {
     }
 
     public String deleteCostumer(Costumer costumerToDelete) {
+        boolean render = false;
+        String msg = "";
         boolean redux = searchCostumer(costumerToDelete.getName());
-        if (redux == true) {
-            for (int i = 0; i < people.size(); i++) {
-                if (people.get(i) instanceof Costumer) {
-                    Costumer costumer = (Costumer) (people.get(i));
-                    if (costumer == costumerToDelete) {
+        for (int i = 0; i < people.size() && !render; i++) {
+            if (people.get(i) instanceof Costumer) {
+                Costumer costumer = (Costumer) (people.get(i));
+                if (costumer == costumerToDelete) {
+                    if (redux == false) {
                         User u = getLoggedUser(userIndex);
                         people.remove(costumerToDelete);
                         userVerification(u.getUserName(), u.getPassword());
+                        render = true;
+                        msg = "The costumer have been deleted succesfully";
+                    } else {
+                        msg = "The costumer have a reference by a order";
+                        render = true;
                     }
                 }
             }
-            return "The costumer have been deleted succesfully";
-        } else {
-            return "The costumer have a reference by a order";
         }
-
+        return msg;
     }
 
     public String disableCostumer(Costumer costumer) {
         costumer.setState(false);
         return "The Costumer have been disabled succesfully";
-
     }
 
     public String enableCostumer(Costumer costumer) {
@@ -782,11 +805,14 @@ public class Restaurant {
         br.close();
     }
 
-    public void exportDataCostumers(String fileName) throws FileNotFoundException {
+    public void exportDataCostumers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "Address" + separator + "Telephone"
+                + separator + "Suggestions");
         for (int i = 0; i < getCostumers(people).size(); i++) {
             Costumer c = getCostumers(people).get(i);
-            pw.println(c.getName() + " ");
+            pw.println(c.getName() + separator + c.getLastName() + separator + c.getId() + separator + c.getAddress()
+                    + separator + c.getTelephone() + separator + c.getSuggestions());
         }
         pw.close();
     }
@@ -842,25 +868,29 @@ public class Restaurant {
     }
 
     public String deleteEmployee(Employee employeeToDelete) {
+        boolean found = false;
+        String msg = "";
         boolean redux = searchUserByName(employeeToDelete.getName());
-        if (redux == false) {
-            for (int i = 0; i < people.size(); i++) {
-                if (people.get(i) instanceof Employee) {
-                    Employee employee = (Employee) (people.get(i));
-                    if (employee == employeeToDelete && getLoggedUser(userIndex) != employee) {
+        for (int i = 0; i < people.size() && !found; i++) {
+            if (people.get(i) instanceof Employee) {
+                Employee employee = (Employee) (people.get(i));
+                if (employee == employeeToDelete && getLoggedUser(userIndex) != employee) {
+                    if (redux == false) {
                         User u = getLoggedUser(userIndex);
                         people.remove(employeeToDelete);
                         userVerification(u.getUserName(), u.getPassword());
+                        found = true;
+                        msg = "The employee have been deleted succesfully";
                     } else {
-                        return "You can't delete you";
+                        msg = "The employee have a reference by a order or you can not delete you";
+                        found = true;
                     }
+                } else{
+                    msg = "You can not delete you";
                 }
             }
-            return "The employee have been deleted succesfully";
-        } else {
-            return "The employee have a reference by a order or you can not delete you";
         }
-
+        return msg;
     }
 
     public String disableEmployee(Employee employee) {
@@ -888,11 +918,12 @@ public class Restaurant {
         br.close();
     }
 
-    public void exportDataEmployees(String fileName) throws FileNotFoundException {
+    public void exportDataEmployees(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("Name" + separator + "Last name" + separator + "Id");
         for (int i = 0; i < getEmployees(people).size(); i++) {
             Employee e = getEmployees(people).get(i);
-            pw.println(e.getName() + " ");
+            pw.println(e.getName() + separator + e.getLastName() + separator + e.getId());
         }
         pw.close();
     }
@@ -1018,19 +1049,19 @@ public class Restaurant {
         String line = br.readLine();
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
-            int code = Integer.parseInt(null);
             String name = parts[0];
             line = br.readLine();
-            addIngredient(code, name, getLoggedUser(userIndex));
+            addIngredient(getCode(), name, getLoggedUser(userIndex));
         }
         br.close();
     }
 
-    public void exportDataIngredients(String fileName) throws FileNotFoundException {
+    public void exportDataIngredients(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("Code" + separator + "Name");
         for (int i = 0; i < getIngredients().size(); i++) {
             Ingredients in = getIngredients().get(i);
-            pw.println(in.getName() + " ");
+            pw.println(in.getCode() + separator + in.getName());
         }
         pw.close();
     }
@@ -1159,11 +1190,12 @@ public class Restaurant {
         br.close();
     }
 
-    public void exportDataProduct(String fileName) throws FileNotFoundException {
+    public void exportDataProduct(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        for (int i = 0; i < getProductSize().size(); i++) {
-            ProductSize ps = getProductSize().get(i);
-            pw.println(ps.getName() + " ");
+        pw.println("Code" + separator + " Name" + separator + "Product type" + separator + "Product size" + separator + "Ingredients" + separator + "Price");
+        for (int i = 0; i < getProducts().size(); i++) {
+            Product p = getProducts().get(i);
+            pw.println(p.getCode() + separator + p.getName() + separator + p.getProductType() + separator + p.getProductSize() + separator + p.getNameIngredients() + separator + p.getPrice());
         }
         pw.close();
     }
@@ -1200,6 +1232,47 @@ public class Restaurant {
         }
         return getProduct(productIndex);
     }
+
+    public List<Costumer> sortCostumerById() {
+        List<Costumer> cost = new ArrayList<>();
+        for (int j = 0; j < getCostumers(people).size(); j++) {
+            Costumer c = getCostumers(people).get(j);
+            if (cost.isEmpty()) {
+                cost.add(c);
+            } else {
+                int i = 0;
+                CostumersComparator cc = new CostumersComparator();
+                while (i < cost.size() && cc.compare(c, cost.get(i)) > 0) {
+                    i++;
+                }
+                cost.add(i, c);
+            }
+        }
+        return cost;
+    }
+
+    public Costumer searchBinary(int id, List<Costumer> cost) {
+        System.out.println(cost);
+        boolean found = false;
+        Costumer cos = null;
+        int i = 0;
+        int j = cost.size() - 1;
+        while (i <= j && !found) {
+            int m = (i + j) / 2;
+            if (cost.get(m).getId() == id) {
+                found = true;
+                Costumer c = cost.get(m);
+                cos = searchCostumerByObj(c);
+            } else if (cost.get(m).getId() > id) {
+                j = m - 1;
+            } else {
+                i = m + 1;
+            }
+        }
+        return cos;
+    }
+
+
 
     // -----------------------------------------PRODUCT_TYPE----------------------------------------------
 
@@ -1274,19 +1347,18 @@ public class Restaurant {
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
             String name = parts[0];
-            User creator = null;
-            int code = Integer.parseInt(null);
             line = br.readLine();
-            addProductType(name, creator, code);
+            addProductType(name, getLoggedUser(userIndex), getCodeProductType());
         }
         br.close();
     }
 
-    public void exportDataProductType(String fileName) throws FileNotFoundException {
+    public void exportDataProductType(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("Code" + separator + "Name");
         for (int i = 0; i < getProductType().size(); i++) {
             ProductType pt = getProductType().get(i);
-            pw.println(pt.getName() + " ");
+            pw.println(pt.getCode() + separator + pt.getName());
         }
         pw.close();
     }
@@ -1377,18 +1449,18 @@ public class Restaurant {
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
             String name = parts[0];
-            int code = Integer.parseInt(null);
             line = br.readLine();
-            addProductSize(name, code, getLoggedUser(userIndex));
+            addProductSize(name, getCodeProductSize(), getLoggedUser(userIndex));
         }
         br.close();
     }
 
-    public void exportDataProductSize(String fileName) throws FileNotFoundException {
+    public void exportDataProductSize(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("Code" + separator + "Name");
         for (int i = 0; i < getProductSize().size(); i++) {
             ProductSize ps = getProductSize().get(i);
-            pw.println(ps.getName() + " ");
+            pw.println(ps.getCode() + separator + ps.getName());
         }
         pw.close();
     }
@@ -1501,11 +1573,12 @@ public class Restaurant {
         br.close();
     }
 
-    public void exportDataOrder(String fileName) throws FileNotFoundException {
+    public void exportDataOrder(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        for (int i = 0; i < getProductSize().size(); i++) {
-            ProductSize ps = getProductSize().get(i);
-            pw.println(ps.getName() + " ");
+        pw.println("Hour" + separator + "Date" + separator + "Code" + separator + "State" + separator + "Product" + separator  + "Amount " + separator + "Costumer" + separator + "Employee" + separator + "Suggestion" + "Total price");
+        for (int i = 0; i < getOrders().size(); i++) {
+            Order o = getOrders().get(i);
+            pw.println(o.getHour() + separator + o.getDate()+ separator +o.getCode() + separator + o.getState() + separator + o.getNameProducts() + separator + o.getNameAmount() + separator + o.getCostumer() + separator + o.getEmployee() + separator + o.getSuggestion() + separator + o.getTotalPrice());
         }
         pw.close();
     }

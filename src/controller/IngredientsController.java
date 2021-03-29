@@ -31,6 +31,9 @@ public class IngredientsController {
     private TextField txtNameIngredients;
 
     @FXML
+    private TextField separator;
+
+    @FXML
     private Button btnCreate;
 
     @FXML
@@ -200,7 +203,7 @@ public class IngredientsController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export ingredients");
-            restaurant.exportDataIngredients(selectedFile.getAbsolutePath());
+            restaurant.exportDataIngredients(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The ingredients data was exported succesfully");
             alert.showAndWait();
         } else {

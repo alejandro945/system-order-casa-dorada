@@ -47,6 +47,9 @@ public class ProductSizeController {
     @FXML
     private CheckBox cbDisable;
 
+    @FXML
+    private TextField separator;
+
     private ProductSize preSelectProductSize;
     private int idxProductSize;
 
@@ -209,7 +212,7 @@ public class ProductSizeController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export product size");
-            restaurant.exportDataProductSize(selectedFile.getAbsolutePath());
+            restaurant.exportDataProductSize(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The product size data was exported succesfully");
             alert.showAndWait();
         } else {

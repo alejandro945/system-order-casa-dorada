@@ -472,11 +472,6 @@ public class UserController {
     }
 
     @FXML
-    void searchCostumer(ActionEvent event) {
-
-    }
-
-    @FXML
     public void deselectUser(ActionEvent event) {
         trimUserForm();
     }

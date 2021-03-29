@@ -47,6 +47,9 @@ public class ProductTypeController {
     @FXML
     private CheckBox cbDisable;
 
+    @FXML
+    private TextField separator;
+
     private ProductType preSelectProductType;
     private int idxProductType;
 
@@ -193,7 +196,7 @@ public class ProductTypeController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export product type");
-            restaurant.exportDataProductType(selectedFile.getAbsolutePath());
+            restaurant.exportDataProductType(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The  product type data was exported succesfully");
             alert.showAndWait();
         } else {

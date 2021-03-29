@@ -60,6 +60,6 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return null;
+        return getName();
     }
 }

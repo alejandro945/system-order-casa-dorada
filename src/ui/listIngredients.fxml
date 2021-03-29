@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listIngredients" onMouseClicked="#selectedIngredients" prefHeight="552.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listIngredients" onMouseClicked="#selectedIngredients" prefHeight="576.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colCodeIngredients" prefWidth="101.0" text="CODE" />
             <TableColumn fx:id="colNameIngredients" minWidth="0.0" prefWidth="122.0" text="NAME" />
@@ -83,7 +83,7 @@
             <Image url="@assets/img/back_40px.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="43.0" layoutY="597.0" mnemonicParsing="false" onAction="#importIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="14.0" layoutY="597.0" mnemonicParsing="false" onAction="#importIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -95,7 +95,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="202.0" layoutY="597.0" mnemonicParsing="false" onAction="#exportIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="165.0" layoutY="597.0" mnemonicParsing="false" onAction="#exportIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -107,7 +107,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="357.0" layoutY="597.0" mnemonicParsing="false" onAction="#deselectIngredient" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="414.0" layoutY="596.0" mnemonicParsing="false" onAction="#deselectIngredient" prefHeight="41.0" prefWidth="152.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -129,5 +129,11 @@
             <Image url="@assets/img/sort.png" />
          </image>
       </ImageView>
+      <TextField fx:id="separator" alignment="CENTER" layoutX="326.0" layoutY="616.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
+      <Label layoutX="321.0" layoutY="595.0" text="Export Separator">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

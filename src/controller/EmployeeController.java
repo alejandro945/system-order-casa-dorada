@@ -51,6 +51,9 @@ public class EmployeeController {
     private Button btnDelete;
 
     @FXML
+    private TextField separator;
+
+    @FXML
     private CheckBox cbDisableEmployee;
 
     private Employee preSelectEmployee;
@@ -204,7 +207,7 @@ public class EmployeeController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export employees");
-            restaurant.exportDataEmployees(selectedFile.getAbsolutePath());
+            restaurant.exportDataEmployees(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The employees data was exported succesfully");
             alert.showAndWait();
         } else {

@@ -28,6 +28,9 @@ public class CostumerController implements Initializable {
     private TextField filteredField;
 
     @FXML
+    private TextField separator;
+
+    @FXML
     private CheckBox cbDisable;
 
     @FXML
@@ -249,7 +252,7 @@ public class CostumerController implements Initializable {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export costumers");
-            restaurant.exportDataCostumers(selectedFile.getAbsolutePath());
+            restaurant.exportDataCostumers(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The costumers data was exported succesfully");
             alert.showAndWait();
         } else {

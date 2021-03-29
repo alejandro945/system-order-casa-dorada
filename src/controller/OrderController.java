@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import model.*;
 
 public class OrderController {
@@ -79,6 +81,9 @@ public class OrderController {
     private TextField txtTime;
 
     @FXML
+    private TextField separator;
+
+    @FXML
     private ComboBox<Employee> comboBoxEmployeeOrders;
 
     @FXML
@@ -111,7 +116,6 @@ public class OrderController {
     private State preState;
     private List<Integer> preAmount = new ArrayList<>();
     private Costumer preCostumer;
-    private int idxCostumer;
 
     private Order preSelectOrder;
     private int idxOrder;
@@ -194,21 +198,187 @@ public class OrderController {
     }
 
     @FXML
-    void comboAction(ActionEvent event) {
-        Object e = event.getSource();
-        if (e.equals(comboProductOrders)) {
-            preProd = (restaurant.searchIndex(comboProductOrders.getSelectionModel().getSelectedItem()));
+    void createOrder(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        boolean validateFields = orderValidation(txtSuggestionsOrder.getText(), txtTotalToPay.getText(),
+                txtAreaAmountProduct.getText());
+        if (!validateFields) {
+            Alert alert2 = new Alert(AlertType.WARNING);
+            alert2.setTitle("Warning Dialog");
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Hey!! Please complete all fields for create a order");
+            alert2.showAndWait();
+        } else if (validateFields) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            String msg = restaurant.addOrders(restaurant.getCodeOrder(), preState, preProduct, preAmount, preCostumer,
+                    preEmployee, cGui.date(), txtSuggestionsOrder.getText(),
+                    restaurant.getLoggedUser(restaurant.getUserIndex()), Double.parseDouble(txtTotalToPay.getText()),
+                    cGui.getHour());
+            alert.setContentText(msg);
+            alert.showAndWait();
+            restaurant.saveData();
+            restaurant.loadData();
+            trimOrderForm();
+            initOrderTable();
+        }
+    }
+
+    public boolean orderValidation(String suggestion, String totalPrice, String products) {
+        boolean complete = true;
+        if (comboBoxCostumers.getSelectionModel().getSelectedItem() == null
+                || comboBoxEmployeeOrders.getSelectionModel().getSelectedItem() == null
+                || comboBoxStateOrder.getSelectionModel().getSelectedItem() == null || products.equals("")
+                || totalPrice.equals("") || suggestion.equals("")) {
+            complete = false;
+        }
+        return complete;
+    }
+
+    public void trimOrderForm() {
+        txtTime.setText("");
+        txtAreaCostumerInfo.setText("");
+        comboBoxStateOrder.setValue(null);
+        comboBoxCostumers.setValue(null);
+        preProduct.clear();
+        comboProductOrders.setValue(null);
+        btnCreate.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        btnClean.setDisable(true);
+        comboBoxEmployeeOrders.setValue(null);
+        txtAreaAmountProduct.setText("");
+        preAmount.clear();
+        txtTotalToPay.setText("");
+        txtSuggestionsOrder.setText("");
+        txtAmountProducts.setText("");
+    }
+
+    @FXML
+    void cleanProducts(ActionEvent event) {
+        preProduct.clear();
+        txtAreaAmountProduct.setText("");
+        preAmount.clear();
+        txtAmountProducts.setText("");
+        txtTotalToPay.setText("");
+        btnClean.setDisable(true);
+    }
+
+    public void initBtnClear() {
+        if (txtAreaAmountProduct.getText() != "") {
+            btnClean.setDisable(false);
+        }
+    }
+
+    @FXML
+    void searchCostumer(ActionEvent event) {
+        Long startTime = System.nanoTime();
+        Costumer c = restaurant.searchBinary(preCostumer.getId(), restaurant.sortCostumerById());
+        txtAreaCostumerInfo.setText(
+                "Nombre: " + c.getName() + " Apellido: " + c.getLastName() + " ID: " + c.getId() + " Telephone: "
+                        + c.getTelephone() + " Address: " + c.getAddress() + " Suggestions: " + c.getSuggestions());
+        Long endTime = System.nanoTime() - startTime;
+        txtTime.setText(String.valueOf(endTime));
+    }
+
+    @FXML
+    void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.setOrderInfo(preSelectOrder, preState, preProduct, preAmount, preCostumer, preEmployee,
+                txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()),
+                Double.parseDouble(txtTotalToPay.getText()));
+        alert.setContentText(msg);
+        alert.showAndWait();
+        restaurant.saveData();
+        restaurant.loadData();
+        trimOrderForm();
+        setPreSelectOrder(null);
+        initOrderTable();
+    }
+
+    @FXML
+    void selectedOrder(MouseEvent event) {
+        Order sltOrder = listOrders.getSelectionModel().getSelectedItem();
+        if (sltOrder != null) {
+            int idxProduct = listOrders.getSelectionModel().getSelectedIndex();
+            setIdxOrder(idxProduct);
+            setPreSelectOrder(sltOrder);
+            setForm(sltOrder);
+            btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
             initBtnClear();
         }
-        if (e.equals(comboBoxStateOrder)) {
-            preState = comboBoxStateOrder.getSelectionModel().getSelectedItem();
+    }
+
+    public void setForm(Order selectOrder) {
+        txtSuggestionsOrder.setText(selectOrder.getSuggestion());
+        txtAreaAmountProduct.setText(selectOrder.getInvoice());
+        txtTotalToPay.setText(String.valueOf(selectOrder.getTotalPrice()));
+        Costumer c = selectOrder.getCostumer();
+        txtAreaCostumerInfo.setText(
+                "Nombre: " + c.getName() + " Apellido: " + c.getLastName() + " ID: " + c.getId() + " Telephone: "
+                        + c.getTelephone() + " Address: " + c.getAddress() + " Suggestions: " + c.getSuggestions());
+        comboBoxCostumers.setValue(selectOrder.getCostumer());
+        comboBoxEmployeeOrders.setValue(selectOrder.getEmployee());
+        comboBoxStateOrder.setValue(selectOrder.getState());
+        preProduct = selectOrder.getProducts();
+        preAmount = selectOrder.getAmount();
+    }
+
+    @FXML
+    void deleteOrder(ActionEvent event) throws IOException, ClassNotFoundException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.deleteOrder(getIdxOrder(), preSelectOrder.getState());
+        alert.setContentText(msg);
+        alert.showAndWait();
+        if (msg.equals("The Order have been deleted succesfully")) {
+            trimOrderForm();
+            restaurant.saveData();
+            restaurant.loadData();
+            initOrderTable();
         }
-        if (e.equals(comboBoxEmployeeOrders)) {
-            preEmployee = comboBoxEmployeeOrders.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    void deselectOrder(ActionEvent event) {
+        trimOrderForm();
+    }
+
+    @FXML
+    void exportOrders(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export Order");
+            restaurant.exportDataOrder(selectedFile.getAbsolutePath(), separator.getText());
+            alert.setContentText("The Order data was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Export Order");
+            alert.setContentText("The Order data was NOT exported. An error occurred");
+            alert.showAndWait();
         }
-        if (e.equals(comboBoxCostumers)) {
-            preCostumer = comboBoxCostumers.getSelectionModel().getSelectedItem();
-            idxCostumer = comboBoxCostumers.getSelectionModel().getSelectedIndex();
+    }
+
+    @FXML
+    void importOrders(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Import Order");
+            restaurant.importDataOrder(selectedFile.getAbsolutePath());
+            alert.setContentText("The order data was imported succesfully");
+            alert.showAndWait();
+            restaurant.saveData();
+            restaurant.loadData();
+            initOrderTable();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Import order");
+            alert.setContentText("The order data was NOT imported. An error occurred");
+            alert.showAndWait();
         }
     }
 
@@ -234,162 +404,6 @@ public class OrderController {
         }
     }
 
-    @FXML
-    void cleanProducts(ActionEvent event) {
-        preProduct.clear();
-        txtAreaAmountProduct.setText("");
-        preAmount.clear();
-        txtAmountProducts.setText("");
-        txtTotalToPay.setText("");
-        btnClean.setDisable(true);
-    }
-
-    public void initBtnClear() {
-        if (txtAreaAmountProduct.getText() != "") {
-            btnClean.setDisable(false);
-        }
-    }
-
-    @FXML
-    void searchCostumer(ActionEvent event) {
-        Long startTime = System.nanoTime();
-        Costumer c = restaurant.getC(idxCostumer);
-        txtAreaCostumerInfo.setText(
-                "Nombre: " + c.getName() + " Apellido: " + c.getLastName() + " ID: " + c.getId() + " Telephone: "
-                        + c.getTelephone() + " Address: " + c.getAddress() + " Suggestions: " + c.getSuggestions());
-        Long endTime = System.nanoTime() - startTime;
-        txtTime.setText(String.valueOf(endTime));
-    }
-
-    @FXML
-    void createOrder(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
-        boolean validateFields = orderValidation(txtSuggestionsOrder.getText(), txtTotalToPay.getText(),
-                txtAreaAmountProduct.getText());
-        if (!validateFields) {
-            Alert alert2 = new Alert(AlertType.WARNING);
-            alert2.setTitle("Warning Dialog");
-            alert2.setHeaderText("Warning");
-            alert2.setContentText("Hey!! Please complete all fields for create a order");
-            alert2.showAndWait();
-        } else if (validateFields) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addOrders(restaurant.getCodeOrder(), preState, preProduct, preAmount, preCostumer,
-                    preEmployee, cGui.date(), txtSuggestionsOrder.getText(),
-                    restaurant.getLoggedUser(restaurant.getUserIndex()), Double.parseDouble(txtTotalToPay.getText()),
-                    cGui.getHour());
-            alert.setContentText(msg);
-            alert.showAndWait();
-            restaurant.saveData();
-            restaurant.loadData();
-            trimOrderForm();
-            initOrderTable();
-        }
-    }
-
-    @FXML
-    void selectedOrder(MouseEvent event) {
-        Order sltOrder = listOrders.getSelectionModel().getSelectedItem();
-        if (sltOrder != null) {
-            int idxProduct = listOrders.getSelectionModel().getSelectedIndex();
-            setIdxOrder(idxProduct);
-            setPreSelectOrder(sltOrder);
-            setForm(sltOrder);
-            btnCreate.setDisable(true);
-            btnDelete.setDisable(false);
-            btnUpdate.setDisable(false);
-            initBtnClear();
-        }
-    }
-
-    public boolean orderValidation(String suggestion, String totalPrice, String products) {
-        boolean complete = true;
-        if (comboBoxCostumers.getSelectionModel().getSelectedItem() == null
-                || comboBoxEmployeeOrders.getSelectionModel().getSelectedItem() == null
-                || comboBoxStateOrder.getSelectionModel().getSelectedItem() == null || products.equals("")
-                || totalPrice.equals("") || suggestion.equals("")) {
-            complete = false;
-        }
-        return complete;
-    }
-
-    public void setForm(Order selectOrder) {
-        txtSuggestionsOrder.setText(selectOrder.getSuggestion());
-        txtAreaAmountProduct.setText(selectOrder.getInvoice());
-        txtTotalToPay.setText(String.valueOf(selectOrder.getTotalPrice()));
-        Costumer c = selectOrder.getCostumer();
-        txtAreaCostumerInfo.setText(
-                "Nombre: " + c.getName() + " Apellido: " + c.getLastName() + " ID: " + c.getId() + " Telephone: "
-                        + c.getTelephone() + " Address: " + c.getAddress() + " Suggestions: " + c.getSuggestions());
-        comboBoxCostumers.setValue(selectOrder.getCostumer());
-        comboBoxEmployeeOrders.setValue(selectOrder.getEmployee());
-        comboBoxStateOrder.setValue(selectOrder.getState());
-        preProduct = selectOrder.getProducts();
-        preAmount = selectOrder.getAmount();
-    }
-
-    public void trimOrderForm() {
-        txtTime.setText("");
-        txtAreaCostumerInfo.setText("");
-        comboBoxStateOrder.setValue(null);
-        comboBoxCostumers.setValue(null);
-        preProduct.clear();
-        comboProductOrders.setValue(null);
-        btnCreate.setDisable(false);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
-        btnClean.setDisable(true);
-        comboBoxEmployeeOrders.setValue(null);
-        txtAreaAmountProduct.setText("");
-        preAmount.clear();
-        txtTotalToPay.setText("");
-        txtSuggestionsOrder.setText("");
-        txtAmountProducts.setText("");
-    }
-
-    @FXML
-    void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.setOrderInfo(preSelectOrder, preState, preProduct, preAmount, preCostumer, preEmployee,
-                txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()),
-                Double.parseDouble(txtTotalToPay.getText()));
-        alert.setContentText(msg);
-        alert.showAndWait();
-        restaurant.saveData();
-        restaurant.loadData();
-        trimOrderForm();
-        setPreSelectOrder(null);
-        initOrderTable();
-    }
-
-    @FXML
-    void deselectOrder(ActionEvent event) {
-        trimOrderForm();
-    }
-
-    @FXML
-    void deleteOrder(ActionEvent event) throws IOException, ClassNotFoundException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteOrder(getIdxOrder(), preSelectOrder.getState());
-        alert.setContentText(msg);
-        alert.showAndWait();
-        if (msg.equals("The Order have been deleted succesfully")) {
-            trimOrderForm();
-            restaurant.saveData();
-            restaurant.loadData();
-            initOrderTable();
-        }
-    }
-
-    @FXML
-    void exportOrders(ActionEvent event) {
-
-    }
-
-    @FXML
-    void importOrders(ActionEvent event) {
-
-    }
-
     public void initStateOrder() {
         ObservableList<State> comBoxState = FXCollections.observableArrayList(State.REQUESTED, State.IN_PROCCESS,
                 State.SENT, State.DELIVERED, State.CANCELED);
@@ -409,6 +423,25 @@ public class OrderController {
     public void initCostumerOrder() {
         ObservableList<Costumer> comBoxCostumer = FXCollections.observableArrayList(restaurant.getEnableCostumers());
         comboBoxCostumers.setItems(comBoxCostumer);
+    }
+
+    @FXML
+    void comboAction(ActionEvent event) {
+        Object e = event.getSource();
+        if (e.equals(comboProductOrders)) {
+            preProd = (restaurant.searchIndex(comboProductOrders.getSelectionModel().getSelectedItem()));
+            initBtnClear();
+        }
+        if (e.equals(comboBoxStateOrder)) {
+            preState = comboBoxStateOrder.getSelectionModel().getSelectedItem();
+        }
+        if (e.equals(comboBoxEmployeeOrders)) {
+            preEmployee = comboBoxEmployeeOrders.getSelectionModel().getSelectedItem();
+        }
+        if (e.equals(comboBoxCostumers)) {
+            preCostumer = comboBoxCostumers.getSelectionModel().getSelectedItem();
+            
+        }
     }
 
     public void initOrderTable() throws IOException {

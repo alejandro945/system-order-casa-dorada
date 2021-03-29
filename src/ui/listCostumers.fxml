@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="listCostumers" layoutX="7.0" layoutY="83.0" onMouseClicked="#selectedCostumer" prefHeight="478.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
         <columns>
@@ -117,7 +117,7 @@
             <Image url="@assets/img/back_40px.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="23.0" layoutY="577.0" mnemonicParsing="false" onAction="#importCostumers" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="23.0" layoutY="577.0" mnemonicParsing="false" onAction="#importCostumers" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -129,7 +129,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="196.0" layoutY="577.0" mnemonicParsing="false" onAction="#exportCostumers" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="157.0" layoutY="576.0" mnemonicParsing="false" onAction="#exportCostumers" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -141,7 +141,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="370.0" layoutY="577.0" mnemonicParsing="false" onAction="#deselectCostumer" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="404.0" layoutY="575.0" mnemonicParsing="false" onAction="#deselectCostumer" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -166,5 +166,11 @@
          </font>
       </Label>
       <TextField fx:id="filteredField" layoutX="221.0" layoutY="30.0" prefHeight="25.0" prefWidth="307.0" />
+      <TextField fx:id="separator" alignment="CENTER" layoutX="306.0" layoutY="595.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
+      <Label layoutX="301.0" layoutY="574.0" text="Export Separator">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
