@@ -18,8 +18,8 @@ public class Employee extends Person {
         this.state = true;
     }
 
-    public Employee(){
-        
+    public Employee() {
+
     }
 
     public int getId() {

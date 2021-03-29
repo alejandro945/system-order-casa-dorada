@@ -2,6 +2,8 @@ package controller;
 
 import java.io.*;
 
+import com.jfoenix.controls.JFXTimePicker;
+
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,6 +51,21 @@ public class EmployeeController {
 
     @FXML
     private Button btnDelete;
+
+    @FXML
+    private JFXTimePicker startTime;
+
+    @FXML
+    private JFXTimePicker endTime;
+
+    @FXML
+    private DatePicker dateStart;
+
+    @FXML
+    private DatePicker dateEnd;
+
+    @FXML
+    private Button btnGenerate;
 
     @FXML
     private TextField separator;
@@ -143,6 +160,11 @@ public class EmployeeController {
         }
     }
 
+    @FXML
+    void generateReport(ActionEvent event) {
+
+    }
+
     public void setForm(Employee sltEmployee) {
         txtNameEmployee.setText(sltEmployee.getName());
         txtLastNameEmployee.setText(sltEmployee.getLastName());
@@ -204,7 +226,7 @@ public class EmployeeController {
     void exportEmployee(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -224,7 +246,7 @@ public class EmployeeController {
     void importEmployee(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showOpenDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
