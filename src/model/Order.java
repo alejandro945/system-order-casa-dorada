@@ -65,6 +65,15 @@ public class Order implements Serializable {
         return nameProducts;
     }
 
+    public String getInvoice() {
+        String invoice = "";
+        for (int i = 0; i < products.size(); i++) {
+            invoice += "Cantidad: " + amount.get(i) + " " + "Producto: " + products.get(i) + " " + "PU: "
+                    + products.get(i).getPrice() + " ";
+        }
+        return invoice;
+    }
+
     public void setProducts(List<Product> products) {
         this.products = products;
     }

@@ -18,7 +18,7 @@ public class User extends Employee {
         this.state = true;
     }
 
-    public User(){
+    public User() {
 
     }
 
@@ -56,8 +56,8 @@ public class User extends Employee {
 
     @Override
     public String toString() {
-        if (getName()==null) {
-            return "Created by register or imported";
+        if (getName() == null) {
+            return "Created by register or is not in the app";
         } else {
             return getName();
         }

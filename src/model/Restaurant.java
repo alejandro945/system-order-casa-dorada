@@ -92,6 +92,17 @@ public class Restaurant {
         return count;
     }
 
+    public boolean searchUserByName(String name) {
+        boolean render = false;
+        for (int i = 0; i < orders.size() && !render; i++) {
+            Order o = orders.get(i);
+            if (o.getEmployee().getName().equalsIgnoreCase(name) && o.getState().equals(State.DELIVERED)) {
+                render = true;
+            }
+        }
+        return render;
+    }
+
     public List<Costumer> getCostumers(List<Person> people) {
         List<Costumer> costumerlist = new ArrayList<>();
         for (int i = 0; i < people.size(); i++) {
@@ -111,6 +122,17 @@ public class Restaurant {
             }
         }
         return count;
+    }
+
+    public boolean searchCostumer(String name) {
+        boolean render = false;
+        for (int i = 0; i < orders.size() && !render; i++) {
+            Order o = orders.get(i);
+            if (o.getCostumer().getName().equalsIgnoreCase(name) && o.getState().equals(State.DELIVERED)) {
+                render = true;
+            }
+        }
+        return render;
     }
 
     public int searchCostumer(Costumer c) {
@@ -145,6 +167,14 @@ public class Restaurant {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public int getNumberOrders() {
+        int count = 0;
+        for (int i = 0; i < orders.size(); i++) {
+            count++;
+        }
+        return count;
     }
 
     // --------------------------------------------------SOME-MINIMUM-METHODS:INGREDIENTS---------------------------------------------------
@@ -229,6 +259,20 @@ public class Restaurant {
             count++;
         }
         return count;
+    }
+
+    public boolean searchProduct(String name, String nameSize) {
+        boolean render = false;
+        for (int i = 0; i < orders.size() && !render; i++) {
+            Order o = orders.get(i);
+            for (int j = 0; j < o.getProducts().size(); j++) {
+                if (o.getProducts().get(j).getName().equalsIgnoreCase(name)
+                        && o.getProducts().get(j).getProductSize().getName().equalsIgnoreCase(nameSize)) {
+                    render = true;
+                }
+            }
+        }
+        return render;
     }
 
     public void setCodeProductPosition() {
@@ -338,6 +382,7 @@ public class Restaurant {
             oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(people);
             oos.writeObject(products);
+            oos.writeObject(orders);
             oos.writeObject(ingredients);
             oos.writeObject(productType);
             oos.writeObject(productSize);
@@ -355,6 +400,7 @@ public class Restaurant {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(SAVE_PATH_FILE_DATA)));
             people = (List<Person>) ois.readObject();
             products = (ArrayList<Product>) ois.readObject();
+            orders = (ArrayList<Order>) ois.readObject();
             ingredients = (List<Ingredients>) ois.readObject();
             productType = (List<ProductType>) ois.readObject();
             productSize = (List<ProductSize>) ois.readObject();
@@ -398,19 +444,25 @@ public class Restaurant {
 
     public String deleteUser(User useroToDelete) {
         String msg = "";
-        for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof User) {
-                User user = (User) (people.get(i));
-                if (user == useroToDelete && getLoggedUser(userIndex) != user) {
-                    User u = getLoggedUser(userIndex);
-                    people.remove(useroToDelete);
-                    userVerification(u.getUserName(), u.getPassword());
-                    msg = "The user have been deleted succesfully";
-                } else {
-                    msg = "You can't delete you";
+        boolean render = searchUserByName(useroToDelete.getName());
+        if (render == false) {
+            for (int i = 0; i < people.size(); i++) {
+                if (people.get(i) instanceof User) {
+                    User user = (User) (people.get(i));
+                    if (user == useroToDelete && getLoggedUser(userIndex) != user) {
+                        User u = getLoggedUser(userIndex);
+                        people.remove(useroToDelete);
+                        userVerification(u.getUserName(), u.getPassword());
+                        msg = "The user have been deleted succesfully";
+                    } else {
+                        msg = "You can't delete you";
+                    }
                 }
             }
+        } else {
+            return "The User have a reference by a Orders";
         }
+
         return msg;
     }
 
@@ -619,17 +671,23 @@ public class Restaurant {
     }
 
     public String deleteCostumer(Costumer costumerToDelete) {
-        for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof Costumer) {
-                Costumer costumer = (Costumer) (people.get(i));
-                if (costumer == costumerToDelete) {
-                    User u = getLoggedUser(userIndex);
-                    people.remove(costumerToDelete);
-                    userVerification(u.getUserName(), u.getPassword());
+        boolean redux = searchCostumer(costumerToDelete.getName());
+        if (redux == true) {
+            for (int i = 0; i < people.size(); i++) {
+                if (people.get(i) instanceof Costumer) {
+                    Costumer costumer = (Costumer) (people.get(i));
+                    if (costumer == costumerToDelete) {
+                        User u = getLoggedUser(userIndex);
+                        people.remove(costumerToDelete);
+                        userVerification(u.getUserName(), u.getPassword());
+                    }
                 }
             }
+            return "The costumer have been deleted succesfully";
+        } else {
+            return "The costumer have a reference by a order";
         }
-        return "The costumer have been deleted succesfully";
+
     }
 
     public String disableCostumer(Costumer costumer) {
@@ -718,15 +776,15 @@ public class Restaurant {
         int ind = 0;
         int medio = (inicio + fin) / 2;
         while (inicio <= fin && !found) {
-                if (getCostumers(people).get(medio).getId() == index) {
-                    found = true;
-                     ind = medio;
-                } else if (getCostumers(people).get(medio).getId() > index) {
-                    fin = medio - 1;
-                } else {
-                    inicio = medio + 1;
-                }
-                medio = (inicio + fin)/2;
+            if (getCostumers(people).get(medio).getId() == index) {
+                found = true;
+                ind = medio;
+            } else if (getCostumers(people).get(medio).getId() > index) {
+                fin = medio - 1;
+            } else {
+                inicio = medio + 1;
+            }
+            medio = (inicio + fin) / 2;
         }
         System.out.println(ind);
         return getC(ind);
@@ -760,17 +818,25 @@ public class Restaurant {
     }
 
     public String deleteEmployee(Employee employeeToDelete) {
-        for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof Employee) {
-                Employee employee = (Employee) (people.get(i));
-                if (employee == employeeToDelete) {
-                    User u = getLoggedUser(userIndex);
-                    people.remove(employeeToDelete);
-                    userVerification(u.getUserName(), u.getPassword());
+        boolean redux = searchUserByName(employeeToDelete.getName());
+        if (redux == false) {
+            for (int i = 0; i < people.size(); i++) {
+                if (people.get(i) instanceof Employee) {
+                    Employee employee = (Employee) (people.get(i));
+                    if (employee == employeeToDelete && getLoggedUser(userIndex) != employee) {
+                        User u = getLoggedUser(userIndex);
+                        people.remove(employeeToDelete);
+                        userVerification(u.getUserName(), u.getPassword());
+                    } else {
+                        return "You can't delete you";
+                    }
                 }
             }
+            return "The employee have been deleted succesfully";
+        } else {
+            return "The employee have a reference by a order or you can not delete you";
         }
-        return "The employee have been deleted succesfully";
+
     }
 
     public String disableEmployee(Employee employee) {
@@ -879,10 +945,26 @@ public class Restaurant {
         return msg;
     }
 
+    public boolean validateIngredients(String newName) {
+        boolean added = false;
+        for (int j = 0; j < ingredients.size() && !added; j++) {
+            if (newName.equalsIgnoreCase(ingredients.get(j).getName())) {
+                added = true;
+            }
+        }
+        return added;
+    }
+
     public String setInfoIngredient(Ingredients ingredient, String name, User lastEditor) {
-        ingredient.setName(name);
-        ingredient.setLastEditor(lastEditor);
-        return "The Ingredient have been edited succesfully";
+        boolean render = validateIngredients(name);
+        if (!render) {
+            ingredient.setName(name);
+            ingredient.setLastEditor(lastEditor);
+            return "The Ingredient have been edited succesfully";
+        } else {
+            return "You can not update a Ingredient with same name";
+        }
+
     }
 
     public String deleteIngredient(int positionIngredient, String name) {
@@ -976,7 +1058,8 @@ public class Restaurant {
         } else {
             boolean added = false;
             for (int j = 0; j < products.size() && !added; j++) {
-                if (newProduct.getName().equalsIgnoreCase(products.get(j).getName()) && newProduct.getProductSize() == products.get(j).getProductSize()) {
+                if (newProduct.getName().equalsIgnoreCase(products.get(j).getName())
+                        && newProduct.getProductSize().getName().equals(products.get(j).getProductSize().getName())) {
                     msg = "You can not added an product, because alredy exists";
                     added = true;
                 }
@@ -989,22 +1072,44 @@ public class Restaurant {
         return msg;
     }
 
+    public boolean validateProduct(String newName, String newSize) {
+        boolean added = false;
+        for (int j = 0; j < products.size() && !added; j++) {
+            if (newName.equalsIgnoreCase(products.get(j).getName())
+                    && newSize.equals(products.get(j).getProductSize().getName())) {
+                added = true;
+            }
+        }
+        return added;
+    }
+
     public String setProductInfo(Product product, String newName, ProductType newProductType,
             List<Ingredients> newIngredients, int newCode, ProductSize newProductSize, double newPrice,
             User lastEditor) {
-        product.setName(newName);
-        product.setProductType(newProductType);
-        product.setProductSize(newProductSize);
-        product.setIngredients(newIngredients);
-        product.setPrice(newPrice);
-        product.setLastEditor(lastEditor);
-        return "The Product have been edited succesfully";
+        boolean render = validateProduct(newName, newProductType.getName());
+        if (!render) {
+            product.setName(newName);
+            product.setProductType(newProductType);
+            product.setProductSize(newProductSize);
+            product.setIngredients(newIngredients);
+            product.setPrice(newPrice);
+            product.setLastEditor(lastEditor);
+            return "The Product have been edited succesfully";
+        } else {
+            return "You can not update a Product with same name";
+        }
     }
 
-    public String deleteProduct(int positionProduct) {
-        products.remove(positionProduct);
-        setCodeProductPosition();
-        return "The product have been deleted succesfully";
+    public String deleteProduct(int positionProduct, String name, String nameSize) {
+        boolean redux = searchProduct(name, nameSize);
+        if (redux == false) {
+            products.remove(positionProduct);
+            setCodeProductPosition();
+            return "The product have been deleted succesfully";
+        } else {
+            return "The product have a reference by a order";
+        }
+
     }
 
     public String disableProduct(Product p) {
@@ -1095,10 +1200,26 @@ public class Restaurant {
         return msg;
     }
 
+    public boolean validateProductType(String newName) {
+        boolean added = false;
+        for (int j = 0; j < productType.size() && !added; j++) {
+            if (newName.equalsIgnoreCase(productType.get(j).getName())) {
+                added = true;
+            }
+        }
+        return added;
+    }
+
     public String setProductType(ProductType productType, String name, User lastEditor) {
-        productType.setName(name);
-        productType.setLastEditor(lastEditor);
-        return "The product type have been edited succesfully";
+        boolean render = validateProductType(name);
+        if (!render) {
+            productType.setName(name);
+            productType.setLastEditor(lastEditor);
+            return "The product type have been edited succesfully";
+        } else {
+            return "You can not update a Product Type with same name";
+        }
+
     }
 
     public String deleteProductType(int positionProductType, String name) {
@@ -1170,12 +1291,9 @@ public class Restaurant {
             productSize.add(newProductSize);
             msg = "The product size " + newProductSize.getName() + " have been added succesfully";
         } else {
-            boolean added = false;
-            for (int j = 0; j < productSize.size() && !added; j++) {
-                if (newProductSize.getName().equalsIgnoreCase(productSize.get(j).getName())) {
-                    msg = "You can not added an product size with the same name";
-                    added = true;
-                }
+            boolean added = validateProductSize(name);
+            if (added) {
+                msg = "You can not added an product size with the same name";
             }
             if (!added) {
                 productSize.add(newProductSize);
@@ -1185,10 +1303,26 @@ public class Restaurant {
         return msg;
     }
 
+    public boolean validateProductSize(String newName) {
+        boolean added = false;
+        for (int j = 0; j < productSize.size() && !added; j++) {
+            if (newName.equalsIgnoreCase(productSize.get(j).getName())) {
+
+                added = true;
+            }
+        }
+        return added;
+    }
+
     public String setProductSize(ProductSize productSize, String name, User lastEditor) {
-        productSize.setName(name);
-        productSize.setLastEditor(lastEditor);
-        return "The product size have been edited succesfully";
+        boolean render = validateProductSize(name);
+        if (!render) {
+            productSize.setName(name);
+            productSize.setLastEditor(lastEditor);
+            return "The product size have been edited succesfully";
+        } else {
+            return "You can not update a Product Size with same name";
+        }
     }
 
     public String deleteProductSize(int positionProductSize, String name) {
@@ -1261,6 +1395,88 @@ public class Restaurant {
         orders.add(newOrder);
         msg = "The order " + newOrder.getCode() + " have been added succesfully";
         return msg;
+    }
+
+    public String setOrderInfo(Order order, State newState, List<Product> newProducts, List<Integer> newAmount,
+            Costumer newCostumer, Employee newEmployee, String newDate, String newSuggestion, User newLastEditor,
+            double newTotalPrice, String newHour) {
+        String msg = "";
+        if (order.getState().equals(State.REQUESTED)) {
+            order.setState(newState);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
+                    newLastEditor, newTotalPrice, newHour);
+            msg = "The Orders have been edited succesfully";
+        } else if (order.getState().equals(State.IN_PROCCESS) && !newState.equals(State.REQUESTED)) {
+            order.setState(newState);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
+                    newLastEditor, newTotalPrice, newHour);
+            msg = "The Orders have been edited succesfully";
+        } else if (order.getState().equals(State.SENT) && !newState.equals(State.IN_PROCCESS)
+                && !newState.equals(State.REQUESTED)) {
+            order.setState(newState);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
+                    newLastEditor, newTotalPrice, newHour);
+            msg = "The Orders have been edited succesfully";
+        } else if (order.getState().equals(State.DELIVERED) && !newState.equals(State.IN_PROCCESS)
+                && !newState.equals(State.REQUESTED) && !newState.equals(State.SENT)) {
+            order.setState(newState);
+            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newDate, newSuggestion,
+                    newLastEditor, newTotalPrice, newHour);
+            msg = "The Orders have been edited succesfully";
+        } else {
+            msg = "You can not came back order status";
+        }
+        return msg;
+    }
+
+    public void setOrdersField(Order order, List<Product> newProducts, List<Integer> newAmount, Costumer newCostumer,
+            Employee newEmployee, String newDate, String newSuggestion, User newLastEditor, double newTotalPrice,
+            String newHour) {
+        order.setProducts(newProducts);
+        order.setAmount(newAmount);
+        order.setCostumer(newCostumer);
+        order.setEmployee(newEmployee);
+        order.setDate(newDate);
+        order.setHour(newHour);
+        order.setSuggestion(newSuggestion);
+        order.setTotalPrice(newTotalPrice);
+        order.setLastEditor(newLastEditor);
+    }
+
+    public String deleteOrder(int positionOrder) {
+        orders.remove(positionOrder);
+        setCodeOrderPosition();
+        return "The Order have been deleted succesfully";
+    }
+
+    public void setCodeOrderPosition() {
+        int code = 1;
+        for (Order o : orders) {
+            o.setCode(code);
+            code++;
+        }
+    }
+
+    public void importDataOrder(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            int code = Integer.parseInt(null);
+            line = br.readLine();
+            addProductSize(name, code, getLoggedUser(userIndex));
+        }
+        br.close();
+    }
+
+    public void exportDataOrder(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        for (int i = 0; i < getProductSize().size(); i++) {
+            ProductSize ps = getProductSize().get(i);
+            pw.println(ps.getName() + " ");
+        }
+        pw.close();
     }
 
     public int getCodeOrder() {

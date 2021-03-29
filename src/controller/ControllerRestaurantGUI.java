@@ -125,7 +125,7 @@ public class ControllerRestaurantGUI implements Initializable {
         restaurant.loadData();
         dashController.initDashoboard();
     }
-    
+
     // COSTUMERS
 
     public void showCostumers() throws IOException, ClassNotFoundException {
@@ -211,7 +211,7 @@ public class ControllerRestaurantGUI implements Initializable {
         ingredientController.initIngredientsTable();
     }
 
-    //ORDERS
+    // ORDERS
 
     public void showOrders() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listOrders.fxml"));
@@ -223,11 +223,12 @@ public class ControllerRestaurantGUI implements Initializable {
         orderController.initEmployeeOrder();
         orderController.initProductOrder();
         orderController.initCostumerOrder();
+        orderController.initOrderTable();
     }
 
-    //--------------------------------------------------------HOUR----------------------------------------
+    // --------------------------------------------------------HOUR----------------------------------------
 
-    public String getHour(){
+    public String getHour() {
         return lblHour.getText();
     }
 

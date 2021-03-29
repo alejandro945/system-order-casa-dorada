@@ -46,6 +46,9 @@ public class OrderController {
     private TableColumn<Order, Employee> colEmployeeOrders;
 
     @FXML
+    private TableColumn<Order, Double> colTotalOrder;
+
+    @FXML
     private TableColumn<Order, String> colSuggestionsOrder;
 
     @FXML
@@ -71,9 +74,6 @@ public class OrderController {
 
     @FXML
     private Button btnDelete;
-
-    @FXML
-    private CheckBox cbDisable;
 
     @FXML
     private TextField txtTime;
@@ -112,7 +112,10 @@ public class OrderController {
     private Costumer preCostumer;
     private int idxCostumer;
 
+    private Order preSelectOrder;
+    private int idxOrder;
     private Restaurant restaurant;
+
     private ControllerRestaurantGUI cGui;
 
     public OrderController(Restaurant restaurant, ControllerRestaurantGUI cGui) {
@@ -130,6 +133,22 @@ public class OrderController {
 
     public List<Product> getPreProduct() {
         return this.preProduct;
+    }
+
+    public Order getPreSelectOrder() {
+        return this.preSelectOrder;
+    }
+
+    public void setPreSelectOrder(Order preSelectOrder) {
+        this.preSelectOrder = preSelectOrder;
+    }
+
+    public int getIdxOrder() {
+        return this.idxOrder;
+    }
+
+    public void setIdxOrder(int idxOrder) {
+        this.idxOrder = idxOrder;
     }
 
     public void setPreProduct(List<Product> preProduct) {
@@ -234,7 +253,8 @@ public class OrderController {
 
     @FXML
     void createOrder(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
-        boolean validateFields = orderValidation(txtSuggestionsOrder.getText() , txtTotalToPay.getText(), txtAreaAmountProduct.getText());
+        boolean validateFields = orderValidation(txtSuggestionsOrder.getText(), txtTotalToPay.getText(),
+                txtAreaAmountProduct.getText());
         if (!validateFields) {
             Alert alert2 = new Alert(AlertType.WARNING);
             alert2.setTitle("Warning Dialog");
@@ -243,7 +263,10 @@ public class OrderController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addOrders(restaurant.getCodeOrder(), preState, preProduct, preAmount, preCostumer, preEmployee, cGui.date(), txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()), Double.parseDouble(txtTotalToPay.getText()), cGui.getHour());
+            String msg = restaurant.addOrders(restaurant.getCodeOrder(), preState, preProduct, preAmount, preCostumer,
+                    preEmployee, cGui.date(), txtSuggestionsOrder.getText(),
+                    restaurant.getLoggedUser(restaurant.getUserIndex()), Double.parseDouble(txtTotalToPay.getText()),
+                    cGui.getHour());
             alert.setContentText(msg);
             alert.showAndWait();
             restaurant.saveData();
@@ -255,18 +278,43 @@ public class OrderController {
 
     @FXML
     void selectedOrder(MouseEvent event) {
-
+        Order sltOrder = listOrders.getSelectionModel().getSelectedItem();
+        if (sltOrder != null) {
+            int idxProduct = listOrders.getSelectionModel().getSelectedIndex();
+            setIdxOrder(idxProduct);
+            setPreSelectOrder(sltOrder);
+            setForm(sltOrder);
+            btnCreate.setDisable(true);
+            btnDelete.setDisable(false);
+            btnUpdate.setDisable(false);
+            initBtnClear();
+        }
     }
 
     public boolean orderValidation(String suggestion, String totalPrice, String products) {
         boolean complete = true;
         if (comboBoxCostumers.getSelectionModel().getSelectedItem() == null
                 || comboBoxEmployeeOrders.getSelectionModel().getSelectedItem() == null
-                || comboBoxStateOrder.getSelectionModel().getSelectedItem() == null
-                || products.equals("") || totalPrice.equals("") || suggestion.equals("")) {
+                || comboBoxStateOrder.getSelectionModel().getSelectedItem() == null || products.equals("")
+                || totalPrice.equals("") || suggestion.equals("")) {
             complete = false;
         }
         return complete;
+    }
+
+    public void setForm(Order selectOrder) {
+        txtSuggestionsOrder.setText(selectOrder.getSuggestion());
+        txtAreaAmountProduct.setText(selectOrder.getInvoice());
+        txtTotalToPay.setText(String.valueOf(selectOrder.getTotalPrice()));
+        Costumer c = selectOrder.getCostumer();
+        txtAreaCostumerInfo.setText(
+                "Nombre: " + c.getName() + " Apellido: " + c.getLastName() + " ID: " + c.getId() + " Telephone: "
+                        + c.getTelephone() + " Address: " + c.getAddress() + " Suggestions: " + c.getSuggestions());
+        comboBoxCostumers.setValue(selectOrder.getCostumer());
+        comboBoxEmployeeOrders.setValue(selectOrder.getEmployee());
+        comboBoxStateOrder.setValue(selectOrder.getState());
+        preProduct = selectOrder.getProducts();
+        preAmount = selectOrder.getAmount();
     }
 
     public void trimOrderForm() {
@@ -279,7 +327,6 @@ public class OrderController {
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
         btnClean.setDisable(true);
-        cbDisable.setDisable(true);
         preProduct.clear();
         txtAreaAmountProduct.setText("");
         preAmount.clear();
@@ -289,8 +336,18 @@ public class OrderController {
     }
 
     @FXML
-    void updateOrder(ActionEvent event) {
-
+    void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.setOrderInfo(preSelectOrder, preState, preProduct, preAmount, preCostumer, preEmployee,
+                cGui.date(), txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()),
+                Double.parseDouble(txtTotalToPay.getText()), cGui.getHour());
+        alert.setContentText(msg);
+        alert.showAndWait();
+        restaurant.saveData();
+        restaurant.loadData();
+        trimOrderForm();
+        setPreSelectOrder(null);
+        initOrderTable();
     }
 
     @FXML
@@ -299,8 +356,15 @@ public class OrderController {
     }
 
     @FXML
-    void deleteOrder(ActionEvent event) {
-
+    void deleteOrder(ActionEvent event) throws IOException, ClassNotFoundException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        String msg = restaurant.deleteOrder(getIdxOrder());
+        alert.setContentText(msg);
+        trimOrderForm();
+        alert.showAndWait();
+        restaurant.saveData();
+        restaurant.loadData();
+        initOrderTable();
     }
 
     @FXML
@@ -310,11 +374,6 @@ public class OrderController {
 
     @FXML
     void importOrders(ActionEvent event) {
-
-    }
-
-    @FXML
-    void setStateOrder(ActionEvent event) {
 
     }
 
@@ -352,10 +411,10 @@ public class OrderController {
         colAmountOfProducts.setCellValueFactory(new PropertyValueFactory<Order, String>("nameAmount"));
         colCostumerNameOrders.setCellValueFactory(new PropertyValueFactory<Order, Costumer>("costumer"));
         colEmployeeOrders.setCellValueFactory(new PropertyValueFactory<Order, Employee>("employee"));
+        colTotalOrder.setCellValueFactory(new PropertyValueFactory<Order, Double>("totalPrice"));
         colSuggestionsOrder.setCellValueFactory(new PropertyValueFactory<Order, String>("suggestion"));
         colCreatorOrders.setCellValueFactory(new PropertyValueFactory<Order, User>("creator"));
         colLastEditorOrders.setCellValueFactory(new PropertyValueFactory<Order, User>("lastEditor"));
-       
     }
 
 }
