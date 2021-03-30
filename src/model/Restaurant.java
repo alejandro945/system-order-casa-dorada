@@ -161,7 +161,6 @@ public class Restaurant {
         return cos;
     }
 
-
     public List<Employee> getEnableEmployees() {
         List<Employee> e = new ArrayList<>();
         for (int i = 0; i < getEmployees(people).size(); i++) {
@@ -444,6 +443,110 @@ public class Restaurant {
         }
     }
 
+    // -----------------------------------------REPORTS--------------------------------------------------
+    public ArrayList<int[]> countOrdersForEmployee(List<Employee> e, List<Order> order) {
+        ArrayList<int[]> list = new ArrayList<>();
+        int[] array = new int[2];
+        int orderForEmployee = 0;
+        double totalPrice = 0;
+        for (int j = 0; j < e.size(); j++) {
+            for (int i = 0; i < order.size(); i++) {
+                if (order.get(i).getEmployee().getId() == e.get(j).getId()) {
+                    orderForEmployee++;
+                    totalPrice += order.get(i).getTotalPrice();
+                }
+            }
+            array[0] = orderForEmployee;
+            array[1] = (int) (totalPrice);
+            list.add(array);
+            array = new int[2];
+            orderForEmployee = 0;
+            totalPrice = 0;
+        }
+        return list;
+    }
+
+    public List<Employee> getUnitEmployees(List<Order> order) {
+        List<Employee> e = new ArrayList<>();
+        for (int i = 0; i < order.size(); i++) {
+            if (e.isEmpty()) {
+                e.add(order.get(0).getEmployee());
+            } else {
+                for (int j = 0; j < e.size(); j++) {
+                    if (e.get(j).getId() != order.get(i).getEmployee().getId()
+                            && !searchEmp(e, order.get(i).getEmployee().getId())) {
+                        e.add(order.get(i).getEmployee());
+                    }
+                }
+            }
+        }
+        return e;
+    }
+
+    public boolean searchEmp(List<Employee> e, int id) {
+        boolean render = false;
+        for (int i = 0; i < e.size(); i++) {
+            if (e.get(i).getId() == id) {
+                render = true;
+            }
+        }
+        return render;
+    }
+
+    public void exportEmployeeReport(String fileName, String separator, List<Order> o) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        List<Employee> em = getUnitEmployees(o);
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "# Orders" + separator + "Total");
+        ArrayList<int[]> a = countOrdersForEmployee(em, o);
+        for (int i = 0; i < em.size(); i++) {
+            Employee e = em.get(i);
+            pw.println(e.getName() + separator + e.getLastName() + separator + e.getId() + separator + a.get(i)[0]
+                    + separator + a.get(i)[1]);
+        }
+        pw.close();
+    }
+
+    public List<Product> getUnitProducts(List<Order> order) {
+        List<Product> p = new ArrayList<>();
+        // for (int i = 0; i < order.size(); i++) {
+        // if (p.isEmpty()) {
+        // p.add(order.get(0).getEmployee());
+        // } else {
+        // for (int j = 0; j < p.size(); j++) {
+        // if (p.get(j).getId() != order.get(i).getEmployee().getId()
+        // && !searchPro(p, order.get(i).getpr)) {
+        // p.add(order.get(i).getEmployee());
+        // }
+        // }
+        // }
+        // }
+        return p;
+    }
+
+    public boolean searchPro(List<Product> p, String name, String size) {
+        boolean render = false;
+        for (int i = 0; i < p.size(); i++) {
+            if (p.get(i).getName().equals(name) && p.get(i).getProductSize().getName().equals(size)) {
+                render = true;
+            }
+        }
+        return render;
+    }
+
+    public void exportProductReport(String fileName, String separator, List<Order> o) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        // List<Product> em = getUnitEmployees(o);
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "# Orders" + separator + "Total");
+        // ArrayList<int[]> a = countOrdersForEmployee(em, o);
+        // for (int i = 0; i < em.size(); i++) {
+        // Employee e = em.get(i);
+        // pw.println(e.getName() + separator + e.getLastName() + separator + e.getId()
+        // + separator + a.get(i)[0]
+        // + separator + a.get(i)[1]);
+        // }
+        pw.close();
+    }
+
     // -------------------------------------------------USERS--------------------------------------------------
     public String addPerson(String name, String lastName, int id, String userName, String password, String image,
             User creator) throws FileNotFoundException, IOException {
@@ -532,7 +635,8 @@ public class Restaurant {
 
     public void exportDataUsers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "User name" + separator + "Password" + separator + "Image");
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "User name" + separator
+                + "Password" + separator + "Image");
         for (int i = 0; i < getUsers(people).size(); i++) {
             User u = getUsers(people).get(i);
             if (u.getImage() != null) {
@@ -885,7 +989,7 @@ public class Restaurant {
                         msg = "The employee have a reference by a order or you can not delete you";
                         found = true;
                     }
-                } else{
+                } else {
                     msg = "You can not delete you";
                 }
             }
@@ -1192,10 +1296,12 @@ public class Restaurant {
 
     public void exportDataProduct(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Code" + separator + " Name" + separator + "Product type" + separator + "Product size" + separator + "Ingredients" + separator + "Price");
+        pw.println("Code" + separator + " Name" + separator + "Product type" + separator + "Product size" + separator
+                + "Ingredients" + separator + "Price");
         for (int i = 0; i < getProducts().size(); i++) {
             Product p = getProducts().get(i);
-            pw.println(p.getCode() + separator + p.getName() + separator + p.getProductType() + separator + p.getProductSize() + separator + p.getNameIngredients() + separator + p.getPrice());
+            pw.println(p.getCode() + separator + p.getName() + separator + p.getProductType() + separator
+                    + p.getProductSize() + separator + p.getNameIngredients() + separator + p.getPrice());
         }
         pw.close();
     }
@@ -1271,8 +1377,6 @@ public class Restaurant {
         }
         return cos;
     }
-
-
 
     // -----------------------------------------PRODUCT_TYPE----------------------------------------------
 
@@ -1575,10 +1679,14 @@ public class Restaurant {
 
     public void exportDataOrder(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Hour" + separator + "Date" + separator + "Code" + separator + "State" + separator + "Product" + separator  + "Amount " + separator + "Costumer" + separator + "Employee" + separator + "Suggestion" + "Total price");
+        pw.println("Hour" + separator + "Date" + separator + "Code" + separator + "State" + separator + "Product"
+                + separator + "Amount " + separator + "Costumer" + separator + "Employee" + separator + "Suggestion"
+                + "Total price");
         for (int i = 0; i < getOrders().size(); i++) {
             Order o = getOrders().get(i);
-            pw.println(o.getHour() + separator + o.getDate()+ separator +o.getCode() + separator + o.getState() + separator + o.getNameProducts() + separator + o.getNameAmount() + separator + o.getCostumer() + separator + o.getEmployee() + separator + o.getSuggestion() + separator + o.getTotalPrice());
+            pw.println(o.getHour() + separator + o.getDate() + separator + o.getCode() + separator + o.getState()
+                    + separator + o.getNameProducts() + separator + o.getNameAmount() + separator + o.getCostumer()
+                    + separator + o.getEmployee() + separator + o.getSuggestion() + separator + o.getTotalPrice());
         }
         pw.close();
     }

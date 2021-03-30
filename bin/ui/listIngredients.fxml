@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="listIngredients" onMouseClicked="#selectedIngredients" prefHeight="576.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+         <columns>
+            <TableColumn fx:id="colCodeIngredients" prefWidth="101.0" text="CODE" />
+            <TableColumn fx:id="colNameIngredients" minWidth="0.0" prefWidth="122.0" text="NAME" />
+            <TableColumn fx:id="colCreatorIngredients" prefWidth="174.0" text="CREATOR" />
+            <TableColumn fx:id="colEditorIngredients" prefWidth="156.0" text="EDITOR" />
+         </columns>
+      </TableView>
+      <Label layoutX="702.0" layoutY="254.0" text="Name:">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNameIngredients" layoutX="627.0" layoutY="302.0" prefHeight="31.0" prefWidth="213.0" />
+      <Label layoutX="635.0" layoutY="22.0" text="Ingredients Crud">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="670.0" layoutY="356.0" mnemonicParsing="false" onAction="#createIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/checkmark_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="589.0" layoutY="413.0" mnemonicParsing="false" onAction="#updateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/refresh_40px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="761.0" layoutY="413.0" mnemonicParsing="false" onAction="#deleteIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/cancel_40px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="673.0" layoutY="476.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <ImageView fitHeight="154.0" fitWidth="184.0" layoutX="642.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/img/img1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="575.0" layoutY="25.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/img/back_40px.png" />
+         </image>
+      </ImageView>
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="14.0" layoutY="597.0" mnemonicParsing="false" onAction="#importIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/add_list_40px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="165.0" layoutY="597.0" mnemonicParsing="false" onAction="#exportIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/purchase_order_40px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="414.0" layoutY="596.0" mnemonicParsing="false" onAction="#deselectIngredient" prefHeight="41.0" prefWidth="152.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/img/delete_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSort" alignment="CENTER" contentDisplay="RIGHT" layoutX="640.0" layoutY="564.0" mnemonicParsing="false" onAction="#sortIngredients" prefHeight="41.0" prefWidth="194.0" style="-fx-background-color: red;" text="Sort Ingredients" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="801.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/img/sort.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="separator" alignment="CENTER" layoutX="326.0" layoutY="616.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
+      <Label layoutX="321.0" layoutY="595.0" text="Export Separator">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

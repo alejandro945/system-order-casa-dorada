@@ -147,6 +147,7 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         restaurant.loadData();
         employeeController.initEmployeeTable();
+        employeeController.initReport();
     }
 
     // USERS
@@ -173,6 +174,7 @@ public class ControllerRestaurantGUI implements Initializable {
         productController.initComboSizesBox();
         productController.initComboTypesBox();
         productController.initProductTable();
+        productController.initReport();
     }
 
     // PRODUCT TYPE

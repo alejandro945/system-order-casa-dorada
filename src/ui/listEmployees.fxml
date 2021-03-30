@@ -145,8 +145,8 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateStart" layoutX="590.0" layoutY="486.0" prefHeight="25.0" prefWidth="127.0" showWeekNumbers="true" />
-      <DatePicker fx:id="dateEnd" layoutX="748.0" layoutY="486.0" prefHeight="25.0" prefWidth="142.0" />
+      <DatePicker fx:id="dateStart" layoutX="590.0" layoutY="486.0" onAction="#event" prefHeight="25.0" prefWidth="127.0" showWeekNumbers="true" />
+      <DatePicker fx:id="dateEnd" layoutX="748.0" layoutY="486.0" onAction="#event" prefHeight="25.0" prefWidth="142.0" />
       <Label layoutX="748.0" layoutY="461.0" prefHeight="25.0" prefWidth="127.0" text="End day">
          <font>
             <Font name="System Bold Italic" size="12.0" />
@@ -157,8 +157,8 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
-      <JFXTimePicker fx:id="startTime" defaultColor="#31008f" layoutX="595.0" layoutY="540.0" prefHeight="28.0" prefWidth="121.0" />
-      <JFXTimePicker fx:id="endTime" defaultColor="#00088f" layoutX="755.0" layoutY="540.0" prefHeight="28.0" prefWidth="127.0" />
+      <JFXTimePicker fx:id="startTime" defaultColor="#31008f" layoutX="595.0" layoutY="540.0" onAction="#event" prefHeight="28.0" prefWidth="121.0" />
+      <JFXTimePicker fx:id="endTime" defaultColor="#00088f" layoutX="755.0" layoutY="540.0" onAction="#event" prefHeight="28.0" prefWidth="127.0" />
       <Label layoutX="755.0" layoutY="519.0" prefHeight="25.0" prefWidth="127.0" text="End Time">
          <font>
             <Font name="System Bold Italic" size="12.0" />
