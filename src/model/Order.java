@@ -60,7 +60,8 @@ public class Order implements Serializable {
     public String getNameProducts() {
         String nameProducts = "";
         for (int i = 0; i < products.size(); i++) {
-            nameProducts += products.get(i).getName() + "-" + products.get(i).getProductSize().getName() + ",";
+            nameProducts += products.get(i).getBaseProduct().getName() + "-"
+                    + products.get(i).getProductSize().getName() + ",";
         }
         return nameProducts;
     }

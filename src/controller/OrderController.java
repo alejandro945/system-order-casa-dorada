@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -300,9 +303,9 @@ public class OrderController {
     @FXML
     void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.setOrderInfo(preSelectOrder, preState, preProduct, preAmount, preCostumer, preEmployee,
-                txtSuggestionsOrder.getText(), restaurant.getLoggedUser(restaurant.getUserIndex()),
-                Double.parseDouble(txtTotalToPay.getText()));
+        String msg = restaurant.setOrderInfo(preSelectOrder, cGui.date(), cGui.getHour(), preState, preProduct,
+                preAmount, preCostumer, preEmployee, txtSuggestionsOrder.getText(),
+                restaurant.getLoggedUser(restaurant.getUserIndex()), Double.parseDouble(txtTotalToPay.getText()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveData();
@@ -477,12 +480,105 @@ public class OrderController {
 
     @FXML
     void event(ActionEvent event) {
+        Object e = event.getSource();
+        if (e.equals(dateStart)) {
+            initbtnReportDate();
+        }
+        if (e.equals(dateEnd)) {
+            initbtnReportDate();
+        }
+        if (e.equals(startTime)) {
+            initbtnReportTime();
+        }
+        if (e.equals(endTime)) {
+            initbtnReportTime();
+        }
+    }
 
+    public void initbtnReportDate() {
+        if (dateStart.getValue() != null && dateEnd.getValue() != null) {
+            if (dateEnd.getValue()
+                    .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0
+                    || dateStart.getValue()
+                            .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0) {
+                btnGenerate.setDisable(true);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {
+                btnGenerate.setDisable(true);
+            } else {
+                btnGenerate.setDisable(false);
+            }
+        }
+    }
+
+    public void initbtnReportTime() {
+        if (dateStart.getValue() != null && dateEnd.getValue() != null && startTime.getValue() != null
+                && endTime.getValue() != null) {
+            if (dateEnd.getValue()
+                    .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) == 0
+                    && endTime.getValue().compareTo(LocalTime.parse(cGui.getHour())) > 0) {
+                btnGenerate.setDisable(true);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (startTime.getValue().compareTo(endTime.getValue()) > 0) {
+                btnGenerate.setDisable(true);
+            }
+        }
+    }
+
+    public void initReport() {
+        String date = cGui.date();
+        String hour = cGui.getHour();
+        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalTime localTime1 = LocalTime.parse("00:00:00");
+        LocalTime localTime2 = LocalTime.parse(hour);
+        dateStart.setValue(localDate);
+        dateEnd.setValue(localDate);
+        startTime.setValue(localTime1);
+        endTime.setValue(localTime2);
     }
 
     @FXML
-    void generateReport(ActionEvent event) {
+    void generateReport(ActionEvent event) throws FileNotFoundException {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
+        File selectedFile = fc.showSaveDialog(cGui.getPane());
+        if (selectedFile != null) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Report orders");
+            restaurant.exportOrdersReport(selectedFile.getAbsolutePath(), separator.getText(),
+                    getFilteredOrders(dateStart, dateEnd, startTime, endTime));
+            alert.setContentText("The Orders report was exported succesfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Report Orders");
+            alert.setContentText("The Orders report was NOT exported. An error occurred");
+            alert.showAndWait();
+        }
+    }
 
+    public List<Order> getFilteredOrders(DatePicker sd, DatePicker ed, JFXTimePicker st, JFXTimePicker et) {
+        List<Order> o = new ArrayList<>();
+        for (int i = 0; i < restaurant.getOrders().size(); i++) {
+            LocalDate localDate = LocalDate.parse(restaurant.getOrders().get(i).getDate(),
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalTime localTime = LocalTime.parse(restaurant.getOrders().get(i).getHour());
+            if (localDate.compareTo(sd.getValue()) >= 0 && localDate.compareTo(ed.getValue()) <= 0) {
+                if (localDate.compareTo(sd.getValue()) == 0 && localTime.compareTo(st.getValue()) >= 0) {
+                    o.add(restaurant.getOrders().get(i));
+                } else if (localDate.compareTo(ed.getValue()) == 0 && localTime.compareTo(et.getValue()) <= 0) {
+                    o.add(restaurant.getOrders().get(i));
+                } else if (localDate.compareTo(sd.getValue()) > 0 && localDate.compareTo(ed.getValue()) < 0) {
+                    o.add(restaurant.getOrders().get(i));
+                }
+            }
+        }
+        return o;
     }
 
     public void initOrderTable() throws IOException {

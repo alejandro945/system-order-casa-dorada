@@ -41,6 +41,7 @@ public class ControllerRestaurantGUI implements Initializable {
     private EmployeeController employeeController;
     private IngredientsController ingredientController;
     private ProductTypeController productTypeController;
+    private BaseProductController baseProductController;
     private ProductController productController;
     private ProductSizeController productSizeController;
     private OrderController orderController;
@@ -55,6 +56,7 @@ public class ControllerRestaurantGUI implements Initializable {
         ingredientController = new IngredientsController(restaurant, this);
         productTypeController = new ProductTypeController(restaurant, this);
         productController = new ProductController(restaurant, this);
+        baseProductController = new BaseProductController(restaurant, this);
         productSizeController = new ProductSizeController(restaurant, this);
         orderController = new OrderController(restaurant, this);
     }
@@ -166,6 +168,20 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         restaurant.loadData();
         employeeController.initEmployeeTable();
+
+    }
+
+    public void showEmployeesReport() throws IOException {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/employeesReport.fxml"));
+        fxmlloader.setController(employeeController);
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root);
+        window.setScene(scene);
+        window.initStyle(StageStyle.UNDECORATED);
+        window.show();
+        employeeController.getModal(window);
         employeeController.initReport();
     }
 
@@ -181,6 +197,18 @@ public class ControllerRestaurantGUI implements Initializable {
         userController.initUserTable();
     }
 
+    // ----------------------------------------------BASE-PRODUCT--------------------------------------------
+    public void showBaseProducts() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listBaseProduct.fxml"));
+        fxmlloader.setController(baseProductController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        baseProductController.initComboIngredientBox();
+        baseProductController.initComboTypesBox();
+        baseProductController.initBaseProductTable();
+    }
+
     // ----------------------------------------------PRODUCTS--------------------------------------------
 
     public void showProducts() throws IOException {
@@ -191,8 +219,21 @@ public class ControllerRestaurantGUI implements Initializable {
         mainPane.getChildren().setAll(root);
         productController.initComboIngredientBox();
         productController.initComboSizesBox();
-        productController.initComboTypesBox();
         productController.initProductTable();
+        productController.initReport();
+    }
+
+    public void showProductsReport() throws IOException {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/productsReport.fxml"));
+        fxmlloader.setController(productController);
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root);
+        window.setScene(scene);
+        window.initStyle(StageStyle.UNDECORATED);
+        window.show();
+        productController.getModal(window);
         productController.initReport();
     }
 
@@ -247,7 +288,7 @@ public class ControllerRestaurantGUI implements Initializable {
         orderController.initOrderTable();
     }
 
-    public void showOrdersResport() throws IOException {
+    public void showOrdersReport() throws IOException {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/ordersReport.fxml"));
@@ -258,6 +299,7 @@ public class ControllerRestaurantGUI implements Initializable {
         window.initStyle(StageStyle.UNDECORATED);
         window.show();
         orderController.getModal(window);
+        orderController.initReport();
     }
 
 }

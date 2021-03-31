@@ -20,6 +20,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.*;
 
 public class ProductController {
@@ -88,6 +90,9 @@ public class ProductController {
     private ComboBox<ProductSize> cbSize;
 
     @FXML
+    private ComboBox<BaseProduct> comboBaseProduct;
+
+    @FXML
     private DatePicker dateStart;
 
     @FXML
@@ -109,8 +114,8 @@ public class ProductController {
     private int idxProduct;
     private List<Ingredients> preListIngredients = new ArrayList<>();
     private ProductSize preProductSize;
-    private ProductType preProductType;
-
+    private BaseProduct preBaseProduct;
+    private Stage modal;
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
 
@@ -135,6 +140,10 @@ public class ProductController {
         this.idxProduct = idxProduct;
     }
 
+    public BaseProduct getPreBaseProduct() {
+        return this.preBaseProduct;
+    }
+
     @FXML
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
@@ -152,8 +161,8 @@ public class ProductController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addProduct(txtNameProducts.getText(), preProductType, preListIngredients,
-                    restaurant.getCodeProduct(), preProductSize, Double.parseDouble(txtPriceProducts.getText()),
+            String msg = restaurant.addProduct(preBaseProduct, restaurant.getCodeProduct(), preProductSize,
+                    Double.parseDouble(txtPriceProducts.getText()),
                     restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
             alert.showAndWait();
@@ -192,9 +201,8 @@ public class ProductController {
     @FXML
     public void updateProducts(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.setProductInfo(getPreSelectProduct(), txtNameProducts.getText(), cbTypes.getValue(),
-                preListIngredients, getIdxProduct(), cbSize.getValue(), Double.parseDouble(txtPriceProducts.getText()),
-                restaurant.getLoggedUser(restaurant.getUserIndex()));
+        String msg = restaurant.setProductInfo(getPreSelectProduct(), getPreBaseProduct(), cbSize.getValue(),
+                Double.parseDouble(txtPriceProducts.getText()), restaurant.getLoggedUser(restaurant.getUserIndex()));
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveData();
@@ -221,12 +229,12 @@ public class ProductController {
     }
 
     public void setForm(Product selectProduct) {
-        txtNameProducts.setText(selectProduct.getName());
+        txtNameProducts.setText(selectProduct.getBaseProduct().getName());
         txtPriceProducts.setText(String.valueOf(selectProduct.getPrice()));
         cbSize.setValue(selectProduct.getProductSize());
-        cbTypes.setValue(selectProduct.getProductType());
-        txtIngredients.setText(selectProduct.getNameIngredients());
-        preListIngredients = selectProduct.getIngredients();
+        cbTypes.setValue(selectProduct.getBaseProduct().getProductType());
+        txtIngredients.setText(selectProduct.getBaseProduct().getNameIngredients());
+        preListIngredients = selectProduct.getBaseProduct().getIngredients();
         cbDisable.setSelected(!selectProduct.getState());
     }
 
@@ -248,22 +256,36 @@ public class ProductController {
     }
 
     public void initbtnReportDate() {
-        if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
-            btnGenerate.setDisable(false);
-        } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {
-            btnGenerate.setDisable(true);
-        } else {
-            btnGenerate.setDisable(false);
+        if (dateStart.getValue() != null && dateEnd.getValue() != null) {
+            if (dateEnd.getValue()
+                    .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0
+                    || dateStart.getValue()
+                            .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0) {
+                btnGenerate.setDisable(true);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {
+                btnGenerate.setDisable(true);
+            } else {
+                btnGenerate.setDisable(false);
+            }
         }
     }
 
     public void initbtnReportTime() {
-        if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
-            btnGenerate.setDisable(false);
-        } else if (startTime.getValue().compareTo(endTime.getValue()) > 0) {
-            btnGenerate.setDisable(true);
-        } else {
-            btnGenerate.setDisable(false);
+        if (dateStart.getValue() != null && dateEnd.getValue() != null && startTime.getValue() != null
+                && endTime.getValue() != null) {
+            if (dateEnd.getValue()
+                    .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) == 0
+                    && endTime.getValue().compareTo(LocalTime.parse(cGui.getHour())) > 0) {
+                btnGenerate.setDisable(true);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (startTime.getValue().compareTo(endTime.getValue()) > 0) {
+                btnGenerate.setDisable(true);
+            }
         }
     }
 
@@ -339,8 +361,8 @@ public class ProductController {
     @FXML
     public void deleteProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteProduct(getIdxProduct(), preSelectProduct.getName(),
-                String.valueOf(preSelectProduct.getProductType()));
+        String msg = restaurant.deleteProduct(getIdxProduct(), preSelectProduct.getBaseProduct().getName(),
+                String.valueOf(preSelectProduct.getBaseProduct().getProductType()));
         alert.setContentText(msg);
         alert.showAndWait();
         if (msg.equals("The product have been deleted succesfully")) {
@@ -415,9 +437,6 @@ public class ProductController {
         if (e.equals(cbSize)) {
             preProductSize = cbSize.getSelectionModel().getSelectedItem();
         }
-        if (e.equals(cbTypes)) {
-            preProductType = cbTypes.getSelectionModel().getSelectedItem();
-        }
     }
 
     @FXML
@@ -435,10 +454,6 @@ public class ProductController {
         cbSize.getItems().addAll(restaurant.getEnableProductSizes());
     }
 
-    public void initComboTypesBox() {
-        cbTypes.getItems().addAll(restaurant.getEnableProductTypes());
-    }
-
     @FXML
     void sortByPrice(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -448,6 +463,15 @@ public class ProductController {
         restaurant.sortProductByPrice();
         restaurant.saveData();
         initProductTable();
+    }
+
+    public void getModal(Window mod) {
+        modal = (Stage) mod.getScene().getWindow();
+    }
+
+    @FXML
+    void closeModal(MouseEvent event) {
+        modal.close();
     }
 
     public void initProductTable() throws IOException {

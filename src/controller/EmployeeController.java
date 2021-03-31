@@ -17,6 +17,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.*;
 
 public class EmployeeController {
@@ -80,7 +82,7 @@ public class EmployeeController {
 
     private Employee preSelectEmployee;
     private int idxEmployee;
-
+    private Stage modal;
     private Restaurant restaurant;
     private ControllerRestaurantGUI cGui;
 
@@ -283,44 +285,52 @@ public class EmployeeController {
     }
 
     @FXML
-    void event(ActionEvent event) {
+    void eventReport(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(dateStart)) {
             initbtnReportDate();
-        }
-        if (e.equals(dateEnd)) {
+        } else if (e.equals(dateEnd)) {
             initbtnReportDate();
-        }
-        if (e.equals(startTime)) {
+        } else if (e.equals(startTime)) {
             initbtnReportTime();
-        }
-        if (e.equals(endTime)) {
+        } else if (e.equals(endTime)) {
             initbtnReportTime();
         }
     }
 
     public void initbtnReportDate() {
-        if (dateEnd.getValue().compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0) {
-            btnGenerate.setDisable(true);
-        } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
-            btnGenerate.setDisable(false);
-        } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {
-            btnGenerate.setDisable(true);
-        } else {
-            btnGenerate.setDisable(false);
+        if (dateStart.getValue() != null && dateEnd.getValue() != null) {
+            if (dateEnd.getValue()
+                    .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0
+                    || dateStart.getValue()
+                            .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0) {
+                btnGenerate.setDisable(true);
+            } else if (dateStart.getValue() == null || dateEnd.getValue() == null) {
+                System.out.println("d");
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {
+                btnGenerate.setDisable(true);
+            } else {
+                btnGenerate.setDisable(false);
+            }
         }
     }
 
     public void initbtnReportTime() {
-        if (dateEnd.getValue().compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) == 0
-                && endTime.getValue().compareTo(LocalTime.parse(cGui.getHour())) > 0) {
-            btnGenerate.setDisable(true);
-        } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
-            btnGenerate.setDisable(false);
-        } else if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
-            btnGenerate.setDisable(false);
-        } else if (startTime.getValue().compareTo(endTime.getValue()) > 0) {
-            btnGenerate.setDisable(true);
+        if (dateStart.getValue() != null && dateEnd.getValue() != null && startTime.getValue() != null
+                && endTime.getValue() != null) {
+            if (dateEnd.getValue()
+                    .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) == 0
+                    && endTime.getValue().compareTo(LocalTime.parse(cGui.getHour())) > 0) {
+                btnGenerate.setDisable(true);
+            } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
+                btnGenerate.setDisable(false);
+            } else if (startTime.getValue().compareTo(endTime.getValue()) > 0) {
+                btnGenerate.setDisable(true);
+            }
         }
     }
 
@@ -334,6 +344,15 @@ public class EmployeeController {
         dateEnd.setValue(localDate);
         startTime.setValue(localTime1);
         endTime.setValue(localTime2);
+    }
+
+    public void getModal(Window mod) {
+        modal = (Stage) mod.getScene().getWindow();
+    }
+
+    @FXML
+    void closeModal(MouseEvent event) {
+        modal.close();
     }
 
     @FXML

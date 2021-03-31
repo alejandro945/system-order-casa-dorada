@@ -1,0 +1,10 @@
+CASA DORADA ORDER REPORT
+Code;Hour;Date;State;Costumer;Employee;Suggestion;Total price
+1;17:54:03;28/03/2021;IN_PROCCESS;Rosene;Luis;ninguna;1600.0;Arroz-Grande;2;800.0
+2;22:20:10;28/03/2021;REQUESTED;Petronella;Luis;ninguna;80000.0;Arroz Mediterraneo-Caja Personal;3;10000.0;Arroz Mediterraneo-Caja Personal;5;10000.0
+3;05:19:41;29/03/2021;SENT;Olivier;Alejandro;nin;10000.0;Arroz Mediterraneo-Caja Personal;1;10000.0
+4;05:41:23;29/03/2021;REQUESTED;Happy;Alejandro;nin;60000.0;Arroz Mediterraneo-Grande;1;20000.0;Arroz Mediterraneo-Grande;2;20000.0
+7;15:07:18;30/03/2021;DELIVERED;Happy;Rosaline;nin;22000.0;Arroz Vegetariano-Caja Personal;1;6000.0;Arroz Colombiano-Caja Personal;2;8000.0
+5;12:57:10;31/03/2021;DELIVERED;Omar;Sonny;Ninguna;12000.0;Arroz Vegetariano-Caja Personal;2;6000.0
+6;16:28:37;31/03/2021;CANCELED;Omar;Jannel;ninguna;14000.0;Arroz Valluno-Caja Personal;2;7000.0
+;;;;;;Grand Total;199600

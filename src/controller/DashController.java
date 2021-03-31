@@ -80,6 +80,11 @@ public class DashController implements Initializable {
     }
 
     @FXML
+    void showEmployeesReport(ActionEvent event) throws IOException {
+        cGui.showEmployeesReport();
+    }
+
+    @FXML
     void showIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showIngredients();
     }
@@ -90,8 +95,13 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showBaseProduct(ActionEvent event) {
+    void showProductsReport(ActionEvent event) throws IOException {
+        cGui.showProductsReport();
+    }
 
+    @FXML
+    void showBaseProduct(ActionEvent event) throws IOException {
+        cGui.showBaseProducts();
     }
 
     @FXML
@@ -111,7 +121,7 @@ public class DashController implements Initializable {
 
     @FXML
     void showOrdersReport(ActionEvent event) throws IOException {
-        cGui.showOrdersResport();
+        cGui.showOrdersReport();
     }
 
     @FXML

@@ -1,68 +1,37 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Product implements Serializable, Comparable<Product> {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    private String name;
-    private ProductType productType;
+    private BaseProduct baseProduct;
     private ProductSize productSize;
-    private List<Ingredients> ingredients;
     private int code;
     private double price;
     private User creator;
     private User lastEditor;
     private boolean state;
 
-    public Product(String name, ProductType productType, List<Ingredients> ingredient, int code,
-            ProductSize productSize, double price, User creator) {
-        this.ingredients = new ArrayList<>();
-        this.name = name;
-        this.productType = productType;
-        this.ingredients = ingredient;
+    public Product(BaseProduct baseProduct, int code, ProductSize productSize, double price, User creator) {
+        this.baseProduct = baseProduct;
         this.code = code;
         this.productSize = productSize;
         this.price = price;
         this.creator = creator;
         this.lastEditor = creator;
         this.state = true;
+
     }
 
-    public String getName() {
-        return this.name;
+    public BaseProduct getBaseProduct() {
+        return this.baseProduct;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ProductType getProductType() {
-        return this.productType;
-    }
-
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
-    }
-
-    public List<Ingredients> getIngredients() {
-        return this.ingredients;
-    }
-
-    public void setIngredients(List<Ingredients> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public String getNameIngredients() {
-        String nameIngredients = "";
-        for (int i = 0; i < ingredients.size(); i++) {
-            nameIngredients += ingredients.get(i).getName() + ",";
-        }
-        return nameIngredients;
+    public void setBaseProduct(BaseProduct baseProduct) {
+        this.baseProduct = baseProduct;
     }
 
     public int getCode() {
@@ -130,7 +99,7 @@ public class Product implements Serializable, Comparable<Product> {
 
     @Override
     public String toString() {
-        return getName() + " " + getProductSize();
+        return getBaseProduct().getName() + " " + getProductSize();
     }
 
 }

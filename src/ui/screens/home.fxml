@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="923.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="923.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane layoutX="255.0" layoutY="196.0" prefHeight="451.0" prefWidth="669.0" style="-fx-background-color: #fff; -fx-border-radius: 7;">
          <content>
@@ -104,7 +104,7 @@
       </Pane>
       <ScrollPane layoutX="-1.0" layoutY="197.0" prefHeight="451.0" prefWidth="256.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="515.0" prefWidth="246.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="246.0">
                <children>
                   <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="510.0" prefWidth="256.0" style="-fx-background-color: white;">
                      <children>
@@ -231,11 +231,40 @@
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" graphicTextGap="10.0" layoutX="11.0" layoutY="392.0" mnemonicParsing="false" onAction="#showOrdersReport" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@../assets/styles/styles.css" text="Orders Report">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="158.0" prefHeight="38.0" prefWidth="282.0" text="Reports" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" onAction="#showOrdersReport" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@../assets/styles/styles.css" text="Orders Report">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/img/today_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="CENTER" graphicTextGap="10.0" layoutX="11.0" layoutY="472.0" mnemonicParsing="false" onAction="#showEmployeesReport" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@../assets/styles/styles.css" text="Employees Report">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/img/deliver_food_40px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="CENTER" graphicTextGap="10.0" layoutX="11.0" layoutY="509.0" mnemonicParsing="false" onAction="#showProductsReport" prefHeight="31.0" prefWidth="254.0" styleClass="button3" stylesheets="@../assets/styles/styles.css" text="Products Report">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/img/time_machine_80px.png" />
                                  </image>
                               </ImageView>
                            </graphic>

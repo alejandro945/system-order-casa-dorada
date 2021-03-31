@@ -12,13 +12,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="364.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="112.0" layoutY="14.0" text="Orders Report">
+      <Label layoutX="87.0" layoutY="19.0" text="Employees Report">
          <font>
             <Font name="System Bold Italic" size="21.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateStart" layoutX="28.0" layoutY="98.0" onAction="#event" prefHeight="25.0" prefWidth="127.0" showWeekNumbers="true" />
-      <DatePicker fx:id="dateEnd" layoutX="186.0" layoutY="98.0" onAction="#event" prefHeight="25.0" prefWidth="142.0" />
+      <DatePicker fx:id="dateStart" layoutX="28.0" layoutY="98.0" onAction="#eventReport" prefHeight="25.0" prefWidth="127.0" showWeekNumbers="true" />
+      <DatePicker fx:id="dateEnd" layoutX="186.0" layoutY="98.0" onAction="#eventReport" prefHeight="25.0" prefWidth="142.0" />
       <Label layoutX="187.0" layoutY="64.0" prefHeight="25.0" prefWidth="127.0" text="End day">
          <font>
             <Font name="System Bold Italic" size="15.0" />
@@ -29,8 +29,8 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <JFXTimePicker fx:id="startTime" defaultColor="#31008f" layoutX="30.0" layoutY="158.0" onAction="#event" prefHeight="28.0" prefWidth="121.0" />
-      <JFXTimePicker fx:id="endTime" defaultColor="#00088f" layoutX="188.0" layoutY="158.0" onAction="#event" prefHeight="28.0" prefWidth="148.0" />
+      <JFXTimePicker fx:id="startTime" defaultColor="#31008f" layoutX="30.0" layoutY="158.0" onAction="#eventReport" prefHeight="28.0" prefWidth="121.0" />
+      <JFXTimePicker fx:id="endTime" defaultColor="#00088f" layoutX="188.0" layoutY="158.0" onAction="#eventReport" prefHeight="28.0" prefWidth="148.0" />
       <Label layoutX="190.0" layoutY="137.0" prefHeight="25.0" prefWidth="127.0" text="End Time">
          <font>
             <Font name="System Bold Italic" size="15.0" />
@@ -41,7 +41,7 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnGenerate" alignment="CENTER" contentDisplay="RIGHT" layoutX="24.0" layoutY="266.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
+      <Button fx:id="btnGenerate" alignment="CENTER" contentDisplay="RIGHT" layoutX="24.0" layoutY="282.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -53,9 +53,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="137.0" fitWidth="136.0" layoutX="186.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="148.0" layoutX="186.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/img/who-edu-min.png" />
+            <Image url="@../assets/img/BA104%20¿Cómo%20elegir%20una%20plantilla_.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="294.0" layoutY="14.0" onMouseClicked="#closeModal" pickOnBounds="true" preserveRatio="true">
@@ -63,8 +63,8 @@
             <Image url="@../assets/img/delete_96px.png" />
          </image>
       </ImageView>
-      <TextField fx:id="separator" alignment="CENTER" layoutX="55.0" layoutY="228.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
-      <Label layoutX="64.0" layoutY="205.0" text="Separator">
+      <TextField fx:id="separator" alignment="CENTER" layoutX="56.0" layoutY="239.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
+      <Label layoutX="65.0" layoutY="216.0" text="Separator">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>

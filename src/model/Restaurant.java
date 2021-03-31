@@ -1,7 +1,11 @@
 package model;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +19,7 @@ public class Restaurant {
     private List<Person> people;
     private List<ProductType> productType;
     private List<ProductSize> productSize;
+    private List<BaseProduct> baseProducts;
     private int userIndex;
     public static final String FILE_SEPARATOR = ",";
     public static final String SAVE_PATH_FILE_DATA = "data/CasaDorada.report";
@@ -27,6 +32,7 @@ public class Restaurant {
         people = new ArrayList<Person>();
         productType = new ArrayList<ProductType>();
         productSize = new ArrayList<ProductSize>();
+        baseProducts = new ArrayList<BaseProduct>();
     }
 
     // -------------------------------------------SOME-MINIMUM-METHODS:PEOPLE-----------------------------------------------
@@ -172,6 +178,14 @@ public class Restaurant {
         return count;
     }
 
+    public int getNumberBaseProduct() {
+        int count = 0;
+        for (int i = 0; i < baseProducts.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
     // -----------------------------------------------SEARCHING-ALGORITHMS--------------------------------------------
     public boolean searchUserByName(Employee e) {
         boolean render = false;
@@ -222,7 +236,6 @@ public class Restaurant {
     }
 
     public Costumer searchBinary(int id, List<Costumer> cost) {
-        System.out.println(cost);
         boolean found = false;
         Costumer cos = null;
         int i = 0;
@@ -246,8 +259,8 @@ public class Restaurant {
         boolean render = false;
         for (int i = 0; i < products.size() && !render; i++) {
             Product p = products.get(i);
-            for (int j = 0; j < p.getIngredients().size(); j++) {
-                if (p.getIngredients().get(j).getName().equalsIgnoreCase(name)) {
+            for (int j = 0; j < p.getBaseProduct().getIngredients().size(); j++) {
+                if (p.getBaseProduct().getIngredients().get(j).getName().equalsIgnoreCase(name)) {
                     render = true;
                 }
             }
@@ -288,7 +301,7 @@ public class Restaurant {
         boolean render = false;
         for (int i = 0; i < products.size() && !render; i++) {
             Product p = products.get(i);
-            if (p.getProductType().getName().equalsIgnoreCase(name)) {
+            if (p.getBaseProduct().getProductType().getName().equalsIgnoreCase(name)) {
                 render = true;
             }
         }
@@ -358,7 +371,7 @@ public class Restaurant {
         boolean found = false;
         if (!products.isEmpty() && pro != null) {
             for (int i = 0; i < products.size() && !found; i++) {
-                if (products.get(i).getName().equals(pro.getName())
+                if (products.get(i).getBaseProduct().getName().equals(pro.getBaseProduct().getName())
                         && products.get(i).getProductSize().equals(pro.getProductSize())) {
                     productIndex = i;
                     found = true;
@@ -368,7 +381,44 @@ public class Restaurant {
         return searchProductByIndex(productIndex);
     }
 
+    public boolean searchBaseProduct(String name) {
+        boolean render = false;
+        for (int i = 0; i < products.size() && !render; i++) {
+            Product p = products.get(i);
+            if (p.getBaseProduct().getName().equalsIgnoreCase(name)) {
+                render = true;
+            }
+        }
+        return render;
+    }
+
     // --------------------------------------------SORT-ALGORITHMS--------------------------------------
+    public List<Order> bubble(List<Order> ord) {
+        List<Order> orderSorted = ord;
+        int i, j;
+        Order o;
+        for (i = 0; i < ord.size() - 1; i++) {
+            for (j = 0; j < ord.size() - i - 1; j++) {
+                LocalDate localDate1 = LocalDate.parse(ord.get(j).getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                LocalDate localDate2 = LocalDate.parse(ord.get(j + 1).getDate(),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                LocalTime localTime1 = LocalTime.parse(ord.get(j).getHour());
+                LocalTime localTime2 = LocalTime.parse(ord.get(j + 1).getHour());
+                if (localDate2.compareTo(localDate1) < 0) {
+                    o = ord.get(j + 1);
+                    orderSorted.set(j + 1, ord.get(j));
+                    orderSorted.set(j, o);
+                } else if (localDate2.compareTo(localDate1) == 0 && localTime2.compareTo(localTime1) < 0) {
+                    o = ord.get(j + 1);
+                    orderSorted.set(j + 1, ord.get(j));
+                    orderSorted.set(j, o);
+                }
+            }
+        }
+        System.out.println(Arrays.toString(orderSorted.toArray()));
+        return orderSorted;
+    }
+
     public List<Costumer> sortCostumerById() {
         List<Costumer> cost = new ArrayList<>();
         for (int j = 0; j < getCostumers(people).size(); j++) {
@@ -462,6 +512,17 @@ public class Restaurant {
         }
         return ps;
     }
+
+    public List<BaseProduct> getEnableBaseProduct() {
+        List<BaseProduct> bp = new ArrayList<>();
+        for (BaseProduct baseP : baseProducts) {
+            if (baseP.getState() == true) {
+                bp.add(baseP);
+            }
+        }
+        return bp;
+    }
+
     // ----------------------------------------------------SOME-MINIMUM-METHODS:ORDERS--------------------------------------------------
 
     public List<Order> getOrders() {
@@ -509,6 +570,15 @@ public class Restaurant {
 
     public void setProductSize(List<ProductSize> productSize) {
         this.productSize = productSize;
+    }
+    // ---------------------------------------SOME-MINIMUM-METHODS:BASE_PRODUCTS----------------------------------------
+
+    public List<BaseProduct> getBaseProducts() {
+        return this.baseProducts;
+    }
+
+    public void setBaseProducts(List<BaseProduct> baseProducts) {
+        this.baseProducts = baseProducts;
     }
 
     // ---------------------------------------------PERSISTENCE------------------------------------------------
@@ -616,6 +686,35 @@ public class Restaurant {
         pw.close();
     }
 
+    // --------------------------------------------------ORDERS-REPORT-----------------------------------------------------
+    public void exportOrdersReport(String fileName, String separator, List<Order> ord) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        int granTotal = 0;
+        List<Order> order = bubble(ord);
+        pw.println("CASA DORADA ORDER REPORT");
+        pw.println("Code" + separator + "Hour" + separator + "Date" + separator + "State" + separator + "Costumer"
+                + separator + "Employee" + separator + "Suggestion" + separator + "Total price");
+        for (int i = 0; i < order.size(); i++) {
+            Order o = order.get(i);
+            String orderInfo = (o.getCode() + separator + o.getHour() + separator + o.getDate() + separator
+                    + o.getState() + separator + o.getCostumer() + separator + o.getEmployee() + separator
+                    + o.getSuggestion() + separator + o.getTotalPrice());
+            String orderProducts = "";
+            String space = "";
+            for (int j = 0; j < o.getProducts().size(); j++) {
+                orderProducts += (space + o.getProducts().get(j).getBaseProduct().getName() + "-"
+                        + o.getProducts().get(j).getProductSize() + separator + o.getAmount().get(j) + separator
+                        + o.getProducts().get(j).getPrice());
+                space = separator;
+            }
+            pw.println(orderInfo + separator + orderProducts);
+            granTotal += o.getTotalPrice();
+        }
+        pw.println(separator + separator + separator + separator + separator + separator + "Grand Total" + separator
+                + String.valueOf(granTotal));
+        pw.close();
+    }
+
     // ---------------------------------------------PRODUCTS-REPORT--------------------------------------------------------
     public List<Product> getUnitProducts(List<Order> order) {
         List<Product> p = new ArrayList<>();
@@ -637,7 +736,7 @@ public class Restaurant {
     public boolean searchPro(List<Product> p, String name, String size) {
         boolean render = false;
         for (int i = 0; i < p.size(); i++) {
-            if (p.get(i).getName().equals(name) && p.get(i).getProductSize().getName().equals(size)) {
+            if (p.get(i).getBaseProduct().getName().equals(name) && p.get(i).getProductSize().getName().equals(size)) {
                 render = true;
             }
         }
@@ -1233,17 +1332,16 @@ public class Restaurant {
 
     // ---------------------------------------------------------PRODUCTS-----------------------------------------------
 
-    public String addProduct(String name, ProductType productType, List<Ingredients> ingredient, int code,
-            ProductSize productSize, double price, User creator) {
+    public String addProduct(BaseProduct baseproduct, int code, ProductSize productSize, double price, User creator) {
         String msg = "";
-        Product newProduct = new Product(name, productType, ingredient, code, productSize, price, creator);
+        Product newProduct = new Product(baseproduct, code, productSize, price, creator);
         if (products.isEmpty()) {
             products.add(newProduct);
-            msg = "The product " + newProduct.getName() + " have been added succesfully";
+            msg = "The product " + newProduct.getBaseProduct().getName() + " have been added succesfully";
         } else {
             boolean added = false;
             for (int j = 0; j < products.size() && !added; j++) {
-                if (newProduct.getName().equalsIgnoreCase(products.get(j).getName())
+                if (newProduct.getBaseProduct().getName().equalsIgnoreCase(products.get(j).getBaseProduct().getName())
                         && newProduct.getProductSize().getName().equals(products.get(j).getProductSize().getName())) {
                     msg = "You can not added an product, because alredy exists";
                     added = true;
@@ -1251,7 +1349,7 @@ public class Restaurant {
             }
             if (!added) {
                 products.add(newProduct);
-                msg = "The product " + newProduct.getName() + " have been added succesfully";
+                msg = "The product " + newProduct.getBaseProduct().getName() + " have been added succesfully";
             }
         }
         return msg;
@@ -1260,7 +1358,7 @@ public class Restaurant {
     public boolean validateProduct(String newName, String newSize) {
         boolean added = false;
         for (int j = 0; j < products.size() && !added; j++) {
-            if (newName.equalsIgnoreCase(products.get(j).getName())
+            if (newName.equalsIgnoreCase(products.get(j).getBaseProduct().getName())
                     && newSize.equals(products.get(j).getProductSize().getName())) {
                 added = true;
             }
@@ -1268,15 +1366,12 @@ public class Restaurant {
         return added;
     }
 
-    public String setProductInfo(Product product, String newName, ProductType newProductType,
-            List<Ingredients> newIngredients, int newCode, ProductSize newProductSize, double newPrice,
-            User lastEditor) {
-        boolean render = validateProduct(newName, newProductType.getName());
+    public String setProductInfo(Product product, BaseProduct newBaseproduct, ProductSize newProductSize,
+            double newPrice, User lastEditor) {
+        boolean render = validateProduct(newBaseproduct.getName(), newProductSize.getName());
         if (!render) {
-            product.setName(newName);
-            product.setProductType(newProductType);
+            product.setBaseProduct(newBaseproduct);
             product.setProductSize(newProductSize);
-            product.setIngredients(newIngredients);
             product.setPrice(newPrice);
             product.setLastEditor(lastEditor);
             return "The Product have been edited succesfully";
@@ -1328,9 +1423,9 @@ public class Restaurant {
         for (int i = 0; i < getProducts().size(); i++) {
             Product p = getProducts().get(i);
             String statusP = (p.getState() == true) ? "ACTIVE" : "INACTIVE";
-            pw.println(p.getCode() + separator + p.getName() + separator + p.getProductType() + separator
-                    + p.getProductSize() + separator + p.getNameIngredients() + separator + statusP + separator
-                    + p.getPrice());
+            pw.println(p.getCode() + separator + p.getBaseProduct().getName() + separator
+                    + p.getBaseProduct().getProductType() + separator + p.getProductSize() + separator
+                    + p.getBaseProduct().getNameIngredients() + separator + statusP + separator + p.getPrice());
         }
         pw.close();
     }
@@ -1458,6 +1553,119 @@ public class Restaurant {
         return count + 1;
     }
 
+    // ---------------------------------------BASE-PRODUCT----------------------------------------------------
+    public String addBaseProduct(String name, ProductType productType, List<Ingredients> ingredients, int code,
+            User creator) {
+        String msg = "";
+        BaseProduct newBaseProduct = new BaseProduct(name, productType, ingredients, code, creator);
+        System.out.println(Arrays.toString(ingredients.toArray()));
+        if (baseProducts.isEmpty()) {
+            baseProducts.add(newBaseProduct);
+            msg = "The base product " + newBaseProduct.getName() + " have been added succesfully";
+        } else {
+            boolean added = false;
+            for (int j = 0; j < baseProducts.size() && !added; j++) {
+                if (newBaseProduct.getName().equalsIgnoreCase(baseProducts.get(j).getName()) && newBaseProduct
+                        .getProductType().getName().equals(baseProducts.get(j).getProductType().getName())) {
+                    msg = "You can not added an base product, because alredy exists";
+                    added = true;
+                }
+            }
+            if (!added) {
+                baseProducts.add(newBaseProduct);
+                msg = "The base product " + newBaseProduct.getName() + " have been added succesfully";
+            }
+        }
+        return msg;
+    }
+
+    public boolean validateBaseProduct(String newName) {
+        boolean added = false;
+        for (int j = 0; j < baseProducts.size() && !added; j++) {
+            if (newName.equalsIgnoreCase(baseProducts.get(j).getName())) {
+                added = true;
+            }
+        }
+        return added;
+    }
+
+    public String setBaseProductInfo(BaseProduct baseProduct, String newName, ProductType newProductType,
+            List<Ingredients> newIngredients, int newCode, User lastEditor) {
+        boolean render = validateBaseProduct(newName);
+        if (!render) {
+            baseProduct.setName(newName);
+            baseProduct.setProductType(newProductType);
+            baseProduct.setIngredients(newIngredients);
+            baseProduct.setLastEditor(lastEditor);
+            return "The base product have been edited succesfully";
+        } else {
+            return "You can not update a base product with same name";
+        }
+    }
+
+    public String deleteBaseProduct(int positionBaseProduct, String name) {
+        boolean redux = searchBaseProduct(name);
+        if (redux == false) {
+            baseProducts.remove(positionBaseProduct);
+            setCodeBaseProductPosition();
+            return "The product have been deleted succesfully";
+        } else {
+            return "The base product have a reference by a product";
+        }
+    }
+
+    public String disableBaseProduct(BaseProduct bp) {
+        bp.setState(false);
+        return "The product have been disabled succesfully";
+    }
+
+    public String enableBaseProduct(BaseProduct bp) {
+        bp.setState(true);
+        return "The product have been enabled succesfully";
+    }
+
+    public void importDataBaseProduct(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            int code = Integer.parseInt(null);
+            line = br.readLine();
+            addProductSize(name, code, getLoggedUser(userIndex));
+        }
+        br.close();
+    }
+
+    public void exportDataBaseProduct(String fileName, String separator) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("CASA DORADA PRODUCTS REPORT");
+        pw.println("Code" + separator + " Name" + separator + "Product type" + separator + "Ingredients" + separator
+                + "State");
+        for (int i = 0; i < getBaseProducts().size(); i++) {
+            BaseProduct bp = getBaseProducts().get(i);
+            String statusP = (bp.getState() == true) ? "ACTIVE" : "INACTIVE";
+            pw.println(bp.getCode() + separator + bp.getName() + separator + bp.getProductType() + separator + separator
+                    + bp.getNameIngredients() + separator + statusP);
+        }
+        pw.close();
+    }
+
+    public int getCodeBaseProduct() {
+        int count = 0;
+        for (int i = 0; i < baseProducts.size(); i++) {
+            count++;
+        }
+        return count + 1;
+    }
+
+    public void setCodeBaseProductPosition() {
+        int code = 1;
+        for (BaseProduct bp : baseProducts) {
+            bp.setCode(code);
+            code++;
+        }
+    }
     // -----------------------------------------PRODUCT_SIZE----------------------------------------------
 
     public String addProductSize(String name, int code, User creator) {
@@ -1573,37 +1781,37 @@ public class Restaurant {
         return msg;
     }
 
-    public String setOrderInfo(Order order, State newState, List<Product> newProducts, List<Integer> newAmount,
-            Costumer newCostumer, Employee newEmployee, String newSuggestion, User newLastEditor,
-            double newTotalPrice) {
+    public String setOrderInfo(Order order, String date, String hour, State newState, List<Product> newProducts,
+            List<Integer> newAmount, Costumer newCostumer, Employee newEmployee, String newSuggestion,
+            User newLastEditor, double newTotalPrice) {
         String msg = "";
-        if (order.getState().equals(State.CANCELED)) {
+        if (order.getState().equals(State.CANCELED) || newState.equals(State.CANCELED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
-                    newTotalPrice);
+            setOrdersField(order, date, hour, newProducts, newAmount, newCostumer, newEmployee, newSuggestion,
+                    newLastEditor, newTotalPrice);
             msg = "The Orders have been edited succesfully";
         }
         if (order.getState().equals(State.REQUESTED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
-                    newTotalPrice);
+            setOrdersField(order, date, hour, newProducts, newAmount, newCostumer, newEmployee, newSuggestion,
+                    newLastEditor, newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else if (order.getState().equals(State.IN_PROCCESS) && !newState.equals(State.REQUESTED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
-                    newTotalPrice);
+            setOrdersField(order, date, hour, newProducts, newAmount, newCostumer, newEmployee, newSuggestion,
+                    newLastEditor, newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else if (order.getState().equals(State.SENT) && !newState.equals(State.IN_PROCCESS)
                 && !newState.equals(State.REQUESTED)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
-                    newTotalPrice);
+            setOrdersField(order, date, hour, newProducts, newAmount, newCostumer, newEmployee, newSuggestion,
+                    newLastEditor, newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else if (order.getState().equals(State.DELIVERED) && !newState.equals(State.IN_PROCCESS)
                 && !newState.equals(State.REQUESTED) && !newState.equals(State.SENT)) {
             order.setState(newState);
-            setOrdersField(order, newProducts, newAmount, newCostumer, newEmployee, newSuggestion, newLastEditor,
-                    newTotalPrice);
+            setOrdersField(order, date, hour, newProducts, newAmount, newCostumer, newEmployee, newSuggestion,
+                    newLastEditor, newTotalPrice);
             msg = "The Orders have been edited succesfully";
         } else {
             msg = "You can not came back order status";
@@ -1611,8 +1819,9 @@ public class Restaurant {
         return msg;
     }
 
-    public void setOrdersField(Order order, List<Product> newProducts, List<Integer> newAmount, Costumer newCostumer,
-            Employee newEmployee, String newSuggestion, User newLastEditor, double newTotalPrice) {
+    public void setOrdersField(Order order, String date, String hour, List<Product> newProducts,
+            List<Integer> newAmount, Costumer newCostumer, Employee newEmployee, String newSuggestion,
+            User newLastEditor, double newTotalPrice) {
         order.setProducts(newProducts);
         order.setAmount(newAmount);
         order.setCostumer(newCostumer);
@@ -1620,6 +1829,8 @@ public class Restaurant {
         order.setSuggestion(newSuggestion);
         order.setTotalPrice(newTotalPrice);
         order.setLastEditor(newLastEditor);
+        order.setDate(date);
+        order.setHour(hour);
     }
 
     public String deleteOrder(int positionOrder, State state) {
@@ -1665,14 +1876,23 @@ public class Restaurant {
         PrintWriter pw = new PrintWriter(fileName);
         int granTotal = 0;
         pw.println("CASA DORADA ORDER REPORT");
-        pw.println("Hour" + separator + "Date" + separator + "Code" + separator + "State" + separator + "Product"
+        pw.println("Code" + separator + "Hour" + separator + "Date" + separator + "State" + separator + "Product"
                 + separator + "Amount " + separator + "Costumer" + separator + "Employee" + separator + "Suggestion"
                 + separator + "Total price");
         for (int i = 0; i < getOrders().size(); i++) {
             Order o = getOrders().get(i);
-            pw.println(o.getHour() + separator + o.getDate() + separator + o.getCode() + separator + o.getState()
-                    + separator + o.getNameProducts() + separator + o.getNameAmount() + separator + o.getCostumer()
-                    + separator + o.getEmployee() + separator + o.getSuggestion() + separator + o.getTotalPrice());
+            String orderInfo = (o.getCode() + separator + o.getHour() + separator + o.getDate() + separator
+                    + o.getState() + separator + o.getNameProducts() + separator + o.getNameAmount() + separator
+                    + o.getCostumer() + separator + o.getEmployee() + separator + o.getSuggestion() + separator
+                    + o.getTotalPrice());
+            String orderProducts = "";
+            String space = "";
+            for (int j = 0; j < o.getProducts().size(); j++) {
+                orderProducts += (space + o.getProducts().get(j).getBaseProduct().getName() + separator
+                        + o.getAmount().get(j) + separator + o.getProducts().get(j).getPrice());
+                space = separator;
+            }
+            pw.println(orderInfo + separator + orderProducts);
             granTotal += o.getTotalPrice();
         }
         pw.println(separator + separator + separator + separator + separator + separator + separator + separator

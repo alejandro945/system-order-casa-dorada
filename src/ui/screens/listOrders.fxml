@@ -54,7 +54,7 @@
          </font>
       </Label>
       <TextField fx:id="txtAmountProducts" layoutX="673.0" layoutY="374.0" prefHeight="31.0" prefWidth="168.0" />
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="534.0" layoutY="602.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="41.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="534.0" layoutY="594.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="41.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -66,7 +66,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="664.0" layoutY="602.0" mnemonicParsing="false" onAction="#updateOrder" prefHeight="41.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="664.0" layoutY="594.0" mnemonicParsing="false" onAction="#updateOrder" prefHeight="41.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -78,7 +78,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="797.0" layoutY="602.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="41.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="797.0" layoutY="594.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="41.0" prefWidth="114.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -90,7 +90,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="13.0" layoutY="603.0" mnemonicParsing="false" onAction="#importOrders" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="13.0" layoutY="595.0" mnemonicParsing="false" onAction="#importOrders" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -102,7 +102,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="135.0" layoutY="603.0" mnemonicParsing="false" onAction="#exportOrders" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="135.0" layoutY="595.0" mnemonicParsing="false" onAction="#exportOrders" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: blue;" text="Export" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -114,7 +114,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="356.0" layoutY="603.0" mnemonicParsing="false" onAction="#deselectOrder" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="356.0" layoutY="595.0" mnemonicParsing="false" onAction="#deselectOrder" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -205,8 +205,8 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextField fx:id="separator" alignment="CENTER" layoutX="260.0" layoutY="622.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
-      <Label layoutX="255.0" layoutY="601.0" text="Export Separator">
+      <TextField fx:id="separator" alignment="CENTER" layoutX="260.0" layoutY="602.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />
+      <Label layoutX="255.0" layoutY="581.0" text="Export Separator">
          <font>
             <Font name="System Bold Italic" size="11.0" />
          </font>
