@@ -10,6 +10,7 @@ import javafx.fxml.*;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import model.Restaurant;
 
@@ -89,6 +90,11 @@ public class DashController implements Initializable {
     }
 
     @FXML
+    void showBaseProduct(ActionEvent event) {
+
+    }
+
+    @FXML
     void showProductTypes(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showProductTypes();
     }
@@ -103,12 +109,28 @@ public class DashController implements Initializable {
         cGui.showOrders();
     }
 
+    @FXML
+    void showOrdersReport(ActionEvent event) throws IOException {
+        cGui.showOrdersResport();
+    }
+
+    @FXML
+    void github(MouseEvent event) throws IOException {
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Windows"))
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "https://github.com/alejandro945");
+        else if (osName.contains("Linux"))
+            Runtime.getRuntime().exec("xdg-open " + "https://github.com/alejandro945");
+        else if (osName.contains("Mac OS X"))
+            Runtime.getRuntime().exec("open " + "https://github.com/alejandro945");
+    }
+
     @SuppressWarnings("unchecked")
     public void initDashoboard() {
         XYChart.Series<String, Integer> set1 = new XYChart.Series<>();
-        set1.getData().add(new XYChart.Data<>("Users", restaurant.getUsers()));
-        set1.getData().add(new XYChart.Data<>("Employees", restaurant.getEmployees()));
-        set1.getData().add(new XYChart.Data<>("Costumers", restaurant.getCostumers()));
+        set1.getData().add(new XYChart.Data<>("Users", restaurant.countUsers()));
+        set1.getData().add(new XYChart.Data<>("Employees", restaurant.countEmployees()));
+        set1.getData().add(new XYChart.Data<>("Costumers", restaurant.countCostumers()));
         set1.getData().add(new XYChart.Data<>("Ingredients", restaurant.getNumberIngredients()));
         set1.getData().add(new XYChart.Data<>("Types", restaurant.getNumberProductType()));
         set1.getData().add(new XYChart.Data<>("Sizes", restaurant.getNumberProductSize()));

@@ -88,7 +88,7 @@ public class IngredientsController {
             alert2.showAndWait();
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            String msg = restaurant.addIngredient(restaurant.getCode(), txtNameIngredients.getText(),
+            String msg = restaurant.addIngredient(restaurant.getIngredientsCode(), txtNameIngredients.getText(),
                     restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
             alert.showAndWait();
@@ -200,7 +200,7 @@ public class IngredientsController {
     void exportIngredients(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -220,7 +220,7 @@ public class IngredientsController {
     void importIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showOpenDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);

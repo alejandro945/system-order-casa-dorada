@@ -193,7 +193,11 @@ public class EmployeeController {
                     DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             LocalTime localTime = LocalTime.parse(restaurant.getOrders().get(i).getHour());
             if (localDate.compareTo(sd.getValue()) >= 0 && localDate.compareTo(ed.getValue()) <= 0) {
-                if (localTime.compareTo(st.getValue()) >= 0 && localTime.compareTo(et.getValue()) <= 0) {
+                if (localDate.compareTo(sd.getValue()) == 0 && localTime.compareTo(st.getValue()) >= 0) {
+                    o.add(restaurant.getOrders().get(i));
+                } else if (localDate.compareTo(ed.getValue()) == 0 && localTime.compareTo(et.getValue()) <= 0) {
+                    o.add(restaurant.getOrders().get(i));
+                } else if (localDate.compareTo(sd.getValue()) > 0 && localDate.compareTo(ed.getValue()) < 0) {
                     o.add(restaurant.getOrders().get(i));
                 }
             }
@@ -296,7 +300,9 @@ public class EmployeeController {
     }
 
     public void initbtnReportDate() {
-        if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+        if (dateEnd.getValue().compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0) {
+            btnGenerate.setDisable(true);
+        } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
             btnGenerate.setDisable(false);
         } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {
             btnGenerate.setDisable(true);
@@ -306,12 +312,15 @@ public class EmployeeController {
     }
 
     public void initbtnReportTime() {
-        if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
+        if (dateEnd.getValue().compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) == 0
+                && endTime.getValue().compareTo(LocalTime.parse(cGui.getHour())) > 0) {
+            btnGenerate.setDisable(true);
+        } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
+            btnGenerate.setDisable(false);
+        } else if (startTime.getValue().compareTo(endTime.getValue()) < 0) {
             btnGenerate.setDisable(false);
         } else if (startTime.getValue().compareTo(endTime.getValue()) > 0) {
             btnGenerate.setDisable(true);
-        } else {
-            btnGenerate.setDisable(false);
         }
     }
 

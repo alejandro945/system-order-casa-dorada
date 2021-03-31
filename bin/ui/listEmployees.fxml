@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectedEmployee" prefHeight="650.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listEmployees" layoutX="10.0" layoutY="11.0" onMouseClicked="#selectedEmployee" prefHeight="541.0" prefWidth="544.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listEmployees" layoutX="10.0" layoutY="11.0" onMouseClicked="#selectedEmployee" prefHeight="541.0" prefWidth="544.0" stylesheets="@../assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colNameEmployee" prefWidth="125.0" text="NAME" />
             <TableColumn fx:id="colLastNameEmployee" prefWidth="107.0" text="LAST NAME" />
@@ -49,12 +49,12 @@
       </Label>
       <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="573.0" layoutY="44.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/back_40px.png" />
+            <Image url="@../assets/img/back_40px.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="87.0" fitWidth="97.0" layoutX="696.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/design-min.png" />
+            <Image url="@../assets/img/design-min.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="36.0" layoutY="580.0" mnemonicParsing="false" onAction="#importEmployee" prefHeight="41.0" prefWidth="127.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
@@ -64,7 +64,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/add_list_40px.png" />
+                  <Image url="@../assets/img/add_list_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -76,7 +76,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/purchase_order_40px.png" />
+                  <Image url="@../assets/img/purchase_order_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -88,7 +88,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/delete_96px.png" />
+                  <Image url="@../assets/img/delete_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -100,7 +100,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/checkmark_96px.png" />
+                  <Image url="@../assets/img/checkmark_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -112,7 +112,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/refresh_40px.png" />
+                  <Image url="@../assets/img/refresh_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -124,7 +124,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/cancel_40px.png" />
+                  <Image url="@../assets/img/cancel_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -176,7 +176,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/checkmark_96px.png" />
+                  <Image url="@../assets/img/checkmark_96px.png" />
                </image>
             </ImageView>
          </graphic>

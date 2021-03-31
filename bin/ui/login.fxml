@@ -17,11 +17,11 @@
    <children>
       <BorderPane prefHeight="650.0" prefWidth="930.0">
          <left>
-            <Pane prefHeight="650.0" prefWidth="407.0" styleClass="linear-grad" stylesheets="@assets/styles/styles.css" BorderPane.alignment="CENTER">
+            <Pane prefHeight="650.0" prefWidth="407.0" styleClass="linear-grad" stylesheets="@../assets/styles/styles.css" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="487.0" fitWidth="396.0" layoutX="6.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/img/login.png" />
+                        <Image url="@../assets/img/login.png" />
                      </image>
                   </ImageView>
                </children>
@@ -52,7 +52,7 @@
                         </Label>
                         <ImageView fx:id="btnBackToLogin" fitHeight="39.0" fitWidth="38.0" layoutX="45.0" layoutY="52.0" onMouseClicked="#handleMouseClick" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/img/back.png" />
+                              <Image url="@../assets/img/back.png" />
                            </image>
                         </ImageView>
                         <TextField fx:id="txtLastNameRegister" alignment="CENTER" layoutX="236.0" layoutY="224.0" prefHeight="39.0" prefWidth="190.0" promptText="Last Name">
@@ -86,7 +86,7 @@
                            </font>
                         </Button>
                         <ImageView fx:id="imgRegister" fitHeight="91.0" fitWidth="97.0" layoutX="287.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button layoutX="175.0" layoutY="582.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="49.0" prefWidth="228.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Create Account" textFill="WHITE">
+                        <Button layoutX="175.0" layoutY="582.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="49.0" prefWidth="228.0" styleClass="button2" stylesheets="@../assets/styles/styles.css" text="Create Account" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="25.0" />
                            </font>
@@ -125,12 +125,12 @@
                               <Font name="Arial" size="22.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="btnRegister" layoutX="146.0" layoutY="571.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Register now" textFill="WHITE">
+                        <Button fx:id="btnRegister" layoutX="146.0" layoutY="571.0" mnemonicParsing="false" onAction="#showRegister" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@../assets/styles/styles.css" text="Register now" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="30.0" />
                            </font>
                         </Button>
-                        <Button layoutX="147.0" layoutY="426.0" mnemonicParsing="false" onAction="#logIn" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@assets/styles/styles.css" text="Sing in" textFill="WHITE">
+                        <Button layoutX="147.0" layoutY="426.0" mnemonicParsing="false" onAction="#logIn" prefHeight="65.0" prefWidth="231.0" styleClass="button2" stylesheets="@../assets/styles/styles.css" text="Sing in" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="30.0" />
                            </font>
@@ -152,7 +152,7 @@
                         </Label>
                         <ImageView fitHeight="77.0" fitWidth="397.0" layoutX="64.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/img/casa-dorada-removebg-preview.png" />
+                              <Image url="@../assets/img/casa-dorada-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </children>

@@ -1,0 +1,8 @@
+"REQUESTED,Arroz Llanero Caja personal|Arroz Valluno Caja personal|Arroz Mediterraneo Caja personal|2;3;1,Tadeo,Alejandro,Ninguna,48000"
+"REQUESTED|Arroz Valluno Caja para dos|Arroz Mediterraneo Caja personal;2;3,Petronella,Luis,Ninguna,74000"
+"IN PROCESS|Arroz a la barbacoa Caja personal|Arroz Valluno Caja para dos;1;1,Samuel,Alejandro,Ninguna,22000"
+"SENT|Arroz a la barbacoa Caja personal;1,Petronella,Luis,Ninguna,22000"
+"IN PROCESS|Arroz Valluno Caja para dos;1,Daniel,Alejandro,Ninguna,22000"
+"CANCELED|Arroz Mediterranoe Caja personal|Arroz Valluno Caja para dos;1;1,Alejandro,Alejandro,Canceló de mala manera,22000"
+"REQUESTED|Arroz Llanero|Arroz Valluno|Arroz Mediterraneo;2;3;1,Tadeo,Alejandro,Ninguna,48000"
+"SENT|Arroz Llanero|Arroz Valluno|Arroz Mediterraneo;2;3;1,Tadeo,Alejandro,Ninguna,48000"

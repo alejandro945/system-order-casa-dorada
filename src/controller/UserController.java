@@ -106,6 +106,11 @@ public class UserController {
 
     @FXML
     private PasswordField txtPassword;
+    @FXML
+    private Label adminUser;
+
+    @FXML
+    private Label adminPassword;
 
     @FXML
     private TextField txtUserName;
@@ -326,6 +331,14 @@ public class UserController {
         cGui.showDashBoard();
     }
 
+    public void initAdmin() {
+        if (restaurant.getAdmin().getUserName() != null) {
+            adminUser.setText("Username: " + restaurant.getAdmin().getUserName());
+            adminPassword.setText("Password: " + restaurant.getAdmin().getPassword());
+        }
+
+    }
+
     @FXML
     public void createUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean validateFields = registerValidation(txtNameUser.getText(), txtLastNameUser.getText(),
@@ -480,7 +493,7 @@ public class UserController {
     public void exportUsers(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -500,7 +513,7 @@ public class UserController {
     public void importUsers(ActionEvent event) throws ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showOpenDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);

@@ -16,7 +16,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff212100" height="194.0" layoutX="494.0" layoutY="336.0" stroke="#0f13eb" strokeType="INSIDE" width="430.0" />
-      <TableView fx:id="listOrders" layoutX="16.0" layoutY="39.0" onMouseClicked="#selectedOrder" prefHeight="534.0" prefWidth="466.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listOrders" layoutX="16.0" layoutY="39.0" onMouseClicked="#selectedOrder" prefHeight="534.0" prefWidth="466.0" stylesheets="@../assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colCodeOrders" prefWidth="60.0" text="CODE" />
             <TableColumn fx:id="colDateOrders" prefWidth="95.0" text="DATE" />
@@ -61,7 +61,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/checkmark_96px.png" />
+                  <Image url="@../assets/img/checkmark_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -73,7 +73,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/refresh_40px.png" />
+                  <Image url="@../assets/img/refresh_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -85,7 +85,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/cancel_40px.png" />
+                  <Image url="@../assets/img/cancel_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -97,7 +97,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/add_list_40px.png" />
+                  <Image url="@../assets/img/add_list_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -109,7 +109,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/purchase_order_40px.png" />
+                  <Image url="@../assets/img/purchase_order_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -121,7 +121,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/delete_96px.png" />
+                  <Image url="@../assets/img/delete_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -133,7 +133,7 @@
       </Label>
       <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="510.0" layoutY="36.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/back_40px.png" />
+            <Image url="@../assets/img/back_40px.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="512.0" layoutY="155.0" mnemonicParsing="false" onAction="#searchCostumer" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: red;" text="Search" textFill="WHITE">
@@ -143,7 +143,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/search_40px.png" />
+                  <Image url="@../assets/img/search_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -168,7 +168,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/shopping_cart_40px.png" />
+                  <Image url="@../assets/img/shopping_cart_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -190,7 +190,7 @@
       <ComboBox fx:id="comboBoxCostumers" layoutX="506.0" layoutY="118.0" onAction="#comboAction" prefWidth="150.0" />
       <ImageView fitHeight="121.0" fitWidth="118.0" layoutX="760.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/work-with-us-header.png" />
+            <Image url="@../assets/img/work-with-us-header.png" />
          </image>
       </ImageView>
       <Button fx:id="btnClean" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="854.0" layoutY="358.0" mnemonicParsing="false" onAction="#cleanProducts" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: blue;" textFill="WHITE">
@@ -200,7 +200,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/2069293.png" />
+                  <Image url="@../assets/img/2069293.png" />
                </image>
             </ImageView>
          </graphic>

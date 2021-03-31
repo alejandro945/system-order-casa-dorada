@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProductSize" layoutX="21.0" layoutY="22.0" onMouseClicked="#selectedProductSize" prefHeight="530.0" prefWidth="525.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProductSize" layoutX="21.0" layoutY="22.0" onMouseClicked="#selectedProductSize" prefHeight="530.0" prefWidth="525.0" stylesheets="@../assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colCodeProductSize" prefWidth="107.0" text="CODE" />
             <TableColumn fx:id="colNameProductSize" minWidth="0.0" prefWidth="132.0" text="NAME" />
@@ -29,7 +29,7 @@
       <TextField fx:id="txtNameProductSize" layoutX="646.0" layoutY="315.0" prefHeight="41.0" prefWidth="199.0" />
       <ImageView fitHeight="148.0" fitWidth="174.0" layoutX="671.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/img6.png" />
+            <Image url="@../assets/img/img6.png" />
          </image>
       </ImageView>
       <Label layoutX="659.0" layoutY="32.0" text="Product Size Crud">
@@ -44,7 +44,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/checkmark_96px.png" />
+                  <Image url="@../assets/img/checkmark_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -56,7 +56,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/refresh_40px.png" />
+                  <Image url="@../assets/img/refresh_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -68,7 +68,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/cancel_40px.png" />
+                  <Image url="@../assets/img/cancel_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -80,7 +80,7 @@
       </CheckBox>
       <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="583.0" layoutY="24.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/back_40px.png" />
+            <Image url="@../assets/img/back_40px.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="21.0" layoutY="597.0" mnemonicParsing="false" onAction="#importProductSize" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
@@ -90,7 +90,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/add_list_40px.png" />
+                  <Image url="@../assets/img/add_list_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -102,7 +102,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/purchase_order_40px.png" />
+                  <Image url="@../assets/img/purchase_order_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -114,7 +114,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/delete_96px.png" />
+                  <Image url="@../assets/img/delete_96px.png" />
                </image>
             </ImageView>
          </graphic>

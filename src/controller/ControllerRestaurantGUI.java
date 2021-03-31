@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 import javafx.application.Platform;
 import javafx.fxml.*;
@@ -13,32 +12,27 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.*;
 
 public class ControllerRestaurantGUI implements Initializable {
-    // DATE AND HOUR
-
+    // -----------DATE AND HOUR----------
+    private String hours, minutes, seconds;
     @FXML
     private Label lblHour;
-
-    private String hours, minutes, seconds;
-
     @FXML
     private Label lblDate;
 
-    // RENDER PANE
+    // ----------RENDER PANE----------
     @FXML
     private AnchorPane mainAnchor;
     @FXML
     private Circle btnCloseLogin;
-
     @FXML
     private Pane mainPane;
-
-    // PRODUCTS
-
-    // REDUX
 
     private Restaurant restaurant;
     private UserController userController;
@@ -51,6 +45,7 @@ public class ControllerRestaurantGUI implements Initializable {
     private ProductSizeController productSizeController;
     private OrderController orderController;
 
+    // ------------------------------------------------CONSTRUCTOR----------------------------------------------------
     public ControllerRestaurantGUI(Restaurant restaurant) {
         this.restaurant = restaurant;
         userController = new UserController(restaurant, this);
@@ -64,8 +59,7 @@ public class ControllerRestaurantGUI implements Initializable {
         orderController = new OrderController(restaurant, this);
     }
 
-    // HOUR AND DATE
-
+    // ----------------------------------------------HOUR-AND-DATE-THREAD----------------------------------------
     public void hour() {
         Calendar calendar = new GregorianCalendar();
         Date currentTime = new Date();
@@ -83,152 +77,6 @@ public class ControllerRestaurantGUI implements Initializable {
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/YYYY");
         return formatDate.format(date);
     }
-    // ALL ABOUT USERS
-
-    public void welcomeToLogin() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/login.fxml"));
-        fxmlLoader.setController(userController);
-        Parent login = fxmlLoader.load();
-        mainPane.getChildren().setAll(login);
-        if (restaurant.getDataFile().length() > 0 & restaurant.usersDisabled() == false) {
-            userController.disableButton();
-        } else {
-            userController.enableButton();
-        }
-    }
-
-    public Window getPane() {
-        return mainPane.getScene().getWindow();
-    }
-
-    @FXML
-    void handleMouseClick(MouseEvent event) {
-        if (event.getSource() == btnCloseLogin) {
-            System.exit(0);
-        }
-    }
-
-    public Parent showItem() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/Item.fxml"));
-        Parent root = fxmlloader.load();
-        return root;
-    }
-
-    public void showDashBoard() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/home.fxml"));
-        fxmlloader.setController(dashController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        dashController.initUser();
-        restaurant.loadData();
-        restaurant.loadData();
-        dashController.initDashoboard();
-    }
-
-    // COSTUMERS
-
-    public void showCostumers() throws IOException, ClassNotFoundException {
-        restaurant.loadData();
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listCostumers.fxml"));
-        fxmlloader.setController(costumerController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-    }
-
-    // EMPLOYEES
-
-    public void showEmployees() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listEmployees.fxml"));
-        fxmlloader.setController(employeeController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        employeeController.initEmployeeTable();
-        employeeController.initReport();
-    }
-
-    // USERS
-
-    public void showUsers() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listUsers.fxml"));
-        fxmlloader.setController(userController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        userController.initUserTable();
-    }
-
-    // PRODUCTS
-
-    public void showProducts() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listProducts.fxml"));
-        fxmlloader.setController(productController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        productController.initComboIngredientBox();
-        productController.initComboSizesBox();
-        productController.initComboTypesBox();
-        productController.initProductTable();
-        productController.initReport();
-    }
-
-    // PRODUCT TYPE
-
-    public void showProductTypes() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listTypeProducts.fxml"));
-        fxmlloader.setController(productTypeController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        productTypeController.initProductTypeTable();
-    }
-
-    // PRODUCT SIZE
-
-    public void showProductSizes() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listProductSize.fxml"));
-        fxmlloader.setController(productSizeController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        productSizeController.initProductSizeTable();
-    }
-
-    // INGREDIENTS
-
-    void showIngredients() throws IOException, ClassNotFoundException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/listIngredients.fxml"));
-        fxmlLoader.setController(ingredientController);
-        Parent root = fxmlLoader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        restaurant.loadData();
-        ingredientController.initIngredientsTable();
-    }
-
-    // ORDERS
-
-    public void showOrders() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/listOrders.fxml"));
-        fxmlloader.setController(orderController);
-        Parent root = fxmlloader.load();
-        mainPane.getChildren().clear();
-        mainPane.getChildren().setAll(root);
-        orderController.initStateOrder();
-        orderController.initEmployeeOrder();
-        orderController.initProductOrder();
-        orderController.initCostumerOrder();
-        orderController.initOrderTable();
-    }
-
-    // --------------------------------------------------------HOUR----------------------------------------
 
     public String getHour() {
         return lblHour.getText();
@@ -257,6 +105,159 @@ public class ControllerRestaurantGUI implements Initializable {
                 }
             }
         }).start();
+    }
+
+    // ---------------------------------------------SCREENS--MANAGER-----------------------------------------
+    public Window getPane() {
+        return mainPane.getScene().getWindow();
+    }
+
+    @FXML
+    void handleMouseClick(MouseEvent event) {
+        if (event.getSource() == btnCloseLogin) {
+            System.exit(0);
+        }
+    }
+
+    // -----------------------------------------------LOGIN-FORM----------------------------------------
+    public void welcomeToLogin() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/login.fxml"));
+        fxmlLoader.setController(userController);
+        Parent login = fxmlLoader.load();
+        mainPane.getChildren().setAll(login);
+        if (restaurant.getDataFile().length() > 0 & restaurant.usersDisabled() == false) {
+            userController.disableButton();
+        } else {
+            userController.enableButton();
+        }
+        userController.initAdmin();
+    }
+
+    // -----------------------------------------------DASHBOARD----------------------------------------
+    public void showDashBoard() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/home.fxml"));
+        fxmlloader.setController(dashController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        dashController.initUser();
+        restaurant.loadData();
+        restaurant.loadData();
+        dashController.initDashoboard();
+    }
+
+    // ----------------------------------------------COSTUMERS------------------------------------------
+    public void showCostumers() throws IOException, ClassNotFoundException {
+        restaurant.loadData();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listCostumers.fxml"));
+        fxmlloader.setController(costumerController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+    }
+
+    // -----------------------------------------------EMPLOYEES------------------------------------------
+
+    public void showEmployees() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listEmployees.fxml"));
+        fxmlloader.setController(employeeController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        employeeController.initEmployeeTable();
+        employeeController.initReport();
+    }
+
+    // ------------------------------------------------USERS---------------------------------------------
+
+    public void showUsers() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listUsers.fxml"));
+        fxmlloader.setController(userController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        userController.initUserTable();
+    }
+
+    // ----------------------------------------------PRODUCTS--------------------------------------------
+
+    public void showProducts() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listProducts.fxml"));
+        fxmlloader.setController(productController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        productController.initComboIngredientBox();
+        productController.initComboSizesBox();
+        productController.initComboTypesBox();
+        productController.initProductTable();
+        productController.initReport();
+    }
+
+    // --------------------------------------------PRODUCT-TYPE-------------------------------------------
+
+    public void showProductTypes() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listTypeProducts.fxml"));
+        fxmlloader.setController(productTypeController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        productTypeController.initProductTypeTable();
+    }
+
+    // ---------------------------------------------PRODUCT-SIZE-------------------------------------------
+
+    public void showProductSizes() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listProductSize.fxml"));
+        fxmlloader.setController(productSizeController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        productSizeController.initProductSizeTable();
+    }
+
+    // ----------------------------------------------INGREDIENTS-------------------------------------------
+
+    void showIngredients() throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/listIngredients.fxml"));
+        fxmlLoader.setController(ingredientController);
+        Parent root = fxmlLoader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        restaurant.loadData();
+        ingredientController.initIngredientsTable();
+    }
+
+    // -------------------------------------------------ORDERS----------------------------------------------
+
+    public void showOrders() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/listOrders.fxml"));
+        fxmlloader.setController(orderController);
+        Parent root = fxmlloader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().setAll(root);
+        orderController.initStateOrder();
+        orderController.initEmployeeOrder();
+        orderController.initProductOrder();
+        orderController.initCostumerOrder();
+        orderController.initOrderTable();
+    }
+
+    public void showOrdersResport() throws IOException {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/ui/screens/ordersReport.fxml"));
+        fxmlloader.setController(orderController);
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root);
+        window.setScene(scene);
+        window.initStyle(StageStyle.UNDECORATED);
+        window.show();
+        orderController.getModal(window);
     }
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="364.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="112.0" layoutY="14.0" text="Orders Report">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateStart" layoutX="28.0" layoutY="98.0" onAction="#event" prefHeight="25.0" prefWidth="127.0" showWeekNumbers="true" />
+      <DatePicker fx:id="dateEnd" layoutX="186.0" layoutY="98.0" onAction="#event" prefHeight="25.0" prefWidth="142.0" />
+      <Label layoutX="187.0" layoutY="64.0" prefHeight="25.0" prefWidth="127.0" text="End day">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="65.0" prefHeight="25.0" prefWidth="127.0" text="Start day">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <JFXTimePicker fx:id="startTime" defaultColor="#31008f" layoutX="30.0" layoutY="158.0" onAction="#event" prefHeight="28.0" prefWidth="121.0" />
+      <JFXTimePicker fx:id="endTime" defaultColor="#00088f" layoutX="188.0" layoutY="158.0" onAction="#event" prefHeight="28.0" prefWidth="148.0" />
+      <Label layoutX="190.0" layoutY="137.0" prefHeight="25.0" prefWidth="127.0" text="End Time">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="137.0" prefHeight="25.0" prefWidth="127.0" text="Start Time">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnGenerate" alignment="CENTER" contentDisplay="RIGHT" layoutX="23.0" layoutY="242.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Generate" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/checkmark_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="137.0" fitWidth="136.0" layoutX="186.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/who-edu-min.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="294.0" layoutY="14.0" onMouseClicked="#closeModal" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/delete_96px.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

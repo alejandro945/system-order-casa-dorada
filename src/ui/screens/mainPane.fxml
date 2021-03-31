@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="960.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="35.0" layoutY="1.0" prefHeight="21.0" prefWidth="91.0" spacing="10.0">
+         <children>
+            <Circle fx:id="btnCloseLogin" fill="#f65d57" onMouseClicked="#handleMouseClick" radius="10.0" strokeType="INSIDE">
+               <stroke>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.6985591650009155" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </stroke>
+            </Circle>
+            <Circle fx:id="btnMinimizeLogin" fill="#fdbb2d" onMouseClicked="#handleMouseClick" radius="10.0" strokeType="INSIDE">
+               <stroke>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.6985591650009155" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </stroke>
+            </Circle>
+            <Circle fill="#27c941" radius="10.0" strokeType="INSIDE">
+               <stroke>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.6985591650009155" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </stroke>
+            </Circle>
+         </children>
+      </HBox>
+      <BorderPane fx:id="mainPane" layoutX="10.0" layoutY="23.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0" />
+      <Label layoutX="365.0" prefHeight="18.0" prefWidth="37.0" text="Hour:">
+         <font>
+            <Font name="Cambria Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblHour" layoutX="416.0" layoutY="1.0" prefHeight="18.0" prefWidth="138.0">
+         <font>
+            <Font name="Cambria Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="153.0" prefHeight="18.0" prefWidth="37.0" text="Date:">
+         <font>
+            <Font name="Cambria Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="201.0" layoutY="1.0" prefHeight="18.0" prefWidth="138.0">
+         <font>
+            <Font name="Cambria Italic" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

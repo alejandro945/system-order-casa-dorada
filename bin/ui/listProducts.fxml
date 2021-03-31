@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listProducts" layoutY="20.0" onMouseClicked="#selectedProduct" prefHeight="547.0" prefWidth="468.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listProducts" layoutY="20.0" onMouseClicked="#selectedProduct" prefHeight="547.0" prefWidth="468.0" stylesheets="@../assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colcode" prefWidth="70.0" text="CODE" />
             <TableColumn fx:id="colPriceProducts" prefWidth="70.0" text=" PRICE" />
@@ -72,7 +72,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/add_list_40px.png" />
+                  <Image url="@../assets/img/add_list_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -84,7 +84,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/purchase_order_40px.png" />
+                  <Image url="@../assets/img/purchase_order_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -96,7 +96,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/refresh_40px.png" />
+                  <Image url="@../assets/img/refresh_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -108,7 +108,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/cancel_40px.png" />
+                  <Image url="@../assets/img/cancel_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -120,7 +120,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/checkmark_96px.png" />
+                  <Image url="@../assets/img/checkmark_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -132,7 +132,7 @@
       </CheckBox>
       <ImageView fitHeight="88.0" fitWidth="105.0" layoutX="632.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/buying_96px.png" />
+            <Image url="@../assets/img/buying_96px.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="376.0" layoutY="587.0" mnemonicParsing="false" onAction="#deselectProduct" prefHeight="41.0" prefWidth="148.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
@@ -142,14 +142,14 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/delete_96px.png" />
+                  <Image url="@../assets/img/delete_96px.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
       <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="508.0" layoutY="20.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/back_40px.png" />
+            <Image url="@../assets/img/back_40px.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="cbTypes" layoutX="702.0" layoutY="205.0" onAction="#comboEvent" prefHeight="31.0" prefWidth="186.0" />
@@ -162,7 +162,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/delete_96px.png" />
+                  <Image url="@../assets/img/delete_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -174,7 +174,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/up_down_arrow_96px.png" />
+                  <Image url="@../assets/img/up_down_arrow_96px.png" />
                </image>
             </ImageView>
          </graphic>

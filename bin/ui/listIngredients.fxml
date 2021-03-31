@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="listIngredients" onMouseClicked="#selectedIngredients" prefHeight="576.0" prefWidth="554.0" stylesheets="@assets/styles/styles.css">
+      <TableView fx:id="listIngredients" onMouseClicked="#selectedIngredients" prefHeight="576.0" prefWidth="554.0" stylesheets="@../assets/styles/styles.css">
          <columns>
             <TableColumn fx:id="colCodeIngredients" prefWidth="101.0" text="CODE" />
             <TableColumn fx:id="colNameIngredients" minWidth="0.0" prefWidth="122.0" text="NAME" />
@@ -39,7 +39,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/checkmark_96px.png" />
+                  <Image url="@../assets/img/checkmark_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -51,7 +51,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/refresh_40px.png" />
+                  <Image url="@../assets/img/refresh_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -63,7 +63,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/cancel_40px.png" />
+                  <Image url="@../assets/img/cancel_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -75,12 +75,12 @@
       </CheckBox>
       <ImageView fitHeight="154.0" fitWidth="184.0" layoutX="642.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/img1.png" />
+            <Image url="@../assets/img/img1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="575.0" layoutY="25.0" onMouseClicked="#backCostuToDash" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/back_40px.png" />
+            <Image url="@../assets/img/back_40px.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="14.0" layoutY="597.0" mnemonicParsing="false" onAction="#importIngredients" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: blue;" text="Import" textFill="WHITE">
@@ -90,7 +90,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/add_list_40px.png" />
+                  <Image url="@../assets/img/add_list_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -102,7 +102,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/purchase_order_40px.png" />
+                  <Image url="@../assets/img/purchase_order_40px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -114,7 +114,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/img/delete_96px.png" />
+                  <Image url="@../assets/img/delete_96px.png" />
                </image>
             </ImageView>
          </graphic>
@@ -126,7 +126,7 @@
       </Button>
       <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="801.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/img/sort.png" />
+            <Image url="@../assets/img/sort.png" />
          </image>
       </ImageView>
       <TextField fx:id="separator" alignment="CENTER" layoutX="326.0" layoutY="616.0" prefHeight="25.0" prefWidth="71.0" promptText=";" text=";" />

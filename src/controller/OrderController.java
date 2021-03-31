@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jfoenix.controls.JFXTimePicker;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,6 +18,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.*;
 
 public class OrderController {
@@ -109,6 +113,20 @@ public class OrderController {
 
     @FXML
     private TextField txtSuggestionsOrder;
+    @FXML
+    private DatePicker dateStart;
+
+    @FXML
+    private DatePicker dateEnd;
+
+    @FXML
+    private JFXTimePicker startTime;
+
+    @FXML
+    private JFXTimePicker endTime;
+
+    @FXML
+    private Button btnGenerate;
 
     private Employee preEmployee;
     private List<Product> preProduct = new ArrayList<>();
@@ -116,11 +134,11 @@ public class OrderController {
     private State preState;
     private List<Integer> preAmount = new ArrayList<>();
     private Costumer preCostumer;
-
     private Order preSelectOrder;
     private int idxOrder;
-    private Restaurant restaurant;
 
+    private Restaurant restaurant;
+    private Stage modal;
     private ControllerRestaurantGUI cGui;
 
     public OrderController(Restaurant restaurant, ControllerRestaurantGUI cGui) {
@@ -347,7 +365,7 @@ public class OrderController {
     void exportOrders(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -367,7 +385,7 @@ public class OrderController {
     void importOrders(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
-        new FileChooser.ExtensionFilter("TXT", "*.txt"));
+                new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showOpenDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -444,8 +462,27 @@ public class OrderController {
         }
         if (e.equals(comboBoxCostumers)) {
             preCostumer = comboBoxCostumers.getSelectionModel().getSelectedItem();
-            
+
         }
+    }
+
+    public void getModal(Window mod) {
+        modal = (Stage) mod.getScene().getWindow();
+    }
+
+    @FXML
+    void closeModal(MouseEvent event) {
+        modal.close();
+    }
+
+    @FXML
+    void event(ActionEvent event) {
+
+    }
+
+    @FXML
+    void generateReport(ActionEvent event) {
+
     }
 
     public void initOrderTable() throws IOException {

@@ -19,7 +19,7 @@ public class Restaurant {
     public static final String FILE_SEPARATOR = ",";
     public static final String SAVE_PATH_FILE_DATA = "data/CasaDorada.report";
 
-    // ------------------------------------------CONSTRUCTOR-------------------------------------
+    // ----------------------------------------------CONSTRUCTOR------------------------------------------------
     public Restaurant() {
         products = new ArrayList<>();
         orders = new ArrayList<Order>();
@@ -38,6 +38,7 @@ public class Restaurant {
         this.people = people;
     }
 
+    // ------------------------------------------------------INSTANCES-LISTS-------------------------------------------------
     public List<User> getUsers(List<Person> people) {
         List<User> userlist = new ArrayList<>();
         for (int i = 0; i < people.size(); i++) {
@@ -49,14 +50,43 @@ public class Restaurant {
         return userlist;
     }
 
-    public int getUsers() {
-        int count = 0;
+    public List<Employee> getEmployees(List<Person> people) {
+        List<Employee> employeelist = new ArrayList<>();
         for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof User) {
-                count++;
+            if (people.get(i) instanceof Employee) {
+                Employee employee = (Employee) (people.get(i));
+                employeelist.add(employee);
             }
         }
-        return count;
+        return employeelist;
+    }
+
+    public List<Costumer> getCostumers(List<Person> people) {
+        List<Costumer> costumerlist = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof Costumer) {
+                Costumer costumer = (Costumer) (people.get(i));
+                costumerlist.add(costumer);
+            }
+        }
+        return costumerlist;
+    }
+
+    // ----------------------------------------------GET-ADMIN-AND-LOGGED--------------------------------------------------
+    public User getAdmin() {
+        User admin = null;
+        if (people.isEmpty()) {
+            return admin;
+        } else {
+            boolean render = false;
+            for (int i = 0; i < getUsers(people).size() && !render; i++) {
+                if (getUsers(people).get(i).getState() == true) {
+                    render = true;
+                    admin = getUsers(people).get(i);
+                }
+            }
+        }
+        return admin;
     }
 
     public User getLoggedUser(int index) {
@@ -71,18 +101,18 @@ public class Restaurant {
         return this.userIndex;
     }
 
-    public List<Employee> getEmployees(List<Person> people) {
-        List<Employee> employeelist = new ArrayList<>();
+    // ---------------------------------------------HOME-CHART-------------------------------------------------------
+    public int countUsers() {
+        int count = 0;
         for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof Employee) {
-                Employee employee = (Employee) (people.get(i));
-                employeelist.add(employee);
+            if (people.get(i) instanceof User) {
+                count++;
             }
         }
-        return employeelist;
+        return count;
     }
 
-    public int getEmployees() {
+    public int countEmployees() {
         int count = 0;
         for (int i = 0; i < people.size(); i++) {
             if (people.get(i) instanceof Employee) {
@@ -92,12 +122,63 @@ public class Restaurant {
         return count;
     }
 
-    public boolean searchUserByName(String name) {
+    public int countCostumers() {
+        int count = 0;
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i) instanceof Costumer) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getNumberOrders() {
+        int count = 0;
+        for (int i = 0; i < orders.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+    public int getNumberIngredients() {
+        int count = 0;
+        for (int i = 0; i < ingredients.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+    public int getNumberProduct() {
+        int count = 0;
+        for (int i = 0; i < products.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+    public int getNumberProductType() {
+        int count = 0;
+        for (int i = 0; i < productType.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+    public int getNumberProductSize() {
+        int count = 0;
+        for (int i = 0; i < productSize.size(); i++) {
+            count++;
+        }
+        return count;
+    }
+
+    // -----------------------------------------------SEARCHING-ALGORITHMS--------------------------------------------
+    public boolean searchUserByName(Employee e) {
         boolean render = false;
         for (int i = 0; i < orders.size() && !render; i++) {
             Order o = orders.get(i);
             for (int j = 0; j < getEmployees(people).size(); j++) {
-                if (o.getEmployee().getName().equalsIgnoreCase(name)) {
+                if (o.getEmployee().getId() == e.getId()) {
                     if (!o.getState().equals(State.DELIVERED) || !o.getState().equals(State.CANCELED))
                         render = true;
                 }
@@ -106,45 +187,16 @@ public class Restaurant {
         return render;
     }
 
-    public List<Costumer> getCostumers(List<Person> people) {
-        List<Costumer> costumerlist = new ArrayList<>();
-        for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof Costumer) {
-                Costumer costumer = (Costumer) (people.get(i));
-                costumerlist.add(costumer);
-            }
-        }
-        return costumerlist;
-    }
-
-    public List<Costumer> getEnableCostumers() {
-        List<Costumer> c = new ArrayList<>();
-        for (Costumer cos : getCostumers(people)) {
-            if (cos.getState() == true) {
-                c.add(cos);
-            }
-        }
-        return c;
-    }
-
-    public int getCostumers() {
-        int count = 0;
-        for (int i = 0; i < people.size(); i++) {
-            if (people.get(i) instanceof Costumer) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public boolean searchCostumer(String name) {
+    public boolean searchCostumerInOrders(Costumer c) {
         boolean render = false;
         for (int i = 0; i < orders.size() && !render; i++) {
             Order o = orders.get(i);
-            for (int j = 0; j < getCostumers(people).size(); j++) {
-                if (o.getCostumer().getName().equalsIgnoreCase(name)) {
-                    if (!o.getState().equals(State.DELIVERED) || !o.getState().equals(State.CANCELED))
+            for (int j = 0; j < getCostumers(people).size() && !render; j++) {
+                if (o.getCostumer().getId() == c.getId()) {
+                    if (o.getState().equals(State.IN_PROCCESS) || o.getState().equals(State.REQUESTED)
+                            || o.getState().equals(State.SENT)) {
                         render = true;
+                    }
                 }
             }
         }
@@ -161,33 +213,7 @@ public class Restaurant {
         return cos;
     }
 
-    public List<Employee> getEnableEmployees() {
-        List<Employee> e = new ArrayList<>();
-        for (int i = 0; i < getEmployees(people).size(); i++) {
-            if (getEmployees(people).get(i).getState() == true) {
-                e.add(getEmployees(people).get(i));
-            }
-        }
-        return e;
-    }
-
-    public int searchCostumer(Costumer c) {
-        int indexC = 0;
-        boolean render = false;
-        for (int i = 0; i < people.size() && !render; i++) {
-            if (people.get(i) instanceof Costumer) {
-                Costumer p = (Costumer) people.get(i);
-                if (p.getName().equalsIgnoreCase(c.getName())) {
-                    render = true;
-                    indexC = p.getId();
-                }
-            }
-        }
-        System.out.println(indexC);
-        return indexC;
-    }
-
-    public Costumer getC(int index) {
+    public Costumer searchCostumerByIndex(int index) {
         if (index >= 0) {
             return getCostumers(people).get(index);
         } else {
@@ -195,37 +221,25 @@ public class Restaurant {
         }
     }
 
-    // ----------------------------------------------------SOME-MINIMUM-METHODS:ORDERS--------------------------------------------------
-
-    public List<Order> getOrders() {
-        return this.orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    public int getNumberOrders() {
-        int count = 0;
-        for (int i = 0; i < orders.size(); i++) {
-            count++;
-        }
-        return count;
-    }
-
-    // --------------------------------------------------SOME-MINIMUM-METHODS:INGREDIENTS---------------------------------------------------
-    public List<Ingredients> getIngredients() {
-        return this.ingredients;
-    }
-
-    public List<Ingredients> getEnableIngredients() {
-        List<Ingredients> i = new ArrayList<>();
-        for (Ingredients ing : ingredients) {
-            if (ing.getState() == true) {
-                i.add(ing);
+    public Costumer searchBinary(int id, List<Costumer> cost) {
+        System.out.println(cost);
+        boolean found = false;
+        Costumer cos = null;
+        int i = 0;
+        int j = cost.size() - 1;
+        while (i <= j && !found) {
+            int m = (i + j) / 2;
+            if (cost.get(m).getId() == id) {
+                found = true;
+                Costumer c = cost.get(m);
+                cos = searchCostumerByObj(c);
+            } else if (cost.get(m).getId() > id) {
+                j = m - 1;
+            } else {
+                i = m + 1;
             }
         }
-        return i;
+        return cos;
     }
 
     public boolean searchIngredient(String name) {
@@ -241,60 +255,12 @@ public class Restaurant {
         return render;
     }
 
-    public void setIngredients(List<Ingredients> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public Ingredients getIngredient(int i) {
+    public Ingredients searchIngredientByIndex(int i) {
         if (i >= 0) {
             return ingredients.get(i);
         } else {
             return null;
         }
-    }
-
-    public int getNumberIngredients() {
-        int count = 0;
-        for (int i = 0; i < ingredients.size(); i++) {
-            count++;
-        }
-        return count;
-    }
-
-    // --------------------------------------------SOME-MINIMUM-METHODS:PRODUCTS---------------------------------------------------
-
-    public List<Product> getProducts() {
-        return this.products;
-    }
-
-    public List<Product> getEnableProducts() {
-        List<Product> p = new ArrayList<>();
-        for (Product pro : products) {
-            if (pro.getState() == true) {
-                p.add(pro);
-            }
-        }
-        return p;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Product getProduct(int i) {
-        if (i >= 0) {
-            return products.get(i);
-        } else {
-            return null;
-        }
-    }
-
-    public int getNumberProduct() {
-        int count = 0;
-        for (int i = 0; i < products.size(); i++) {
-            count++;
-        }
-        return count;
     }
 
     public boolean searchProduct(String name) {
@@ -310,28 +276,12 @@ public class Restaurant {
         return render;
     }
 
-    public void setCodeProductPosition() {
-        int code = 1;
-        for (Product p : products) {
-            p.setCode(code);
-            code++;
+    public Product searchProductByIndex(int i) {
+        if (i >= 0) {
+            return products.get(i);
+        } else {
+            return null;
         }
-    }
-
-    // ---------------------------------------SOME-MINIMUM-METHODS:PRDODUCT_TYPE---------------------------------------------------
-
-    public ProductType getProductType(int i) {
-        return productType.get(i);
-    }
-
-    public List<ProductType> getEnableProductTypes() {
-        List<ProductType> pt = new ArrayList<>();
-        for (ProductType proT : productType) {
-            if (proT.getState() == true) {
-                pt.add(proT);
-            }
-        }
-        return pt;
     }
 
     public boolean searchProductType(String name) {
@@ -345,38 +295,6 @@ public class Restaurant {
         return render;
     }
 
-    public List<ProductType> getProductType() {
-        return this.productType;
-    }
-
-    public void setProductType(List<ProductType> productType) {
-        this.productType = productType;
-    }
-
-    public int getNumberProductType() {
-        int count = 0;
-        for (int i = 0; i < productType.size(); i++) {
-            count++;
-        }
-        return count;
-    }
-
-    // --------------------------------------------SOME-MINIMUM-METHODS:PRODUCT_SIZE----------------------------------------------
-
-    public List<ProductSize> getProductSize() {
-        return this.productSize;
-    }
-
-    public List<ProductSize> getEnableProductSizes() {
-        List<ProductSize> ps = new ArrayList<>();
-        for (ProductSize proS : productSize) {
-            if (proS.getState() == true) {
-                ps.add(proS);
-            }
-        }
-        return ps;
-    }
-
     public boolean searchProductSize(String name) {
         boolean render = false;
         for (int i = 0; i < products.size() && !render; i++) {
@@ -388,20 +306,209 @@ public class Restaurant {
         return render;
     }
 
-    public ProductSize getProductSize(int i) {
-        return productSize.get(i);
+    public Boolean searchUser(User newUser, User pastUser) {
+        boolean found = false;
+        if (people.isEmpty()) {
+            found = false;
+        } else {
+            for (int i = 0; i < people.size() && !found; i++) {
+                if (people.get(i) instanceof User) {
+                    User usr = (User) (people.get(i));
+                    if (!pastUser.equals(usr)) {
+                        if (newUser.getUserName().equals(usr.getUserName())) {
+                            found = true;
+                        }
+                    }
+                }
+            }
+        }
+        return found;
+    }
+
+    public Boolean searchUser(String userName) {
+        boolean found = false;
+        if (people.isEmpty()) {
+            found = false;
+        } else {
+            for (int i = 0; i < getUsers(people).size() && !found; i++) {
+                if (userName.equals(getUsers(people).get(i).getUserName())) {
+                    found = true;
+                }
+            }
+        }
+        return found;
+    }
+
+    public Ingredients searchIndex(Ingredients ing) {
+        int ingredientIndex = -1;
+        boolean found = false;
+        if (!ingredients.isEmpty() && ing != null) {
+            for (int i = 0; i < ingredients.size() && !found; i++) {
+                if (ingredients.get(i).getName().equals(ing.getName())) {
+                    ingredientIndex = i;
+                    found = true;
+                }
+            }
+        }
+        return searchIngredientByIndex(ingredientIndex);
+    }
+
+    public Product searchIndex(Product pro) {
+        int productIndex = -1;
+        boolean found = false;
+        if (!products.isEmpty() && pro != null) {
+            for (int i = 0; i < products.size() && !found; i++) {
+                if (products.get(i).getName().equals(pro.getName())
+                        && products.get(i).getProductSize().equals(pro.getProductSize())) {
+                    productIndex = i;
+                    found = true;
+                }
+            }
+        }
+        return searchProductByIndex(productIndex);
+    }
+
+    // --------------------------------------------SORT-ALGORITHMS--------------------------------------
+    public List<Costumer> sortCostumerById() {
+        List<Costumer> cost = new ArrayList<>();
+        for (int j = 0; j < getCostumers(people).size(); j++) {
+            Costumer c = getCostumers(people).get(j);
+            if (cost.isEmpty()) {
+                cost.add(c);
+            } else {
+                int i = 0;
+                CostumersComparator cc = new CostumersComparator();
+                while (i < cost.size() && cc.compare(c, cost.get(i)) > 0) {
+                    i++;
+                }
+                cost.add(i, c);
+            }
+        }
+        return cost;
+    }
+
+    public void sortIngredientByName() {
+        IngredientsComparator ic = new IngredientsComparator();
+        Collections.sort(ingredients, ic);
+    }
+
+    public void sortProductByPrice() {
+        for (int i = 0; i < products.size(); i++) {
+            for (int j = i; j > 0 && products.get(j - 1).getPrice() > products.get(j).getPrice(); j--) {
+                Product temp = products.get(j);
+                products.set(j, products.get(j - 1));
+                products.set(j - 1, temp);
+            }
+        }
+    }
+
+    // -----------------------------------------ENABLE-OBJECTS------------------------------------------------------
+    public List<Costumer> getEnableCostumers() {
+        List<Costumer> c = new ArrayList<>();
+        for (Costumer cos : getCostumers(people)) {
+            if (cos.getState() == true) {
+                c.add(cos);
+            }
+        }
+        return c;
+    }
+
+    public List<Employee> getEnableEmployees() {
+        List<Employee> e = new ArrayList<>();
+        for (int i = 0; i < getEmployees(people).size(); i++) {
+            if (getEmployees(people).get(i).getState() == true) {
+                e.add(getEmployees(people).get(i));
+            }
+        }
+        return e;
+    }
+
+    public List<Ingredients> getEnableIngredients() {
+        List<Ingredients> i = new ArrayList<>();
+        for (Ingredients ing : ingredients) {
+            if (ing.getState() == true) {
+                i.add(ing);
+            }
+        }
+        return i;
+    }
+
+    public List<Product> getEnableProducts() {
+        List<Product> p = new ArrayList<>();
+        for (Product pro : products) {
+            if (pro.getState() == true) {
+                p.add(pro);
+            }
+        }
+        return p;
+    }
+
+    public List<ProductType> getEnableProductTypes() {
+        List<ProductType> pt = new ArrayList<>();
+        for (ProductType proT : productType) {
+            if (proT.getState() == true) {
+                pt.add(proT);
+            }
+        }
+        return pt;
+    }
+
+    public List<ProductSize> getEnableProductSizes() {
+        List<ProductSize> ps = new ArrayList<>();
+        for (ProductSize proS : productSize) {
+            if (proS.getState() == true) {
+                ps.add(proS);
+            }
+        }
+        return ps;
+    }
+    // ----------------------------------------------------SOME-MINIMUM-METHODS:ORDERS--------------------------------------------------
+
+    public List<Order> getOrders() {
+        return this.orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    // --------------------------------------------------SOME-MINIMUM-METHODS:INGREDIENTS---------------------------------------------------
+    public List<Ingredients> getIngredients() {
+        return this.ingredients;
+    }
+
+    public void setIngredients(List<Ingredients> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    // --------------------------------------------SOME-MINIMUM-METHODS:PRODUCTS---------------------------------------------------
+
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    // ---------------------------------------SOME-MINIMUM-METHODS:PRDODUCT_TYPE---------------------------------------------------
+
+    public List<ProductType> getProductType() {
+        return this.productType;
+    }
+
+    public void setProductType(List<ProductType> productType) {
+        this.productType = productType;
+    }
+
+    // --------------------------------------------SOME-MINIMUM-METHODS:PRODUCT_SIZE----------------------------------------------
+
+    public List<ProductSize> getProductSize() {
+        return this.productSize;
     }
 
     public void setProductSize(List<ProductSize> productSize) {
         this.productSize = productSize;
-    }
-
-    public int getNumberProductSize() {
-        int count = 0;
-        for (int i = 0; i < productSize.size(); i++) {
-            count++;
-        }
-        return count;
     }
 
     // ---------------------------------------------PERSISTENCE------------------------------------------------
@@ -443,7 +550,7 @@ public class Restaurant {
         }
     }
 
-    // -----------------------------------------REPORTS--------------------------------------------------
+    // -----------------------------------------EMPLOYEE-REPORT--------------------------------------------------
     public ArrayList<int[]> countOrdersForEmployee(List<Employee> e, List<Order> order) {
         ArrayList<int[]> list = new ArrayList<>();
         int[] array = new int[2];
@@ -474,7 +581,7 @@ public class Restaurant {
             } else {
                 for (int j = 0; j < e.size(); j++) {
                     if (e.get(j).getId() != order.get(i).getEmployee().getId()
-                            && !searchEmp(e, order.get(i).getEmployee().getId())) {
+                            && !searchEmployeeInList(e, order.get(i).getEmployee().getId())) {
                         e.add(order.get(i).getEmployee());
                     }
                 }
@@ -483,7 +590,7 @@ public class Restaurant {
         return e;
     }
 
-    public boolean searchEmp(List<Employee> e, int id) {
+    public boolean searchEmployeeInList(List<Employee> e, int id) {
         boolean render = false;
         for (int i = 0; i < e.size(); i++) {
             if (e.get(i).getId() == id) {
@@ -498,14 +605,18 @@ public class Restaurant {
         List<Employee> em = getUnitEmployees(o);
         pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "# Orders" + separator + "Total");
         ArrayList<int[]> a = countOrdersForEmployee(em, o);
+        int grandTotal = 0;
         for (int i = 0; i < em.size(); i++) {
             Employee e = em.get(i);
             pw.println(e.getName() + separator + e.getLastName() + separator + e.getId() + separator + a.get(i)[0]
                     + separator + a.get(i)[1]);
+            grandTotal += a.get(i)[1];
         }
+        pw.println(separator + separator + separator + "Grand Total" + separator + grandTotal);
         pw.close();
     }
 
+    // ---------------------------------------------PRODUCTS-REPORT--------------------------------------------------------
     public List<Product> getUnitProducts(List<Order> order) {
         List<Product> p = new ArrayList<>();
         // for (int i = 0; i < order.size(); i++) {
@@ -584,8 +695,8 @@ public class Restaurant {
     public String deleteUser(User useroToDelete) {
         boolean redux = false;
         String msg = "";
-        boolean render = searchUserByName(useroToDelete.getName());
-        if (render == false) {
+        boolean render = searchUserByName(useroToDelete);
+        if (render == true) {
             for (int i = 0; i < people.size() && !redux; i++) {
                 if (people.get(i) instanceof User) {
                     User user = (User) (people.get(i));
@@ -601,9 +712,8 @@ public class Restaurant {
                 }
             }
         } else {
-            return "The User have a reference by a Orders";
+            msg = "The User have a reference by a Orders";
         }
-
         return msg;
     }
 
@@ -635,52 +745,22 @@ public class Restaurant {
 
     public void exportDataUsers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("CASA DORADA USERS REPORT");
         pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "User name" + separator
-                + "Password" + separator + "Image");
+                + "Password" + separator + "Image" + separator + "State");
         for (int i = 0; i < getUsers(people).size(); i++) {
             User u = getUsers(people).get(i);
+            String statusU = (u.getState() == true) ? "ACTIVE" : "INACTIVE";
             if (u.getImage() != null) {
-                pw.println(u.getName() + separator + u.getLastName() + separator + u.getId() + separator
-                        + u.getUserName() + separator + u.getPassword() + separator + u.getImage());
+                pw.println(
+                        u.getName() + separator + u.getLastName() + separator + u.getId() + separator + u.getUserName()
+                                + separator + u.getPassword() + separator + u.getImage() + separator + statusU);
             } else {
                 pw.println(u.getName() + separator + u.getLastName() + separator + u.getId() + separator
-                        + u.getUserName() + separator + u.getPassword());
+                        + u.getUserName() + separator + u.getPassword() + separator + separator + statusU);
             }
         }
         pw.close();
-    }
-
-    public Boolean searchUser(User newUser, User pastUser) {
-        boolean found = false;
-        if (people.isEmpty()) {
-            found = false;
-        } else {
-            for (int i = 0; i < people.size() && !found; i++) {
-                if (people.get(i) instanceof User) {
-                    User usr = (User) (people.get(i));
-                    if (!pastUser.equals(usr)) {
-                        if (newUser.getUserName().equals(usr.getUserName())) {
-                            found = true;
-                        }
-                    }
-                }
-            }
-        }
-        return found;
-    }
-
-    public Boolean searchUser(String userName) {
-        boolean found = false;
-        if (people.isEmpty()) {
-            found = false;
-        } else {
-            for (int i = 0; i < getUsers(people).size() && !found; i++) {
-                if (userName.equals(getUsers(people).get(i).getUserName())) {
-                    found = true;
-                }
-            }
-        }
-        return found;
     }
 
     public boolean validateidCreating(User user) {
@@ -754,29 +834,20 @@ public class Restaurant {
         return getLoggedUser(userIndex);
     }
 
-    // -----------------------------------------------------COSTUMERS---------------------------------------
-    public int getNumberCostumers() {
-        int count = 0;
-        for (Person person : people) {
-            if (person instanceof Costumer) {
-                count++;
-            }
-        }
-        return count;
-    }
+    // -------------------------------------------------COSTUMERS-CRUD---------------------------------------
 
     public String addPerson(String name, String lastName, int id, String address, int telephone, String suggestions,
             User creator) {
         String msg = "We could not add the costumer";
         Costumer newCostumer = null;
-        if (getNumberCostumers() == 0) {
+        if (countCostumers() == 0) {
             newCostumer = new Costumer(name, lastName, id, address, telephone, suggestions, creator);
             people.add(newCostumer);
             msg = "The Costumer " + newCostumer.getName() + " have been added succesfully";
         } else {
             int i = 0;
             newCostumer = new Costumer(name, lastName, id, address, telephone, suggestions, creator);
-            while (i < getNumberCostumers() && newCostumer.compareTo(getCostumers(getPeople()).get(i)) < 0) {
+            while (i < countCostumers() && newCostumer.compareTo(getCostumers(getPeople()).get(i)) < 0) {
                 i++;
             }
             boolean repeated = validateidCreating(newCostumer);
@@ -795,7 +866,7 @@ public class Restaurant {
 
     public int getCostumerIndex(Costumer c) {
         int i = 0;
-        while (i < getNumberCostumers() && c.compareTo(getCostumers(getPeople()).get(i)) < 0) {
+        while (i < countCostumers() && c.compareTo(getCostumers(getPeople()).get(i)) < 0) {
             i++;
         }
         return i;
@@ -821,7 +892,7 @@ public class Restaurant {
     public String deleteCostumer(Costumer costumerToDelete) {
         boolean render = false;
         String msg = "";
-        boolean redux = searchCostumer(costumerToDelete.getName());
+        boolean redux = searchCostumerInOrders(costumerToDelete);
         for (int i = 0; i < people.size() && !render; i++) {
             if (people.get(i) instanceof Costumer) {
                 Costumer costumer = (Costumer) (people.get(i));
@@ -911,41 +982,19 @@ public class Restaurant {
 
     public void exportDataCostumers(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("CASA DORADA COSTUMER REPORT");
         pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "Address" + separator + "Telephone"
-                + separator + "Suggestions");
+                + separator + "Suggestions" + separator + "Status");
         for (int i = 0; i < getCostumers(people).size(); i++) {
             Costumer c = getCostumers(people).get(i);
+            String statusC = (c.getState() == true) ? "ACTIVE" : "INACTIVE";
             pw.println(c.getName() + separator + c.getLastName() + separator + c.getId() + separator + c.getAddress()
-                    + separator + c.getTelephone() + separator + c.getSuggestions());
+                    + separator + c.getTelephone() + separator + c.getSuggestions() + separator + statusC);
         }
         pw.close();
     }
 
-    public Costumer searchBinary(int index) {
-        CostumersComparator cc = new CostumersComparator();
-        Collections.sort(getCostumers(getPeople()), cc);
-        boolean found = false;
-        int inicio = 0;
-        int fin = getCostumers(people).size() - 1;
-        int ind = 0;
-        int medio = (inicio + fin) / 2;
-        while (inicio <= fin && !found) {
-            if (getCostumers(people).get(medio).getId() == index) {
-                found = true;
-                ind = medio;
-            } else if (getCostumers(people).get(medio).getId() > index) {
-                fin = medio - 1;
-            } else {
-                inicio = medio + 1;
-            }
-            medio = (inicio + fin) / 2;
-        }
-        System.out.println(ind);
-        return getC(ind);
-
-    }
-
-    // -------------------------------------------EMPLOYEEES-----------------------------------------------------
+    // -------------------------------------------EMPLOYEEES-CRUD-----------------------------------------------------
     public String addPerson(String name, String lastName, int id, User creator) {
         String msg = "";
         Employee newEmployee = new Employee(name, lastName, id, creator);
@@ -974,7 +1023,7 @@ public class Restaurant {
     public String deleteEmployee(Employee employeeToDelete) {
         boolean found = false;
         String msg = "";
-        boolean redux = searchUserByName(employeeToDelete.getName());
+        boolean redux = searchUserByName(employeeToDelete);
         for (int i = 0; i < people.size() && !found; i++) {
             if (people.get(i) instanceof Employee) {
                 Employee employee = (Employee) (people.get(i));
@@ -986,11 +1035,12 @@ public class Restaurant {
                         found = true;
                         msg = "The employee have been deleted succesfully";
                     } else {
-                        msg = "The employee have a reference by a order or you can not delete you";
+                        msg = "The employee have a reference by a order";
                         found = true;
                     }
                 } else {
                     msg = "You can not delete you";
+                    found = true;
                 }
             }
         }
@@ -1000,7 +1050,6 @@ public class Restaurant {
     public String disableEmployee(Employee employee) {
         employee.setState(false);
         return "The employee have been disabled succesfully";
-
     }
 
     public String enableEmployee(Employee employee) {
@@ -1024,10 +1073,12 @@ public class Restaurant {
 
     public void exportDataEmployees(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Name" + separator + "Last name" + separator + "Id");
+        pw.println("CASA DORADA EMPLOYEES REPORT");
+        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "Status");
         for (int i = 0; i < getEmployees(people).size(); i++) {
             Employee e = getEmployees(people).get(i);
-            pw.println(e.getName() + separator + e.getLastName() + separator + e.getId());
+            String statusE = (e.getState() == true) ? "ACTIVE" : "INACTIVE";
+            pw.println(e.getName() + separator + e.getLastName() + separator + e.getId() + separator + statusE);
         }
         pw.close();
     }
@@ -1073,14 +1124,6 @@ public class Restaurant {
     }
 
     // -------------------------------------------INGREDIENTS-------------------------------------------------
-    public String getIngredientsFormated() {
-        String ingredients = "";
-        for (Ingredients ingredient : this.ingredients) {
-            ingredients += ingredient.toString();
-        }
-        return ingredients;
-    }
-
     public String addIngredient(int code, String name, User creator) {
         String msg = "";
         Ingredients newIngredient = new Ingredients(code, name, creator);
@@ -1155,17 +1198,19 @@ public class Restaurant {
             String[] parts = line.split(FILE_SEPARATOR);
             String name = parts[0];
             line = br.readLine();
-            addIngredient(getCode(), name, getLoggedUser(userIndex));
+            addIngredient(getIngredientsCode(), name, getLoggedUser(userIndex));
         }
         br.close();
     }
 
     public void exportDataIngredients(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Code" + separator + "Name");
+        pw.println("CASA DORADA INGREDIENTS REPORT");
+        pw.println("Code" + separator + "Name" + separator + "State");
         for (int i = 0; i < getIngredients().size(); i++) {
             Ingredients in = getIngredients().get(i);
-            pw.println(in.getCode() + separator + in.getName());
+            String statusI = (in.getState() == true) ? "ACTIVE" : "INACTIVE";
+            pw.println(in.getCode() + separator + in.getName() + separator + statusI);
         }
         pw.close();
     }
@@ -1178,31 +1223,12 @@ public class Restaurant {
         }
     }
 
-    public int getCode() {
+    public int getIngredientsCode() {
         int count = 0;
         for (int i = 0; i < ingredients.size(); i++) {
             count++;
         }
         return count + 1;
-    }
-
-    public void sortIngredientByName() {
-        IngredientsComparator ic = new IngredientsComparator();
-        Collections.sort(ingredients, ic);
-    }
-
-    public Ingredients searchIndex(Ingredients ing) {
-        int ingredientIndex = -1;
-        boolean found = false;
-        if (!ingredients.isEmpty() && ing != null) {
-            for (int i = 0; i < ingredients.size() && !found; i++) {
-                if (ingredients.get(i).getName().equals(ing.getName())) {
-                    ingredientIndex = i;
-                    found = true;
-                }
-            }
-        }
-        return getIngredient(ingredientIndex);
     }
 
     // ---------------------------------------------------------PRODUCTS-----------------------------------------------
@@ -1296,24 +1322,17 @@ public class Restaurant {
 
     public void exportDataProduct(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        pw.println("CASA DORADA PRODUCTS REPORT");
         pw.println("Code" + separator + " Name" + separator + "Product type" + separator + "Product size" + separator
-                + "Ingredients" + separator + "Price");
+                + "Ingredients" + separator + "State" + separator + "Price");
         for (int i = 0; i < getProducts().size(); i++) {
             Product p = getProducts().get(i);
+            String statusP = (p.getState() == true) ? "ACTIVE" : "INACTIVE";
             pw.println(p.getCode() + separator + p.getName() + separator + p.getProductType() + separator
-                    + p.getProductSize() + separator + p.getNameIngredients() + separator + p.getPrice());
+                    + p.getProductSize() + separator + p.getNameIngredients() + separator + statusP + separator
+                    + p.getPrice());
         }
         pw.close();
-    }
-
-    public void sortProductByPrice() {
-        for (int i = 0; i < products.size(); i++) {
-            for (int j = i; j > 0 && products.get(j - 1).getPrice() > products.get(j).getPrice(); j--) {
-                Product temp = products.get(j);
-                products.set(j, products.get(j - 1));
-                products.set(j - 1, temp);
-            }
-        }
     }
 
     public int getCodeProduct() {
@@ -1324,58 +1343,12 @@ public class Restaurant {
         return count + 1;
     }
 
-    public Product searchIndex(Product pro) {
-        int productIndex = -1;
-        boolean found = false;
-        if (!products.isEmpty() && pro != null) {
-            for (int i = 0; i < products.size() && !found; i++) {
-                if (products.get(i).getName().equals(pro.getName())
-                        && products.get(i).getProductSize().equals(pro.getProductSize())) {
-                    productIndex = i;
-                    found = true;
-                }
-            }
+    public void setCodeProductPosition() {
+        int code = 1;
+        for (Product p : products) {
+            p.setCode(code);
+            code++;
         }
-        return getProduct(productIndex);
-    }
-
-    public List<Costumer> sortCostumerById() {
-        List<Costumer> cost = new ArrayList<>();
-        for (int j = 0; j < getCostumers(people).size(); j++) {
-            Costumer c = getCostumers(people).get(j);
-            if (cost.isEmpty()) {
-                cost.add(c);
-            } else {
-                int i = 0;
-                CostumersComparator cc = new CostumersComparator();
-                while (i < cost.size() && cc.compare(c, cost.get(i)) > 0) {
-                    i++;
-                }
-                cost.add(i, c);
-            }
-        }
-        return cost;
-    }
-
-    public Costumer searchBinary(int id, List<Costumer> cost) {
-        System.out.println(cost);
-        boolean found = false;
-        Costumer cos = null;
-        int i = 0;
-        int j = cost.size() - 1;
-        while (i <= j && !found) {
-            int m = (i + j) / 2;
-            if (cost.get(m).getId() == id) {
-                found = true;
-                Costumer c = cost.get(m);
-                cos = searchCostumerByObj(c);
-            } else if (cost.get(m).getId() > id) {
-                j = m - 1;
-            } else {
-                i = m + 1;
-            }
-        }
-        return cos;
     }
 
     // -----------------------------------------PRODUCT_TYPE----------------------------------------------
@@ -1459,10 +1432,12 @@ public class Restaurant {
 
     public void exportDataProductType(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Code" + separator + "Name");
+        pw.println("CASA DORADA PRODUCT TYPE REPORT");
+        pw.println("Code" + separator + "Name" + separator + "Status");
         for (int i = 0; i < getProductType().size(); i++) {
             ProductType pt = getProductType().get(i);
-            pw.println(pt.getCode() + separator + pt.getName());
+            String statusPt = (pt.getState() == true) ? "ACTIVE" : "INACTIVE";
+            pw.println(pt.getCode() + separator + pt.getName() + separator + statusPt);
         }
         pw.close();
     }
@@ -1508,7 +1483,6 @@ public class Restaurant {
         boolean added = false;
         for (int j = 0; j < productSize.size() && !added; j++) {
             if (newName.equalsIgnoreCase(productSize.get(j).getName())) {
-
                 added = true;
             }
         }
@@ -1547,28 +1521,6 @@ public class Restaurant {
         return "The product size have been enabled succesfully";
     }
 
-    public void importDataProductSize(String fileName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
-        String line = br.readLine();
-        while (line != null) {
-            String[] parts = line.split(FILE_SEPARATOR);
-            String name = parts[0];
-            line = br.readLine();
-            addProductSize(name, getCodeProductSize(), getLoggedUser(userIndex));
-        }
-        br.close();
-    }
-
-    public void exportDataProductSize(String fileName, String separator) throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter(fileName);
-        pw.println("Code" + separator + "Name");
-        for (int i = 0; i < getProductSize().size(); i++) {
-            ProductSize ps = getProductSize().get(i);
-            pw.println(ps.getCode() + separator + ps.getName());
-        }
-        pw.close();
-    }
-
     public void setCodeProductSizePosition() {
         int code = 1;
         for (ProductSize pSize : productSize) {
@@ -1585,7 +1537,31 @@ public class Restaurant {
         return count + 1;
     }
 
-    // ----------------------------------------------ORDERS----------------------------------------------------
+    public void importDataProductSize(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String line = br.readLine();
+        while (line != null) {
+            String[] parts = line.split(FILE_SEPARATOR);
+            String name = parts[0];
+            line = br.readLine();
+            addProductSize(name, getCodeProductSize(), getLoggedUser(userIndex));
+        }
+        br.close();
+    }
+
+    public void exportDataProductSize(String fileName, String separator) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(fileName);
+        pw.println("CASA DORADA PRODUCT SIZE REPORT");
+        pw.println("Code" + separator + "Name" + separator + "Status");
+        for (int i = 0; i < getProductSize().size(); i++) {
+            ProductSize ps = getProductSize().get(i);
+            String statusPs = (ps.getState() == true) ? "ACTIVE" : "INACTIVE";
+            pw.println(ps.getCode() + separator + ps.getName() + separator + statusPs);
+        }
+        pw.close();
+    }
+
+    // ----------------------------------------------ORDERS-CRUD----------------------------------------------------
 
     public String addOrders(int code, State state, List<Product> products, List<Integer> amount, Costumer costumer,
             Employee employee, String date, String suggestion, User creator, double totalPrice, String hour) {
@@ -1656,6 +1632,14 @@ public class Restaurant {
         }
     }
 
+    public int getCodeOrder() {
+        int count = 0;
+        for (int i = 0; i < orders.size(); i++) {
+            count++;
+        }
+        return count + 1;
+    }
+
     public void setCodeOrderPosition() {
         int code = 1;
         for (Order o : orders) {
@@ -1679,23 +1663,21 @@ public class Restaurant {
 
     public void exportDataOrder(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
+        int granTotal = 0;
+        pw.println("CASA DORADA ORDER REPORT");
         pw.println("Hour" + separator + "Date" + separator + "Code" + separator + "State" + separator + "Product"
                 + separator + "Amount " + separator + "Costumer" + separator + "Employee" + separator + "Suggestion"
-                + "Total price");
+                + separator + "Total price");
         for (int i = 0; i < getOrders().size(); i++) {
             Order o = getOrders().get(i);
             pw.println(o.getHour() + separator + o.getDate() + separator + o.getCode() + separator + o.getState()
                     + separator + o.getNameProducts() + separator + o.getNameAmount() + separator + o.getCostumer()
                     + separator + o.getEmployee() + separator + o.getSuggestion() + separator + o.getTotalPrice());
+            granTotal += o.getTotalPrice();
         }
+        pw.println(separator + separator + separator + separator + separator + separator + separator + separator
+                + "Grand Total" + separator + String.valueOf(granTotal));
         pw.close();
     }
 
-    public int getCodeOrder() {
-        int count = 0;
-        for (int i = 0; i < orders.size(); i++) {
-            count++;
-        }
-        return count + 1;
-    }
 }
