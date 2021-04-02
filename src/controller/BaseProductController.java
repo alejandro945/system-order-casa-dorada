@@ -210,8 +210,7 @@ public class BaseProductController {
     public void deleteBaseProducts(ActionEvent event)
             throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.deleteProduct(getIdxBaseProduct(), preSelectBaseProduct.getName(),
-                String.valueOf(preSelectBaseProduct.getProductType()));
+        String msg = restaurant.deleteBaseProduct(getIdxBaseProduct(), preSelectBaseProduct.getName());
         alert.setContentText(msg);
         alert.showAndWait();
         if (msg.equals("The base product have been deleted succesfully")) {
@@ -235,7 +234,7 @@ public class BaseProductController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export base product");
-            restaurant.exportDataProduct(selectedFile.getAbsolutePath(), separator.getText());
+            restaurant.exportDataBaseProduct(selectedFile.getAbsolutePath(), separator.getText());
             alert.setContentText("The base product data was exported succesfully");
             alert.showAndWait();
         } else {
@@ -256,7 +255,7 @@ public class BaseProductController {
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Import base product");
-            restaurant.importDataProduct(selectedFile.getAbsolutePath());
+            restaurant.importDataBaseProduct(selectedFile.getAbsolutePath());
             alert.setContentText("The base product data was imported succesfully");
             alert.showAndWait();
             restaurant.saveData();

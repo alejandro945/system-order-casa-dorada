@@ -144,6 +144,7 @@ public class DashController implements Initializable {
         set1.getData().add(new XYChart.Data<>("Ingredients", restaurant.getNumberIngredients()));
         set1.getData().add(new XYChart.Data<>("Types", restaurant.getNumberProductType()));
         set1.getData().add(new XYChart.Data<>("Sizes", restaurant.getNumberProductSize()));
+        set1.getData().add(new XYChart.Data<>("Bases", restaurant.getNumberBaseProduct()));
         set1.getData().add(new XYChart.Data<>("Products", restaurant.getNumberProduct()));
         set1.getData().add(new XYChart.Data<>("Orders", restaurant.getNumberOrders()));
         barChart.getData().addAll(set1);

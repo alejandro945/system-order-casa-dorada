@@ -1,8 +1,777 @@
-"REQUESTED,Arroz Llanero Caja personal|Arroz Valluno Caja personal|Arroz Mediterraneo Caja personal|2;3;1,Tadeo,Alejandro,Ninguna,48000"
-"REQUESTED|Arroz Valluno Caja para dos|Arroz Mediterraneo Caja personal;2;3,Petronella,Luis,Ninguna,74000"
-"IN PROCESS|Arroz a la barbacoa Caja personal|Arroz Valluno Caja para dos;1;1,Samuel,Alejandro,Ninguna,22000"
-"SENT|Arroz a la barbacoa Caja personal;1,Petronella,Luis,Ninguna,22000"
-"IN PROCESS|Arroz Valluno Caja para dos;1,Daniel,Alejandro,Ninguna,22000"
-"CANCELED|Arroz Mediterranoe Caja personal|Arroz Valluno Caja para dos;1;1,Alejandro,Alejandro,Canceló de mala manera,22000"
-"REQUESTED|Arroz Llanero|Arroz Valluno|Arroz Mediterraneo;2;3;1,Tadeo,Alejandro,Ninguna,48000"
-"SENT|Arroz Llanero|Arroz Valluno|Arroz Mediterraneo;2;3;1,Tadeo,Alejandro,Ninguna,48000"
+DELIVERED,40,914,Paga de Contado,Carlin,Bernita,4,7
+DELIVERED,61,219,Ninguna,Sterling,Vanda,10,7
+DELIVERED,42,710,Sin salsas,Trevar,Saturn,6,4
+SENT,7,836,Sin salsas,Hummer,Chas,4,4
+IN_PROCCESS,6,457,Sin salsas,Chop Suey,Corena,8,10
+IN_PROCCESS,1985,436,Paga de Contado,Denice,Angelo,8,4
+DELIVERED,76,110,Sin salsas,Mariann,Tymon,6,9
+IN_PROCCESS,46,198,Ninguna,Regen,Petra,10,9
+DELIVERED,31,312,Sin salsas,Sterling,Raquel,9,6
+DELIVERED,1992,596,Paga de Contado,Mariann,Mareah,7,6
+SENT,57,394,Sin salsas,Weston,Tomas,7,6
+SENT,54,526,Paga de Contado,Wilmette,Rhea,5,9
+SENT,100,748,Sin salsas,Wilmette,Audi,4,7
+SENT,2011,177,Sin salsas,Nissan,Jaguar,10,5
+SENT,49,496,Sin salsas,Kia,Tybi,8,8
+DELIVERED,67,753,Sin salsas,Cadillac,Margery,5,8
+DELIVERED,1986,138,Paga de Contado,Aston Martin,Adele,4,5
+SENT,30,826,Ninguna,Lamborghini,Phil,7,8
+IN_PROCCESS,27,415,Sin salsas,Derril,Filmer,5,4
+IN_PROCCESS,1972,647,Ninguna,Elle,Plymouth,4,8
+DELIVERED,23,893,Sin salsas,Harmonia,Matthaeus,9,8
+IN_PROCCESS,2,805,Sin salsas,Suzuki,Trevar,4,5
+IN_PROCCESS,34,640,Sin salsas,Edita,Kia,5,6
+DELIVERED,1994,582,Ninguna,Molli,Dorice,7,8
+SENT,16,358,Paga de Contado,Nicky,Codie,5,8
+IN_PROCCESS,1977,629,Ninguna,Appolonia,Kim,5,10
+IN_PROCCESS,1985,329,Ninguna,Lexus,Mercury,5,8
+SENT,93,209,Paga de Contado,Chloe,Sinclare,10,8
+IN_PROCCESS,11,820,Ninguna,Noak,Katlin,7,6
+DELIVERED,11,462,Sin salsas,Demeter,Lyndsey,9,7
+DELIVERED,1967,156,Sin salsas,Cadillac,Sayre,10,4
+SENT,94,2012,Sin salsas,Derril,Ram,8,10
+SENT,75,586,Paga de Contado,Mercedes-Benz,Richie,9,5
+IN_PROCCESS,7,794,Sin salsas,Jaguar,Jaguar,5,5
+IN_PROCCESS,1986,211,Sin salsas,Candida,Suzuki,4,9
+SENT,44,260,Ninguna,Una,Skelly,8,10
+SENT,39,962,Ninguna,Evangelia,Olenka,7,8
+SENT,8,420,Sin salsas,Shanan,Saab,8,7
+DELIVERED,65,893,Paga de Contado,Suzuki,Chrysler,10,5
+IN_PROCCESS,2009,552,Paga de Contado,Aston Martin,Rhea,7,5
+SENT,53,589,Sin salsas,Mab,Ethelda,8,8
+DELIVERED,2013,868,Paga de Contado,Raphaela,Dorice,8,5
+SENT,1985,520,Sin salsas,Ford,Chevrolet,5,9
+DELIVERED,76,801,Ninguna,Land Rover,Shelba,5,8
+DELIVERED,73,244,Sin salsas,Cadillac,Sayre,6,9
+DELIVERED,1986,356,Ninguna,Thelma,Aston Martin,5,9
+DELIVERED,40,817,Paga de Contado,Feliks,Missy,10,9
+DELIVERED,1985,805,Ninguna,Jeep,Buick,9,5
+IN_PROCCESS,45,302,Ninguna,Candida,Kakalina,7,8
+IN_PROCCESS,11,110,Paga de Contado,Taryn,Regen,8,8
+SENT,53,604,Ninguna,MINI,Lauren,7,6
+IN_PROCCESS,84,154,Ninguna,Marshal,Buick,5,4
+DELIVERED,26,199,Sin salsas,Conny,Lexus,9,10
+DELIVERED,96,153,Sin salsas,Nissan,Mariann,9,7
+DELIVERED,100,187,Sin salsas,Boigie,Fletch,5,6
+SENT,1966,777,Paga de Contado,Osbert,Bentley,9,9
+SENT,77,506,Ninguna,Grata,Phedra,6,9
+DELIVERED,1990,986,Ninguna,Arlyn,Audi,9,4
+IN_PROCCESS,57,848,Ninguna,Jaguar,Randa,8,5
+IN_PROCCESS,32,201,Sin salsas,Gael,Quinton,5,10
+IN_PROCCESS,89,746,Sin salsas,Eberhard,Una,10,4
+DELIVERED,53,106,Paga de Contado,Pontiac,Dodge,7,9
+SENT,23,527,Sin salsas,Amaleta,Kimble,10,10
+IN_PROCCESS,1998,215,Sin salsas,Flory,Thomas,6,8
+DELIVERED,11,873,Ninguna,Tomlin,Any,4,4
+IN_PROCCESS,68,465,Sin salsas,Matthieu,Nissan,8,9
+SENT,81,645,Paga de Contado,Lesley,Lonnard,7,9
+DELIVERED,1989,420,Paga de Contado,Jeep,Gustaf,8,6
+DELIVERED,67,753,Sin salsas,Estrellita,Any,10,10
+DELIVERED,84,985,Sin salsas,Seline,Mazda,7,4
+DELIVERED,78,796,Paga de Contado,Lenette,Sancho,9,10
+SENT,1986,617,Sin salsas,Gunar,Simone,7,6
+DELIVERED,16,440,Sin salsas,Hazlett,Donny,7,7
+IN_PROCCESS,24,956,Ninguna,Nissan,Bentley,5,9
+DELIVERED,1969,968,Ninguna,Jerri,Taylor,9,7
+IN_PROCCESS,10,512,Sin salsas,Norina,Ellis,7,5
+SENT,1991,861,Ninguna,Herve,Wilmette,5,10
+DELIVERED,1989,290,Ninguna,Peder,Georgeanne,5,9
+SENT,2001,979,Paga de Contado,Abey,Tomkin,8,5
+DELIVERED,2012,615,Paga de Contado,Arroz Valluno,Bertina,9,5
+IN_PROCCESS,2010,296,Sin salsas,Arlyn,Colet,8,5
+IN_PROCCESS,1965,274,Sin salsas,Kerrill,Mord,6,9
+SENT,77,667,Ninguna,Toyota,Ambrosi,10,5
+IN_PROCCESS,1998,954,Sin salsas,Phylis,Denice,8,9
+IN_PROCCESS,1979,199,Sin salsas,Garrett,Trev,4,5
+SENT,2000,536,Ninguna,Maxie,Saturn,5,5
+DELIVERED,1994,987,Ninguna,Theo,Leticia,6,6
+DELIVERED,99,697,Paga de Contado,Mercury,Marshal,10,6
+SENT,41,847,Paga de Contado,Buick,Sancho,8,6
+SENT,6,824,Sin salsas,Mitsubishi,Dilly,9,8
+IN_PROCCESS,80,728,Sin salsas,Olia,Padraic,10,10
+SENT,2012,109,Sin salsas,Terrell,Aston Martin,4,4
+DELIVERED,74,553,Ninguna,Wallache,Dore,9,4
+IN_PROCCESS,27,796,Sin salsas,Lev,Audi,6,5
+DELIVERED,88,318,Ninguna,Lotus,Haroun,5,7
+SENT,14,882,Paga de Contado,Fletch,Yasmin,5,5
+IN_PROCCESS,1991,940,Sin salsas,Aluino,Geo,5,5
+SENT,56,779,Ninguna,Una,Studebaker,8,8
+SENT,36,523,Sin salsas,Buick,Mercedes-Benz,7,7
+DELIVERED,78,977,Sin salsas,Trude,Charlton,10,10
+SENT,78,818,Sin salsas,Carlin,Raquel,4,7
+SENT,1975,729,Sin salsas,Nissan,Kim,6,9
+DELIVERED,58,486,Ninguna,Ram,Hyundai,5,8
+SENT,36,437,Ninguna,Mazda,Honda,9,6
+SENT,95,921,Ninguna,Raphaela,Sonja,4,6
+SENT,56,110,Paga de Contado,Skyler,Reba,6,7
+IN_PROCCESS,76,428,Paga de Contado,MINI,Marisa,8,9
+IN_PROCCESS,7,190,Paga de Contado,Eagle,Amaleta,9,4
+DELIVERED,70,281,Paga de Contado,Vivie,Parrnell,8,5
+SENT,1970,391,Paga de Contado,Isador,Etan,7,6
+IN_PROCCESS,14,158,Sin salsas,Helga,Paolo,7,10
+DELIVERED,34,473,Paga de Contado,Chrysler,Plymouth,6,7
+IN_PROCCESS,1983,845,Paga de Contado,Oldsmobile,Glynn,8,6
+IN_PROCCESS,80,723,Sin salsas,Maurice,Honda,5,6
+DELIVERED,20,304,Sin salsas,Skelly,Fidelity,8,7
+SENT,63,990,Ninguna,Hazlett,Fina,6,10
+SENT,14,256,Sin salsas,Trude,Lindon,5,4
+DELIVERED,36,2010,Ninguna,Junina,Hyundai,5,9
+SENT,83,858,Paga de Contado,Mitsubishi,Nora,8,5
+SENT,88,140,Paga de Contado,Weylin,Phylis,9,8
+SENT,36,620,Sin salsas,Volvo,Bentley,4,10
+SENT,58,819,Ninguna,Chop Suey,Colet,10,8
+DELIVERED,66,305,Sin salsas,Donica,Mab,7,4
+DELIVERED,81,141,Sin salsas,Josh,Anjanette,8,4
+DELIVERED,77,688,Paga de Contado,Kakalina,Charity,6,5
+SENT,60,601,Paga de Contado,Donna,Lindy,10,6
+SENT,40,682,Ninguna,Charlie,Eagle,4,6
+IN_PROCCESS,2,300,Ninguna,Peder,Infiniti,7,8
+IN_PROCCESS,42,570,Ninguna,Archibaldo,Land Rover,7,5
+SENT,1988,316,Sin salsas,Nanete,Osbert,10,4
+SENT,98,948,Ninguna,Terrell,Sonja,8,7
+SENT,1997,433,Sin salsas,Adel,Vanda,9,5
+SENT,58,457,Sin salsas,Jermaine,Lindon,5,7
+IN_PROCCESS,36,413,Paga de Contado,Gerrie,Editha,7,9
+IN_PROCCESS,26,744,Sin salsas,Nissan,Sonja,8,10
+IN_PROCCESS,1979,991,Paga de Contado,Haze,Les,7,6
+SENT,21,612,Ninguna,Eagle,Ara,4,4
+SENT,1975,449,Paga de Contado,Hanson,Phedra,8,5
+IN_PROCCESS,1961,318,Sin salsas,Cristobal,Marmaduke,9,8
+SENT,25,949,Ninguna,Studebaker,Maryrose,10,9
+SENT,99,482,Ninguna,Lamborghini,Elle,10,6
+DELIVERED,15,411,Paga de Contado,Wilmette,Isuzu,7,5
+SENT,1991,595,Sin salsas,Maurice,Raddy,4,5
+DELIVERED,51,654,Sin salsas,Antoine,Leonidas,10,9
+IN_PROCCESS,1985,276,Ninguna,Dore,Subaru,7,9
+DELIVERED,50,644,Sin salsas,Buick,Mab,5,6
+IN_PROCCESS,2013,408,Ninguna,Dido,Jeep,4,4
+IN_PROCCESS,65,484,Paga de Contado,Tomlin,Ortensia,6,7
+DELIVERED,48,727,Paga de Contado,Desayuno,Rubie,6,7
+SENT,1996,717,Paga de Contado,Lorne,Ferrari,7,4
+IN_PROCCESS,76,671,Sin salsas,Evangelia,Volkswagen,7,4
+DELIVERED,89,460,Ninguna,Helga,Hester,5,4
+DELIVERED,2009,682,Paga de Contado,Odey,Randa,10,8
+SENT,80,927,Sin salsas,Chop Suey,Reena,5,7
+SENT,59,415,Paga de Contado,BMW,Land Rover,9,10
+IN_PROCCESS,2002,627,Ninguna,Kirstyn,Austin,5,9
+SENT,1977,853,Paga de Contado,Chrysler,Regen,4,6
+SENT,36,346,Ninguna,Acura,MINI,7,6
+DELIVERED,1970,335,Paga de Contado,Dodge,Janeva,5,4
+DELIVERED,1963,346,Paga de Contado,Daewoo,Elle,5,6
+IN_PROCCESS,24,436,Sin salsas,Mercury,Rolls-Royce,8,9
+DELIVERED,1981,512,Sin salsas,Kerrill,Reid,8,10
+IN_PROCCESS,1991,663,Paga de Contado,Garrett,Mitsubishi,10,9
+IN_PROCCESS,98,249,Ninguna,Saturn,Hazlett,9,5
+SENT,77,182,Sin salsas,Charlton,Saab,9,5
+DELIVERED,2000,316,Sin salsas,Northrop,Helsa,7,5
+SENT,29,526,Sin salsas,Ava,Geo,10,5
+IN_PROCCESS,44,614,Paga de Contado,Paige,Suzuki,10,4
+SENT,1989,579,Sin salsas,Karina,Refrigerio,5,6
+DELIVERED,92,132,Paga de Contado,Gunar,Alisun,7,8
+SENT,29,456,Paga de Contado,Hummer,Hamel,4,10
+IN_PROCCESS,91,800,Sin salsas,Aston Martin,Caro,4,6
+DELIVERED,75,913,Sin salsas,Mortie,Maryrose,7,8
+SENT,1972,894,Paga de Contado,GMC,Jaguar,6,10
+SENT,44,816,Sin salsas,Donna,Cleve,7,10
+IN_PROCCESS,1995,651,Sin salsas,Holden,Lexus,5,5
+SENT,49,940,Sin salsas,Mab,Acura,8,9
+SENT,48,494,Paga de Contado,Phedra,Marcile,10,5
+DELIVERED,19,392,Ninguna,Angelo,Janeva,5,6
+IN_PROCCESS,43,165,Ninguna,Mitsubishi,Sayre,4,10
+SENT,29,265,Ninguna,Jeep,Hallsy,9,9
+SENT,55,532,Sin salsas,Saxe,Acura,5,8
+DELIVERED,1997,175,Paga de Contado,Subaru,Codie,8,6
+IN_PROCCESS,1983,165,Paga de Contado,Lincoln,Saab,5,7
+SENT,2004,106,Ninguna,Plymouth,Derril,7,9
+SENT,61,379,Ninguna,Volvo,Rosene,7,5
+DELIVERED,12,600,Paga de Contado,Donna,Acura,6,8
+IN_PROCCESS,64,849,Sin salsas,Nanete,Carlita,8,8
+DELIVERED,1969,608,Sin salsas,Land Rover,Estrellita,4,5
+SENT,12,686,Paga de Contado,Bordie,Jerri,5,4
+DELIVERED,1992,850,Paga de Contado,Irving,Toyota,7,8
+SENT,1979,641,Sin salsas,Charlie,Rosmunda,4,9
+SENT,2013,376,Sin salsas,Maserati,Theressa,5,8
+SENT,2002,431,Sin salsas,Ardene,Erminia,6,10
+IN_PROCCESS,2001,565,Ninguna,Phedra,Braden,5,5
+IN_PROCCESS,53,654,Paga de Contado,Volkswagen,Taryn,8,9
+IN_PROCCESS,48,633,Ninguna,Hyundai,Jania,4,8
+DELIVERED,55,118,Ninguna,Mia,Ara,10,6
+IN_PROCCESS,69,903,Sin salsas,Tedd,Plymouth,10,4
+SENT,17,553,Ninguna,Ferrari,Nora,5,10
+IN_PROCCESS,77,338,Paga de Contado,Pauly,GMC,6,5
+SENT,60,176,Ninguna,Mazda,Holden,10,7
+SENT,47,367,Ninguna,Pontiac,Nick,4,7
+SENT,1986,362,Sin salsas,Plymouth,Nata,9,9
+DELIVERED,1963,702,Paga de Contado,Porsche,Murry,7,4
+IN_PROCCESS,35,732,Ninguna,Judith,Bentley,4,10
+DELIVERED,1988,252,Paga de Contado,Maurice,Devora,7,10
+DELIVERED,19,430,Paga de Contado,Sayre,Ambrosi,6,10
+SENT,45,661,Paga de Contado,Archibaldo,Denice,9,9
+DELIVERED,2002,542,Paga de Contado,Honda,Buick,4,5
+DELIVERED,69,441,Ninguna,Charity,Gunar,6,9
+DELIVERED,42,718,Ninguna,Kia,Acura,7,7
+DELIVERED,12,635,Sin salsas,Austin,Boigie,7,9
+IN_PROCCESS,16,705,Paga de Contado,Harcourt,Lyndsey,9,5
+SENT,25,198,Sin salsas,Harlen,Louise,4,9
+DELIVERED,41,200,Paga de Contado,Hummer,Jasmin,7,5
+DELIVERED,77,590,Paga de Contado,Chrysler,Pauly,4,4
+DELIVERED,55,688,Paga de Contado,Ara,Cadillac,8,7
+DELIVERED,1993,990,Sin salsas,Haze,Sancho,5,9
+DELIVERED,64,630,Paga de Contado,Gael,Bentley,7,5
+SENT,45,948,Ninguna,Bentley,Harald,10,6
+IN_PROCCESS,2009,705,Paga de Contado,Weston,Lincoln,9,10
+SENT,50,185,Ninguna,Daewoo,Patsy,9,8
+IN_PROCCESS,19,810,Paga de Contado,Maserati,Sadie,4,4
+DELIVERED,1985,109,Sin salsas,Talbert,Myrta,6,4
+IN_PROCCESS,24,695,Ninguna,Chlo,Stesha,9,4
+DELIVERED,90,228,Sin salsas,Hanson,Arabelle,6,5
+SENT,86,587,Paga de Contado,Teador,Jasmin,5,4
+SENT,47,169,Paga de Contado,Ashlee,Infiniti,5,6
+IN_PROCCESS,86,791,Paga de Contado,Mercedes-Benz,Kia,9,10
+SENT,61,2012,Paga de Contado,Dyanne,Buick,5,6
+IN_PROCCESS,53,332,Ninguna,Land Rover,Sampson,9,4
+DELIVERED,2010,409,Sin salsas,Powell,Jesselyn,5,9
+IN_PROCCESS,56,948,Sin salsas,Junina,Bianka,10,4
+IN_PROCCESS,89,265,Ninguna,Irving,Mariann,6,6
+IN_PROCCESS,2009,439,Ninguna,Weston,Ardene,8,9
+SENT,1987,684,Sin salsas,Ford,Ira,5,5
+IN_PROCCESS,2007,200,Paga de Contado,Bernita,Clemmy,8,6
+DELIVERED,57,897,Ninguna,Hildy,Martita,7,9
+IN_PROCCESS,23,307,Ninguna,Gustaf,Jerri,7,5
+IN_PROCCESS,1993,215,Ninguna,Eugenie,Corena,8,4
+DELIVERED,62,980,Sin salsas,Ford,Hildy,10,5
+SENT,30,266,Sin salsas,Skyler,Saab,6,8
+IN_PROCCESS,96,106,Ninguna,Randa,Rickey,9,10
+SENT,29,209,Sin salsas,Quinton,Anatol,6,6
+IN_PROCCESS,85,581,Ninguna,Volkswagen,Sayre,6,9
+IN_PROCCESS,2012,624,Sin salsas,Una,Lindon,8,8
+DELIVERED,2010,459,Ninguna,Fletch,Murry,5,4
+SENT,21,305,Ninguna,Fletch,Sayre,4,4
+SENT,89,172,Sin salsas,Mendie,Farica,9,10
+DELIVERED,52,723,Ninguna,Maybach,Bordie,5,9
+DELIVERED,92,153,Sin salsas,Austin,GMC,6,4
+DELIVERED,2001,738,Sin salsas,Randa,Lexus,10,5
+DELIVERED,41,853,Sin salsas,Denice,Mitsubishi,7,5
+DELIVERED,1984,294,Paga de Contado,Hubey,Ludovika,10,10
+IN_PROCCESS,1989,852,Paga de Contado,Cordi,Dorice,7,7
+IN_PROCCESS,2000,858,Ninguna,Porsche,Phylis,4,7
+SENT,2007,496,Paga de Contado,Herve,Saturn,10,9
+DELIVERED,88,697,Paga de Contado,Daewoo,Kakalina,6,10
+DELIVERED,1969,355,Ninguna,Helga,Kiley,8,7
+IN_PROCCESS,2002,911,Paga de Contado,Annabelle,Buick,6,6
+DELIVERED,6,194,Paga de Contado,Carlin,Peder,10,4
+SENT,34,183,Sin salsas,Any,Amandie,6,8
+IN_PROCCESS,1989,292,Ninguna,Nissan,Mercedes-Benz,5,9
+SENT,1992,507,Paga de Contado,Plymouth,Marshal,10,6
+IN_PROCCESS,52,171,Ninguna,Ford,Hanson,7,6
+DELIVERED,6,490,Paga de Contado,Cristobal,Lindon,9,8
+DELIVERED,51,741,Ninguna,Hester,Marmaduke,10,6
+SENT,96,896,Sin salsas,Chas,Aston Martin,6,5
+SENT,2006,877,Sin salsas,Matthaeus,Subaru,10,8
+DELIVERED,1999,487,Ninguna,Janeva,Tymon,7,5
+DELIVERED,1998,782,Sin salsas,Toyota,Willa,10,4
+IN_PROCCESS,1997,293,Ninguna,Paige,Sampson,5,9
+DELIVERED,40,214,Sin salsas,Raquel,Noak,7,4
+SENT,1991,308,Paga de Contado,Rosmunda,Hummer,6,7
+DELIVERED,76,859,Ninguna,Arroz Colombiano,Hummer,10,9
+IN_PROCCESS,91,672,Ninguna,Eberhard,Tedd,8,5
+IN_PROCCESS,1990,930,Paga de Contado,Glynn,Rhea,5,4
+DELIVERED,87,797,Ninguna,Lenette,Maserati,6,8
+IN_PROCCESS,1972,694,Ninguna,GMC,Conny,4,8
+DELIVERED,95,629,Sin salsas,Isador,Tomlin,7,10
+IN_PROCCESS,1990,475,Paga de Contado,Bernita,Saxe,10,7
+DELIVERED,40,547,Sin salsas,Peder,Massimo,4,8
+SENT,2007,705,Paga de Contado,Subaru,Jeep,9,4
+IN_PROCCESS,1963,814,Paga de Contado,Gifford,Sampson,7,10
+SENT,76,667,Ninguna,Vivie,Evonne,5,5
+IN_PROCCESS,83,676,Ninguna,Saturn,Petr,7,8
+IN_PROCCESS,34,401,Ninguna,Junia,Alphard,7,4
+IN_PROCCESS,2001,238,Sin salsas,Gunar,Glynn,5,4
+SENT,1981,149,Ninguna,Hamil,Hamel,9,6
+DELIVERED,1963,124,Sin salsas,Courtenay,Dody,5,9
+IN_PROCCESS,62,842,Ninguna,Patsy,Jaguar,5,6
+SENT,51,554,Ninguna,Molli,Shanan,10,6
+IN_PROCCESS,94,977,Paga de Contado,Saturn,Una,7,9
+SENT,75,897,Paga de Contado,Lincoln,Oldsmobile,7,9
+SENT,74,529,Sin salsas,Kassandra,Dodge,6,10
+IN_PROCCESS,76,776,Paga de Contado,Dodge,Alisun,5,8
+SENT,41,903,Paga de Contado,Denice,Aubrey,8,8
+IN_PROCCESS,1997,692,Sin salsas,Daewoo,Edlin,9,10
+IN_PROCCESS,85,678,Paga de Contado,Bentley,Chloe,9,9
+IN_PROCCESS,13,479,Sin salsas,Haze,Dodge,8,10
+DELIVERED,23,838,Sin salsas,Irving,Odey,10,8
+IN_PROCCESS,39,285,Sin salsas,Welsh,Hedwiga,4,10
+IN_PROCCESS,76,385,Ninguna,Jeep,Matthaeus,8,8
+SENT,35,287,Sin salsas,Oldsmobile,Rurik,4,7
+DELIVERED,100,241,Sin salsas,Candida,Parrnell,9,6
+IN_PROCCESS,98,756,Paga de Contado,Evangelin,Chevrolet,6,8
+SENT,79,869,Ninguna,Denice,Bordie,10,9
+SENT,2002,748,Sin salsas,Jerald,Gregor,7,10
+SENT,50,946,Sin salsas,Kakalina,Merkur,7,10
+IN_PROCCESS,100,713,Ninguna,Mercury,Ortensia,6,7
+DELIVERED,34,810,Ninguna,Skyler,Tedd,6,4
+SENT,60,787,Paga de Contado,Hubey,Skelly,4,5
+SENT,44,289,Ninguna,Mortie,Conny,4,9
+IN_PROCCESS,39,967,Sin salsas,Ford,Hazlett,5,10
+IN_PROCCESS,20,583,Ninguna,Sayre,Wallache,6,5
+IN_PROCCESS,1984,772,Sin salsas,Lexus,Phil,10,9
+IN_PROCCESS,90,792,Ninguna,Alidia,Jania,8,8
+DELIVERED,1988,456,Paga de Contado,Ferrari,Yardley,6,6
+SENT,95,414,Sin salsas,Chop Suey,Terrell,4,9
+IN_PROCCESS,56,721,Sin salsas,Corbin,Maible,8,10
+IN_PROCCESS,1991,886,Sin salsas,Wallache,Chrysler,10,9
+SENT,12,417,Paga de Contado,Mazda,Mercury,6,4
+IN_PROCCESS,1966,311,Ninguna,Paolo,Plymouth,4,6
+IN_PROCCESS,1966,254,Ninguna,Matthaeus,Glynn,9,10
+SENT,1969,710,Paga de Contado,Marshal,Nanice,9,5
+SENT,45,855,Paga de Contado,Lesley,Plymouth,10,4
+DELIVERED,12,614,Paga de Contado,Garrett,Tomas,7,7
+IN_PROCCESS,65,789,Ninguna,Melisa,Phil,10,8
+DELIVERED,81,645,Sin salsas,Lexus,Wallache,7,4
+SENT,23,475,Sin salsas,Isador,Bentley,6,8
+DELIVERED,2004,844,Paga de Contado,Aston Martin,Lenore,6,4
+SENT,69,967,Ninguna,Elisabet,Zara,10,8
+DELIVERED,88,808,Sin salsas,Chevrolet,Candida,10,10
+DELIVERED,21,369,Ninguna,Maserati,Shanan,9,4
+IN_PROCCESS,31,685,Paga de Contado,Nata,Mortie,10,7
+SENT,1966,130,Sin salsas,Rogers,Cristobal,5,10
+SENT,1967,700,Sin salsas,Lincoln,Skelly,7,8
+SENT,79,743,Ninguna,Petra,Nissan,9,5
+DELIVERED,68,527,Ninguna,Alexei,Audi,9,5
+SENT,1983,266,Sin salsas,Courtenay,Randa,9,8
+DELIVERED,98,330,Sin salsas,Evangelia,Anni,5,6
+SENT,69,481,Ninguna,Aston Martin,Martita,10,6
+DELIVERED,1987,654,Sin salsas,Tomas,Colet,8,6
+IN_PROCCESS,81,848,Paga de Contado,Porsche,Robbin,7,10
+SENT,43,837,Ninguna,Lexus,Herve,8,4
+DELIVERED,1985,295,Sin salsas,Alfa Romeo,Gifford,7,5
+SENT,1990,406,Ninguna,Devora,Marshal,8,8
+DELIVERED,30,532,Paga de Contado,Geo,Tomkin,9,7
+DELIVERED,11,539,Sin salsas,Hummer,Tybi,10,7
+IN_PROCCESS,34,868,Sin salsas,Ortensia,Corbin,4,7
+SENT,2002,122,Paga de Contado,Peder,Hazlett,10,7
+IN_PROCCESS,33,108,Ninguna,Candida,Ferrari,9,8
+SENT,73,584,Sin salsas,Phil,Chlo,6,4
+IN_PROCCESS,78,635,Ninguna,Geo,Skyler,6,5
+SENT,21,464,Ninguna,Kimble,Candida,10,4
+SENT,91,480,Ninguna,Aluino,Tedd,4,5
+SENT,89,302,Sin salsas,Randa,Pontiac,6,8
+IN_PROCCESS,40,623,Sin salsas,Studebaker,Staffard,5,10
+DELIVERED,95,488,Paga de Contado,Suzanne,Tomlin,4,6
+DELIVERED,48,145,Paga de Contado,Porsche,Skipper,8,6
+DELIVERED,56,929,Sin salsas,Saab,Ara,4,4
+SENT,53,184,Paga de Contado,Aston Martin,Weston,8,6
+DELIVERED,22,516,Paga de Contado,Leticia,Phedra,9,4
+SENT,1991,323,Paga de Contado,Mommy,BMW,8,6
+DELIVERED,20,132,Sin salsas,Jerald,Willa,8,5
+SENT,2011,495,Paga de Contado,Volvo,Sinclare,9,9
+DELIVERED,90,486,Ninguna,Alidia,Infiniti,7,8
+SENT,20,816,Ninguna,Krista,Chrysler,5,8
+DELIVERED,26,694,Paga de Contado,Una,Sabina,7,9
+DELIVERED,17,575,Paga de Contado,Chevrolet,Nanete,5,9
+IN_PROCCESS,1986,600,Ninguna,Gifford,Ford,8,7
+IN_PROCCESS,11,420,Ninguna,Caryl,Orelee,4,10
+SENT,85,333,Paga de Contado,Saw,Amandie,4,6
+SENT,46,497,Ninguna,Jaguar,Pauly,8,9
+IN_PROCCESS,98,520,Paga de Contado,Odey,Aston Martin,7,9
+DELIVERED,15,531,Ninguna,Ulrike,GMC,7,4
+DELIVERED,7,993,Ninguna,Gabe,Lincoln,10,7
+IN_PROCCESS,54,628,Ninguna,Suzuki,Honda,8,4
+DELIVERED,1963,825,Paga de Contado,Donna,Mitsubishi,10,6
+SENT,2002,125,Ninguna,Plymouth,Evangelin,9,7
+DELIVERED,59,496,Ninguna,Skelly,BMW,4,9
+IN_PROCCESS,22,420,Paga de Contado,Conny,Infiniti,10,6
+DELIVERED,68,767,Paga de Contado,Rosabelle,Vanda,4,7
+DELIVERED,1995,261,Sin salsas,Raimondo,Anjanette,9,5
+SENT,7,666,Ninguna,Plymouth,Antoine,7,5
+DELIVERED,78,770,Sin salsas,Ford,Hubey,8,5
+SENT,15,306,Ninguna,Leticia,Rodolphe,5,7
+DELIVERED,1963,339,Sin salsas,Ortensia,Fina,5,10
+IN_PROCCESS,1979,690,Paga de Contado,Phil,Dido,9,8
+DELIVERED,32,902,Paga de Contado,Ira,Editha,10,7
+SENT,44,171,Paga de Contado,GMC,Elisabet,5,7
+IN_PROCCESS,41,787,Paga de Contado,Saturn,Suzuki,8,6
+DELIVERED,2003,699,Sin salsas,Jaguar,Corena,4,6
+IN_PROCCESS,24,959,Ninguna,Mab,Massimo,10,6
+SENT,68,557,Sin salsas,Amandie,Rosabelle,5,5
+IN_PROCCESS,35,181,Paga de Contado,Marisa,Suzuki,6,7
+SENT,93,2010,Sin salsas,Hanson,Ulrike,5,6
+IN_PROCCESS,1983,416,Paga de Contado,Kent,Marie-jeanne,4,4
+DELIVERED,88,375,Sin salsas,Mitsubishi,Donna,5,9
+DELIVERED,69,158,Ninguna,Quill,Regen,8,6
+SENT,90,583,Ninguna,Ethelda,Studebaker,4,9
+SENT,81,229,Sin salsas,Dorice,Hyundai,5,7
+SENT,35,254,Ninguna,Caryl,Ava,5,6
+SENT,1987,956,Paga de Contado,Bentley,Corbin,10,9
+DELIVERED,1995,668,Sin salsas,Inness,Skyler,9,4
+SENT,61,329,Paga de Contado,Appolonia,Kirstyn,5,10
+SENT,2009,1000,Paga de Contado,Lotus,Mareah,5,10
+SENT,48,314,Sin salsas,Lola,Ardene,7,10
+IN_PROCCESS,4,611,Paga de Contado,Alfa Romeo,Harlen,6,9
+SENT,70,293,Sin salsas,Lincoln,Caro,6,8
+DELIVERED,82,399,Ninguna,Arabelle,Elisabet,9,6
+SENT,58,742,Ninguna,Chrysler,Holden,9,10
+DELIVERED,34,485,Paga de Contado,Robbin,Marisa,6,8
+DELIVERED,70,784,Sin salsas,Saturn,Clemmie,5,5
+IN_PROCCESS,36,435,Paga de Contado,Acura,Quill,6,5
+DELIVERED,93,118,Ninguna,Candida,Una,6,4
+IN_PROCCESS,86,757,Sin salsas,Jeep,Kingsley,6,6
+IN_PROCCESS,35,534,Ninguna,Mitsubishi,Abey,8,6
+DELIVERED,2001,368,Ninguna,Saturn,Lizzie,4,4
+DELIVERED,90,710,Sin salsas,Shanan,Aston Martin,5,9
+DELIVERED,3,199,Paga de Contado,Ashlee,Trevar,5,9
+SENT,5,761,Paga de Contado,Quill,Nanice,4,7
+IN_PROCCESS,2008,978,Ninguna,Trude,Carlita,5,5
+IN_PROCCESS,64,271,Sin salsas,Nowell,Gustaf,10,8
+SENT,1967,822,Sin salsas,Skelly,Tomlin,6,7
+DELIVERED,1972,952,Sin salsas,Suzuki,Eberhard,10,8
+DELIVERED,20,390,Ninguna,Fletch,Kingsley,10,9
+SENT,47,123,Paga de Contado,Lindy,Cristobal,4,10
+IN_PROCCESS,33,465,Paga de Contado,Raphaela,Matthieu,4,9
+IN_PROCCESS,2006,189,Ninguna,Terrell,Tomas,9,8
+IN_PROCCESS,31,103,Ninguna,Suzanne,Karry,6,7
+SENT,1967,176,Ninguna,Jesselyn,Staffard,6,6
+DELIVERED,85,915,Sin salsas,Annabelle,Dunstan,9,6
+DELIVERED,2009,276,Sin salsas,Arlyn,Bianka,9,10
+SENT,98,349,Sin salsas,Lincoln,Louise,7,5
+IN_PROCCESS,95,631,Sin salsas,Cristobal,Boigie,9,6
+DELIVERED,1970,630,Sin salsas,Saxe,Mazda,8,8
+IN_PROCCESS,13,275,Paga de Contado,Phylis,Maible,8,7
+IN_PROCCESS,74,667,Paga de Contado,Ulrike,Tybi,10,6
+SENT,63,150,Sin salsas,Clemmie,Boigie,7,10
+IN_PROCCESS,89,618,Sin salsas,Aston Martin,Devora,4,4
+IN_PROCCESS,66,608,Ninguna,Mazda,Hanson,10,9
+SENT,62,388,Ninguna,Suzanne,Fletch,4,7
+SENT,1988,787,Ninguna,Volvo,Tymon,8,8
+SENT,43,899,Sin salsas,Volkswagen,Raquel,10,8
+DELIVERED,99,236,Ninguna,Kakalina,BMW,8,4
+DELIVERED,29,678,Paga de Contado,Odey,Massimo,6,9
+IN_PROCCESS,96,842,Ninguna,Carlin,Louise,8,9
+DELIVERED,4,545,Ninguna,Charity,Saturn,6,10
+DELIVERED,1988,577,Ninguna,Lindon,Fidelity,7,4
+DELIVERED,75,732,Ninguna,Angelo,Terrell,4,6
+SENT,60,269,Paga de Contado,Matthaeus,Mariann,4,4
+IN_PROCCESS,1990,349,Ninguna,Alisun,Fletch,5,7
+IN_PROCCESS,1990,782,Sin salsas,Lincoln,Ambrosi,9,8
+IN_PROCCESS,67,202,Ninguna,Rosmunda,Suzanne,5,10
+IN_PROCCESS,2007,483,Ninguna,Odey,Cleve,7,6
+DELIVERED,74,363,Ninguna,Cherise,Arlyn,6,6
+SENT,71,424,Paga de Contado,Willa,Porsche,8,5
+SENT,1967,559,Sin salsas,Bentley,Abey,10,8
+DELIVERED,60,613,Ninguna,Cindra,Cadillac,10,8
+DELIVERED,29,304,Ninguna,Weylin,Hubey,4,4
+SENT,1985,465,Sin salsas,Lincoln,Boigie,7,7
+SENT,1999,540,Sin salsas,Zola,Refrigerio,9,8
+IN_PROCCESS,1977,387,Paga de Contado,Pontiac,Mazda,6,4
+DELIVERED,84,950,Sin salsas,Jania,Karry,10,8
+DELIVERED,94,964,Ninguna,Dido,Aubrey,4,5
+SENT,57,332,Paga de Contado,Mazda,Gael,5,6
+DELIVERED,75,667,Ninguna,Toyota,Aubrey,8,9
+DELIVERED,1999,554,Ninguna,Hummer,Ferrel,6,7
+DELIVERED,1990,436,Paga de Contado,Hallsy,Carlin,5,10
+IN_PROCCESS,81,324,Ninguna,Elsbeth,Maserati,7,7
+DELIVERED,2003,313,Paga de Contado,Chrysler,Haze,7,7
+IN_PROCCESS,55,941,Ninguna,Arlyn,Lefty,4,10
+SENT,86,375,Sin salsas,Corbin,Garrett,5,10
+DELIVERED,80,964,Ninguna,Raquel,Cadillac,4,7
+IN_PROCCESS,57,926,Ninguna,Mercedes-Benz,Jenni,4,4
+SENT,78,374,Sin salsas,Studebaker,GMC,9,10
+SENT,62,494,Paga de Contado,Willa,Haze,5,4
+SENT,28,736,Ninguna,Myrta,Tomkin,4,10
+SENT,1998,815,Paga de Contado,Arlyn,Tomlin,5,9
+DELIVERED,1972,445,Ninguna,Braden,Saxe,10,7
+DELIVERED,93,738,Ninguna,BMW,Caro,6,6
+DELIVERED,89,782,Paga de Contado,Kerrill,Volvo,9,8
+DELIVERED,1990,266,Ninguna,Martita,Codie,8,4
+SENT,78,584,Sin salsas,Rodolphe,Barron,9,10
+IN_PROCCESS,2003,617,Sin salsas,Maible,Marshal,6,8
+IN_PROCCESS,2000,287,Sin salsas,Sayre,Les,4,10
+DELIVERED,56,423,Ninguna,Wilmette,Rolls-Royce,7,8
+SENT,19,939,Paga de Contado,Ara,Randa,4,9
+DELIVERED,1984,646,Sin salsas,Arroz Colombiano,Holden,9,8
+DELIVERED,16,436,Sin salsas,Ardene,Hallsy,6,6
+SENT,59,486,Paga de Contado,Quinton,Daewoo,7,10
+IN_PROCCESS,38,743,Paga de Contado,Cleve,Daewoo,8,10
+SENT,2010,672,Sin salsas,Arroz Valluno,Jesselyn,4,6
+SENT,72,275,Ninguna,Nora,Cindra,5,10
+IN_PROCCESS,3,919,Ninguna,Phebe,Volkswagen,4,5
+SENT,29,564,Sin salsas,Chrysler,Tomas,10,4
+DELIVERED,1965,792,Ninguna,Elsbeth,Donna,5,7
+IN_PROCCESS,2003,250,Ninguna,Bertina,Appolonia,4,10
+IN_PROCCESS,25,409,Sin salsas,Jeep,Hazlett,6,10
+IN_PROCCESS,57,246,Sin salsas,Lizzie,Studebaker,10,9
+DELIVERED,1977,530,Ninguna,Aurel,Hirsch,7,4
+IN_PROCCESS,43,207,Sin salsas,Reba,Pontiac,6,6
+SENT,36,553,Sin salsas,Cleve,Nissan,7,5
+DELIVERED,86,672,Paga de Contado,Lizzie,Theressa,7,8
+IN_PROCCESS,42,872,Paga de Contado,Anatol,Skipper,4,8
+DELIVERED,2005,243,Ninguna,Suzanne,Conny,10,7
+DELIVERED,55,680,Ninguna,Lotus,Bernita,10,7
+IN_PROCCESS,94,529,Paga de Contado,Phil,Dodge,8,5
+DELIVERED,87,659,Ninguna,Nanete,Terrell,5,4
+IN_PROCCESS,2009,762,Sin salsas,Thelma,Inness,9,10
+DELIVERED,1985,773,Sin salsas,Matthieu,Cadillac,5,10
+DELIVERED,93,765,Sin salsas,Oldsmobile,Ludovika,6,10
+SENT,81,779,Sin salsas,Lorne,Kakalina,6,8
+IN_PROCCESS,46,304,Sin salsas,Kingsley,Inness,9,8
+DELIVERED,1988,132,Paga de Contado,Porsche,Editha,9,8
+IN_PROCCESS,12,557,Sin salsas,Honda,Feliks,6,7
+DELIVERED,54,884,Ninguna,Dolf,Hazlett,10,5
+DELIVERED,100,437,Ninguna,Marisa,Hallsy,7,7
+DELIVERED,86,440,Paga de Contado,Kaila,Northrop,4,7
+SENT,32,291,Paga de Contado,Natka,Nissan,6,9
+IN_PROCCESS,74,519,Sin salsas,Vivie,Maurice,5,10
+SENT,32,953,Sin salsas,Infiniti,Phil,4,6
+SENT,1961,467,Paga de Contado,Quinton,Sadie,9,6
+SENT,27,420,Paga de Contado,Smith,Charity,5,7
+DELIVERED,88,261,Sin salsas,Mommy,Aluino,6,9
+IN_PROCCESS,1972,895,Paga de Contado,Eagle,Isador,7,4
+DELIVERED,2002,381,Ninguna,Archibaldo,Terrell,5,4
+DELIVERED,99,495,Paga de Contado,Lincoln,Chop Suey,10,5
+SENT,92,253,Sin salsas,April,Saturn,5,8
+IN_PROCCESS,96,842,Ninguna,Conny,Carlin,4,5
+IN_PROCCESS,1981,494,Sin salsas,Rogers,Subaru,7,5
+SENT,34,671,Paga de Contado,Evangelin,Marshal,5,10
+SENT,44,403,Sin salsas,Chevrolet,Annabelle,8,7
+SENT,65,415,Ninguna,Mercedes-Benz,Ford,4,8
+IN_PROCCESS,1992,549,Sin salsas,Carlin,Pontiac,4,7
+DELIVERED,94,360,Sin salsas,Reba,Rosmunda,9,5
+SENT,82,234,Paga de Contado,Gifford,Phil,9,10
+DELIVERED,80,149,Ninguna,Aston Martin,Calv,7,8
+SENT,69,553,Ninguna,Desayuno,Honda,5,7
+DELIVERED,1981,496,Paga de Contado,Saab,Wilmette,8,5
+IN_PROCCESS,4,493,Paga de Contado,Jeep,Bertina,9,7
+DELIVERED,1987,571,Paga de Contado,Vivie,BMW,4,10
+IN_PROCCESS,1992,108,Ninguna,Rosabelle,Saxe,9,9
+DELIVERED,1990,640,Ninguna,Theressa,Nissan,8,4
+IN_PROCCESS,49,557,Ninguna,Volvo,Ethelda,8,8
+SENT,34,803,Paga de Contado,Phylis,Dorice,5,6
+IN_PROCCESS,1972,233,Ninguna,Daewoo,Cadillac,4,5
+SENT,1979,355,Sin salsas,Rosabelle,Alfa Romeo,5,10
+DELIVERED,30,804,Paga de Contado,Maserati,Buick,4,7
+DELIVERED,75,231,Ninguna,Elle,Baudoin,6,7
+SENT,1985,623,Paga de Contado,Nissan,Isuzu,6,4
+DELIVERED,1961,680,Sin salsas,Odey,Mendie,7,6
+IN_PROCCESS,1988,355,Sin salsas,Volvo,BMW,7,6
+SENT,38,673,Sin salsas,Bordie,Karina,7,9
+DELIVERED,1972,141,Ninguna,Cristobal,Natka,8,4
+IN_PROCCESS,1979,239,Paga de Contado,Ellis,Filmer,4,9
+DELIVERED,73,836,Ninguna,Chrysler,Karina,9,10
+SENT,14,524,Ninguna,Dilly,Sadie,6,10
+SENT,1966,278,Paga de Contado,Junia,Aston Martin,9,5
+IN_PROCCESS,17,741,Ninguna,Subaru,Odey,9,7
+IN_PROCCESS,1981,503,Sin salsas,Gunar,Jeep,7,10
+DELIVERED,62,694,Ninguna,Sonja,Weston,6,7
+DELIVERED,20,843,Ninguna,Kent,Jaguar,5,5
+DELIVERED,29,473,Paga de Contado,Filmer,Seline,8,6
+IN_PROCCESS,70,139,Paga de Contado,Toyota,Phylis,5,4
+DELIVERED,18,869,Paga de Contado,Rolls-Royce,Mord,5,9
+IN_PROCCESS,13,258,Ninguna,Haze,Lincoln,9,6
+IN_PROCCESS,1977,340,Paga de Contado,Buick,Hallsy,6,6
+IN_PROCCESS,17,642,Ninguna,Taylor,Ado,5,9
+SENT,28,396,Ninguna,Stesha,MINI,7,8
+IN_PROCCESS,28,114,Sin salsas,GMC,Hirsch,10,5
+IN_PROCCESS,13,452,Ninguna,Calv,Mitsubishi,7,7
+IN_PROCCESS,2007,949,Sin salsas,Ricard,Jeep,10,7
+DELIVERED,58,768,Sin salsas,Marshal,Weston,8,5
+IN_PROCCESS,77,496,Ninguna,Karry,Ford,10,9
+SENT,21,657,Sin salsas,Skelly,Orelee,7,10
+DELIVERED,76,687,Ninguna,Subaru,Amandie,10,5
+IN_PROCCESS,46,294,Sin salsas,Glynn,Maryrose,10,9
+IN_PROCCESS,1986,613,Ninguna,Staffard,North,10,4
+DELIVERED,87,280,Paga de Contado,Kaila,Filmer,5,8
+DELIVERED,1967,736,Paga de Contado,Arroz a la barbacoa,Daewoo,8,9
+DELIVERED,54,280,Ninguna,Saab,Maybach,10,10
+DELIVERED,33,205,Paga de Contado,Regen,Bernita,6,6
+SENT,1969,151,Paga de Contado,Calv,Tomkin,5,5
+SENT,92,763,Ninguna,Jerald,Refrigerio,8,10
+DELIVERED,16,983,Sin salsas,Rosene,Maible,5,5
+DELIVERED,46,211,Sin salsas,Taylor,Infiniti,8,10
+IN_PROCCESS,76,595,Ninguna,Stephen,Chevrolet,6,10
+IN_PROCCESS,2013,714,Sin salsas,Audi,Joan,5,6
+DELIVERED,74,938,Paga de Contado,Flory,Natka,10,8
+SENT,1966,284,Ninguna,Honda,Junia,8,5
+SENT,94,364,Sin salsas,Honda,Baudoin,8,10
+IN_PROCCESS,21,892,Ninguna,Ola,Volvo,9,9
+SENT,14,401,Ninguna,Lesley,Cadillac,6,10
+DELIVERED,16,174,Sin salsas,Chevrolet,Stephen,9,7
+IN_PROCCESS,1975,468,Paga de Contado,Demeter,Garrett,4,10
+SENT,35,469,Paga de Contado,Zara,Quill,9,7
+SENT,68,277,Sin salsas,Acura,Land Rover,4,5
+DELIVERED,1981,213,Ninguna,Taryn,MINI,8,5
+IN_PROCCESS,29,599,Paga de Contado,Missy,Jeep,9,5
+DELIVERED,50,524,Ninguna,Austin,Honda,5,4
+SENT,24,462,Sin salsas,Aluino,Saturn,6,8
+IN_PROCCESS,57,841,Sin salsas,Suzanne,Judith,9,4
+SENT,12,181,Ninguna,Wilmette,Acura,4,4
+IN_PROCCESS,1992,811,Sin salsas,Elisabet,Bertina,8,4
+IN_PROCCESS,10,927,Ninguna,Saturn,GMC,6,9
+IN_PROCCESS,1984,781,Sin salsas,Boigie,Zola,4,10
+DELIVERED,18,538,Sin salsas,Haze,Oldsmobile,10,7
+DELIVERED,95,781,Sin salsas,Eberhard,MINI,4,6
+DELIVERED,1992,990,Ninguna,MINI,Cordi,6,7
+SENT,44,537,Sin salsas,Marcile,Plymouth,6,4
+SENT,2002,799,Ninguna,Dody,Mortie,10,8
+IN_PROCCESS,47,246,Sin salsas,Dallas,Olia,5,9
+IN_PROCCESS,21,150,Ninguna,Lincoln,Boigie,7,4
+DELIVERED,40,952,Ninguna,Buick,Ford,10,9
+SENT,75,265,Paga de Contado,Elisabet,Jesselyn,4,10
+IN_PROCCESS,34,925,Ninguna,Saturn,Tymon,6,6
+SENT,1983,765,Paga de Contado,Hanson,Jenni,7,9
+IN_PROCCESS,1977,329,Sin salsas,Donna,Harmonia,9,6
+DELIVERED,67,138,Paga de Contado,Hazlett,Amandie,7,5
+DELIVERED,39,209,Paga de Contado,Eberhard,Bentley,5,8
+DELIVERED,1977,381,Ninguna,Bernita,Etan,9,8
+IN_PROCCESS,55,819,Sin salsas,Appolonia,Fredi,7,4
+DELIVERED,85,584,Ninguna,Kia,Kingsley,7,10
+SENT,22,444,Paga de Contado,Hanson,Jaguar,5,7
+DELIVERED,27,816,Sin salsas,Harmonia,Candida,5,10
+IN_PROCCESS,10,810,Paga de Contado,Mercedes-Benz,Barbara,6,6
+SENT,45,724,Ninguna,Nissan,Studebaker,10,10
+IN_PROCCESS,2006,180,Paga de Contado,Lenore,Mab,6,6
+SENT,2002,930,Paga de Contado,Jaguar,Oldsmobile,8,7
+DELIVERED,97,942,Ninguna,Padraic,Chop Suey,9,6
+IN_PROCCESS,86,646,Sin salsas,Paige,Ethelda,7,9
+DELIVERED,2013,118,Ninguna,Conny,GMC,9,4
+DELIVERED,1983,863,Sin salsas,Suzanne,Ferrel,7,5
+IN_PROCCESS,22,721,Ninguna,Honda,Martita,8,7
+SENT,24,119,Paga de Contado,Acura,Vanda,7,4
+DELIVERED,61,703,Sin salsas,Caryl,Kaila,9,7
+IN_PROCCESS,26,831,Sin salsas,Hummer,Randa,5,8
+IN_PROCCESS,66,246,Ninguna,Arabelle,Staffard,9,9
+IN_PROCCESS,6,199,Paga de Contado,Dore,Jeep,6,10
+SENT,48,108,Ninguna,Staffard,Kakalina,10,7
+DELIVERED,22,623,Sin salsas,Charlie,BMW,10,5
+IN_PROCCESS,1972,693,Paga de Contado,Lev,Mariann,6,10
+IN_PROCCESS,1988,978,Sin salsas,Toyota,Natka,4,10
+SENT,1988,172,Paga de Contado,Mariann,Lincoln,7,8
+IN_PROCCESS,2004,868,Ninguna,Helga,Buick,6,9
+DELIVERED,73,288,Sin salsas,Sayre,Lamborghini,9,9
+DELIVERED,2010,768,Ninguna,Hildy,Bernita,7,9
+IN_PROCCESS,61,475,Sin salsas,Candida,Reinwald,6,7
+DELIVERED,85,534,Sin salsas,Missy,MINI,7,5
+SENT,2009,402,Sin salsas,Calv,Audi,9,7
+DELIVERED,53,643,Sin salsas,Filmer,Charlton,9,4
+IN_PROCCESS,2003,289,Sin salsas,Raquel,Isuzu,10,9
+IN_PROCCESS,57,897,Ninguna,Maybach,Gabe,9,8
+SENT,1999,688,Ninguna,Leticia,Bunnie,7,5
+IN_PROCCESS,22,143,Ninguna,Jasmin,Lincoln,10,9
+SENT,2006,173,Ninguna,Ardene,Arroz Valluno,10,8
+DELIVERED,97,343,Paga de Contado,Ado,Mariann,8,8
+DELIVERED,2004,452,Paga de Contado,Land Rover,Sinclare,6,10
+SENT,1981,711,Sin salsas,Lindon,Thomas,4,8
+IN_PROCCESS,2010,554,Sin salsas,Terrell,GMC,8,8
+SENT,29,890,Paga de Contado,Malena,Aston Martin,6,7
+SENT,47,609,Ninguna,Jenni,Ferrari,9,5
+IN_PROCCESS,1999,513,Sin salsas,GMC,Charlton,4,4
+SENT,67,467,Paga de Contado,Evangelin,Aston Martin,7,6
+IN_PROCCESS,32,970,Paga de Contado,Hildy,Molli,6,6
+DELIVERED,12,290,Ninguna,Selig,Maybach,4,7
+IN_PROCCESS,1997,817,Ninguna,Elle,Terrell,5,4
+DELIVERED,89,723,Sin salsas,Jaguar,Chop Suey,5,4
+IN_PROCCESS,33,651,Sin salsas,Raimondo,Daewoo,10,6
+SENT,1963,252,Sin salsas,Dodge,Chloe,6,7
+IN_PROCCESS,85,606,Ninguna,Richie,Buick,8,4
+SENT,25,111,Sin salsas,Kimble,Lorne,8,7
+SENT,2013,268,Ninguna,GMC,Shanan,8,10
+DELIVERED,86,614,Paga de Contado,Devora,Hazlett,6,6
+DELIVERED,19,103,Ninguna,Maxie,Fletch,10,10
+IN_PROCCESS,1979,472,Ninguna,Kassandra,Thomas,10,8
+SENT,60,914,Ninguna,Hildy,Irving,4,4
+IN_PROCCESS,20,259,Sin salsas,Zara,Maddi,6,7
+IN_PROCCESS,26,949,Ninguna,Hazlett,Colet,7,7
+DELIVERED,82,607,Ninguna,Leonidas,Dorice,10,4
+SENT,1993,215,Ninguna,Welsh,Ara,7,6
+IN_PROCCESS,20,2012,Paga de Contado,Mommy,Carlin,5,6
+IN_PROCCESS,67,435,Sin salsas,Desayuno,Volvo,9,8
+SENT,14,914,Paga de Contado,Una,Terrell,6,6
+IN_PROCCESS,60,383,Ninguna,Harald,Arabelle,9,8
+IN_PROCCESS,1997,642,Ninguna,Nanice,Paolo,6,10
+DELIVERED,71,885,Paga de Contado,Infiniti,Chop Suey,8,8
+IN_PROCCESS,24,825,Ninguna,Bernita,Sayre,10,9
+DELIVERED,26,676,Ninguna,Phylis,Nora,9,9
+DELIVERED,45,648,Sin salsas,Bentley,Cadillac,7,5
+IN_PROCCESS,13,638,Ninguna,Sabina,Bordie,9,7
+IN_PROCCESS,89,865,Sin salsas,Lincoln,Caro,8,10
+DELIVERED,2002,384,Paga de Contado,Gabe,Bentley,10,4
+DELIVERED,90,334,Paga de Contado,Corena,Chevrolet,4,8
+IN_PROCCESS,2001,558,Paga de Contado,Natka,Margery,4,5
+SENT,2010,883,Paga de Contado,Rosene,Nick,6,8
+SENT,48,591,Sin salsas,Anjanette,Farica,6,7
+SENT,1983,417,Ninguna,Jeep,Estrellita,6,4
+IN_PROCCESS,70,723,Ninguna,Derril,Skipper,6,5
+DELIVERED,97,630,Ninguna,Anjanette,Suzanne,4,8
+SENT,34,441,Paga de Contado,Natka,Chop Suey,8,5
+IN_PROCCESS,75,708,Ninguna,Jaguar,Plymouth,5,7
+SENT,34,937,Paga de Contado,Irving,Tymon,5,7
+DELIVERED,29,155,Paga de Contado,Hallsy,Kakalina,6,6
+DELIVERED,2010,327,Paga de Contado,Thomas,Lizzie,7,9
+DELIVERED,35,173,Paga de Contado,Mommy,Welsh,7,10
+DELIVERED,65,495,Ninguna,Infiniti,Maybach,8,4
+IN_PROCCESS,35,283,Paga de Contado,Editha,Jania,6,8
+SENT,1986,525,Ninguna,Nissan,Skelly,9,8
+SENT,64,743,Paga de Contado,BMW,Charlton,9,5
+DELIVERED,1984,196,Sin salsas,Jaguar,Filmer,10,5
+DELIVERED,29,697,Sin salsas,Sterling,Richie,6,6
+DELIVERED,19,880,Ninguna,Maddi,Marmaduke,10,9
+IN_PROCCESS,45,107,Sin salsas,Hummer,Terrell,5,6
+SENT,71,309,Sin salsas,Jeep,Maybach,7,6
+DELIVERED,1967,899,Paga de Contado,Martita,Paolo,6,5
+DELIVERED,1984,496,Ninguna,Mercury,Charlton,8,7
+SENT,36,964,Paga de Contado,Jesselyn,Taryn,7,8
+SENT,1997,164,Paga de Contado,Nanete,Selig,5,8
+SENT,41,963,Paga de Contado,Cherise,Lexus,6,5
+DELIVERED,53,895,Ninguna,Thomas,Oldsmobile,7,8
+DELIVERED,2002,836,Ninguna,Anjanette,Northrop,8,6
+DELIVERED,1966,251,Paga de Contado,Porsche,Rurik,8,6
+SENT,2012,793,Sin salsas,Thomas,Infiniti,8,4
+DELIVERED,97,272,Ninguna,Mercury,Pontiac,5,6
+IN_PROCCESS,35,372,Paga de Contado,Plymouth,Leticia,8,10
+SENT,2010,865,Paga de Contado,Saturn,Acura,9,10
+IN_PROCCESS,1983,594,Paga de Contado,Maserati,Mareah,8,5
+SENT,1987,255,Sin salsas,Maxie,Ortensia,6,10
+IN_PROCCESS,99,579,Paga de Contado,Myrta,Thomas,4,9
+DELIVERED,28,544,Paga de Contado,Arlyn,Ortensia,4,9
+IN_PROCCESS,44,507,Sin salsas,Chalmers,Gabe,8,6
+DELIVERED,85,573,Paga de Contado,Lenette,Maxie,9,5
+IN_PROCCESS,25,638,Paga de Contado,Maryrose,Helsa,8,8
+IN_PROCCESS,1991,101,Sin salsas,Lorne,Weston,7,10
+IN_PROCCESS,24,524,Ninguna,Acura,Amaleta,10,10
+IN_PROCCESS,100,219,Paga de Contado,Chevrolet,Elisabet,7,10
+SENT,56,506,Paga de Contado,Raimondo,Calv,9,10
+IN_PROCCESS,72,889,Paga de Contado,Dodge,Karina,4,6
+IN_PROCCESS,50,743,Paga de Contado,Zara,Gail,6,4
+SENT,2008,738,Ninguna,Tiebold,Skyler,5,5
+IN_PROCCESS,99,571,Ninguna,Jeep,Skelly,10,8
+SENT,57,345,Ninguna,Aston Martin,Marisa,6,5
+DELIVERED,58,790,Sin salsas,Buick,Ardene,4,6
+SENT,87,766,Sin salsas,Caryl,Ardene,6,5
+SENT,91,217,Paga de Contado,Aluino,Pauly,4,5
+SENT,1999,625,Paga de Contado,Mercedes-Benz,Lindy,6,4
+SENT,9,125,Paga de Contado,Maible,Skelly,7,5
+SENT,97,354,Sin salsas,Acura,Mercury,10,10
+DELIVERED,86,703,Paga de Contado,Ingaborg,Geo,4,10
+IN_PROCCESS,100,653,Sin salsas,Dodge,Arroz Valluno,7,6
+SENT,1984,942,Sin salsas,Abey,Cadillac,10,10
+SENT,38,418,Ninguna,Land Rover,Suzuki,6,8
+SENT,1999,677,Ninguna,Cadillac,Kia,9,8
+DELIVERED,66,315,Paga de Contado,Hamil,Elisabet,8,6
+DELIVERED,56,933,Paga de Contado,Pontiac,Cadillac,8,8
+DELIVERED,2009,606,Sin salsas,Tomlin,Elisabet,4,5
+SENT,38,467,Paga de Contado,Charlie,Jeep,5,7
+SENT,2000,487,Paga de Contado,Fletch,Olenka,10,8
+SENT,1992,492,Paga de Contado,Nanete,Chevrolet,8,7
+DELIVERED,69,659,Ninguna,Oldsmobile,Weston,10,9
+DELIVERED,1990,216,Ninguna,Hamel,Dodge,5,9
+SENT,62,332,Ninguna,Kent,Sampson,5,5
+SENT,74,784,Ninguna,Marshal,Enrika,10,4
+SENT,47,106,Paga de Contado,Fletch,Rodolphe,9,10
+SENT,95,633,Sin salsas,Shelba,Tomlin,9,4
+IN_PROCCESS,81,574,Ninguna,Ira,Claudelle,6,10
+IN_PROCCESS,72,704,Sin salsas,Hubey,Una,8,7
+SENT,1992,175,Sin salsas,Anjanette,Chevrolet,5,7
+DELIVERED,1970,938,Sin salsas,Mercury,Candida,4,7
+IN_PROCCESS,88,591,Paga de Contado,Aston Martin,Rosmunda,7,4
+IN_PROCCESS,49,323,Sin salsas,Richie,Isuzu,9,5
+DELIVERED,79,295,Ninguna,Helga,Archibaldo,5,5
+DELIVERED,93,381,Ninguna,Phedra,GMC,8,6

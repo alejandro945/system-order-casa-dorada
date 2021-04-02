@@ -1,0 +1,621 @@
+CASA DORADA BASE PRODUCTS REPORT
+Code; Name;Product type;Ingredients;State
+1;arroz;Sol;;Portugal,Philippines;ACTIVE
+2;fer;Ringgit;;Poland,Nicaragua;ACTIVE
+3;Arroz Llanero;Dinar;;Russia,Philippines,Austria,Nicaragua;ACTIVE
+4;Audi;Bebida;;Ostras,Costilla de cerdo,Papas;ACTIVE
+5;Cybil;Sopa;;Costilla,Pollo,Camaron;ACTIVE
+6;BMW;Postre;;Papas,Costilla de cerdo,Lomo Biche;ACTIVE
+7;Alexandra;Bandeja;;Ostras,Verduras,Chicharron;ACTIVE
+8;Chrysler;Sopa;;Pollo,Chorizo,Ostras;ACTIVE
+9;Greta;Caldo;;Papas,Lomo de Cerdo Ahumado,Cerdo;ACTIVE
+10;GMC;Plato Secundario;;Camaron,Cebolla,Lomo de Cerdo Ahumado;ACTIVE
+11;Ford;Plato Principal;;Papas a la Francesa,Cebolla,Ostras;ACTIVE
+12;Ailey;Bandeja;;Cerdo,Papas a la Francesa,Pollo;ACTIVE
+13;Jaquelin;Plato Principal;;Chicharron,Chorizo,Chicharron;ACTIVE
+14;Land Rover;Caldo;;Chicharron,Pollo,Batavia;ACTIVE
+15;Porsche;Caldo;;Verduras,Maduro,Verduras;ACTIVE
+16;Saab;Plato Principal;;Cabano,Chorizo,Chicharron;ACTIVE
+17;Mitsubishi;Sopa;;Batavia,Cebolla,Jamon;ACTIVE
+18;Nissan;Plato Principal;;Cabano,Chuleta,Maduro;ACTIVE
+19;Pontiac;Bebida;;Chuleta,Costilla,Chorizo;ACTIVE
+20;Mercury;Postre;;Ostras,Batavia,Pollo;ACTIVE
+21;Sharity;Bandeja;;Papas,Pulpo,Cebolla;ACTIVE
+22;Chevrolet;Plato Principal;;Costilla de cerdo,Jamon,Costilla de cerdo;ACTIVE
+23;Toyota;Postre;;Lomo de Cerdo Ahumado,Ostras,Chuleta;ACTIVE
+24;Hew;Bandeja;;Papas a la Francesa,Lomo de Cerdo Ahumado,Lomo Biche;ACTIVE
+25;Kimble;Bebida;;Lomo Biche,Batavia,Chorizo;ACTIVE
+26;Merkur;Postre;;Chorizo,Jamon,Cebolla;ACTIVE
+27;Infiniti;Postre;;Chuleta,Pulpo,Chorizo;ACTIVE
+28;Bernita;Postre;;Chorizo,Lomo de Cerdo Ahumado,Lomo Biche;ACTIVE
+29;Lorne;Sopa;;Batavia,Maduro,Maduro;ACTIVE
+30;Pepi;Plato Principal;;Cebolla,Papas a la Francesa,Verduras;ACTIVE
+31;Dodge;Bebida;;Costilla,Jamon,Cerdo;ACTIVE
+32;Lexus;Bebida;;Lomo de Cerdo Ahumado,Lomo Biche,Camaron;ACTIVE
+33;Adiana;Plato Secundario;;Lomo de Cerdo Ahumado,Cerdo,Camaron;ACTIVE
+34;Ferrari;Plato Secundario;;Ostras,Chuleta,Chorizo;ACTIVE
+35;Buick;Bebida;;Verduras,Ostras,Jamon;ACTIVE
+36;Jeep;Caldo;;Camaron,Maduro,Cabano;ACTIVE
+37;Brit;Bebida;;Verduras,Chorizo,Jamon;ACTIVE
+38;Acura;Postre;;Batavia,Batavia,Papas a la Francesa;ACTIVE
+39;Volkswagen;Caldo;;Pollo,Chuleta,Lomo de Cerdo Ahumado;ACTIVE
+40;Marylou;Plato Principal;;Chicharron,Batavia,Cabano;ACTIVE
+41;Mendie;Bebida;;Jamon,Cerdo,Maduro;ACTIVE
+42;Shanan;Postre;;Cerdo,Cabano,Ostras;ACTIVE
+43;Lari;Sopa;;Costilla,Ostras,Papas;ACTIVE
+44;Justine;Plato Principal;;Pulpo,Chicharron,Cerdo;ACTIVE
+45;Mercedes-Benz;Caldo;;Costilla,Pollo,Papas;ACTIVE
+46;Paige;Postre;;Camaron,Pollo,Cerdo;ACTIVE
+47;Maserati;Caldo;;Verduras,Chorizo,Chicharron;ACTIVE
+48;Caterina;Plato Secundario;;Cerdo,Chicharron,Jamon;ACTIVE
+49;Volvo;Bandeja;;Papas a la Francesa,Chuleta,Jamon;ACTIVE
+50;Barbabas;Bebida;;Pollo,Camaron,Pulpo;ACTIVE
+51;Jaguar;Plato Secundario;;Verduras,Jamon,Papas a la Francesa;ACTIVE
+52;Chas;Postre;;Maduro,Ostras,Costilla de cerdo;ACTIVE
+53;Reid;Sopa;;Lomo Biche,Costilla de cerdo,Chuleta;ACTIVE
+54;Gretel;Plato Principal;;Lomo Biche,Papas,Lomo Biche;ACTIVE
+55;Hyundai;Bebida;;Chorizo,Maduro,Pulpo;ACTIVE
+56;Marcile;Sopa;;Jamon,Costilla,Cerdo;ACTIVE
+57;Zollie;Plato Secundario;;Costilla de cerdo,Costilla de cerdo,Batavia;ACTIVE
+58;Lamborghini;Bandeja;;Ostras,Maduro,Pulpo;ACTIVE
+59;Subaru;Bandeja;;Cebolla,Chuleta,Jamon;ACTIVE
+60;Phelia;Bandeja;;Jamon,Batavia,Pulpo;ACTIVE
+61;Cadillac;Bebida;;Camaron,Chicharron,Cabano;ACTIVE
+62;Emera;Bebida;;Cerdo,Chicharron,Pollo;ACTIVE
+63;Reeva;Sopa;;Jamon,Lomo Biche,Lomo de Cerdo Ahumado;ACTIVE
+64;Ara;Plato Secundario;;Ostras,Lomo de Cerdo Ahumado,Costilla de cerdo;ACTIVE
+65;Charity;Caldo;;Cerdo,Cabano,Batavia;ACTIVE
+66;Honda;Postre;;Costilla,Maduro,Cabano;ACTIVE
+67;Kia;Caldo;;Ostras,Jamon,Batavia;ACTIVE
+68;Hanson;Sopa;;Costilla de cerdo,Chorizo,Chuleta;ACTIVE
+69;Lizzie;Postre;;Chuleta,Papas a la Francesa,Pollo;ACTIVE
+70;Hummer;Caldo;;Cerdo,Batavia,Pollo;ACTIVE
+71;Papas a la francesa;Bebida;;Cerdo,Pulpo,Chuleta;ACTIVE
+72;Herve;Caldo;;Maduro,Batavia,Cabano;ACTIVE
+73;Barthel;Bebida;;Cerdo,Chorizo,Pollo;ACTIVE
+74;Mazda;Plato Secundario;;Pollo,Chuleta,Lomo Biche;ACTIVE
+75;Terrell;Sopa;;Batavia,Batavia,Jamon;ACTIVE
+76;Franzen;Caldo;;Batavia,Chicharron,Batavia;ACTIVE
+77;Raphaela;Sopa;;Cebolla,Costilla de cerdo,Cerdo;ACTIVE
+78;Hubey;Plato Principal;;Papas,Costilla,Ostras;ACTIVE
+79;Krista;Bebida;;Lomo Biche,Camaron,Chorizo;ACTIVE
+80;Chloe;Plato Secundario;;Ostras,Cerdo,Verduras;ACTIVE
+81;Robbin;Plato Secundario;;Ostras,Pollo,Costilla de cerdo;ACTIVE
+82;Phoebe;Postre;;Pulpo,Jamon,Lomo Biche;ACTIVE
+83;Isuzu;Plato Principal;;Chuleta,Camaron,Papas a la Francesa;ACTIVE
+84;Garrett;Plato Secundario;;Maduro,Cabano,Jamon;ACTIVE
+85;Pippa;Postre;;Cerdo,Ostras,Costilla;ACTIVE
+86;Devonne;Bebida;;Pulpo,Jamon,Chorizo;ACTIVE
+87;Philippine;Plato Secundario;;Pollo,Cabano,Batavia;ACTIVE
+88;Mohandis;Caldo;;Lomo Biche,Costilla de cerdo,Ostras;ACTIVE
+89;Smith;Plato Secundario;;Ostras,Lomo de Cerdo Ahumado,Ostras;ACTIVE
+90;Clemmy;Plato Secundario;;Chicharron,Maduro,Verduras;ACTIVE
+91;Saturn;Postre;;Lomo Biche,Batavia,Chorizo;ACTIVE
+92;Brynn;Caldo;;Costilla de cerdo,Jamon,Cerdo;ACTIVE
+93;Sven;Bandeja;;Lomo de Cerdo Ahumado,Costilla,Pulpo;ACTIVE
+94;Sam;Caldo;;Ostras,Pollo,Lomo de Cerdo Ahumado;ACTIVE
+95;Ferne;Bebida;;Chorizo,Maduro,Chuleta;ACTIVE
+96;Natka;Bandeja;;Batavia,Lomo Biche,Cerdo;ACTIVE
+97;Rosmunda;Bandeja;;Cabano,Lomo de Cerdo Ahumado,Chorizo;ACTIVE
+98;Leela;Sopa;;Cabano,Ostras,Pulpo;ACTIVE
+99;Butch;Plato Secundario;;Camaron,Batavia,Lomo Biche;ACTIVE
+100;Hazlett;Plato Secundario;;Pulpo,Papas a la Francesa,Papas a la Francesa;ACTIVE
+101;Rozamond;Postre;;Chuleta,Chicharron,Pollo;ACTIVE
+102;Rahal;Postre;;Papas,Pollo,Pollo;ACTIVE
+103;Suzuki;Plato Secundario;;Pollo,Chorizo,Verduras;ACTIVE
+104;Massimiliano;Plato Secundario;;Lomo Biche,Cabano,Costilla;ACTIVE
+105;Lincoln;Plato Principal;;Pollo,Costilla,Lomo de Cerdo Ahumado;ACTIVE
+106;Gill;Sopa;;Cabano,Costilla de cerdo,Chorizo;ACTIVE
+107;Phil;Plato Secundario;;Cabano,Pulpo,Cerdo;ACTIVE
+108;Darell;Bandeja;;Papas,Lomo Biche,Chuleta;ACTIVE
+109;Brose;Plato Secundario;;Batavia,Verduras,Maduro;ACTIVE
+110;Edita;Bandeja;;Papas,Chuleta,Ostras;ACTIVE
+111;Plymouth;Plato Principal;;Ostras,Chorizo,Pulpo;ACTIVE
+112;Avril;Plato Secundario;;Jamon,Chuleta,Papas a la Francesa;ACTIVE
+113;Estrellita;Bebida;;Costilla,Chicharron,Costilla de cerdo;ACTIVE
+114;Rubie;Plato Principal;;Chuleta,Cerdo,Cabano;ACTIVE
+115;Tiffy;Postre;;Lomo Biche,Papas,Camaron;ACTIVE
+116;Lesley;Bebida;;Chorizo,Pollo,Papas;ACTIVE
+117;Candida;Plato Secundario;;Lomo de Cerdo Ahumado,Costilla,Jamon;ACTIVE
+118;Birch;Sopa;;Camaron,Papas a la Francesa,Maduro;ACTIVE
+119;Donica;Plato Principal;;Cabano,Maduro,Papas;ACTIVE
+120;MINI;Bandeja;;Lomo Biche,Chicharron,Chuleta;ACTIVE
+121;Uri;Caldo;;Papas a la Francesa,Cebolla,Maduro;ACTIVE
+122;Nert;Bebida;;Chicharron,Maduro,Verduras;ACTIVE
+123;Phedra;Postre;;Pollo,Cebolla,Lomo de Cerdo Ahumado;ACTIVE
+124;Tybi;Sopa;;Chicharron,Costilla,Chorizo;ACTIVE
+125;Vernor;Plato Principal;;Chorizo,Costilla de cerdo,Papas a la Francesa;ACTIVE
+126;Donny;Bebida;;Maduro,Cabano,Camaron;ACTIVE
+127;Brice;Postre;;Chicharron,Chuleta,Lomo de Cerdo Ahumado;ACTIVE
+128;Frannie;Postre;;Ostras,Costilla,Chorizo;ACTIVE
+129;Harcourt;Postre;;Chorizo,Pulpo,Maduro;ACTIVE
+130;Leeanne;Sopa;;Maduro,Chicharron,Cabano;ACTIVE
+131;Oldsmobile;Plato Principal;;Pulpo,Maduro,Maduro;ACTIVE
+132;Quill;Caldo;;Batavia,Camaron,Pulpo;ACTIVE
+133;Hugo;Plato Secundario;;Maduro,Pollo,Lomo de Cerdo Ahumado;ACTIVE
+134;Ado;Plato Principal;;Pollo,Costilla,Cabano;ACTIVE
+135;Trever;Sopa;;Lomo de Cerdo Ahumado,Papas,Verduras;ACTIVE
+136;Lev;Plato Principal;;Cebolla,Maduro,Maduro;ACTIVE
+137;Jillayne;Plato Principal;;Papas,Cebolla,Cabano;ACTIVE
+138;Tiebold;Plato Principal;;Lomo de Cerdo Ahumado,Ostras,Maduro;ACTIVE
+139;Helsa;Sopa;;Ostras,Pollo,Papas;ACTIVE
+140;Fletch;Sopa;;Chicharron,Papas,Chuleta;ACTIVE
+141;Caro;Sopa;;Batavia,Cabano,Papas;ACTIVE
+142;Gayel;Plato Principal;;Cabano,Cerdo,Chicharron;ACTIVE
+143;Wiley;Postre;;Chicharron,Pollo,Lomo Biche;ACTIVE
+144;Maible;Bandeja;;Cabano,Chuleta,Chorizo;ACTIVE
+145;Vivie;Plato Principal;;Cebolla,Cerdo,Lomo Biche;ACTIVE
+146;Rodolphe;Postre;;Chorizo,Lomo de Cerdo Ahumado,Lomo Biche;ACTIVE
+147;Nikola;Postre;;Papas,Cerdo,Pollo;ACTIVE
+148;Thelma;Plato Principal;;Chicharron,Chuleta,Lomo Biche;ACTIVE
+149;Adel;Plato Principal;;Batavia,Papas a la Francesa,Costilla de cerdo;ACTIVE
+150;Reinwald;Caldo;;Maduro,Camaron,Chuleta;ACTIVE
+151;Leticia;Caldo;;Pollo,Costilla,Maduro;ACTIVE
+152;Kaila;Bebida;;Lomo Biche,Lomo Biche,Cebolla;ACTIVE
+153;Di;Sopa;;Costilla de cerdo,Chicharron,Papas a la Francesa;ACTIVE
+154;Koralle;Bebida;;Lomo de Cerdo Ahumado,Jamon,Papas;ACTIVE
+155;Carlin;Postre;;Cebolla,Cabano,Papas a la Francesa;ACTIVE
+156;Nora;Caldo;;Cerdo,Jamon,Cebolla;ACTIVE
+157;Sadie;Bandeja;;Costilla de cerdo,Lomo de Cerdo Ahumado,Lomo Biche;ACTIVE
+158;Brigitte;Bandeja;;Maduro,Verduras,Verduras;ACTIVE
+159;Taylor;Sopa;;Lomo de Cerdo Ahumado,Pulpo,Lomo Biche;ACTIVE
+160;Deloria;Bandeja;;Pollo,Ostras,Cebolla;ACTIVE
+161;Jenni;Postre;;Batavia,Lomo Biche,Chorizo;ACTIVE
+162;Hasheem;Bandeja;;Maduro,Costilla de cerdo,Batavia;ACTIVE
+163;Junia;Bebida;;Camaron,Chicharron,Batavia;ACTIVE
+164;Marjy;Sopa;;Jamon,Lomo Biche,Ostras;ACTIVE
+165;Louise;Caldo;;Costilla,Cerdo,Pulpo;ACTIVE
+166;Saxe;Bandeja;;Camaron,Costilla,Papas a la Francesa;ACTIVE
+167;Dody;Bandeja;;Costilla de cerdo,Chicharron,Lomo Biche;ACTIVE
+168;Desayuno;Caldo;;Pulpo,Papas,Ostras;ACTIVE
+169;Anni;Postre;;Jamon,Costilla,Papas a la Francesa;ACTIVE
+170;Adele;Bandeja;;Lomo de Cerdo Ahumado,Lomo Biche,Papas a la Francesa;ACTIVE
+171;Noah;Plato Secundario;;Papas,Lomo de Cerdo Ahumado,Jamon;ACTIVE
+172;Hamil;Bebida;;Papas,Pulpo,Chicharron;ACTIVE
+173;Arabelle;Plato Secundario;;Papas,Jamon,Chuleta;ACTIVE
+174;Matthieu;Sopa;;Pollo,Lomo de Cerdo Ahumado,Lomo Biche;ACTIVE
+175;Marshal;Plato Secundario;;Chuleta,Cebolla,Costilla;ACTIVE
+176;Maybach;Plato Principal;;Chorizo,Papas a la Francesa,Jamon;ACTIVE
+177;Staffard;Bandeja;;Papas,Costilla,Pulpo;ACTIVE
+178;Odey;Postre;;Papas,Ostras,Cebolla;ACTIVE
+179;Olivette;Plato Principal;;Chuleta,Papas a la Francesa,Batavia;ACTIVE
+180;Aston Martin;Bandeja;;Cabano,Cerdo,Camaron;ACTIVE
+181;Ingaborg;Bebida;;Costilla,Costilla,Pollo;ACTIVE
+182;Jasmin;Plato Secundario;;Lomo Biche,Verduras,Pollo;ACTIVE
+183;Randa;Bebida;;Cabano,Lomo de Cerdo Ahumado,Papas a la Francesa;ACTIVE
+184;Evangelin;Postre;;Jamon,Lomo Biche,Batavia;ACTIVE
+185;Anjanette;Plato Principal;;Pulpo,Jamon,Verduras;ACTIVE
+186;Alfa Romeo;Sopa;;Verduras,Pollo,Costilla;ACTIVE
+187;Paolo;Sopa;;Verduras,Maduro,Costilla de cerdo;ACTIVE
+188;Ram;Bandeja;;Papas a la Francesa,Batavia,Verduras;ACTIVE
+189;Alexei;Sopa;;Costilla,Cabano,Papas;ACTIVE
+190;Biddie;Sopa;;Papas a la Francesa,Cabano,Lomo Biche;ACTIVE
+191;Hirsch;Bandeja;;Cerdo,Costilla de cerdo,Costilla;ACTIVE
+192;Lavina;Sopa;;Maduro,Cabano,Lomo de Cerdo Ahumado;ACTIVE
+193;Dyanne;Plato Principal;;Papas,Jamon,Chicharron;ACTIVE
+194;Shanon;Bandeja;;Batavia,Costilla de cerdo,Cabano;ACTIVE
+195;Tomlin;Caldo;;Papas a la Francesa,Pollo,Papas;ACTIVE
+196;Ira;Plato Secundario;;Maduro,Batavia,Batavia;ACTIVE
+197;Shelba;Postre;;Batavia,Pulpo,Pulpo;ACTIVE
+198;Rhea;Postre;;Jamon,Chorizo,Camaron;ACTIVE
+199;Filmer;Plato Principal;;Costilla de cerdo,Jamon,Maduro;ACTIVE
+200;Petr;Sopa;;Lomo Biche,Chorizo,Pulpo;ACTIVE
+201;Lotus;Plato Principal;;Cabano,Pulpo,Cabano;ACTIVE
+202;Arroz Colombiano;Bebida;;Cabano,Papas,Pollo;ACTIVE
+203;Mortie;Bebida;;Papas a la Francesa,Cerdo,Maduro;ACTIVE
+204;Ilaire;Plato Principal;;Chorizo,Ostras,Lomo Biche;ACTIVE
+205;Alli;Bebida;;Cabano,Batavia,Ostras;ACTIVE
+206;Powell;Bebida;;Ostras,Verduras,Chorizo;ACTIVE
+207;Malinde;Bebida;;Lomo Biche,Camaron,Verduras;ACTIVE
+208;Sabina;Sopa;;Pulpo,Pulpo,Maduro;ACTIVE
+209;Amandie;Caldo;;Chorizo,Chuleta,Pollo;ACTIVE
+210;Gavrielle;Plato Principal;;Pulpo,Cerdo,Jamon;ACTIVE
+211;Korry;Sopa;;Cebolla,Ostras,Jamon;ACTIVE
+212;Olia;Sopa;;Ostras,Cabano,Papas;ACTIVE
+213;Aubrey;Bandeja;;Chicharron,Papas a la Francesa,Papas;ACTIVE
+214;Hedwiga;Plato Secundario;;Maduro,Jamon,Batavia;ACTIVE
+215;Chlo;Postre;;Papas,Pollo,Batavia;ACTIVE
+216;Bentley;Plato Principal;;Pulpo,Cerdo,Jamon;ACTIVE
+217;North;Bebida;;Maduro,Chuleta,Lomo de Cerdo Ahumado;ACTIVE
+218;Herschel;Caldo;;Cabano,Verduras,Costilla;ACTIVE
+219;Mommy;Postre;;Chuleta,Chorizo,Pulpo;ACTIVE
+220;Mareah;Caldo;;Batavia,Chuleta,Chuleta;ACTIVE
+221;Ambrosi;Plato Principal;;Cabano,Verduras,Chuleta;ACTIVE
+222;Wilfred;Caldo;;Lomo de Cerdo Ahumado,Lomo de Cerdo Ahumado,Chicharron;ACTIVE
+223;Trude;Plato Secundario;;Cerdo,Jamon,Batavia;ACTIVE
+224;Lenore;Bandeja;;Cebolla,Cabano,Cabano;ACTIVE
+225;Nicky;Plato Secundario;;Costilla de cerdo,Lomo Biche,Lomo Biche;ACTIVE
+226;Bella;Bandeja;;Camaron,Ostras,Verduras;ACTIVE
+227;Bertina;Bandeja;;Camaron,Pollo,Lomo de Cerdo Ahumado;ACTIVE
+228;Inness;Plato Secundario;;Camaron,Lomo Biche,Batavia;ACTIVE
+229;Gael;Caldo;;Ostras,Chicharron,Maduro;ACTIVE
+230;Kerrill;Postre;;Ostras,Batavia,Lomo de Cerdo Ahumado;ACTIVE
+231;Nick;Postre;;Papas a la Francesa,Cerdo,Costilla;ACTIVE
+232;April;Sopa;;Jamon,Maduro,Chicharron;ACTIVE
+233;Herold;Caldo;;Papas a la Francesa,Camaron,Jamon;ACTIVE
+234;Holden;Postre;;Cabano,Costilla,Papas;ACTIVE
+235;Studebaker;Bandeja;;Pollo,Lomo Biche,Cabano;ACTIVE
+236;Gregoor;Postre;;Chicharron,Cerdo,Costilla;ACTIVE
+237;Nowell;Bandeja;;Lomo de Cerdo Ahumado,Chuleta,Chicharron;ACTIVE
+238;Eagle;Postre;;Batavia,Maduro,Verduras;ACTIVE
+239;Myron;Plato Secundario;;Costilla,Verduras,Pulpo;ACTIVE
+240;Gunar;Caldo;;Pollo,Ostras,Chicharron;ACTIVE
+241;Hallsy;Plato Secundario;;Batavia,Chuleta,Papas a la Francesa;ACTIVE
+242;Una;Sopa;;Maduro,Verduras,Lomo Biche;ACTIVE
+243;Alphard;Postre;;Cabano,Jamon,Jamon;ACTIVE
+244;Fin;Sopa;;Cebolla,Ostras,Lomo de Cerdo Ahumado;ACTIVE
+245;Padraic;Bandeja;;Batavia,Cerdo,Lomo de Cerdo Ahumado;ACTIVE
+246;Riki;Bebida;;Verduras,Verduras,Cabano;ACTIVE
+247;Kakalina;Plato Principal;;Pulpo,Papas a la Francesa,Chuleta;ACTIVE
+248;Bette-ann;Bebida;;Jamon,Pollo,Maduro;ACTIVE
+249;Atalanta;Bandeja;;Cebolla,Camaron,Lomo Biche;ACTIVE
+250;Genny;Caldo;;Maduro,Cabano,Chorizo;ACTIVE
+251;Catlaina;Plato Principal;;Pulpo,Lomo de Cerdo Ahumado,Camaron;ACTIVE
+252;Junina;Sopa;;Cebolla,Costilla de cerdo,Cerdo;ACTIVE
+253;Adena;Plato Principal;;Jamon,Camaron,Ostras;ACTIVE
+254;Mariann;Caldo;;Costilla,Maduro,Maduro;ACTIVE
+255;Lauren;Bandeja;;Costilla,Chuleta,Costilla de cerdo;ACTIVE
+256;Rolls-Royce;Plato Secundario;;Cabano,Costilla,Jamon;ACTIVE
+257;Umberto;Plato Principal;;Lomo Biche,Pollo,Camaron;ACTIVE
+258;Nanice;Bandeja;;Maduro,Camaron,Lomo Biche;ACTIVE
+259;Alexandrina;Postre;;Chorizo,Batavia,Costilla de cerdo;ACTIVE
+260;Armand;Sopa;;Costilla,Costilla de cerdo,Costilla de cerdo;ACTIVE
+261;Teena;Postre;;Chorizo,Jamon,Verduras;ACTIVE
+262;Alidia;Plato Principal;;Camaron,Ostras,Chicharron;ACTIVE
+263;Burtie;Sopa;;Chicharron,Batavia,Verduras;ACTIVE
+264;Reba;Plato Principal;;Pulpo,Camaron,Maduro;ACTIVE
+265;Robinette;Postre;;Papas,Cabano,Ostras;ACTIVE
+266;Beniamino;Postre;;Lomo de Cerdo Ahumado,Chicharron,Camaron;ACTIVE
+267;Isidora;Plato Principal;;Maduro,Papas,Lomo de Cerdo Ahumado;ACTIVE
+268;Yard;Plato Secundario;;Cabano,Ostras,Ostras;ACTIVE
+269;Gabe;Bandeja;;Costilla de cerdo,Pulpo,Chicharron;ACTIVE
+270;Harald;Plato Secundario;;Cebolla,Pulpo,Papas a la Francesa;ACTIVE
+271;Daewoo;Sopa;;Pulpo,Costilla de cerdo,Chicharron;ACTIVE
+272;Rodrique;Postre;;Ostras,Maduro,Lomo de Cerdo Ahumado;ACTIVE
+273;Saw;Plato Principal;;Chuleta,Lomo Biche,Papas;ACTIVE
+274;Dunstan;Caldo;;Pollo,Pulpo,Jamon;ACTIVE
+275;Peder;Postre;;Cabano,Papas a la Francesa,Pulpo;ACTIVE
+276;Sibel;Caldo;;Jamon,Ostras,Pulpo;ACTIVE
+277;Corrine;Postre;;Pollo,Verduras,Lomo Biche;ACTIVE
+278;Ortensia;Bebida;;Verduras,Cebolla,Lomo de Cerdo Ahumado;ACTIVE
+279;Sayre;Postre;;Lomo de Cerdo Ahumado,Papas a la Francesa,Chuleta;ACTIVE
+280;Caryl;Plato Principal;;Jamon,Verduras,Costilla;ACTIVE
+281;Selig;Sopa;;Ostras,Chorizo,Verduras;ACTIVE
+282;Aurel;Bandeja;;Camaron,Lomo de Cerdo Ahumado,Batavia;ACTIVE
+283;Ranee;Plato Principal;;Costilla,Chicharron,Chicharron;ACTIVE
+284;Annabelle;Bebida;;Ostras,Jamon,Chuleta;ACTIVE
+285;Jeanie;Postre;;Ostras,Jamon,Maduro;ACTIVE
+286;Rosabelle;Caldo;;Maduro,Cabano,Cebolla;ACTIVE
+287;Gillie;Plato Principal;;Jamon,Chuleta,Verduras;ACTIVE
+288;Geo;Caldo;;Costilla de cerdo,Cabano,Camaron;ACTIVE
+289;Cristina;Bebida;;Costilla de cerdo,Papas,Costilla de cerdo;ACTIVE
+290;Lizbeth;Caldo;;Batavia,Verduras,Jamon;ACTIVE
+291;Diahann;Caldo;;Lomo Biche,Chorizo,Maduro;ACTIVE
+292;Alric;Postre;;Cabano,Batavia,Costilla;ACTIVE
+293;Refrigerio;Plato Secundario;;Chicharron,Chicharron,Chicharron;ACTIVE
+294;Calv;Sopa;;Papas a la Francesa,Cerdo,Pollo;ACTIVE
+295;Jesselyn;Caldo;;Verduras,Jamon,Cerdo;ACTIVE
+296;Regen;Plato Principal;;Papas a la Francesa,Verduras,Batavia;ACTIVE
+297;Yardley;Sopa;;Cebolla,Jamon,Jamon;ACTIVE
+298;Chip;Postre;;Papas,Chuleta,Verduras;ACTIVE
+299;Selene;Plato Secundario;;Batavia,Pollo,Chorizo;ACTIVE
+300;Kiley;Sopa;;Cerdo,Maduro,Ostras;ACTIVE
+301;Ethelda;Postre;;Camaron,Chuleta,Batavia;ACTIVE
+302;Boigie;Plato Secundario;;Papas,Camaron,Cerdo;ACTIVE
+303;Zara;Bandeja;;Pollo,Camaron,Chuleta;ACTIVE
+304;Stanly;Caldo;;Camaron,Chuleta,Cebolla;ACTIVE
+305;Seline;Sopa;;Cebolla,Jamon,Maduro;ACTIVE
+306;Lonnard;Sopa;;Chicharron,Chicharron,Chicharron;ACTIVE
+307;Farica;Caldo;;Chicharron,Chorizo,Chuleta;ACTIVE
+308;Irma;Caldo;;Papas a la Francesa,Ostras,Ostras;ACTIVE
+309;Avie;Plato Secundario;;Pulpo,Ostras,Costilla;ACTIVE
+310;Brady;Postre;;Lomo de Cerdo Ahumado,Lomo Biche,Batavia;ACTIVE
+311;Hildy;Sopa;;Costilla,Maduro,Chuleta;ACTIVE
+312;Bobbie;Bebida;;Chuleta,Ostras,Cebolla;ACTIVE
+313;Jilli;Plato Secundario;;Chorizo,Chorizo,Costilla de cerdo;ACTIVE
+314;Gloria;Caldo;;Costilla,Cebolla,Verduras;ACTIVE
+315;Erminia;Bebida;;Maduro,Ostras,Chuleta;ACTIVE
+316;Shayne;Plato Secundario;;Costilla,Jamon,Chuleta;ACTIVE
+317;Witty;Postre;;Cebolla,Jamon,Costilla;ACTIVE
+318;Anatol;Caldo;;Papas a la Francesa,Chicharron,Cabano;ACTIVE
+319;Josh;Plato Principal;;Pulpo,Chicharron,Jamon;ACTIVE
+320;Talbert;Bebida;;Cabano,Chuleta,Jamon;ACTIVE
+321;Konrad;Caldo;;Ostras,Cabano,Batavia;ACTIVE
+322;Weston;Postre;;Camaron,Verduras,Batavia;ACTIVE
+323;Hildagard;Bandeja;;Papas,Cabano,Camaron;ACTIVE
+324;Appolonia;Sopa;;Chicharron,Maduro,Batavia;ACTIVE
+325;Padriac;Plato Principal;;Chuleta,Pulpo,Chorizo;ACTIVE
+326;Kim;Sopa;;Ostras,Pollo,Batavia;ACTIVE
+327;Hester;Postre;;Costilla,Costilla,Cebolla;ACTIVE
+328;Lucretia;Plato Secundario;;Papas,Cebolla,Chorizo;ACTIVE
+329;Jessica;Bebida;;Maduro,Verduras,Jamon;ACTIVE
+330;Lorri;Sopa;;Chorizo,Camaron,Chuleta;ACTIVE
+331;Rickey;Bandeja;;Cerdo,Maduro,Costilla;ACTIVE
+332;Aluino;Plato Secundario;;Costilla,Cebolla,Chorizo;ACTIVE
+333;Dilly;Bandeja;;Chorizo,Papas a la Francesa,Chorizo;ACTIVE
+334;Sidonia;Bebida;;Costilla de cerdo,Verduras,Pulpo;ACTIVE
+335;Trev;Postre;;Pollo,Papas a la Francesa,Costilla de cerdo;ACTIVE
+336;Braden;Bandeja;;Cerdo,Chicharron,Verduras;ACTIVE
+337;Oliviero;Bebida;;Chicharron,Pulpo,Maduro;ACTIVE
+338;Elle;Sopa;;Chorizo,Pollo,Chuleta;ACTIVE
+339;Tomkin;Bebida;;Pollo,Costilla,Cabano;ACTIVE
+340;Skyler;Bandeja;;Cerdo,Cerdo,Jamon;ACTIVE
+341;Tiff;Postre;;Camaron,Lomo de Cerdo Ahumado,Papas a la Francesa;ACTIVE
+342;Gifford;Sopa;;Chicharron,Batavia,Chicharron;ACTIVE
+343;Raddy;Sopa;;Papas a la Francesa,Lomo Biche,Batavia;ACTIVE
+344;Katha;Plato Secundario;;Costilla de cerdo,Costilla de cerdo,Chuleta;ACTIVE
+345;Genevieve;Bebida;;Chorizo,Ostras,Cerdo;ACTIVE
+346;Kingsly;Plato Principal;;Cebolla,Jamon,Papas a la Francesa;ACTIVE
+347;Karry;Bandeja;;Papas a la Francesa,Cebolla,Cerdo;ACTIVE
+348;Osbert;Plato Principal;;Jamon,Ostras,Lomo Biche;ACTIVE
+349;Nanete;Plato Secundario;;Chicharron,Jamon,Lomo Biche;ACTIVE
+350;Durward;Plato Principal;;Ostras,Chuleta,Ostras;ACTIVE
+351;Isador;Plato Principal;;Chicharron,Papas,Camaron;ACTIVE
+352;Gratia;Sopa;;Costilla de cerdo,Cebolla,Batavia;ACTIVE
+353;Ferrel;Bandeja;;Maduro,Verduras,Cabano;ACTIVE
+354;Marmaduke;Bandeja;;Jamon,Costilla de cerdo,Batavia;ACTIVE
+355;Sonja;Plato Secundario;;Batavia,Papas,Ostras;ACTIVE
+356;Dredi;Plato Principal;;Camaron,Pollo,Cabano;ACTIVE
+357;Rogers;Postre;;Camaron,Costilla,Lomo de Cerdo Ahumado;ACTIVE
+358;Kerwin;Bebida;;Costilla de cerdo,Maduro,Chuleta;ACTIVE
+359;Miltie;Plato Secundario;;Costilla,Cerdo,Chorizo;ACTIVE
+360;Kendal;Bandeja;;Costilla de cerdo,Ostras,Chuleta;ACTIVE
+361;Thomas;Postre;;Cebolla,Chorizo,Cebolla;ACTIVE
+362;Cherise;Sopa;;Jamon,Ostras,Cerdo;ACTIVE
+363;Margaret;Plato Principal;;Papas a la Francesa,Papas a la Francesa,Costilla;ACTIVE
+364;Linet;Plato Principal;;Batavia,Jamon,Pulpo;ACTIVE
+365;Donna;Bandeja;;Chicharron,Jamon,Cabano;ACTIVE
+366;Augustine;Bandeja;;Verduras,Chorizo,Costilla;ACTIVE
+367;Magnum;Sopa;;Chorizo,Verduras,Lomo de Cerdo Ahumado;ACTIVE
+368;Irving;Caldo;;Cabano,Jamon,Chorizo;ACTIVE
+369;Georgie;Caldo;;Cebolla,Pulpo,Costilla;ACTIVE
+370;Orelee;Plato Secundario;;Chorizo,Costilla de cerdo,Papas;ACTIVE
+371;Judith;Plato Principal;;Papas a la Francesa,Batavia,Costilla de cerdo;ACTIVE
+372;Clemens;Sopa;;Costilla,Cerdo,Papas;ACTIVE
+373;Niel;Bebida;;Lomo de Cerdo Ahumado,Costilla,Pulpo;ACTIVE
+374;Ruth;Sopa;;Lomo de Cerdo Ahumado,Chorizo,Cerdo;ACTIVE
+375;Amaleta;Caldo;;Ostras,Batavia,Ostras;ACTIVE
+376;Theressa;Bebida;;Cebolla,Chuleta,Costilla;ACTIVE
+377;Stephen;Caldo;;Papas a la Francesa,Lomo Biche,Ostras;ACTIVE
+378;Claudelle;Sopa;;Cabano,Papas,Batavia;ACTIVE
+379;Dallas;Sopa;;Batavia,Chicharron,Cerdo;ACTIVE
+380;Nealson;Bandeja;;Chicharron,Jamon,Camaron;ACTIVE
+381;Anjela;Bandeja;;Lomo de Cerdo Ahumado,Chicharron,Ostras;ACTIVE
+382;Thea;Bandeja;;Ostras,Cabano,Chicharron;ACTIVE
+383;Daune;Bebida;;Cerdo,Verduras,Cerdo;ACTIVE
+384;Phylis;Plato Principal;;Camaron,Lomo Biche,Pollo;ACTIVE
+385;Dido;Bandeja;;Lomo de Cerdo Ahumado,Chicharron,Batavia;ACTIVE
+386;Sibylle;Bebida;;Papas a la Francesa,Costilla,Verduras;ACTIVE
+387;Helga;Bebida;;Maduro,Chicharron,Jamon;ACTIVE
+388;Claus;Plato Principal;;Ostras,Camaron,Chorizo;ACTIVE
+389;Lindon;Bandeja;;Costilla,Costilla de cerdo,Chuleta;ACTIVE
+390;Haleigh;Plato Secundario;;Chicharron,Chuleta,Cerdo;ACTIVE
+391;Arroz a la barbacoa;Postre;;Costilla de cerdo,Cerdo,Chicharron;ACTIVE
+392;Isabel;Caldo;;Pollo,Batavia,Batavia;ACTIVE
+393;Leanna;Bebida;;Chicharron,Ostras,Papas a la Francesa;ACTIVE
+394;Petra;Postre;;Lomo de Cerdo Ahumado,Batavia,Maduro;ACTIVE
+395;Carlita;Bandeja;;Lomo Biche,Costilla,Costilla de cerdo;ACTIVE
+396;Sterling;Caldo;;Chicharron,Chicharron,Costilla;ACTIVE
+397;Barbara;Plato Principal;;Costilla de cerdo,Chicharron,Ostras;ACTIVE
+398;Hunt;Bebida;;Costilla de cerdo,Costilla de cerdo,Chicharron;ACTIVE
+399;Ninette;Caldo;;Jamon,Camaron,Pollo;ACTIVE
+400;Welsh;Bebida;;Verduras,Chuleta,Maduro;ACTIVE
+401;Buddy;Caldo;;Chicharron,Ostras,Cabano;ACTIVE
+402;Patrizio;Postre;;Batavia,Cerdo,Batavia;ACTIVE
+403;Melisa;Sopa;;Cerdo,Cabano,Chicharron;ACTIVE
+404;Norby;Postre;;Papas a la Francesa,Verduras,Chuleta;ACTIVE
+405;Fredi;Sopa;;Papas,Batavia,Papas a la Francesa;ACTIVE
+406;Allistir;Plato Principal;;Camaron,Papas a la Francesa,Costilla de cerdo;ACTIVE
+407;Charlie;Plato Principal;;Cerdo,Camaron,Cerdo;ACTIVE
+408;Ethel;Caldo;;Jamon,Pulpo,Camaron;ACTIVE
+409;Blake;Plato Principal;;Chorizo,Lomo de Cerdo Ahumado,Jamon;ACTIVE
+410;Annmarie;Postre;;Cerdo,Cerdo,Jamon;ACTIVE
+411;Amelita;Postre;;Pulpo,Chicharron,Papas a la Francesa;ACTIVE
+412;Cherlyn;Postre;;Chorizo,Cebolla,Maduro;ACTIVE
+413;Zeb;Plato Secundario;;Cerdo,Papas,Pulpo;ACTIVE
+414;Bo;Bebida;;Chuleta,Pollo,Pulpo;ACTIVE
+415;Cornall;Postre;;Pollo,Chorizo,Lomo de Cerdo Ahumado;ACTIVE
+416;Richie;Bandeja;;Costilla de cerdo,Lomo Biche,Papas;ACTIVE
+417;Sergeant;Plato Secundario;;Chorizo,Camaron,Chuleta;ACTIVE
+418;Bordie;Bebida;;Cebolla,Cerdo,Costilla de cerdo;ACTIVE
+419;Simone;Bandeja;;Chicharron,Chicharron,Batavia;ACTIVE
+420;Aldo;Bandeja;;Papas,Jamon,Lomo de Cerdo Ahumado;ACTIVE
+421;Jerri;Plato Secundario;;Chuleta,Cebolla,Costilla;ACTIVE
+422;Cathe;Plato Principal;;Jamon,Papas a la Francesa,Pollo;ACTIVE
+423;Owen;Sopa;;Verduras,Verduras,Ostras;ACTIVE
+424;Elsbeth;Bandeja;;Ostras,Verduras,Ostras;ACTIVE
+425;Earlie;Postre;;Camaron,Pulpo,Chicharron;ACTIVE
+426;Gabrila;Plato Principal;;Lomo de Cerdo Ahumado,Maduro,Batavia;ACTIVE
+427;Maryrose;Sopa;;Batavia,Papas,Chorizo;ACTIVE
+428;Sybil;Plato Principal;;Maduro,Pollo,Costilla;ACTIVE
+429;Sinclare;Sopa;;Chuleta,Batavia,Cerdo;ACTIVE
+430;Codie;Sopa;;Ostras,Camaron,Papas a la Francesa;ACTIVE
+431;Charla;Plato Secundario;;Papas a la Francesa,Cebolla,Cerdo;ACTIVE
+432;Bianka;Plato Secundario;;Jamon,Camaron,Camaron;ACTIVE
+433;Geralda;Bandeja;;Costilla de cerdo,Chuleta,Cabano;ACTIVE
+434;Lianne;Bebida;;Ostras,Maduro,Camaron;ACTIVE
+435;Suzanne;Caldo;;Cabano,Ostras,Pollo;ACTIVE
+436;Devora;Sopa;;Cebolla,Lomo Biche,Cebolla;ACTIVE
+437;Arroz Mediterraneo;Bebida;;Camaron,Lomo Biche,Batavia;ACTIVE
+438;Judas;Bandeja;;Cerdo,Chuleta,Cabano;ACTIVE
+439;Karina;Plato Principal;;Cerdo,Cabano,Maduro;ACTIVE
+440;Harlen;Bebida;;Papas,Chuleta,Pollo;ACTIVE
+441;Theo;Bandeja;;Papas,Cebolla,Lomo Biche;ACTIVE
+442;Gregor;Caldo;;Ostras,Batavia,Pulpo;ACTIVE
+443;Hamel;Plato Principal;;Chicharron,Costilla de cerdo,Camaron;ACTIVE
+444;Suzanna;Bebida;;Camaron,Pulpo,Camaron;ACTIVE
+445;Huntlee;Bandeja;;Pulpo,Camaron,Pollo;ACTIVE
+446;Carolyn;Bandeja;;Lomo Biche,Chorizo,Camaron;ACTIVE
+447;Jules;Bebida;;Cebolla,Jamon,Chorizo;ACTIVE
+448;Grier;Sopa;;Camaron,Pulpo,Maduro;ACTIVE
+449;Eberhard;Plato Principal;;Pulpo,Papas,Pulpo;ACTIVE
+450;Demeter;Plato Principal;;Chorizo,Lomo de Cerdo Ahumado,Pulpo;ACTIVE
+451;Dolf;Postre;;Papas,Costilla de cerdo,Chorizo;ACTIVE
+452;Elisabet;Plato Principal;;Maduro,Cerdo,Cebolla;ACTIVE
+453;Ricard;Bebida;;Chuleta,Chorizo,Jamon;ACTIVE
+454;Any;Postre;;Papas,Costilla de cerdo,Cebolla;ACTIVE
+455;Harwell;Plato Principal;;Papas,Lomo Biche,Lomo de Cerdo Ahumado;ACTIVE
+456;Corrie;Caldo;;Lomo de Cerdo Ahumado,Cabano,Papas a la Francesa;ACTIVE
+457;Glori;Plato Secundario;;Cabano,Cerdo,Costilla de cerdo;ACTIVE
+458;Bevan;Caldo;;Ostras,Chicharron,Jamon;ACTIVE
+459;Giles;Bebida;;Pollo,Lomo de Cerdo Ahumado,Papas;ACTIVE
+460;Maxie;Sopa;;Chorizo,Jamon,Ostras;ACTIVE
+461;Cristobal;Plato Secundario;;Camaron,Verduras,Cerdo;ACTIVE
+462;Ola;Bandeja;;Cerdo,Cerdo,Lomo Biche;ACTIVE
+463;Baudoin;Bebida;;Chuleta,Chuleta,Chorizo;ACTIVE
+464;Myrta;Bebida;;Jamon,Ostras,Cabano;ACTIVE
+465;Elmer;Postre;;Chicharron,Papas a la Francesa,Batavia;ACTIVE
+466;Kalila;Plato Secundario;;Chorizo,Lomo de Cerdo Ahumado,Pulpo;ACTIVE
+467;Archibald;Bebida;;Cabano,Lomo de Cerdo Ahumado,Batavia;ACTIVE
+468;Margery;Plato Principal;;Costilla de cerdo,Cebolla,Maduro;ACTIVE
+469;Mab;Plato Secundario;;Lomo de Cerdo Ahumado,Ostras,Papas;ACTIVE
+470;Britni;Bandeja;;Papas a la Francesa,Pollo,Costilla;ACTIVE
+471;Olenka;Caldo;;Lomo de Cerdo Ahumado,Verduras,Camaron;ACTIVE
+472;Jacki;Plato Secundario;;Costilla de cerdo,Chicharron,Batavia;ACTIVE
+473;Mia;Bandeja;;Lomo de Cerdo Ahumado,Papas a la Francesa,Costilla;ACTIVE
+474;Lola;Plato Secundario;;Ostras,Jamon,Ostras;ACTIVE
+475;Tomas;Bandeja;;Cabano,Papas a la Francesa,Cabano;ACTIVE
+476;Jared;Caldo;;Cabano,Batavia,Jamon;ACTIVE
+477;Pauly;Plato Secundario;;Verduras,Verduras,Chuleta;ACTIVE
+478;Malena;Plato Principal;;Papas a la Francesa,Ostras,Chuleta;ACTIVE
+479;Goldy;Caldo;;Maduro,Camaron,Costilla;ACTIVE
+480;Lianna;Postre;;Chorizo,Chicharron,Papas;ACTIVE
+481;Adela;Bebida;;Chuleta,Verduras,Chorizo;ACTIVE
+482;Marisa;Plato Secundario;;Chicharron,Cabano,Camaron;ACTIVE
+483;Martita;Bandeja;;Chorizo,Maduro,Chorizo;ACTIVE
+484;Alistair;Sopa;;Chuleta,Cerdo,Verduras;ACTIVE
+485;Haze;Plato Principal;;Verduras,Verduras,Camaron;ACTIVE
+486;Briano;Plato Secundario;;Pollo,Lomo Biche,Costilla;ACTIVE
+487;Erroll;Plato Secundario;;Pulpo,Lomo de Cerdo Ahumado,Cabano;ACTIVE
+488;Andie;Caldo;;Costilla de cerdo,Pollo,Costilla de cerdo;ACTIVE
+489;Courtenay;Plato Secundario;;Cerdo,Cabano,Verduras;ACTIVE
+490;Alisun;Caldo;;Camaron,Cebolla,Costilla de cerdo;ACTIVE
+491;Sanders;Caldo;;Camaron,Pollo,Chicharron;ACTIVE
+492;Lyndsey;Sopa;;Chuleta,Costilla de cerdo,Cabano;ACTIVE
+493;Benedetta;Plato Principal;;Pulpo,Cabano,Chorizo;ACTIVE
+494;Marianne;Plato Principal;;Costilla de cerdo,Chicharron,Costilla de cerdo;ACTIVE
+495;Amalee;Postre;;Camaron,Jamon,Pollo;ACTIVE
+496;Eugen;Plato Principal;;Maduro,Jamon,Chicharron;ACTIVE
+497;Enrika;Caldo;;Costilla de cerdo,Cebolla,Chorizo;ACTIVE
+498;Neil;Sopa;;Pulpo,Papas a la Francesa,Costilla de cerdo;ACTIVE
+499;Base;Sopa;;Jamon,Jamon,Lomo Biche;ACTIVE
+500;Lambert;Sopa;;Papas,Papas,Pollo;ACTIVE
+501;Deck;Sopa;;Costilla de cerdo,Costilla de cerdo,Costilla;ACTIVE
+502;Conway;Plato Principal;;Cerdo,Cabano,Lomo Biche;ACTIVE
+503;Ellis;Caldo;;Papas a la Francesa,Chorizo,Chicharron;ACTIVE
+504;Bunnie;Sopa;;Papas,Camaron,Pulpo;ACTIVE
+505;Jase;Bandeja;;Cebolla,Pulpo,Cabano;ACTIVE
+506;Leonidas;Caldo;;Costilla de cerdo,Lomo Biche,Ostras;ACTIVE
+507;Aleda;Bandeja;;Camaron,Cerdo,Pollo;ACTIVE
+508;Matthaeus;Plato Principal;;Chuleta,Maduro,Chorizo;ACTIVE
+509;Georgeanne;Caldo;;Camaron,Cerdo,Papas;ACTIVE
+510;Feliks;Plato Principal;;Ostras,Papas a la Francesa,Costilla de cerdo;ACTIVE
+511;Cordi;Caldo;;Costilla,Cerdo,Pulpo;ACTIVE
+512;Granger;Caldo;;Verduras,Papas a la Francesa,Lomo Biche;ACTIVE
+513;Lanny;Bebida;;Cebolla,Camaron,Costilla;ACTIVE
+514;Ardene;Caldo;;Chuleta,Papas a la Francesa,Jamon;ACTIVE
+515;Skipper;Plato Principal;;Pollo,Verduras,Papas a la Francesa;ACTIVE
+516;Aveline;Plato Secundario;;Lomo Biche,Lomo Biche,Ostras;ACTIVE
+517;Thorin;Sopa;;Verduras,Pulpo,Papas a la Francesa;ACTIVE
+518;Rosene;Plato Secundario;;Pulpo,Cabano,Cabano;ACTIVE
+519;Edlin;Postre;;Camaron,Chuleta,Chorizo;ACTIVE
+520;Stesha;Bebida;;Cabano,Chuleta,Batavia;ACTIVE
+521;Ashton;Plato Secundario;;Batavia,Pulpo,Pollo;ACTIVE
+522;Flossy;Bebida;;Pulpo,Cerdo,Lomo Biche;ACTIVE
+523;Harmonia;Plato Principal;;Costilla de cerdo,Chorizo,Pulpo;ACTIVE
+524;Sancho;Bebida;;Papas a la Francesa,Lomo Biche,Cerdo;ACTIVE
+525;Parrnell;Caldo;;Papas,Maduro,Verduras;ACTIVE
+526;Connie;Bebida;;Cebolla,Ostras,Papas;ACTIVE
+527;Desiree;Postre;;Lomo Biche,Lomo Biche,Chicharron;ACTIVE
+528;Ginny;Bandeja;;Pollo,Papas,Lomo de Cerdo Ahumado;ACTIVE
+529;Yasmin;Plato Principal;;Verduras,Jamon,Cabano;ACTIVE
+530;Carri;Bebida;;Cebolla,Lomo de Cerdo Ahumado,Ostras;ACTIVE
+531;Abey;Plato Secundario;;Batavia,Verduras,Costilla de cerdo;ACTIVE
+532;Brigit;Bebida;;Pollo,Cabano,Lomo Biche;ACTIVE
+533;Marie-jeanne;Sopa;;Pollo,Verduras,Lomo Biche;ACTIVE
+534;Trevar;Caldo;;Papas,Cabano,Costilla;ACTIVE
+535;Isa;Bandeja;;Chuleta,Batavia,Batavia;ACTIVE
+536;Kirstyn;Caldo;;Pulpo,Cebolla,Pulpo;ACTIVE
+537;Chalmers;Bebida;;Cebolla,Ostras,Lomo de Cerdo Ahumado;ACTIVE
+538;Raquel;Bandeja;;Jamon,Chorizo,Camaron;ACTIVE
+539;Kristi;Caldo;;Batavia,Cebolla,Pulpo;ACTIVE
+540;Raimondo;Plato Secundario;;Batavia,Lomo Biche,Cebolla;ACTIVE
+541;Boony;Sopa;;Pollo,Costilla de cerdo,Costilla de cerdo;ACTIVE
+542;Northrop;Caldo;;Chicharron,Cabano,Lomo de Cerdo Ahumado;ACTIVE
+543;Cindra;Sopa;;Lomo Biche,Jamon,Cebolla;ACTIVE
+544;Eugenie;Plato Principal;;Lomo Biche,Maduro,Cebolla;ACTIVE
+545;Sammie;Bebida;;Cerdo,Chorizo,Batavia;ACTIVE
+546;Janeva;Caldo;;Chorizo,Chuleta,Ostras;ACTIVE
+547;Joan;Postre;;Chorizo,Papas,Ostras;ACTIVE
+548;Spike;Plato Secundario;;Cebolla,Pulpo,Chicharron;ACTIVE
+549;Glynn;Caldo;;Lomo Biche,Lomo Biche,Ostras;ACTIVE
+550;Ava;Sopa;;Cabano,Jamon,Chuleta;ACTIVE
+551;Mickey;Plato Principal;;Chuleta,Cebolla,Costilla de cerdo;ACTIVE
+552;Lorilee;Bandeja;;Papas,Pulpo,Camaron;ACTIVE
+553;Iosep;Bandeja;;Camaron,Cerdo,Lomo Biche;ACTIVE
+554;Chop Suey;Plato Principal;;Maduro,Costilla,Lomo Biche;ACTIVE
+555;Chauncey;Bebida;;Batavia,Chorizo,Cabano;ACTIVE
+556;Denice;Bebida;;Jamon,Pulpo,Cebolla;ACTIVE
+557;Reena;Plato Secundario;;Maduro,Lomo Biche,Jamon;ACTIVE
+558;Abram;Plato Secundario;;Chorizo,Costilla,Jamon;ACTIVE
+559;Kent;Plato Secundario;;Jamon,Chuleta,Costilla;ACTIVE
+560;Missy;Bandeja;;Verduras,Costilla de cerdo,Chicharron;ACTIVE
+561;Elizabet;Plato Principal;;Jamon,Costilla,Cebolla;ACTIVE
+562;Hobey;Bebida;;Pollo,Cebolla,Camaron;ACTIVE
+563;Toddie;Bandeja;;Jamon,Verduras,Cabano;ACTIVE
+564;Dore;Plato Secundario;;Jamon,Chuleta,Verduras;ACTIVE
+565;Noak;Plato Secundario;;Cabano,Papas a la Francesa,Lomo de Cerdo Ahumado;ACTIVE
+566;Reggis;Plato Secundario;;Papas,Jamon,Cebolla;ACTIVE
+567;Zoe;Postre;;Cebolla,Costilla,Chicharron;ACTIVE
+568;Brandtr;Caldo;;Chuleta,Cebolla,Lomo Biche;ACTIVE
+569;Kassandra;Postre;;Cebolla,Cabano,Papas a la Francesa;ACTIVE
+570;Celestina;Postre;;Papas,Cerdo,Cabano;ACTIVE
+571;Cleve;Caldo;;Chicharron,Batavia,Camaron;ACTIVE
+572;Hal;Plato Principal;;Chuleta,Chorizo,Pulpo;ACTIVE
+573;Laney;Postre;;Camaron,Ostras,Verduras;ACTIVE
+574;Tadeo;Bandeja;;Cerdo,Lomo Biche,Chicharron;ACTIVE
+575;Morey;Plato Secundario;;Cabano,Pollo,Lomo de Cerdo Ahumado;ACTIVE
+576;Zola;Plato Secundario;;Jamon,Verduras,Cerdo;ACTIVE
+577;Fina;Caldo;;Chuleta,Chicharron,Papas a la Francesa;ACTIVE
+578;Austina;Postre;;Batavia,Verduras,Jamon;ACTIVE
+579;Dario;Plato Secundario;;Costilla de cerdo,Chuleta,Maduro;ACTIVE
+580;Romy;Bebida;;Costilla,Cebolla,Cebolla;ACTIVE
+581;Melony;Plato Principal;;Costilla,Verduras,Cebolla;ACTIVE
+582;Moss;Plato Secundario;;Lomo Biche,Papas,Papas a la Francesa;ACTIVE
+583;Gustaf;Caldo;;Chicharron,Batavia,Maduro;ACTIVE
+584;Archibaldo;Plato Principal;;Jamon,Ostras,Lomo de Cerdo Ahumado;ACTIVE
+585;Derril;Bebida;;Papas a la Francesa,Pulpo,Chorizo;ACTIVE
+586;Lefty;Plato Secundario;;Chorizo,Cerdo,Cebolla;ACTIVE
+587;Etan;Bebida;;Cebolla,Maduro,Batavia;ACTIVE
+588;Weylin;Bandeja;;Cabano,Maduro,Chuleta;ACTIVE
+589;Colet;Plato Principal;;Camaron,Chicharron,Camaron;ACTIVE
+590;Angelo;Sopa;;Lomo de Cerdo Ahumado,Lomo Biche,Cebolla;ACTIVE
+591;Haroun;Caldo;;Camaron,Costilla,Chuleta;ACTIVE
+592;Tedd;Plato Secundario;;Costilla,Chuleta,Chorizo;ACTIVE
+593;Patsy;Plato Secundario;;Ostras,Lomo Biche,Papas;ACTIVE
+594;Jeffrey;Sopa;;Papas a la Francesa,Pollo,Cerdo;ACTIVE
+595;Conny;Bebida;;Chuleta,Ostras,Costilla de cerdo;ACTIVE
+596;Sampson;Bandeja;;Maduro,Pulpo,Papas;ACTIVE
+597;Jerald;Bebida;;Verduras,Costilla,Chorizo;ACTIVE
+598;Ulrike;Postre;;Chorizo,Cebolla,Batavia;ACTIVE
+599;Townie;Bebida;;Costilla de cerdo,Cerdo,Verduras;ACTIVE
+600;Isabeau;Plato Principal;;Cabano,Papas,Papas a la Francesa;ACTIVE
+601;Hayden;Bebida;;Cebolla,Papas a la Francesa,Batavia;ACTIVE
+602;Florri;Plato Principal;;Costilla,Batavia,Lomo Biche;ACTIVE
+603;Skelly;Caldo;;Chuleta,Pollo,Chuleta;ACTIVE
+604;Evangelia;Postre;;Cabano,Chuleta,Jamon;ACTIVE
+605;Shirleen;Postre;;Verduras,Cebolla,Chicharron;ACTIVE
+606;Lenette;Postre;;Maduro,Chuleta,Cabano;ACTIVE
+607;Dorice;Plato Principal;;Pollo,Chorizo,Costilla;ACTIVE
+608;Murry;Sopa;;Cabano,Papas a la Francesa,Batavia;ACTIVE
+609;Leodora;Bebida;;Ostras,Lomo Biche,Verduras;ACTIVE
+610;Quinton;Plato Secundario;;Ostras,Papas,Pulpo;ACTIVE
+611;Lorrie;Sopa;;Costilla,Cabano,Pollo;ACTIVE
+612;Emilee;Plato Secundario;;Lomo Biche,Papas,Camaron;ACTIVE
+613;Cassondra;Caldo;;Chuleta,Papas a la Francesa,Pulpo;ACTIVE
+614;Arlyn;Sopa;;Costilla,Jamon,Papas a la Francesa;ACTIVE
+615;Rowney;Plato Secundario;;Lomo de Cerdo Ahumado,Costilla de cerdo,Costilla de cerdo;ACTIVE
+616;Les;Bandeja;;Jamon,Chorizo,Jamon;ACTIVE
+617;Arroz Oriental;Caldo;;Papas,Papas,Chicharron;ACTIVE
+618;Tymon;Sopa;;Lomo de Cerdo Ahumado,Lomo de Cerdo Ahumado,Costilla de cerdo;ACTIVE
+619;Mag;Plato Principal;;Chicharron,Chorizo,Lomo Biche;ACTIVE

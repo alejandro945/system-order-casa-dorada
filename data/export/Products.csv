@@ -1,0 +1,745 @@
+CASA DORADA PRODUCTS REPORT
+Code; Name;Product type;Product size;Ingredients;State;Price
+1;Mercedes-Benz;Sopa;Familiar;Costilla de cerdo,Cabano,Camaron;ACTIVE;104389.0
+2;Oldsmobile;Postre;Personal;Batavia,Pulpo,Costilla de cerdo;ACTIVE;72057.0
+3;Mercury;Bandeja;Personal;Ostras,Costilla de cerdo,Chorizo;ACTIVE;148600.0
+4;Ford;Sopa;Caja para dos;Batavia,Costilla,Lomo de cerdo ahumado;ACTIVE;75062.0
+5;Toyota;Postre;Personal;Pulpo,Camaron,Pollo;ACTIVE;120268.0
+6;Janeva;Caldo;Personal;Chorizo,Chuleta,Ostras;ACTIVE;97307.0
+7;Nissan;Caldo;Personal;Costilla de cerdo,Batavia,Chicharron;ACTIVE;67095.0
+8;Kia;Adicionales;Caja personal;Papas,Verduras,Chicharron;ACTIVE;93704.0
+9;Nissan;Caldo;Caja para dos;Costilla de cerdo,Batavia,Chicharron;ACTIVE;8483.0
+10;Mercury;Bandeja;Caja para dos;Ostras,Costilla de cerdo,Chorizo;ACTIVE;56020.0
+11;Chrysler;Caldo;Combo para dos;Ostras,Papas a la francesa,Chicharron;ACTIVE;25581.0
+12;Chop Suey;Plato principal;Combo para dos;Maduro,Costilla,Lomo biche;ACTIVE;141564.0
+13;Mercury;Bandeja;Familiar;Ostras,Costilla de cerdo,Chorizo;ACTIVE;55329.0
+14;Rosabelle;Caldo;Caja para dos;Maduro,Cabano,Cebolla;ACTIVE;6942.0
+15;Nissan;Caldo;Combo para dos;Costilla de cerdo,Batavia,Chicharron;ACTIVE;18416.0
+16;Phil;Plato secundario;Familiar;Papas a la francesa,Papas,Costilla de cerdo;ACTIVE;72145.0
+17;Pontiac;Postre;Caja personal;Pollo,Lomo biche,Papas a la francesa;ACTIVE;110336.0
+18;Jaguar;Plato principal;Personal;Camaron,Papas a la francesa,Costilla de cerdo;ACTIVE;61881.0
+19;Josh;Plato principal;Combo para dos;Pulpo,Chicharron,Jamon;ACTIVE;65872.0
+20;Infiniti;Adicionales;Caja para dos;Chicharron,Cebolla,Verduras;ACTIVE;140323.0
+21;Flossy;Bebida;Personal;Pulpo,Cerdo,Lomo biche;ACTIVE;128107.0
+22;BMW;Bandeja;Caja personal;Lomo de cerdo ahumado,Cebolla,Cebolla;ACTIVE;9767.0
+23;Jania;Adicionales;Familiar;Lomo biche,Verduras,Lomo biche;ACTIVE;139702.0
+24;Nicky;Plato secundario;Personal;Costilla de cerdo,Lomo biche,Lomo biche;ACTIVE;79798.0
+25;Suzanne;Caldo;Caja personal;Cabano,Ostras,Pollo;ACTIVE;112291.0
+26;BMW;Bandeja;Familiar;Lomo de cerdo ahumado,Cebolla,Cebolla;ACTIVE;20022.0
+27;Mazda;Bebida;Caja para dos;Pulpo,Batavia,Costilla;ACTIVE;69361.0
+28;Maible;Bandeja;Combo para dos;Cabano,Chuleta,Chorizo;ACTIVE;56212.0
+29;Smith;Postre;Caja personal;Chorizo,Cebolla,Cerdo;ACTIVE;58797.0
+30;Volkswagen;Plato secundario;Caja personal;Papas,Lomo biche,Maduro;ACTIVE;72118.0
+31;Clemmie;Adicionales;Combo para dos;Chicharron,Papas a la francesa,Papas;ACTIVE;24244.0
+32;Lincoln;Adicionales;Familiar;Papas a la francesa,Cabano,Maduro;ACTIVE;10720.0
+33;Aston Martin;Bandeja;Caja para dos;Cabano,Cerdo,Camaron;ACTIVE;47538.0
+34;Maybach;Plato principal;Personal;Chorizo,Papas a la francesa,Jamon;ACTIVE;1826.0
+35;Toyota;Postre;Caja para dos;Pulpo,Camaron,Pollo;ACTIVE;73354.0
+36;GMC;Postre;Caja para dos;Verduras,Chicharron,Verduras;ACTIVE;88667.0
+37;Isuzu;Bebida;Caja para dos;Chuleta,Papas,Pollo;ACTIVE;93699.0
+38;Seline;Sopa;Personal;Cebolla,Jamon,Maduro;ACTIVE;63636.0
+39;GMC;Postre;Familiar;Verduras,Chicharron,Verduras;ACTIVE;42135.0
+40;Raquel;Bandeja;Personal;Jamon,Chorizo,Camaron;ACTIVE;46784.0
+41;Isidora;Plato principal;Combo para dos;Maduro,Papas,Lomo de cerdo ahumado;ACTIVE;133303.0
+42;Acura;Bandeja;Familiar;Costilla de cerdo,Chuleta,Maduro;ACTIVE;118404.0
+43;Dodge;Sopa;Personal;Cebolla,Batavia,Costilla de cerdo;ACTIVE;48501.0
+44;Ford;Sopa;Combo para dos;Batavia,Costilla,Lomo de cerdo ahumado;ACTIVE;38313.0
+45;Audi;Bebida;Personal;Ostras,Costilla de cerdo,Papas;ACTIVE;125512.0
+46;Volkswagen;Plato secundario;Familiar;Papas,Lomo biche,Maduro;ACTIVE;45244.0
+47;Honda;Sopa;Combo para dos;Batavia,Chuleta,Pollo;ACTIVE;147543.0
+48;Mercedes-Benz;Sopa;Caja para dos;Costilla de cerdo,Cabano,Camaron;ACTIVE;82797.0
+49;Chevrolet;Caldo;Caja personal;Cebolla,Camaron,Chuleta;ACTIVE;141511.0
+50;Oldsmobile;Postre;Caja para dos;Batavia,Pulpo,Costilla de cerdo;ACTIVE;31187.0
+51;Theo;Bandeja;Familiar;Papas,Cebolla,Lomo biche;ACTIVE;102905.0
+52;Isuzu;Bebida;Combo para dos;Chuleta,Papas,Pollo;ACTIVE;55934.0
+53;Volvo;Bandeja;Personal;Chicharron,Chorizo,Batavia;ACTIVE;114190.0
+54;Mitsubishi;Caldo;Caja personal;Chuleta,Cerdo,Maduro;ACTIVE;141143.0
+55;Selig;Sopa;Caja personal;Ostras,Chorizo,Verduras;ACTIVE;18248.0
+56;Nissan;Caldo;Familiar;Costilla de cerdo,Batavia,Chicharron;ACTIVE;63060.0
+57;Dodge;Sopa;Caja personal;Cebolla,Batavia,Costilla de cerdo;ACTIVE;35646.0
+58;Chevrolet;Caldo;Personal;Cebolla,Camaron,Chuleta;ACTIVE;149794.0
+59;Plymouth;Bandeja;Combo para dos;Ostras,Maduro,Costilla;ACTIVE;85822.0
+60;Land Rover;Sopa;Familiar;Lomo de cerdo ahumado,Chorizo,Camaron;ACTIVE;19501.0
+61;Jaguar;Plato principal;Combo para dos;Camaron,Papas a la francesa,Costilla de cerdo;ACTIVE;145625.0
+62;Land Rover;Sopa;Caja para dos;Lomo de cerdo ahumado,Chorizo,Camaron;ACTIVE;15492.0
+63;Kakalina;Plato principal;Caja personal;Pulpo,Papas a la francesa,Chuleta;ACTIVE;19346.0
+64;Chevrolet;Caldo;Combo para dos;Cebolla,Camaron,Chuleta;ACTIVE;91788.0
+65;Dido;Bandeja;Combo para dos;Lomo de cerdo ahumado,Chicharron,Batavia;ACTIVE;116928.0
+66;Padraic;Bandeja;Caja para dos;Batavia,Cerdo,Lomo de cerdo ahumado;ACTIVE;20470.0
+67;Devora;Sopa;Personal;Cebolla,Lomo biche,Cebolla;ACTIVE;95837.0
+68;Teador;Adicionales;Personal;Chorizo,Chicharron,Papas a la francesa;ACTIVE;36783.0
+69;Mazda;Bebida;Caja personal;Pulpo,Batavia,Costilla;ACTIVE;53886.0
+70;Arroz Colombiano;Bebida;Caja para dos;Cabano,Papas,Pollo;ACTIVE;109958.0
+71;Pontiac;Postre;Combo para dos;Pollo,Lomo biche,Papas a la francesa;ACTIVE;77211.0
+72;Jaguar;Plato principal;Caja personal;Camaron,Papas a la francesa,Costilla de cerdo;ACTIVE;80045.0
+73;Mercedes-Benz;Sopa;Personal;Costilla de cerdo,Cabano,Camaron;ACTIVE;35018.0
+74;Lexus;Adicionales;Caja personal;Camaron,Chuleta,Chicharron;ACTIVE;102343.0
+75;Chevrolet;Caldo;Familiar;Cebolla,Camaron,Chuleta;ACTIVE;148801.0
+76;Honda;Sopa;Familiar;Batavia,Chuleta,Pollo;ACTIVE;104020.0
+77;Honda;Sopa;Personal;Batavia,Chuleta,Pollo;ACTIVE;124783.0
+78;Ford;Sopa;Familiar;Batavia,Costilla,Lomo de cerdo ahumado;ACTIVE;143839.0
+79;Ford;Sopa;Caja personal;Batavia,Costilla,Lomo de cerdo ahumado;ACTIVE;68763.0
+80;Acura;Bandeja;Caja para dos;Costilla de cerdo,Chuleta,Maduro;ACTIVE;9928.0
+81;Chevrolet;Caldo;Caja para dos;Cebolla,Camaron,Chuleta;ACTIVE;57495.0
+82;Myrta;Bebida;Combo para dos;Jamon,Ostras,Cabano;ACTIVE;121186.0
+83;Nora;Caldo;Caja para dos;Cerdo,Jamon,Cebolla;ACTIVE;63064.0
+84;Mitsubishi;Caldo;Combo para dos;Chuleta,Cerdo,Maduro;ACTIVE;73353.0
+85;Rolls-Royce;Plato secundario;Combo para dos;Cabano,Costilla,Jamon;ACTIVE;50028.0
+86;Subaru;Adicionales;Caja para dos;Costilla,Costilla de cerdo,Chorizo;ACTIVE;70555.0
+87;Matthieu;Sopa;Caja personal;Pollo,Lomo de cerdo ahumado,Lomo biche;ACTIVE;51800.0
+88;Subaru;Adicionales;Familiar;Costilla,Costilla de cerdo,Chorizo;ACTIVE;148330.0
+89;Mercury;Bandeja;Caja personal;Ostras,Costilla de cerdo,Chorizo;ACTIVE;61812.0
+90;Gabe;Bandeja;Caja para dos;Costilla de cerdo,Pulpo,Chicharron;ACTIVE;85021.0
+91;Lexus;Adicionales;Caja para dos;Camaron,Chuleta,Chicharron;ACTIVE;137335.0
+92;Jeep;Bebida;Caja personal;Verduras,Cebolla,Camaron;ACTIVE;18850.0
+93;Daewoo;Adicionales;Personal;Papas a la francesa,Cebolla,Papas;ACTIVE;132718.0
+94;Arroz Valluno;Adicionales;Caja personal;Pollo,Ostras,Cabano;ACTIVE;121807.0
+95;Diahann;Caldo;Caja para dos;Lomo biche,Chorizo,Maduro;ACTIVE;84900.0
+96;Hazlett;Sopa;Personal;Cabano,Lomo de cerdo ahumado,Ostras;ACTIVE;142384.0
+97;Lev;Postre;Personal;Pulpo,Pollo,Chuleta;ACTIVE;40132.0
+98;Pontiac;Postre;Personal;Pollo,Lomo biche,Papas a la francesa;ACTIVE;24186.0
+99;Audi;Bebida;Familiar;Ostras,Costilla de cerdo,Papas;ACTIVE;103176.0
+100;Oldsmobile;Postre;Caja personal;Batavia,Pulpo,Costilla de cerdo;ACTIVE;94109.0
+101;Hummer;Caldo;Familiar;Maduro,Pollo,Jamon;ACTIVE;33920.0
+102;Marty;Adicionales;Familiar;Chorizo,Papas a la francesa,Chuleta;ACTIVE;68164.0
+103;Saturn;Bandeja;Combo para dos;Maduro,Batavia,Papas;ACTIVE;28242.0
+104;Candida;Plato principal;Caja para dos;Chuleta,Maduro,Papas;ACTIVE;87009.0
+105;Mitsubishi;Caldo;Caja para dos;Chuleta,Cerdo,Maduro;ACTIVE;66719.0
+106;Audi;Bebida;Caja personal;Ostras,Costilla de cerdo,Papas;ACTIVE;101962.0
+107;Cadillac;Caldo;Personal;Camaron,Lomo biche,Papas a la francesa;ACTIVE;78790.0
+108;Sterling;Adicionales;Caja personal;Costilla,Chuleta,Cebolla;ACTIVE;37982.0
+109;Phylis;Plato principal;Familiar;Camaron,Lomo biche,Pollo;ACTIVE;76839.0
+110;Dodge;Sopa;Combo para dos;Cebolla,Batavia,Costilla de cerdo;ACTIVE;37794.0
+111;Volkswagen;Plato secundario;Combo para dos;Papas,Lomo biche,Maduro;ACTIVE;49341.0
+112;Donna;Adicionales;Familiar;Batavia,Camaron,Camaron;ACTIVE;127299.0
+113;Pontiac;Postre;Caja para dos;Pollo,Lomo biche,Papas a la francesa;ACTIVE;134897.0
+114;Saab;Plato secundario;Familiar;Chuleta,Chuleta,Papas a la francesa;ACTIVE;27581.0
+115;Mitsubishi;Caldo;Familiar;Chuleta,Cerdo,Maduro;ACTIVE;123657.0
+116;Land Rover;Sopa;Combo para dos;Lomo de cerdo ahumado,Chorizo,Camaron;ACTIVE;134556.0
+117;Junina;Sopa;Personal;Cebolla,Costilla de cerdo,Cerdo;ACTIVE;6955.0
+118;Suzuki;Bebida;Caja personal;Chuleta,Lomo biche,Cebolla;ACTIVE;71828.0
+119;Teena;Postre;Caja para dos;Chorizo,Jamon,Verduras;ACTIVE;111569.0
+120;Wilmette;Adicionales;Personal;Chicharron,Cabano,Chicharron;ACTIVE;81893.0
+121;Claudelle;Sopa;Caja personal;Cabano,Papas,Batavia;ACTIVE;148050.0
+122;Jesselyn;Caldo;Familiar;Verduras,Jamon,Cerdo;ACTIVE;91469.0
+123;Porsche;Bandeja;Caja personal;Costilla de cerdo,Costilla de cerdo,Cebolla;ACTIVE;70786.0
+124;Elisabet;Plato principal;Caja personal;Maduro,Cerdo,Cebolla;ACTIVE;142414.0
+125;Bentley;Plato principal;Familiar;Pulpo,Cerdo,Jamon;ACTIVE;3149.0
+126;Kia;Adicionales;Personal;Papas,Verduras,Chicharron;ACTIVE;40884.0
+127;Chrysler;Caldo;Caja para dos;Ostras,Papas a la francesa,Chicharron;ACTIVE;63102.0
+128;Saxe;Bandeja;Caja para dos;Camaron,Costilla,Papas a la francesa;ACTIVE;125066.0
+129;BMW;Bandeja;Combo para dos;Lomo de cerdo ahumado,Cebolla,Cebolla;ACTIVE;94869.0
+130;Herve;Bandeja;Personal;Cebolla,Pulpo,Chorizo;ACTIVE;143470.0
+131;Edita;Sopa;Caja para dos;Cerdo,Cebolla,Costilla;ACTIVE;48732.0
+132;Chop Suey;Plato principal;Caja personal;Maduro,Costilla,Lomo biche;ACTIVE;63570.0
+133;Suzuki;Bebida;Combo para dos;Chuleta,Lomo biche,Cebolla;ACTIVE;111402.0
+134;Saab;Plato secundario;Caja para dos;Chuleta,Chuleta,Papas a la francesa;ACTIVE;42629.0
+135;Toyota;Postre;Familiar;Pulpo,Camaron,Pollo;ACTIVE;4476.0
+136;GMC;Postre;Personal;Verduras,Chicharron,Verduras;ACTIVE;111842.0
+137;Bertina;Bandeja;Combo para dos;Camaron,Pollo,Lomo de cerdo ahumado;ACTIVE;42207.0
+138;Chas;Postre;Personal;Costilla de cerdo,Pollo,Papas;ACTIVE;146917.0
+139;Mitsubishi;Caldo;Personal;Chuleta,Cerdo,Maduro;ACTIVE;63378.0
+140;Rosabelle;Caldo;Combo para dos;Maduro,Cabano,Cebolla;ACTIVE;68007.0
+141;Acura;Bandeja;Combo para dos;Costilla de cerdo,Chuleta,Maduro;ACTIVE;59922.0
+142;GMC;Postre;Caja personal;Verduras,Chicharron,Verduras;ACTIVE;35495.0
+143;Porsche;Bandeja;Familiar;Costilla de cerdo,Costilla de cerdo,Cebolla;ACTIVE;49384.0
+144;Toyota;Postre;Caja personal;Pulpo,Camaron,Pollo;ACTIVE;143545.0
+145;Quill;Plato secundario;Caja personal;Costilla,Lomo de cerdo ahumado,Chicharron;ACTIVE;34345.0
+146;Lexus;Adicionales;Combo para dos;Camaron,Chuleta,Chicharron;ACTIVE;22908.0
+147;Desayuno;Caldo;Personal;Pulpo,Papas,Ostras;ACTIVE;46458.0
+148;Dodge;Sopa;Caja para dos;Cebolla,Batavia,Costilla de cerdo;ACTIVE;126423.0
+149;Cristobal;Plato secundario;Familiar;Camaron,Verduras,Cerdo;ACTIVE;17855.0
+150;Phebe;Adicionales;Combo para dos;Chorizo,Chuleta,Pollo;ACTIVE;145340.0
+151;Kaila;Bebida;Combo para dos;Lomo biche,Lomo biche,Cebolla;ACTIVE;133385.0
+152;Suzuki;Bebida;Personal;Chuleta,Lomo biche,Cebolla;ACTIVE;88761.0
+153;Leticia;Caldo;Personal;Pollo,Costilla,Maduro;ACTIVE;48861.0
+154;Toyota;Postre;Combo para dos;Pulpo,Camaron,Pollo;ACTIVE;72833.0
+155;Kiley;Sopa;Familiar;Cerdo,Maduro,Ostras;ACTIVE;97668.0
+156;Fletch;Caldo;Familiar;Camaron,Camaron,Chorizo;ACTIVE;121204.0
+157;Haroun;Caldo;Personal;Camaron,Costilla,Chuleta;ACTIVE;37046.0
+158;Randa;Bebida;Caja personal;Cabano,Lomo de cerdo ahumado,Papas a la francesa;ACTIVE;141094.0
+159;Bentley;Plato principal;Combo para dos;Pulpo,Cerdo,Jamon;ACTIVE;139612.0
+160;Subaru;Adicionales;Personal;Costilla,Costilla de cerdo,Chorizo;ACTIVE;75013.0
+161;Jaguar;Plato principal;Caja para dos;Camaron,Papas a la francesa,Costilla de cerdo;ACTIVE;96781.0
+162;Caryl;Plato principal;Combo para dos;Jamon,Verduras,Costilla;ACTIVE;33446.0
+163;Ram;Bandeja;Personal;Papas a la francesa,Batavia,Verduras;ACTIVE;98959.0
+164;Hanson;Plato secundario;Personal;Costilla de cerdo,Verduras,Verduras;ACTIVE;136178.0
+165;Mazda;Bebida;Personal;Pulpo,Batavia,Costilla;ACTIVE;51656.0
+166;Volvo;Bandeja;Familiar;Chicharron,Chorizo,Batavia;ACTIVE;5496.0
+167;Massimo;Adicionales;Personal;Costilla de cerdo,Costilla de cerdo,Jamon;ACTIVE;50698.0
+168;Volkswagen;Plato secundario;Personal;Papas,Lomo biche,Maduro;ACTIVE;77188.0
+169;Plymouth;Bandeja;Familiar;Ostras,Maduro,Costilla;ACTIVE;61511.0
+170;Hyundai;Sopa;Personal;Chuleta,Costilla,Camaron;ACTIVE;50500.0
+171;Dorice;Plato principal;Caja para dos;Pollo,Chorizo,Costilla;ACTIVE;40132.0
+172;Lev;Postre;Familiar;Pulpo,Pollo,Chuleta;ACTIVE;30018.0
+173;Northrop;Caldo;Combo para dos;Chicharron,Cabano,Lomo de cerdo ahumado;ACTIVE;144895.0
+174;Mercedes-Benz;Sopa;Caja personal;Costilla de cerdo,Cabano,Camaron;ACTIVE;143803.0
+175;Taryn;Adicionales;Familiar;Ostras,Chorizo,Cebolla;ACTIVE;77588.0
+176;Donica;Postre;Caja para dos;Camaron,Costilla,Cabano;ACTIVE;5727.0
+177;Audi;Bebida;Combo para dos;Ostras,Costilla de cerdo,Papas;ACTIVE;143146.0
+178;Chloe;Plato principal;Combo para dos;Pollo,Papas,Batavia;ACTIVE;62986.0
+179;Buick;Plato secundario;Caja personal;Chicharron,Jamon,Ostras;ACTIVE;86075.0
+180;Porsche;Bandeja;Caja para dos;Costilla de cerdo,Costilla de cerdo,Cebolla;ACTIVE;131101.0
+181;Saab;Plato secundario;Combo para dos;Chuleta,Chuleta,Papas a la francesa;ACTIVE;13690.0
+182;Nata;Adicionales;Combo para dos;Batavia,Chuleta,Chuleta;ACTIVE;95737.0
+183;Sabina;Sopa;Combo para dos;Pulpo,Pulpo,Maduro;ACTIVE;61867.0
+184;BMW;Bandeja;Caja para dos;Lomo de cerdo ahumado,Cebolla,Cebolla;ACTIVE;40159.0
+185;Lexus;Adicionales;Personal;Camaron,Chuleta,Chicharron;ACTIVE;75262.0
+186;Saturn;Bandeja;Caja personal;Maduro,Batavia,Papas;ACTIVE;2649.0
+187;Ford;Sopa;Personal;Batavia,Costilla,Lomo de cerdo ahumado;ACTIVE;53598.0
+188;BMW;Bandeja;Personal;Lomo de cerdo ahumado,Cebolla,Cebolla;ACTIVE;116234.0
+189;Boigie;Adicionales;Familiar;Pulpo,Lomo de cerdo ahumado,Chorizo;ACTIVE;15664.0
+190;Lamborghini;Adicionales;Personal;Verduras,Pollo,Papas a la francesa;ACTIVE;73893.0
+191;Thomas;Postre;Caja para dos;Cebolla,Chorizo,Cebolla;ACTIVE;123505.0
+192;Hester;Postre;Caja personal;Costilla,Costilla,Cebolla;ACTIVE;126775.0
+193;Boigie;Adicionales;Personal;Pulpo,Lomo de cerdo ahumado,Chorizo;ACTIVE;61470.0
+194;Maserati;Plato principal;Personal;Costilla,Lomo biche,Cabano;ACTIVE;65994.0
+195;Mariann;Caldo;Combo para dos;Costilla,Maduro,Maduro;ACTIVE;46615.0
+196;Kimble;Postre;Combo para dos;Costilla,Papas,Ostras;ACTIVE;37702.0
+197;Garrett;Plato secundario;Caja para dos;Chuleta,Camaron,Lomo de cerdo ahumado;ACTIVE;132655.0
+198;Paolo;Adicionales;Caja personal;Papas a la francesa,Cerdo,Pollo;ACTIVE;23183.0
+199;Lincoln;Adicionales;Personal;Papas a la francesa,Cabano,Maduro;ACTIVE;28898.0
+200;Sterling;Adicionales;Combo para dos;Costilla,Chuleta,Cebolla;ACTIVE;59916.0
+201;Saturn;Bandeja;Familiar;Maduro,Batavia,Papas;ACTIVE;131230.0
+202;Ortensia;Bebida;Caja personal;Verduras,Cebolla,Lomo de cerdo ahumado;ACTIVE;6703.0
+203;Kia;Adicionales;Familiar;Papas,Verduras,Chicharron;ACTIVE;12271.0
+204;Dodge;Sopa;Familiar;Cebolla,Batavia,Costilla de cerdo;ACTIVE;95984.0
+205;Tiebold;Sopa;Personal;Papas,Cabano,Lomo de cerdo ahumado;ACTIVE;136629.0
+206;Honda;Sopa;Caja para dos;Batavia,Chuleta,Pollo;ACTIVE;118791.0
+207;GMC;Postre;Combo para dos;Verduras,Chicharron,Verduras;ACTIVE;112325.0
+208;Ara;Bandeja;Caja personal;Verduras,Cerdo,Lomo biche;ACTIVE;69092.0
+209;Caro;Postre;Combo para dos;Cebolla,Cabano,Chuleta;ACTIVE;108503.0
+210;Lincoln;Adicionales;Caja para dos;Papas a la francesa,Cabano,Maduro;ACTIVE;133949.0
+211;Kakalina;Plato principal;Combo para dos;Pulpo,Papas a la francesa,Chuleta;ACTIVE;39479.0
+212;Cadillac;Caldo;Caja personal;Camaron,Lomo biche,Papas a la francesa;ACTIVE;97267.0
+213;Carlin;Postre;Familiar;Cebolla,Cabano,Papas a la francesa;ACTIVE;140231.0
+214;Cadillac;Caldo;Familiar;Camaron,Lomo biche,Papas a la francesa;ACTIVE;72144.0
+215;Hester;Postre;Caja para dos;Costilla,Costilla,Cebolla;ACTIVE;8634.0
+216;Jaguar;Plato principal;Familiar;Camaron,Papas a la francesa,Costilla de cerdo;ACTIVE;60107.0
+217;Alfa Romeo;Sopa;Caja para dos;Verduras,Pollo,Costilla;ACTIVE;141074.0
+218;Ricard;Adicionales;Familiar;Costilla de cerdo,Cebolla,Costilla de cerdo;ACTIVE;19818.0
+219;Maible;Bandeja;Personal;Cabano,Chuleta,Chorizo;ACTIVE;146786.0
+220;Hyundai;Sopa;Familiar;Chuleta,Costilla,Camaron;ACTIVE;21517.0
+221;Infiniti;Adicionales;Caja personal;Chicharron,Cebolla,Verduras;ACTIVE;56577.0
+222;Carlita;Bandeja;Combo para dos;Lomo biche,Costilla,Costilla de cerdo;ACTIVE;82000.0
+223;Kia;Adicionales;Combo para dos;Papas,Verduras,Chicharron;ACTIVE;95472.0
+224;Porsche;Bandeja;Personal;Costilla de cerdo,Costilla de cerdo,Cebolla;ACTIVE;146044.0
+225;Mareah;Caldo;Familiar;Batavia,Chuleta,Chuleta;ACTIVE;45545.0
+226;Candida;Plato principal;Combo para dos;Chuleta,Maduro,Papas;ACTIVE;96380.0
+227;Buick;Plato secundario;Personal;Chicharron,Jamon,Ostras;ACTIVE;63643.0
+228;Lorne;Caldo;Caja para dos;Jamon,Costilla,Camaron;ACTIVE;67404.0
+229;Buick;Plato secundario;Familiar;Chicharron,Jamon,Ostras;ACTIVE;44016.0
+230;Volvo;Bandeja;Caja personal;Chicharron,Chorizo,Batavia;ACTIVE;106514.0
+231;Chlo;Postre;Familiar;Papas,Pollo,Batavia;ACTIVE;24883.0
+232;Ferrari;Bandeja;Caja para dos;Maduro,Lomo de cerdo ahumado,Pollo;ACTIVE;50414.0
+233;Shanan;Plato secundario;Personal;Pulpo,Cerdo,Cabano;ACTIVE;7043.0
+234;Nissan;Caldo;Caja personal;Costilla de cerdo,Batavia,Chicharron;ACTIVE;92541.0
+235;Sterling;Adicionales;Caja para dos;Costilla,Chuleta,Cebolla;ACTIVE;110673.0
+236;Hazlett;Sopa;Caja para dos;Cabano,Lomo de cerdo ahumado,Ostras;ACTIVE;149652.0
+237;Una;Sopa;Personal;Maduro,Verduras,Lomo biche;ACTIVE;37329.0
+238;Jerri;Plato secundario;Combo para dos;Chuleta,Cebolla,Costilla;ACTIVE;127284.0
+239;Murry;Sopa;Combo para dos;Cabano,Papas a la francesa,Batavia;ACTIVE;119125.0
+240;Mord;Adicionales;Familiar;Pollo,Costilla,Maduro;ACTIVE;44008.0
+241;Gunar;Caldo;Combo para dos;Pollo,Ostras,Chicharron;ACTIVE;129856.0
+242;Terrell;Bebida;Caja para dos;Verduras,Pulpo,Chuleta;ACTIVE;14094.0
+243;Acura;Bandeja;Caja personal;Costilla de cerdo,Chuleta,Maduro;ACTIVE;44718.0
+244;Demeter;Plato principal;Personal;Chorizo,Lomo de cerdo ahumado,Pulpo;ACTIVE;132213.0
+245;Kerrill;Postre;Combo para dos;Ostras,Batavia,Lomo de cerdo ahumado;ACTIVE;71020.0
+246;Mazda;Bebida;Familiar;Pulpo,Batavia,Costilla;ACTIVE;46736.0
+247;Aston Martin;Bandeja;Caja personal;Cabano,Cerdo,Camaron;ACTIVE;132318.0
+248;Jeep;Bebida;Personal;Verduras,Cebolla,Camaron;ACTIVE;101899.0
+249;Buick;Plato secundario;Caja para dos;Chicharron,Jamon,Ostras;ACTIVE;93964.0
+250;Helsa;Plato secundario;Caja para dos;Costilla,Cebolla,Cerdo;ACTIVE;138757.0
+251;Gabe;Bandeja;Caja personal;Costilla de cerdo,Pulpo,Chicharron;ACTIVE;19153.0
+252;Studebaker;Bandeja;Caja personal;Pollo,Lomo biche,Cabano;ACTIVE;9012.0
+253;Mariann;Caldo;Caja para dos;Costilla,Maduro,Maduro;ACTIVE;80466.0
+254;Saw;Plato principal;Personal;Chuleta,Lomo biche,Papas;ACTIVE;52982.0
+255;Chrysler;Caldo;Familiar;Ostras,Papas a la francesa,Chicharron;ACTIVE;70761.0
+256;Adel;Plato principal;Familiar;Batavia,Papas a la francesa,Costilla de cerdo;ACTIVE;140408.0
+257;Bianka;Plato secundario;Combo para dos;Jamon,Camaron,Camaron;ACTIVE;79385.0
+258;April;Sopa;Personal;Jamon,Maduro,Chicharron;ACTIVE;87649.0
+259;Tomas;Bandeja;Familiar;Cabano,Papas a la francesa,Cabano;ACTIVE;112009.0
+260;Petr;Sopa;Familiar;Lomo biche,Chorizo,Pulpo;ACTIVE;21828.0
+261;Plymouth;Bandeja;Caja para dos;Ostras,Maduro,Costilla;ACTIVE;103771.0
+262;Filmer;Plato principal;Familiar;Costilla de cerdo,Jamon,Maduro;ACTIVE;11171.0
+263;Mommy;Postre;Caja personal;Chuleta,Chorizo,Pulpo;ACTIVE;143876.0
+264;Lizzie;Sopa;Personal;Chicharron,Chorizo,Cabano;ACTIVE;80670.0
+265;Audi;Bebida;Caja para dos;Ostras,Costilla de cerdo,Papas;ACTIVE;54651.0
+266;Gunar;Caldo;Personal;Pollo,Ostras,Chicharron;ACTIVE;143707.0
+267;Honda;Sopa;Caja personal;Batavia,Chuleta,Pollo;ACTIVE;61422.0
+268;Mortie;Bebida;Caja personal;Papas a la francesa,Cerdo,Maduro;ACTIVE;70710.0
+269;Archibaldo;Plato principal;Personal;Jamon,Ostras,Lomo de cerdo ahumado;ACTIVE;79236.0
+270;Harcourt;Caldo;Personal;Jamon,Camaron,Maduro;ACTIVE;32994.0
+271;Phylis;Plato principal;Caja personal;Camaron,Lomo biche,Pollo;ACTIVE;49522.0
+272;Harmonia;Plato principal;Combo para dos;Costilla de cerdo,Chorizo,Pulpo;ACTIVE;4020.0
+273;Lotus;Plato principal;Caja personal;Cabano,Pulpo,Cabano;ACTIVE;42974.0
+274;Elisabet;Plato principal;Caja para dos;Maduro,Cerdo,Cebolla;ACTIVE;118177.0
+275;Noak;Plato secundario;Familiar;Cabano,Papas a la francesa,Lomo de cerdo ahumado;ACTIVE;1352.0
+276;Gayel;Plato principal;Caja para dos;Cabano,Cerdo,Chicharron;ACTIVE;108151.0
+277;Dilly;Bandeja;Familiar;Chorizo,Papas a la francesa,Chorizo;ACTIVE;54052.0
+278;Dyanne;Plato principal;Caja personal;Papas,Jamon,Chicharron;ACTIVE;85614.0
+279;Peder;Postre;Caja para dos;Cabano,Papas a la francesa,Pulpo;ACTIVE;87695.0
+280;Eagle;Postre;Personal;Batavia,Maduro,Verduras;ACTIVE;30131.0
+281;Noak;Plato secundario;Caja para dos;Cabano,Papas a la francesa,Lomo de cerdo ahumado;ACTIVE;144588.0
+282;Buick;Plato secundario;Combo para dos;Chicharron,Jamon,Ostras;ACTIVE;114226.0
+283;Maserati;Plato principal;Combo para dos;Costilla,Lomo biche,Cabano;ACTIVE;142923.0
+284;Bernita;Bebida;Personal;Cabano,Costilla,Costilla;ACTIVE;124769.0
+285;Atalanta;Bandeja;Personal;Cebolla,Camaron,Lomo biche;ACTIVE;43667.0
+286;Jeep;Bebida;Familiar;Verduras,Cebolla,Camaron;ACTIVE;116172.0
+287;Marmaduke;Bandeja;Personal;Jamon,Costilla de cerdo,Batavia;ACTIVE;43077.0
+288;Thomas;Postre;Personal;Cebolla,Chorizo,Cebolla;ACTIVE;25571.0
+289;Ethelda;Postre;Combo para dos;Camaron,Chuleta,Batavia;ACTIVE;101858.0
+290;Skelly;Adicionales;Caja para dos;Cabano,Lomo de cerdo ahumado,Chuleta;ACTIVE;113733.0
+291;Arroz Valluno;Adicionales;Combo para dos;Pollo,Ostras,Cabano;ACTIVE;83618.0
+292;Vanda;Adicionales;Combo para dos;Chorizo,Verduras,Costilla;ACTIVE;94673.0
+293;Lincoln;Adicionales;Combo para dos;Papas a la francesa,Cabano,Maduro;ACTIVE;122837.0
+294;Clemmy;Plato principal;Personal;Chorizo,Ostras,Costilla de cerdo;ACTIVE;41605.0
+295;Kia;Adicionales;Caja para dos;Papas,Verduras,Chicharron;ACTIVE;66485.0
+296;Hallsy;Plato secundario;Caja personal;Batavia,Chuleta,Papas a la francesa;ACTIVE;149186.0
+297;Lotus;Plato principal;Personal;Cabano,Pulpo,Cabano;ACTIVE;119511.0
+298;Arroz a la barbacoa;Postre;Combo para dos;Costilla de cerdo,Cerdo,Chicharron;ACTIVE;75830.0
+299;Gael;Caldo;Caja para dos;Ostras,Chicharron,Maduro;ACTIVE;20274.0
+300;Hanson;Plato secundario;Caja personal;Costilla de cerdo,Verduras,Verduras;ACTIVE;117743.0
+301;Robbin;Plato principal;Combo para dos;Cebolla,Cerdo,Papas;ACTIVE;19190.0
+302;Infiniti;Adicionales;Combo para dos;Chicharron,Cebolla,Verduras;ACTIVE;77746.0
+303;Jenni;Postre;Caja personal;Batavia,Lomo biche,Chorizo;ACTIVE;133806.0
+304;Studebaker;Bandeja;Combo para dos;Pollo,Lomo biche,Cabano;ACTIVE;29187.0
+305;Suzuki;Bebida;Caja para dos;Chuleta,Lomo biche,Cebolla;ACTIVE;49983.0
+306;Raquel;Bandeja;Caja para dos;Jamon,Chorizo,Camaron;ACTIVE;123425.0
+307;Subaru;Adicionales;Combo para dos;Costilla,Costilla de cerdo,Chorizo;ACTIVE;50036.0
+308;Lexus;Adicionales;Familiar;Camaron,Chuleta,Chicharron;ACTIVE;84028.0
+309;Plymouth;Bandeja;Caja personal;Ostras,Maduro,Costilla;ACTIVE;147934.0
+310;Tomas;Bandeja;Combo para dos;Cabano,Papas a la francesa,Cabano;ACTIVE;55568.0
+311;Bertina;Bandeja;Caja personal;Camaron,Pollo,Lomo de cerdo ahumado;ACTIVE;117229.0
+312;Farica;Caldo;Caja personal;Chicharron,Chorizo,Chuleta;ACTIVE;78457.0
+313;Ardene;Caldo;Caja personal;Chuleta,Papas a la francesa,Jamon;ACTIVE;71966.0
+314;Elsbeth;Adicionales;Familiar;Costilla de cerdo,Pulpo,Cerdo;ACTIVE;115993.0
+315;Bentley;Plato principal;Personal;Pulpo,Cerdo,Jamon;ACTIVE;112219.0
+316;Saab;Plato secundario;Caja personal;Chuleta,Chuleta,Papas a la francesa;ACTIVE;76696.0
+317;Jeep;Bebida;Caja para dos;Verduras,Cebolla,Camaron;ACTIVE;71762.0
+318;Subaru;Adicionales;Caja personal;Costilla,Costilla de cerdo,Chorizo;ACTIVE;61736.0
+319;Hummer;Caldo;Caja para dos;Maduro,Pollo,Jamon;ACTIVE;136802.0
+320;North;Bebida;Combo para dos;Maduro,Chuleta,Lomo de cerdo ahumado;ACTIVE;17550.0
+321;Braden;Bandeja;Combo para dos;Cerdo,Chicharron,Verduras;ACTIVE;86062.0
+322;Massimo;Adicionales;Combo para dos;Costilla de cerdo,Costilla de cerdo,Jamon;ACTIVE;12237.0
+323;Amandie;Caldo;Personal;Chorizo,Chuleta,Pollo;ACTIVE;141190.0
+324;Alphard;Postre;Familiar;Cabano,Jamon,Jamon;ACTIVE;44823.0
+325;Malena;Plato principal;Familiar;Papas a la francesa,Ostras,Chuleta;ACTIVE;97683.0
+326;Ferrari;Bandeja;Caja personal;Maduro,Lomo de cerdo ahumado,Pollo;ACTIVE;91634.0
+327;Natka;Postre;Personal;Ostras,Cabano,Batavia;ACTIVE;9171.0
+328;Amandie;Caldo;Caja personal;Chorizo,Chuleta,Pollo;ACTIVE;137089.0
+329;Olia;Sopa;Combo para dos;Ostras,Cabano,Papas;ACTIVE;58108.0
+330;Maybach;Plato principal;Caja para dos;Chorizo,Papas a la francesa,Jamon;ACTIVE;97157.0
+331;Caro;Postre;Caja personal;Cebolla,Cabano,Chuleta;ACTIVE;30744.0
+332;Tomlin;Caldo;Caja personal;Papas a la francesa,Pollo,Papas;ACTIVE;145091.0
+333;Rurik;Adicionales;Combo para dos;Chorizo,Jamon,Jamon;ACTIVE;136635.0
+334;Jasmin;Plato secundario;Combo para dos;Lomo biche,Verduras,Pollo;ACTIVE;46231.0
+335;Volvo;Bandeja;Combo para dos;Chicharron,Chorizo,Batavia;ACTIVE;99746.0
+336;Jeep;Bebida;Combo para dos;Verduras,Cebolla,Camaron;ACTIVE;128342.0
+337;Hyundai;Sopa;Combo para dos;Chuleta,Costilla,Camaron;ACTIVE;98146.0
+338;Ferrel;Bandeja;Caja personal;Maduro,Verduras,Cabano;ACTIVE;121016.0
+339;Natka;Postre;Familiar;Ostras,Cabano,Batavia;ACTIVE;93125.0
+340;Lenore;Bandeja;Combo para dos;Cebolla,Cabano,Cabano;ACTIVE;80799.0
+341;Suzuki;Bebida;Familiar;Chuleta,Lomo biche,Cebolla;ACTIVE;10537.0
+342;Anjanette;Plato principal;Caja personal;Pulpo,Jamon,Verduras;ACTIVE;66641.0
+343;Fletch;Caldo;Combo para dos;Camaron,Camaron,Chorizo;ACTIVE;46783.0
+344;Una;Sopa;Caja para dos;Maduro,Verduras,Lomo biche;ACTIVE;109055.0
+345;Molli;Adicionales;Caja personal;Maduro,Pollo,Chuleta;ACTIVE;24855.0
+346;Ola;Bandeja;Combo para dos;Cerdo,Cerdo,Lomo biche;ACTIVE;11717.0
+347;Oldsmobile;Postre;Combo para dos;Batavia,Pulpo,Costilla de cerdo;ACTIVE;42786.0
+348;Mia;Bandeja;Personal;Lomo de cerdo ahumado,Papas a la francesa,Costilla;ACTIVE;128417.0
+349;Isador;Plato principal;Personal;Chicharron,Papas,Camaron;ACTIVE;112515.0
+350;Ludovika;Adicionales;Familiar;Papas,Cerdo,Lomo de cerdo ahumado;ACTIVE;6180.0
+351;Mazda;Bebida;Combo para dos;Pulpo,Batavia,Costilla;ACTIVE;44118.0
+352;Hubey;Postre;Caja para dos;Papas,Cebolla,Pulpo;ACTIVE;4272.0
+353;Conny;Adicionales;Familiar;Chorizo,Cebolla,Ostras;ACTIVE;96567.0
+354;Devora;Sopa;Familiar;Cebolla,Lomo biche,Cebolla;ACTIVE;69271.0
+355;Goldy;Adicionales;Caja para dos;Chorizo,Costilla,Cebolla;ACTIVE;95515.0
+356;Corena;Adicionales;Personal;Chorizo,Pulpo,Cebolla;ACTIVE;21436.0
+357;Raphaela;Plato principal;Personal;Cerdo,Ostras,Papas;ACTIVE;113482.0
+358;Elisabet;Plato principal;Familiar;Maduro,Cerdo,Cebolla;ACTIVE;65577.0
+359;Norina;Adicionales;Caja para dos;Lomo biche,Lomo biche,Ostras;ACTIVE;110361.0
+360;Lenette;Postre;Personal;Maduro,Chuleta,Cabano;ACTIVE;94042.0
+361;Dody;Bandeja;Personal;Costilla de cerdo,Chicharron,Lomo biche;ACTIVE;149891.0
+362;Jermaine;Adicionales;Combo para dos;Lomo de cerdo ahumado,Cerdo,Papas a la francesa;ACTIVE;18523.0
+363;Raddy;Sopa;Combo para dos;Papas a la francesa,Lomo biche,Batavia;ACTIVE;143460.0
+364;Townie;Bebida;Caja personal;Costilla de cerdo,Cerdo,Verduras;ACTIVE;75658.0
+365;MINI;Sopa;Caja para dos;Chuleta,Verduras,Camaron;ACTIVE;139510.0
+366;Haze;Plato principal;Personal;Verduras,Verduras,Camaron;ACTIVE;53550.0
+367;Bentley;Plato principal;Caja personal;Pulpo,Cerdo,Jamon;ACTIVE;66470.0
+368;Glynn;Caldo;Caja personal;Lomo biche,Lomo biche,Ostras;ACTIVE;57241.0
+369;Hanson;Plato secundario;Familiar;Costilla de cerdo,Verduras,Verduras;ACTIVE;59495.0
+370;Ira;Plato secundario;Caja para dos;Maduro,Batavia,Batavia;ACTIVE;70628.0
+371;Rosabelle;Caldo;Caja personal;Maduro,Cabano,Cebolla;ACTIVE;41754.0
+372;Farica;Caldo;Familiar;Chicharron,Chorizo,Chuleta;ACTIVE;60004.0
+373;Abey;Plato secundario;Familiar;Batavia,Verduras,Costilla de cerdo;ACTIVE;28824.0
+374;Wallache;Adicionales;Caja para dos;Pollo,Lomo de cerdo ahumado,Batavia;ACTIVE;1497.0
+375;Randa;Bebida;Familiar;Cabano,Lomo de cerdo ahumado,Papas a la francesa;ACTIVE;115576.0
+376;Oldsmobile;Postre;Familiar;Batavia,Pulpo,Costilla de cerdo;ACTIVE;108106.0
+377;Hirsch;Bandeja;Caja para dos;Cerdo,Costilla de cerdo,Costilla;ACTIVE;64277.0
+378;Suzanne;Caldo;Combo para dos;Cabano,Ostras,Pollo;ACTIVE;3343.0
+379;Infiniti;Adicionales;Familiar;Chicharron,Cebolla,Verduras;ACTIVE;137116.0
+380;Derril;Bebida;Personal;Papas a la francesa,Pulpo,Chorizo;ACTIVE;23507.0
+381;Carlin;Postre;Caja para dos;Cebolla,Cabano,Papas a la francesa;ACTIVE;86328.0
+382;Garrett;Plato secundario;Caja personal;Chuleta,Camaron,Lomo de cerdo ahumado;ACTIVE;46219.0
+383;Evonne;Adicionales;Familiar;Cabano,Costilla de cerdo,Chuleta;ACTIVE;22465.0
+384;Fidelity;Adicionales;Familiar;Camaron,Papas a la francesa,Cebolla;ACTIVE;142734.0
+385;Charity;Bandeja;Combo para dos;Batavia,Chorizo,Lomo de cerdo ahumado;ACTIVE;27397.0
+386;Feliks;Plato principal;Caja para dos;Ostras,Papas a la francesa,Costilla de cerdo;ACTIVE;106389.0
+387;Osbert;Plato principal;Combo para dos;Jamon,Ostras,Lomo biche;ACTIVE;1067.0
+388;Marisa;Plato secundario;Caja para dos;Chicharron,Cabano,Camaron;ACTIVE;116289.0
+389;Donna;Adicionales;Caja personal;Batavia,Camaron,Camaron;ACTIVE;101457.0
+390;Marcile;Adicionales;Caja personal;Lomo biche,Ostras,Lomo biche;ACTIVE;95087.0
+391;Willa;Adicionales;Caja para dos;Chicharron,Cerdo,Lomo de cerdo ahumado;ACTIVE;134349.0
+392;Quill;Plato secundario;Personal;Costilla,Lomo de cerdo ahumado,Chicharron;ACTIVE;35447.0
+393;Sancho;Bebida;Caja para dos;Papas a la francesa,Lomo biche,Cerdo;ACTIVE;92732.0
+394;Reena;Plato secundario;Familiar;Maduro,Lomo biche,Jamon;ACTIVE;7438.0
+395;Richie;Bandeja;Familiar;Costilla de cerdo,Lomo biche,Papas;ACTIVE;39410.0
+396;Mercedes-Benz;Sopa;Combo para dos;Costilla de cerdo,Cabano,Camaron;ACTIVE;45067.0
+397;Ricard;Adicionales;Combo para dos;Costilla de cerdo,Cebolla,Costilla de cerdo;ACTIVE;88246.0
+398;Dorice;Plato principal;Combo para dos;Pollo,Chorizo,Costilla;ACTIVE;33930.0
+399;Yasmin;Plato principal;Caja personal;Verduras,Jamon,Cabano;ACTIVE;16431.0
+400;Harald;Plato secundario;Familiar;Cebolla,Pulpo,Papas a la francesa;ACTIVE;61543.0
+401;Odey;Postre;Personal;Papas,Ostras,Cebolla;ACTIVE;46096.0
+402;Weston;Postre;Combo para dos;Camaron,Verduras,Batavia;ACTIVE;86928.0
+403;Cordi;Caldo;Familiar;Costilla,Cerdo,Pulpo;ACTIVE;120364.0
+404;Lindon;Bandeja;Familiar;Costilla,Costilla de cerdo,Chuleta;ACTIVE;129413.0
+405;Cadillac;Caldo;Combo para dos;Camaron,Lomo biche,Papas a la francesa;ACTIVE;4379.0
+406;Robinette;Postre;Personal;Papas,Cabano,Ostras;ACTIVE;58146.0
+407;Buddy;Caldo;Personal;Chicharron,Ostras,Cabano;ACTIVE;120944.0
+408;Pontiac;Postre;Familiar;Pollo,Lomo biche,Papas a la francesa;ACTIVE;111199.0
+409;Kaila;Bebida;Caja para dos;Lomo biche,Lomo biche,Cebolla;ACTIVE;55655.0
+410;Gifford;Sopa;Familiar;Chicharron,Batavia,Chicharron;ACTIVE;20875.0
+411;Briano;Plato secundario;Familiar;Pollo,Lomo biche,Costilla;ACTIVE;29503.0
+412;Janeva;Caldo;Caja para dos;Chorizo,Chuleta,Ostras;ACTIVE;54192.0
+413;Karry;Bandeja;Caja personal;Papas a la francesa,Cebolla,Cerdo;ACTIVE;68263.0
+414;Hazlett;Sopa;Familiar;Cabano,Lomo de cerdo ahumado,Ostras;ACTIVE;32206.0
+415;Irving;Caldo;Combo para dos;Cabano,Jamon,Chorizo;ACTIVE;137390.0
+416;Holden;Postre;Caja para dos;Cabano,Costilla,Papas;ACTIVE;22720.0
+417;Les;Bandeja;Familiar;Jamon,Chorizo,Jamon;ACTIVE;34438.0
+418;Tymon;Adicionales;Caja para dos;Batavia,Papas a la francesa,Pulpo;ACTIVE;25329.0
+419;Ram;Bandeja;Familiar;Papas a la francesa,Batavia,Verduras;ACTIVE;33397.0
+420;Nanice;Bandeja;Combo para dos;Maduro,Camaron,Lomo biche;ACTIVE;109853.0
+421;Phil;Plato secundario;Caja para dos;Papas a la francesa,Papas,Costilla de cerdo;ACTIVE;48707.0
+422;Amaleta;Caldo;Caja para dos;Ostras,Batavia,Ostras;ACTIVE;133052.0
+423;Acura;Bandeja;Personal;Costilla de cerdo,Chuleta,Maduro;ACTIVE;74809.0
+424;Tybi;Postre;Caja para dos;Lomo biche,Pollo,Pollo;ACTIVE;100456.0
+425;Zola;Plato secundario;Combo para dos;Jamon,Verduras,Cerdo;ACTIVE;79615.0
+426;Shelba;Postre;Caja personal;Batavia,Pulpo,Pulpo;ACTIVE;110695.0
+427;Eugenie;Plato principal;Caja para dos;Lomo biche,Maduro,Cebolla;ACTIVE;45256.0
+428;Volkswagen;Plato secundario;Caja para dos;Papas,Lomo biche,Maduro;ACTIVE;94252.0
+429;Gail;Adicionales;Caja personal;Chuleta,Lomo de cerdo ahumado,Verduras;ACTIVE;149445.0
+430;Alfa Romeo;Sopa;Caja personal;Verduras,Pollo,Costilla;ACTIVE;104596.0
+431;Hildy;Sopa;Caja personal;Costilla,Maduro,Chuleta;ACTIVE;67895.0
+432;Maybach;Plato principal;Caja personal;Chorizo,Papas a la francesa,Jamon;ACTIVE;27628.0
+433;Charlton;Adicionales;Familiar;Chicharron,Papas,Cerdo;ACTIVE;147485.0
+434;Archibaldo;Plato principal;Caja para dos;Jamon,Ostras,Lomo de cerdo ahumado;ACTIVE;81635.0
+435;Phylis;Plato principal;Caja para dos;Camaron,Lomo biche,Pollo;ACTIVE;146219.0
+436;Trude;Plato secundario;Caja para dos;Cerdo,Jamon,Batavia;ACTIVE;95806.0
+437;Conny;Adicionales;Caja personal;Chorizo,Cebolla,Ostras;ACTIVE;52001.0
+438;Geo;Caldo;Combo para dos;Costilla de cerdo,Cabano,Camaron;ACTIVE;45889.0
+439;Calv;Sopa;Combo para dos;Papas a la francesa,Cerdo,Pollo;ACTIVE;74529.0
+440;Arlyn;Sopa;Personal;Costilla,Jamon,Papas a la francesa;ACTIVE;44086.0
+441;Erminia;Bebida;Caja para dos;Maduro,Ostras,Chuleta;ACTIVE;1686.0
+442;Trude;Plato secundario;Personal;Cerdo,Jamon,Batavia;ACTIVE;60975.0
+443;Maddi;Adicionales;Caja para dos;Lomo de cerdo ahumado,Papas,Lomo biche;ACTIVE;135336.0
+444;Isa;Bandeja;Familiar;Chuleta,Batavia,Batavia;ACTIVE;23302.0
+445;Mareah;Caldo;Caja personal;Batavia,Chuleta,Chuleta;ACTIVE;110480.0
+446;Isuzu;Bebida;Caja personal;Chuleta,Papas,Pollo;ACTIVE;97360.0
+447;Ilaire;Plato principal;Personal;Chorizo,Ostras,Lomo biche;ACTIVE;124301.0
+448;Quill;Plato secundario;Caja para dos;Costilla,Lomo de cerdo ahumado,Chicharron;ACTIVE;72622.0
+449;Elle;Sopa;Familiar;Chorizo,Pollo,Chuleta;ACTIVE;134936.0
+450;Simone;Bandeja;Personal;Chicharron,Chicharron,Batavia;ACTIVE;89540.0
+451;Dido;Bandeja;Familiar;Lomo de cerdo ahumado,Chicharron,Batavia;ACTIVE;107891.0
+452;Gregor;Caldo;Personal;Ostras,Batavia,Pulpo;ACTIVE;16984.0
+453;Claudelle;Sopa;Personal;Cabano,Papas,Batavia;ACTIVE;11523.0
+454;Terrell;Bebida;Familiar;Verduras,Pulpo,Chuleta;ACTIVE;65786.0
+455;Petra;Postre;Personal;Lomo de cerdo ahumado,Batavia,Maduro;ACTIVE;17798.0
+456;Stephen;Caldo;Combo para dos;Papas a la francesa,Lomo biche,Ostras;ACTIVE;80740.0
+457;Dore;Plato secundario;Combo para dos;Jamon,Chuleta,Verduras;ACTIVE;117460.0
+458;Georgie;Caldo;Caja para dos;Cebolla,Pulpo,Costilla;ACTIVE;68911.0
+459;Matthaeus;Plato principal;Personal;Chuleta,Maduro,Chorizo;ACTIVE;106057.0
+460;Dallas;Sopa;Familiar;Batavia,Chicharron,Cerdo;ACTIVE;63589.0
+461;Rickey;Bandeja;Caja personal;Cerdo,Maduro,Costilla;ACTIVE;98064.0
+462;Weston;Postre;Familiar;Camaron,Verduras,Batavia;ACTIVE;24077.0
+463;Ferrari;Bandeja;Personal;Maduro,Lomo de cerdo ahumado,Pollo;ACTIVE;75918.0
+464;Colet;Plato principal;Familiar;Camaron,Chicharron,Camaron;ACTIVE;31772.0
+465;Arlyn;Sopa;Combo para dos;Costilla,Jamon,Papas a la francesa;ACTIVE;87341.0
+466;Ellis;Caldo;Caja personal;Papas a la francesa,Chorizo,Chicharron;ACTIVE;8958.0
+467;Saturn;Bandeja;Caja para dos;Maduro,Batavia,Papas;ACTIVE;123799.0
+468;Elsbeth;Adicionales;Caja personal;Costilla de cerdo,Pulpo,Cerdo;ACTIVE;147223.0
+469;Regen;Plato principal;Personal;Papas a la francesa,Verduras,Batavia;ACTIVE;141773.0
+470;Weston;Postre;Caja para dos;Camaron,Verduras,Batavia;ACTIVE;45494.0
+471;Infiniti;Adicionales;Personal;Chicharron,Cebolla,Verduras;ACTIVE;149878.0
+472;Saturn;Bandeja;Personal;Maduro,Batavia,Papas;ACTIVE;129956.0
+473;Katlin;Adicionales;Caja personal;Ostras,Chicharron,Costilla;ACTIVE;55684.0
+474;Aluino;Plato secundario;Caja personal;Costilla,Cebolla,Chorizo;ACTIVE;144675.0
+475;Justine;Bandeja;Personal;Cebolla,Lomo de cerdo ahumado,Papas;ACTIVE;103013.0
+476;Richie;Bandeja;Combo para dos;Costilla de cerdo,Lomo biche,Papas;ACTIVE;7209.0
+477;Hayden;Bebida;Familiar;Cebolla,Papas a la francesa,Batavia;ACTIVE;36074.0
+478;Orelee;Plato secundario;Combo para dos;Chorizo,Costilla de cerdo,Papas;ACTIVE;139297.0
+479;Cadillac;Caldo;Caja para dos;Camaron,Lomo biche,Papas a la francesa;ACTIVE;124761.0
+480;Grata;Adicionales;Caja personal;Ostras,Papas,Camaron;ACTIVE;99337.0
+481;Hedwiga;Adicionales;Personal;Chicharron,Chicharron,Pulpo;ACTIVE;8663.0
+482;Cristobal;Plato secundario;Personal;Camaron,Verduras,Cerdo;ACTIVE;114532.0
+483;Aluino;Plato secundario;Combo para dos;Costilla,Cebolla,Chorizo;ACTIVE;30583.0
+484;Lamborghini;Adicionales;Caja personal;Verduras,Pollo,Papas a la francesa;ACTIVE;115949.0
+485;Hamel;Plato principal;Familiar;Chicharron,Costilla de cerdo,Camaron;ACTIVE;25790.0
+486;Theressa;Bebida;Caja para dos;Cebolla,Chuleta,Costilla;ACTIVE;47682.0
+487;Arlyn;Sopa;Familiar;Costilla,Jamon,Papas a la francesa;ACTIVE;33820.0
+488;Odey;Postre;Caja para dos;Papas,Ostras,Cebolla;ACTIVE;53850.0
+489;Volvo;Bandeja;Caja para dos;Chicharron,Chorizo,Batavia;ACTIVE;144897.0
+490;Willa;Adicionales;Caja personal;Chicharron,Cerdo,Lomo de cerdo ahumado;ACTIVE;106399.0
+491;Staffard;Bandeja;Caja personal;Papas,Costilla,Pulpo;ACTIVE;75356.0
+492;Evangelia;Postre;Familiar;Cabano,Chuleta,Jamon;ACTIVE;102005.0
+493;Studebaker;Bandeja;Familiar;Pollo,Lomo biche,Cabano;ACTIVE;106502.0
+494;Arabelle;Plato secundario;Caja personal;Papas,Jamon,Chuleta;ACTIVE;104607.0
+495;Flory;Adicionales;Caja personal;Chorizo,Ostras,Chicharron;ACTIVE;95836.0
+496;Marshal;Plato secundario;Caja para dos;Chuleta,Cebolla,Costilla;ACTIVE;52601.0
+497;Caryl;Plato principal;Personal;Jamon,Verduras,Costilla;ACTIVE;81534.0
+498;Sinclare;Sopa;Caja personal;Chuleta,Batavia,Cerdo;ACTIVE;147770.0
+499;Amaleta;Caldo;Caja personal;Ostras,Batavia,Ostras;ACTIVE;96025.0
+500;Reid;Plato principal;Caja para dos;Maduro,Ostras,Camaron;ACTIVE;65548.0
+501;Dolf;Postre;Caja personal;Papas,Costilla de cerdo,Chorizo;ACTIVE;128960.0
+502;Krista;Postre;Familiar;Papas a la francesa,Ostras,Cabano;ACTIVE;9665.0
+503;Kirstyn;Caldo;Familiar;Pulpo,Cebolla,Pulpo;ACTIVE;108840.0
+504;Jerald;Bebida;Personal;Verduras,Costilla,Chorizo;ACTIVE;74805.0
+505;Rurik;Adicionales;Caja personal;Chorizo,Jamon,Jamon;ACTIVE;124030.0
+506;Stesha;Bebida;Caja para dos;Cabano,Chuleta,Batavia;ACTIVE;108743.0
+507;Bentley;Plato principal;Caja para dos;Pulpo,Cerdo,Jamon;ACTIVE;16370.0
+508;Cleve;Caldo;Personal;Chicharron,Batavia,Camaron;ACTIVE;46710.0
+509;Krista;Postre;Caja personal;Papas a la francesa,Ostras,Cabano;ACTIVE;44471.0
+510;Gustaf;Caldo;Familiar;Chicharron,Batavia,Maduro;ACTIVE;55581.0
+511;Saxe;Bandeja;Familiar;Camaron,Costilla,Papas a la francesa;ACTIVE;1990.0
+512;Eberhard;Plato principal;Caja personal;Pulpo,Papas,Pulpo;ACTIVE;89558.0
+513;Courtenay;Plato secundario;Caja para dos;Cerdo,Cabano,Verduras;ACTIVE;45052.0
+514;Fletch;Caldo;Caja personal;Camaron,Camaron,Chorizo;ACTIVE;115143.0
+515;Joan;Adicionales;Familiar;Chuleta,Verduras,Jamon;ACTIVE;92569.0
+516;Lyndsey;Sopa;Personal;Chuleta,Costilla de cerdo,Cabano;ACTIVE;45378.0
+517;Ardene;Caldo;Combo para dos;Chuleta,Papas a la francesa,Jamon;ACTIVE;116254.0
+518;Aston Martin;Bandeja;Familiar;Cabano,Cerdo,Camaron;ACTIVE;63909.0
+519;MINI;Sopa;Personal;Chuleta,Verduras,Camaron;ACTIVE;50702.0
+520;Randa;Bebida;Caja para dos;Cabano,Lomo de cerdo ahumado,Papas a la francesa;ACTIVE;102064.0
+521;Tymon;Adicionales;Personal;Batavia,Papas a la francesa,Pulpo;ACTIVE;28321.0
+522;Una;Sopa;Familiar;Maduro,Verduras,Lomo biche;ACTIVE;33112.0
+523;Saab;Plato secundario;Personal;Chuleta,Chuleta,Papas a la francesa;ACTIVE;77305.0
+524;Rubie;Adicionales;Combo para dos;Verduras,Lomo de cerdo ahumado,Chicharron;ACTIVE;123451.0
+525;Tiff;Postre;Personal;Camaron,Lomo de cerdo ahumado,Papas a la francesa;ACTIVE;64819.0
+526;Baudoin;Bebida;Familiar;Chuleta,Chuleta,Chorizo;ACTIVE;54293.0
+527;Flossy;Bebida;Caja personal;Pulpo,Cerdo,Lomo biche;ACTIVE;50225.0
+528;Maryrose;Sopa;Familiar;Batavia,Papas,Chorizo;ACTIVE;138795.0
+529;Thelma;Plato principal;Personal;Chicharron,Chuleta,Lomo biche;ACTIVE;139526.0
+530;Bernita;Bebida;Caja para dos;Cabano,Costilla,Costilla;ACTIVE;43254.0
+531;Hallsy;Plato secundario;Personal;Batavia,Chuleta,Papas a la francesa;ACTIVE;106823.0
+532;Nanete;Plato secundario;Familiar;Chicharron,Jamon,Lomo biche;ACTIVE;44500.0
+533;Nanete;Plato secundario;Caja para dos;Chicharron,Jamon,Lomo biche;ACTIVE;95884.0
+534;Anni;Postre;Caja para dos;Jamon,Costilla,Papas a la francesa;ACTIVE;134429.0
+535;Martita;Bandeja;Personal;Chorizo,Maduro,Chorizo;ACTIVE;137775.0
+536;Maurice;Adicionales;Personal;Pulpo,Camaron,Cabano;ACTIVE;134114.0
+537;Enrika;Caldo;Familiar;Costilla de cerdo,Cebolla,Chorizo;ACTIVE;39951.0
+538;Chrysler;Caldo;Caja personal;Ostras,Papas a la francesa,Chicharron;ACTIVE;68671.0
+539;Cherise;Sopa;Caja personal;Jamon,Ostras,Cerdo;ACTIVE;142477.0
+540;Zara;Bandeja;Caja personal;Pollo,Camaron,Chuleta;ACTIVE;111473.0
+541;Appolonia;Sopa;Combo para dos;Chicharron,Maduro,Batavia;ACTIVE;93590.0
+542;Lindy;Adicionales;Caja personal;Lomo de cerdo ahumado,Camaron,Costilla de cerdo;ACTIVE;143208.0
+543;Reinwald;Caldo;Caja para dos;Maduro,Camaron,Chuleta;ACTIVE;107191.0
+544;Parrnell;Caldo;Combo para dos;Papas,Maduro,Verduras;ACTIVE;5810.0
+545;Sadie;Bandeja;Caja personal;Costilla de cerdo,Lomo de cerdo ahumado,Lomo biche;ACTIVE;25847.0
+546;Trev;Postre;Caja personal;Pollo,Papas a la francesa,Costilla de cerdo;ACTIVE;24844.0
+547;Paige;Plato principal;Personal;Cerdo,Pulpo,Verduras;ACTIVE;101818.0
+548;Ferrari;Bandeja;Familiar;Maduro,Lomo de cerdo ahumado,Pollo;ACTIVE;137957.0
+549;Hubey;Postre;Combo para dos;Papas,Cebolla,Pulpo;ACTIVE;26762.0
+550;Karina;Plato principal;Personal;Cerdo,Cabano,Maduro;ACTIVE;106005.0
+551;Ashlee;Adicionales;Caja para dos;Pollo,Ostras,Chorizo;ACTIVE;133416.0
+552;Estrellita;Adicionales;Caja personal;Costilla de cerdo,Chorizo,Cebolla;ACTIVE;32801.0
+553;Skyler;Bandeja;Caja personal;Cerdo,Cerdo,Jamon;ACTIVE;132298.0
+554;Kingsley;Adicionales;Personal;Chicharron,Costilla de cerdo,Papas;ACTIVE;12543.0
+555;Charlie;Plato principal;Caja para dos;Cerdo,Camaron,Cerdo;ACTIVE;71717.0
+556;Tiebold;Sopa;Caja para dos;Papas,Cabano,Lomo de cerdo ahumado;ACTIVE;94171.0
+557;Staffard;Bandeja;Caja para dos;Papas,Costilla,Pulpo;ACTIVE;108834.0
+558;Skelly;Adicionales;Familiar;Cabano,Lomo de cerdo ahumado,Chuleta;ACTIVE;93093.0
+559;Rosmunda;Bandeja;Combo para dos;Lomo de cerdo ahumado,Chicharron,Camaron;ACTIVE;19316.0
+560;Skipper;Adicionales;Combo para dos;Costilla,Batavia,Cebolla;ACTIVE;3913.0
+561;Mendie;Adicionales;Familiar;Cebolla,Costilla de cerdo,Cerdo;ACTIVE;118164.0
+562;Adele;Bandeja;Caja para dos;Lomo de cerdo ahumado,Lomo biche,Papas a la francesa;ACTIVE;112630.0
+563;Aurel;Bandeja;Personal;Camaron,Lomo de cerdo ahumado,Batavia;ACTIVE;85879.0
+564;Marie-jeanne;Sopa;Caja personal;Pollo,Verduras,Lomo biche;ACTIVE;2269.0
+565;Edlin;Postre;Combo para dos;Camaron,Chuleta,Chorizo;ACTIVE;123493.0
+566;Padriac;Plato principal;Caja personal;Chuleta,Pulpo,Chorizo;ACTIVE;75460.0
+567;Trevar;Caldo;Familiar;Papas,Cabano,Costilla;ACTIVE;13526.0
+568;Patsy;Plato secundario;Familiar;Ostras,Lomo biche,Papas;ACTIVE;54361.0
+569;Leticia;Caldo;Caja personal;Pollo,Costilla,Maduro;ACTIVE;5372.0
+570;Alidia;Plato principal;Personal;Camaron,Ostras,Chicharron;ACTIVE;126956.0
+571;Conny;Adicionales;Combo para dos;Chorizo,Cebolla,Ostras;ACTIVE;79577.0
+572;Barbara;Plato principal;Combo para dos;Costilla de cerdo,Chicharron,Ostras;ACTIVE;63424.0
+573;Austin;Adicionales;Caja para dos;Chorizo,Cebolla,Ostras;ACTIVE;78036.0
+574;Welsh;Bebida;Familiar;Verduras,Chuleta,Maduro;ACTIVE;36487.0
+575;Helga;Bebida;Combo para dos;Maduro,Chicharron,Jamon;ACTIVE;36928.0
+576;Vivie;Plato principal;Personal;Cebolla,Cerdo,Lomo biche;ACTIVE;123456.0
+577;Kim;Sopa;Familiar;Ostras,Pollo,Batavia;ACTIVE;106722.0
+578;Aston Martin;Bandeja;Combo para dos;Cabano,Cerdo,Camaron;ACTIVE;138495.0
+579;Sonja;Plato secundario;Familiar;Batavia,Papas,Ostras;ACTIVE;121219.0
+580;Pauly;Plato secundario;Caja personal;Verduras,Verduras,Chuleta;ACTIVE;105894.0
+581;Quinton;Plato secundario;Caja personal;Ostras,Papas,Pulpo;ACTIVE;18918.0
+582;Cherise;Sopa;Combo para dos;Jamon,Ostras,Cerdo;ACTIVE;138788.0
+583;Rolls-Royce;Plato secundario;Caja para dos;Cabano,Costilla,Jamon;ACTIVE;7033.0
+584;Margery;Plato principal;Caja para dos;Costilla de cerdo,Cebolla,Maduro;ACTIVE;101423.0
+585;Fredi;Sopa;Personal;Papas,Batavia,Papas a la francesa;ACTIVE;102335.0
+586;Phedra;Postre;Caja para dos;Verduras,Papas,Costilla;ACTIVE;102871.0
+587;Lauren;Bandeja;Personal;Costilla,Chuleta,Costilla de cerdo;ACTIVE;2412.0
+588;Denice;Bebida;Caja para dos;Jamon,Pulpo,Cebolla;ACTIVE;137800.0
+589;Jania;Adicionales;Personal;Lomo biche,Verduras,Lomo biche;ACTIVE;137544.0
+590;Lola;Plato secundario;Combo para dos;Ostras,Jamon,Ostras;ACTIVE;42803.0
+591;Tomkin;Bebida;Caja para dos;Pollo,Costilla,Cabano;ACTIVE;7756.0
+592;Dilly;Bandeja;Caja para dos;Chorizo,Papas a la francesa,Chorizo;ACTIVE;52730.0
+593;Wilmette;Adicionales;Caja personal;Chicharron,Cabano,Chicharron;ACTIVE;104650.0
+594;Filmer;Plato principal;Personal;Costilla de cerdo,Jamon,Maduro;ACTIVE;35618.0
+595;Fina;Caldo;Familiar;Chuleta,Chicharron,Papas a la francesa;ACTIVE;76085.0
+596;Una;Sopa;Combo para dos;Maduro,Verduras,Lomo biche;ACTIVE;140355.0
+597;Donny;Bandeja;Caja personal;Verduras,Verduras,Pollo;ACTIVE;55242.0
+598;Charlton;Adicionales;Combo para dos;Chicharron,Papas,Cerdo;ACTIVE;86409.0
+599;Charlie;Plato principal;Familiar;Cerdo,Camaron,Cerdo;ACTIVE;46135.0
+600;Judith;Plato principal;Combo para dos;Papas a la francesa,Batavia,Costilla de cerdo;ACTIVE;51720.0
+601;Junia;Bebida;Caja para dos;Camaron,Chicharron,Batavia;ACTIVE;41819.0
+602;Parrnell;Caldo;Caja para dos;Papas,Maduro,Verduras;ACTIVE;45707.0
+603;Hobey;Bebida;Caja para dos;Pollo,Cebolla,Camaron;ACTIVE;73892.0
+604;Edlin;Postre;Caja personal;Camaron,Chuleta,Chorizo;ACTIVE;131714.0
+605;Yardley;Sopa;Caja personal;Cebolla,Jamon,Jamon;ACTIVE;146588.0
+606;Paige;Plato principal;Caja para dos;Cerdo,Pulpo,Verduras;ACTIVE;106592.0
+607;Marisa;Plato secundario;Combo para dos;Chicharron,Cabano,Camaron;ACTIVE;84302.0
+608;Skyler;Bandeja;Caja para dos;Cerdo,Cerdo,Jamon;ACTIVE;100855.0
+609;Donica;Postre;Caja personal;Camaron,Costilla,Cabano;ACTIVE;30618.0
+610;Nanice;Bandeja;Familiar;Maduro,Camaron,Lomo biche;ACTIVE;50531.0
+611;Weylin;Bandeja;Personal;Cabano,Maduro,Chuleta;ACTIVE;130048.0
+612;Hummer;Caldo;Personal;Maduro,Pollo,Jamon;ACTIVE;66430.0
+613;Maurice;Adicionales;Caja para dos;Pulpo,Camaron,Cabano;ACTIVE;82167.0
+614;Chalmers;Bebida;Caja personal;Cebolla,Ostras,Lomo de cerdo ahumado;ACTIVE;55276.0
+615;Sampson;Bandeja;Combo para dos;Maduro,Pulpo,Papas;ACTIVE;78248.0
+616;Melisa;Sopa;Combo para dos;Cerdo,Cabano,Chicharron;ACTIVE;112006.0
+617;Lincoln;Adicionales;Caja personal;Papas a la francesa,Cabano,Maduro;ACTIVE;98778.0
+618;Lola;Plato secundario;Caja personal;Ostras,Jamon,Ostras;ACTIVE;71184.0
+619;Vivie;Plato principal;Familiar;Cebolla,Cerdo,Lomo biche;ACTIVE;15248.0
+620;Irving;Caldo;Personal;Cabano,Jamon,Chorizo;ACTIVE;84260.0
+621;Rosene;Adicionales;Familiar;Papas,Chuleta,Verduras;ACTIVE;46961.0
+622;Ferrel;Bandeja;Personal;Maduro,Verduras,Cabano;ACTIVE;14795.0
+623;Missy;Bandeja;Combo para dos;Verduras,Costilla de cerdo,Chicharron;ACTIVE;122797.0
+624;Ado;Adicionales;Familiar;Jamon,Cebolla,Cabano;ACTIVE;96260.0
+625;Georgeanne;Caldo;Combo para dos;Camaron,Cerdo,Papas;ACTIVE;110407.0
+626;Sayre;Postre;Familiar;Lomo de cerdo ahumado,Papas a la francesa,Chuleta;ACTIVE;144659.0
+627;Aubrey;Bandeja;Familiar;Chicharron,Papas a la francesa,Papas;ACTIVE;56522.0
+628;Desayuno;Caldo;Combo para dos;Pulpo,Papas,Ostras;ACTIVE;46188.0
+629;Inness;Plato secundario;Caja para dos;Camaron,Lomo biche,Batavia;ACTIVE;20855.0
+630;Isabel;Caldo;Caja para dos;Pollo,Batavia,Batavia;ACTIVE;69365.0
+631;Clemmy;Plato principal;Combo para dos;Chorizo,Ostras,Costilla de cerdo;ACTIVE;6598.0
+632;Kassandra;Postre;Personal;Cebolla,Cabano,Papas a la francesa;ACTIVE;16664.0
+633;Tomkin;Bebida;Caja personal;Pollo,Costilla,Cabano;ACTIVE;28836.0
+634;Olenka;Caldo;Combo para dos;Lomo de cerdo ahumado,Verduras,Camaron;ACTIVE;37116.0
+635;Maxie;Sopa;Personal;Chorizo,Jamon,Ostras;ACTIVE;109210.0
+636;Daewoo;Adicionales;Familiar;Papas a la francesa,Cebolla,Papas;ACTIVE;130735.0
+637;Jesselyn;Caldo;Personal;Verduras,Jamon,Cerdo;ACTIVE;107710.0
+638;Phil;Plato secundario;Combo para dos;Papas a la francesa,Papas,Costilla de cerdo;ACTIVE;77876.0
+639;Candida;Plato principal;Familiar;Chuleta,Maduro,Papas;ACTIVE;146219.0
+640;Shanan;Plato secundario;Caja para dos;Pulpo,Cerdo,Cabano;ACTIVE;82183.0
+641;Isador;Plato principal;Caja para dos;Chicharron,Papas,Camaron;ACTIVE;89185.0
+642;Lesley;Bebida;Combo para dos;Pollo,Ostras,Batavia;ACTIVE;104032.0
+643;Tomas;Bandeja;Caja para dos;Cabano,Papas a la francesa,Cabano;ACTIVE;13551.0
+644;Ingaborg;Bebida;Caja para dos;Costilla,Costilla,Pollo;ACTIVE;106505.0
+645;Nick;Postre;Caja para dos;Papas a la francesa,Cerdo,Costilla;ACTIVE;114780.0
+646;MINI;Sopa;Familiar;Chuleta,Verduras,Camaron;ACTIVE;111824.0
+647;Eberhard;Plato principal;Combo para dos;Pulpo,Papas,Pulpo;ACTIVE;65763.0
+648;Hummer;Caldo;Caja personal;Maduro,Pollo,Jamon;ACTIVE;4822.0
+649;Terrell;Bebida;Personal;Verduras,Pulpo,Chuleta;ACTIVE;36473.0
+650;Corbin;Adicionales;Combo para dos;Pulpo,Costilla de cerdo,Ostras;ACTIVE;54538.0
+651;Lonnard;Sopa;Combo para dos;Chicharron,Chicharron,Chicharron;ACTIVE;44799.0
+652;Rodolphe;Postre;Combo para dos;Chorizo,Lomo de cerdo ahumado,Lomo biche;ACTIVE;20201.0
+653;Lucretia;Plato secundario;Caja para dos;Papas,Cebolla,Chorizo;ACTIVE;19587.0
+654;Annabelle;Bebida;Caja para dos;Ostras,Jamon,Chuleta;ACTIVE;20268.0
+655;Lauren;Bandeja;Combo para dos;Costilla,Chuleta,Costilla de cerdo;ACTIVE;107528.0
+656;Pauly;Plato secundario;Personal;Verduras,Verduras,Chuleta;ACTIVE;32589.0
+657;Tedd;Plato secundario;Familiar;Costilla,Chuleta,Chorizo;ACTIVE;98625.0
+658;Fin;Sopa;Familiar;Cebolla,Ostras,Lomo de cerdo ahumado;ACTIVE;109297.0
+659;Alexei;Sopa;Personal;Costilla,Cabano,Papas;ACTIVE;4896.0
+660;Kent;Plato secundario;Personal;Jamon,Chuleta,Costilla;ACTIVE;69945.0
+661;Skelly;Adicionales;Caja personal;Cabano,Lomo de cerdo ahumado,Chuleta;ACTIVE;147809.0
+662;Rosene;Adicionales;Personal;Papas,Chuleta,Verduras;ACTIVE;107486.0
+663;Lamborghini;Adicionales;Familiar;Verduras,Pollo,Papas a la francesa;ACTIVE;148344.0
+664;Dunstan;Caldo;Familiar;Pollo,Pulpo,Jamon;ACTIVE;37892.0
+665;Earlie;Postre;Caja para dos;Camaron,Pulpo,Chicharron;ACTIVE;33098.0
+666;Ram;Bandeja;Combo para dos;Papas a la francesa,Batavia,Verduras;ACTIVE;120417.0
+667;Northrop;Caldo;Caja para dos;Chicharron,Cabano,Lomo de cerdo ahumado;ACTIVE;149042.0
+668;Ulrike;Adicionales;Caja para dos;Chuleta,Costilla,Cebolla;ACTIVE;99979.0
+669;Alisun;Caldo;Combo para dos;Camaron,Cebolla,Costilla de cerdo;ACTIVE;53696.0
+670;Teador;Adicionales;Combo para dos;Chorizo,Chicharron,Papas a la francesa;ACTIVE;140006.0
+671;Powell;Bebida;Familiar;Ostras,Verduras,Chorizo;ACTIVE;68216.0
+672;Anatol;Caldo;Caja personal;Papas a la francesa,Chicharron,Cabano;ACTIVE;115127.0
+673;Sayre;Postre;Combo para dos;Lomo de cerdo ahumado,Papas a la francesa,Chuleta;ACTIVE;101386.0
+674;Angelo;Sopa;Personal;Lomo de cerdo ahumado,Lomo biche,Cebolla;ACTIVE;139453.0
+675;Rodolphe;Postre;Familiar;Chorizo,Lomo de cerdo ahumado,Lomo biche;ACTIVE;5772.0
+676;Tomkin;Bebida;Familiar;Pollo,Costilla,Cabano;ACTIVE;72244.0
+677;Phylis;Plato principal;Combo para dos;Camaron,Lomo biche,Pollo;ACTIVE;114621.0
+678;Merkur;Bebida;Familiar;Papas a la francesa,Chorizo,Chorizo;ACTIVE;100151.0
+679;Isidora;Plato principal;Personal;Maduro,Papas,Lomo de cerdo ahumado;ACTIVE;118246.0
+680;Bunnie;Sopa;Caja para dos;Papas,Camaron,Pulpo;ACTIVE;66798.0
+681;Amaleta;Caldo;Personal;Ostras,Batavia,Ostras;ACTIVE;19842.0
+682;Daewoo;Adicionales;Caja personal;Papas a la francesa,Cebolla,Papas;ACTIVE;52594.0
+683;Refrigerio;Plato secundario;Caja personal;Chicharron,Chicharron,Chicharron;ACTIVE;128189.0
+684;Tomlin;Caldo;Caja para dos;Papas a la francesa,Pollo,Papas;ACTIVE;108418.0
+685;Gerrie;Adicionales;Familiar;Pulpo,Costilla de cerdo,Camaron;ACTIVE;124768.0
+686;Hyundai;Sopa;Caja para dos;Chuleta,Costilla,Camaron;ACTIVE;38564.0
+687;Arabelle;Plato secundario;Caja para dos;Papas,Jamon,Chuleta;ACTIVE;126000.0
+688;Noah;Plato secundario;Personal;Papas,Lomo de cerdo ahumado,Jamon;ACTIVE;135972.0
+689;Denice;Bebida;Combo para dos;Jamon,Pulpo,Cebolla;ACTIVE;3835.0
+690;Teador;Adicionales;Caja para dos;Chorizo,Chicharron,Papas a la francesa;ACTIVE;9611.0
+691;Any;Postre;Combo para dos;Papas,Costilla de cerdo,Cebolla;ACTIVE;49014.0
+692;Raimondo;Plato secundario;Caja personal;Batavia,Lomo biche,Cebolla;ACTIVE;53525.0
+693;Taylor;Sopa;Familiar;Lomo de cerdo ahumado,Pulpo,Lomo biche;ACTIVE;6187.0
+694;Leonidas;Caldo;Caja para dos;Costilla de cerdo,Lomo biche,Ostras;ACTIVE;107450.0
+695;Ambrosi;Adicionales;Personal;Pollo,Chorizo,Chicharron;ACTIVE;14743.0
+696;Marshal;Plato secundario;Personal;Chuleta,Cebolla,Costilla;ACTIVE;101782.0
+697;Editha;Adicionales;Familiar;Cebolla,Maduro,Batavia;ACTIVE;75849.0
+698;Chalmers;Bebida;Combo para dos;Cebolla,Ostras,Lomo de cerdo ahumado;ACTIVE;35365.0
+699;Rhea;Postre;Combo para dos;Jamon,Chorizo,Camaron;ACTIVE;18649.0
+700;Phedra;Postre;Personal;Verduras,Papas,Costilla;ACTIVE;32590.0
+701;Rosmunda;Bandeja;Personal;Lomo de cerdo ahumado,Chicharron,Camaron;ACTIVE;106056.0
+702;Louise;Caldo;Familiar;Costilla,Cerdo,Pulpo;ACTIVE;81721.0
+703;Lefty;Plato secundario;Caja para dos;Chorizo,Cerdo,Cebolla;ACTIVE;110386.0
+704;Dallas;Sopa;Personal;Batavia,Chicharron,Cerdo;ACTIVE;30814.0
+705;Hildy;Sopa;Caja para dos;Costilla,Maduro,Chuleta;ACTIVE;46508.0
+706;Sayre;Postre;Caja para dos;Lomo de cerdo ahumado,Papas a la francesa,Chuleta;ACTIVE;50276.0
+707;Molli;Adicionales;Personal;Maduro,Pollo,Chuleta;ACTIVE;129038.0
+708;Ava;Sopa;Caja personal;Cabano,Jamon,Chuleta;ACTIVE;132296.0
+709;Paolo;Adicionales;Personal;Papas a la francesa,Cerdo,Pollo;ACTIVE;90951.0
+710;Codie;Sopa;Combo para dos;Ostras,Camaron,Papas a la francesa;ACTIVE;139666.0
+711;Dido;Bandeja;Caja para dos;Lomo de cerdo ahumado,Chicharron,Batavia;ACTIVE;37270.0
+712;Barron;Adicionales;Caja para dos;Ostras,Chorizo,Papas a la francesa;ACTIVE;94207.0
+713;Antoine;Adicionales;Familiar;Batavia,Cerdo,Pollo;ACTIVE;3910.0
+714;Sayre;Postre;Caja personal;Lomo de cerdo ahumado,Papas a la francesa,Chuleta;ACTIVE;122817.0
+715;Estrellita;Adicionales;Combo para dos;Costilla de cerdo,Chorizo,Cebolla;ACTIVE;115574.0
+716;Land Rover;Sopa;Caja personal;Lomo de cerdo ahumado,Chorizo,Camaron;ACTIVE;148247.0
+717;Mab;Plato secundario;Caja personal;Lomo de cerdo ahumado,Ostras,Papas;ACTIVE;116295.0
+718;Chrysler;Caldo;Personal;Ostras,Papas a la francesa,Chicharron;ACTIVE;83408.0
+719;Cindra;Sopa;Combo para dos;Lomo biche,Jamon,Cebolla;ACTIVE;60574.0
+720;Hamil;Bebida;Caja para dos;Papas,Pulpo,Chicharron;ACTIVE;3258.0
+721;Reba;Plato principal;Caja personal;Pulpo,Camaron,Maduro;ACTIVE;39439.0
+722;Sonja;Plato secundario;Caja personal;Batavia,Papas,Ostras;ACTIVE;129770.0
+723;Lindon;Bandeja;Personal;Costilla,Costilla de cerdo,Chuleta;ACTIVE;112958.0
+724;Chop Suey;Plato principal;Familiar;Maduro,Costilla,Lomo biche;ACTIVE;147300.0
+725;Holden;Postre;Combo para dos;Cabano,Costilla,Papas;ACTIVE;109572.0
+726;Calv;Sopa;Caja para dos;Papas a la francesa,Cerdo,Pollo;ACTIVE;69832.0
+727;Harlen;Bebida;Familiar;Papas,Chuleta,Pollo;ACTIVE;107460.0
+728;Mab;Plato secundario;Familiar;Lomo de cerdo ahumado,Ostras,Papas;ACTIVE;38458.0
+729;Carlin;Postre;Combo para dos;Cebolla,Cabano,Papas a la francesa;ACTIVE;3780.0
+730;Talbert;Adicionales;Caja personal;Chuleta,Lomo de cerdo ahumado,Papas;ACTIVE;70858.0
+731;Evangelin;Postre;Caja para dos;Jamon,Lomo biche,Batavia;ACTIVE;127474.0
+732;Glynn;Caldo;Combo para dos;Lomo biche,Lomo biche,Ostras;ACTIVE;141286.0
+733;Nowell;Bandeja;Personal;Lomo de cerdo ahumado,Chuleta,Chicharron;ACTIVE;92156.0
+734;Dore;Plato secundario;Personal;Jamon,Chuleta,Verduras;ACTIVE;25307.0
+735;Louise;Caldo;Combo para dos;Costilla,Cerdo,Pulpo;ACTIVE;54148.0
+736;Koralle;Bebida;Personal;Lomo de cerdo ahumado,Jamon,Papas;ACTIVE;108596.0
+737;Bordie;Bebida;Caja para dos;Cebolla,Cerdo,Costilla de cerdo;ACTIVE;141249.0
+738;Lindy;Adicionales;Caja para dos;Lomo de cerdo ahumado,Camaron,Costilla de cerdo;ACTIVE;108846.0
+739;Etan;Bebida;Combo para dos;Cebolla,Maduro,Batavia;ACTIVE;113037.0
+740;Rogers;Postre;Combo para dos;Camaron,Costilla,Lomo de cerdo ahumado;ACTIVE;10042.0
+741;Gabrila;Plato principal;Caja para dos;Lomo de cerdo ahumado,Maduro,Batavia;ACTIVE;116252.0
+742;Rosabelle;Caldo;Personal;Maduro,Cabano,Cebolla;ACTIVE;24417.0
+743;Regen;Plato principal;Combo para dos;Papas a la francesa,Verduras,Batavia;ACTIVE;143737.0

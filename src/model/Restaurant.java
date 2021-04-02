@@ -1,12 +1,10 @@
 package model;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -305,6 +303,76 @@ public class Restaurant {
             }
         }
         return render;
+    }
+
+    public Employee getEmployeeImporting(int id) {
+        boolean render = false;
+        Employee e = null;
+        for (int i = 0; i < getEmployees(people).size() && !render; i++) {
+            if (getEmployees(people).get(i).getId() == (id)) {
+                e = getEmployees(people).get(i);
+                render = true;
+            }
+        }
+        return e;
+    }
+
+    public Costumer getCostumerImporting(int id) {
+        boolean render = false;
+        Costumer c = null;
+        for (int i = 0; i < getCostumers(people).size() && !render; i++) {
+            if (getCostumers(people).get(i).getId() == (id)) {
+                c = getCostumers(people).get(i);
+                render = true;
+            }
+        }
+        return c;
+    }
+
+    public Product getProductImporting(String name) {
+        boolean render = false;
+        Product p = null;
+        for (int i = 0; i < products.size() && !render; i++) {
+            if (products.get(i).getBaseProduct().getName().equalsIgnoreCase(name)) {
+                p = products.get(i);
+                render = true;
+            }
+        }
+        return p;
+    }
+
+    public State getStateImporting(String name) {
+        State s = null;
+        for (State st : State.values()) {
+            if (st.name().equalsIgnoreCase(name)) {
+                s = st;
+            }
+        }
+        return s;
+    }
+
+    public BaseProduct getBaseImporting(String name) {
+        boolean render = false;
+        BaseProduct bp = null;
+        for (int i = 0; i < baseProducts.size() && !render; i++) {
+            if (baseProducts.get(i).getName().equalsIgnoreCase(name)) {
+                bp = baseProducts.get(i);
+                render = true;
+            }
+        }
+        return bp;
+    }
+
+    public ProductSize getSizeImporting(String name) {
+        boolean render = false;
+        ProductSize ps = null;
+        for (int i = 0; i < productSize.size() && !render; i++) {
+            if (productSize.get(i).getName().equalsIgnoreCase(name)) {
+                ps = productSize.get(i);
+                render = true;
+            }
+        }
+        return ps;
     }
 
     public ProductType getTypeImporting(String name) {
@@ -877,8 +945,12 @@ public class Restaurant {
     }
 
     public String disableUser(User user) {
-        user.setState(false);
-        return "The user have been disabled succesfully";
+        if (getLoggedUser(userIndex) != user) {
+            user.setState(false);
+            return "The user have been disabled succesfully";
+        } else {
+            return "You can not disabled you";
+        }
     }
 
     public String enableUser(User user) {
@@ -1204,8 +1276,13 @@ public class Restaurant {
     }
 
     public String disableEmployee(Employee employee) {
-        employee.setState(false);
-        return "The employee have been disabled succesfully";
+        if (getLoggedUser(userIndex) != employee) {
+            employee.setState(false);
+            return "The employee have been disabled succesfully";
+        } else {
+            return "You can not disabled you";
+        }
+
     }
 
     public String enableEmployee(Employee employee) {
@@ -1463,10 +1540,13 @@ public class Restaurant {
         String line = br.readLine();
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
-            String name = parts[0];
-            int code = Integer.parseInt(null);
+            BaseProduct bs = getBaseImporting(parts[0]);
+            ProductSize ps = getSizeImporting(parts[1]);
+            double price = Double.parseDouble(parts[2]);
             line = br.readLine();
-            addProductSize(name, code, getLoggedUser(userIndex));
+            if (bs != null) {
+                addProduct(bs, getCodeProduct(), ps, price, getLoggedUser(userIndex));
+            }
         }
         br.close();
     }
@@ -1678,12 +1758,10 @@ public class Restaurant {
         return "The base product have been enabled succesfully";
     }
 
-    public ArrayList<Ingredients> getingImporting(String[] ing) {
+    public ArrayList<Ingredients> getIngImporting(String[] ing) {
         ArrayList<Ingredients> in = new ArrayList<>();
-        for (int i = 1; i < ing.length; i++) {
-            if (searchIngredient(ing[i])) {
-                in.add(getIngredientImporting(ing[i]));
-            }
+        for (int i = 2; i < ing.length; i++) {
+            in.add(getIngredientImporting(ing[i]));
         }
         return in;
     }
@@ -1693,12 +1771,10 @@ public class Restaurant {
         String line = br.readLine();
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
-            String[] parts2 = line.split("|");
-            boolean render = searchProductType(parts[1]);
-            ArrayList<Ingredients> ing = getingImporting(parts2);
-            if (render && ing != null) {
+            ProductType pt = getTypeImporting(parts[1]);
+            ArrayList<Ingredients> ing = getIngImporting(parts);
+            if (pt != null && ing != null) {
                 String name = parts[0];
-                ProductType pt = getTypeImporting(parts[1]);
                 addBaseProduct(name, pt, ing, getCodeBaseProduct(), getLoggedUser(userIndex));
             }
             line = br.readLine();
@@ -1928,15 +2004,60 @@ public class Restaurant {
         }
     }
 
+    public ArrayList<Product> getProImporting(String[] ing) {
+        ArrayList<Product> pro = new ArrayList<>();
+        for (int i = 4; i < 6; i++) {
+            pro.add(getProductImporting(ing[i]));
+        }
+        return pro;
+    }
+
+    public ArrayList<Integer> getAmountImporting(String[] ing) {
+        ArrayList<Integer> am = new ArrayList<>();
+        for (int i = 6; i < ing.length; i++) {
+            am.add(Integer.parseInt(ing[i]));
+        }
+        return am;
+    }
+
+    public String[] getHour() {
+        String[] d = new String[2];
+        Calendar calendar = new GregorianCalendar();
+        Date currentTime = new Date();
+        calendar.setTime(currentTime);
+        String hours = calendar.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendar.get(Calendar.HOUR_OF_DAY)
+                : "0" + calendar.get(Calendar.HOUR_OF_DAY);
+        String minutes = calendar.get(Calendar.MINUTE) > 9 ? "" + calendar.get(Calendar.MINUTE)
+                : "0" + calendar.get(Calendar.MINUTE);
+        String seconds = calendar.get(Calendar.SECOND) > 9 ? "" + calendar.get(Calendar.SECOND)
+                : "0" + calendar.get(Calendar.SECOND);
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/YYYY");
+        d[0] = formatDate.format(currentTime);
+        d[1] = hours + ":" + minutes + ":" + seconds;
+        return d;
+    }
+
     public void importDataOrder(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
+        String[] dateHour = getHour();
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
-            String name = parts[0];
-            int code = Integer.parseInt(null);
+            State s = getStateImporting(parts[0]);
+            Employee e = getEmployeeImporting(Integer.parseInt(parts[1]));
+            Costumer c = getCostumerImporting(Integer.parseInt(parts[2]));
+            String suggestion = parts[3];
+            ArrayList<Product> p = getProImporting(parts);
+            ArrayList<Integer> am = getAmountImporting(parts);
+            double totalPrice = 0;
+            for (int i = 0; i < p.size(); i++) {
+                totalPrice += am.get(i) * p.get(i).getPrice();
+            }
+            if (p != null && s != null) {
+                addOrders(getCodeOrder(), s, p, am, c, e, dateHour[0], suggestion, getLoggedUser(userIndex), totalPrice,
+                        dateHour[1]);
+            }
             line = br.readLine();
-            addProductSize(name, code, getLoggedUser(userIndex));
         }
         br.close();
     }

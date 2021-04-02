@@ -195,11 +195,7 @@ public class EmployeeController {
                     DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             LocalTime localTime = LocalTime.parse(restaurant.getOrders().get(i).getHour());
             if (localDate.compareTo(sd.getValue()) >= 0 && localDate.compareTo(ed.getValue()) <= 0) {
-                if (localDate.compareTo(sd.getValue()) == 0 && localTime.compareTo(st.getValue()) >= 0) {
-                    o.add(restaurant.getOrders().get(i));
-                } else if (localDate.compareTo(ed.getValue()) == 0 && localTime.compareTo(et.getValue()) <= 0) {
-                    o.add(restaurant.getOrders().get(i));
-                } else if (localDate.compareTo(sd.getValue()) > 0 && localDate.compareTo(ed.getValue()) < 0) {
+                if (localTime.compareTo(st.getValue()) >= 0 && localTime.compareTo(et.getValue()) <= 0) {
                     o.add(restaurant.getOrders().get(i));
                 }
             }
