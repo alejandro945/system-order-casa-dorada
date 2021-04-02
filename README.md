@@ -26,7 +26,8 @@ _Revisa el despliegue_
 ```
 Go down
 ```
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/NMClQ0Blcyk)
+[![Watch the video](https://imgur.com/p8RyyS1)](https://youtu.be/NMClQ0Blcyk)
+
 _Obtener datos del sistema en data/imports_
 
 ## Ejecuta las pruebas ⚙️
