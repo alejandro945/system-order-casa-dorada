@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class BaseProduct {
+public class BaseProduct implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String name;
     private ProductType productType;
     private List<Ingredients> ingredients;
@@ -85,10 +90,17 @@ public class BaseProduct {
 
     public String getNameIngredients() {
         String nameIngredients = "";
+        String redux = "";
         for (int i = 0; i < ingredients.size(); i++) {
-            nameIngredients += ingredients.get(i).getName() + ",";
+            nameIngredients += redux + ingredients.get(i).getName();
+            redux = ",";
         }
         return nameIngredients;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
 }

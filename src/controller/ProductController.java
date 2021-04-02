@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.jfoenix.controls.JFXTimePicker;
@@ -36,13 +35,7 @@ public class ProductController {
     private TableColumn<Product, Integer> colPriceProducts;
 
     @FXML
-    private TableColumn<Product, String> colNameProducts;
-
-    @FXML
-    private TableColumn<Product, ProductType> colProductType;
-
-    @FXML
-    private TableColumn<Product, String> colIngredientsProducts;
+    private TableColumn<Product, BaseProduct> colBaseproduct;
 
     @FXML
     private TableColumn<Product, ProductSize> colSizeProducts;
@@ -54,13 +47,10 @@ public class ProductController {
     private TableColumn<Product, User> colEditorProducts;
 
     @FXML
-    private TextField txtNameProducts;
-
-    @FXML
     private TextField txtPriceProducts;
 
     @FXML
-    private Label showMessage;
+    private TextArea txtBaseProduct;
 
     @FXML
     private Button btnUpdate;
@@ -72,19 +62,7 @@ public class ProductController {
     private Button btnCreate;
 
     @FXML
-    private Button btnClean;
-
-    @FXML
     private CheckBox cbDisable;
-
-    @FXML
-    private TextArea txtIngredients;
-
-    @FXML
-    private ComboBox<Ingredients> comboIngredients;
-
-    @FXML
-    private ComboBox<ProductType> cbTypes;
 
     @FXML
     private ComboBox<ProductSize> cbSize;
@@ -112,7 +90,6 @@ public class ProductController {
 
     private Product preSelectProduct;
     private int idxProduct;
-    private List<Ingredients> preListIngredients = new ArrayList<>();
     private ProductSize preProductSize;
     private BaseProduct preBaseProduct;
     private Stage modal;
@@ -145,14 +122,13 @@ public class ProductController {
     }
 
     @FXML
-    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+    public void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
 
     @FXML
     public void createProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
-        boolean validateFields = productValidation(txtNameProducts.getText(), txtIngredients.getText(),
-                txtPriceProducts.getText());
+        boolean validateFields = productValidation(txtBaseProduct.getText(), txtPriceProducts.getText());
         if (!validateFields) {
             Alert alert2 = new Alert(AlertType.WARNING);
             alert2.setTitle("Warning Dialog");
@@ -173,28 +149,23 @@ public class ProductController {
         }
     }
 
-    public boolean productValidation(String name, String ingredients, String price) {
+    public boolean productValidation(String base, String price) {
         boolean complete = true;
-        if (name.equals("") || ingredients.equals("") || price.equals("")
-                || cbSize.getSelectionModel().getSelectedItem() == null
-                || cbTypes.getSelectionModel().getSelectedItem() == null) {
+        if (base.equals("") || price.equals("") || cbSize.getSelectionModel().getSelectedItem() == null
+                || comboBaseProduct.getSelectionModel().getSelectedItem() == null) {
             complete = false;
         }
         return complete;
     }
 
     public void trimProductForm() {
-        txtNameProducts.setText("");
         txtPriceProducts.setText("");
-        preListIngredients.clear();
-        comboIngredients.setValue(null);
-        txtIngredients.setText("");
+        txtBaseProduct.setText("");
+        comboBaseProduct.setValue(null);
         cbSize.setValue(null);
-        cbTypes.setValue(null);
         btnCreate.setDisable(false);
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
-        btnClean.setDisable(true);
         cbDisable.setDisable(true);
     }
 
@@ -224,22 +195,21 @@ public class ProductController {
             btnDelete.setDisable(false);
             btnUpdate.setDisable(false);
             cbDisable.setDisable(false);
-            initBtnClear();
         }
     }
 
     public void setForm(Product selectProduct) {
-        txtNameProducts.setText(selectProduct.getBaseProduct().getName());
         txtPriceProducts.setText(String.valueOf(selectProduct.getPrice()));
+        txtBaseProduct.setText("Name: " + selectProduct.getBaseProduct().getName() + " Type: "
+                + selectProduct.getBaseProduct().getProductType() + " Ingredients: "
+                + selectProduct.getBaseProduct().getNameIngredients());
         cbSize.setValue(selectProduct.getProductSize());
-        cbTypes.setValue(selectProduct.getBaseProduct().getProductType());
-        txtIngredients.setText(selectProduct.getBaseProduct().getNameIngredients());
-        preListIngredients = selectProduct.getBaseProduct().getIngredients();
+        comboBaseProduct.setValue(selectProduct.getBaseProduct());
         cbDisable.setSelected(!selectProduct.getState());
     }
 
     @FXML
-    void event(ActionEvent event) {
+    public void event(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(dateStart)) {
             initbtnReportDate();
@@ -302,23 +272,22 @@ public class ProductController {
     }
 
     @FXML
-    void generateReport(ActionEvent event) {
+    public void generateReport(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Report employees");
-            // restaurant.exportEmployeeReport(selectedFile.getAbsolutePath(),
-            // separator.getText(),
-            // getFilteredOrders(dateStart, dateEnd, startTime, endTime));
-            alert.setContentText("The employees report was exported succesfully");
+            alert.setTitle("Report product");
+            restaurant.exportProductReport(selectedFile.getAbsolutePath(), separator.getText(),
+                    getFilteredOrders(dateStart, dateEnd, startTime, endTime));
+            alert.setContentText("The product report was exported succesfully");
             alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Report Employees");
-            alert.setContentText("The employees report was NOT exported. An error occurred");
+            alert.setTitle("Report product");
+            alert.setContentText("The product report was NOT exported. An error occurred");
             alert.showAndWait();
         }
     }
@@ -339,7 +308,7 @@ public class ProductController {
     }
 
     @FXML
-    void setStateProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void setStateProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableProduct(preSelectProduct);
@@ -373,12 +342,12 @@ public class ProductController {
     }
 
     @FXML
-    void deselectProduct(ActionEvent event) {
+    public void deselectProduct(ActionEvent event) {
         trimProductForm();
     }
 
     @FXML
-    void exportProducts(ActionEvent event) throws FileNotFoundException {
+    public void exportProducts(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -398,7 +367,7 @@ public class ProductController {
     }
 
     @FXML
-    void importProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void importProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -420,42 +389,31 @@ public class ProductController {
         }
     }
 
-    public void initBtnClear() {
-        if (txtIngredients.getText() != "") {
-            btnClean.setDisable(false);
-        }
-    }
-
     @FXML
-    void comboEvent(ActionEvent event) {
+    public void comboEvent(ActionEvent event) {
         Object e = event.getSource();
-        if (e.equals(comboIngredients)) {
-            initBtnClear();
-            preListIngredients.add(restaurant.searchIndex(comboIngredients.getSelectionModel().getSelectedItem()));
-            txtIngredients.setText(Arrays.toString(preListIngredients.toArray()));
+        if (e.equals(comboBaseProduct)) {
+            preBaseProduct = comboBaseProduct.getSelectionModel().getSelectedItem();
+            if (preBaseProduct != null) {
+                txtBaseProduct.setText("Name: " + preBaseProduct.getName() + " Type: " + preBaseProduct.getProductType()
+                        + " Ingredients: " + preBaseProduct.getNameIngredients());
+            }
         }
         if (e.equals(cbSize)) {
             preProductSize = cbSize.getSelectionModel().getSelectedItem();
         }
     }
 
-    @FXML
-    void cleanIngredients(ActionEvent event) {
-        txtIngredients.setText("");
-        preListIngredients.clear();
-        btnClean.setDisable(true);
-    }
-
-    public void initComboIngredientBox() {
-        comboIngredients.getItems().addAll(restaurant.getEnableIngredients());
-    }
-
     public void initComboSizesBox() {
         cbSize.getItems().addAll(restaurant.getEnableProductSizes());
     }
 
+    public void initComboBaseBox() {
+        comboBaseProduct.getItems().addAll(restaurant.getEnableBaseProduct());
+    }
+
     @FXML
-    void sortByPrice(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void sortByPrice(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("Confirmation");
         alert.setContentText("The Products have been sort succesfully");
@@ -470,7 +428,7 @@ public class ProductController {
     }
 
     @FXML
-    void closeModal(MouseEvent event) {
+    public void closeModal(MouseEvent event) {
         modal.close();
     }
 
@@ -479,9 +437,7 @@ public class ProductController {
         listProducts.setItems(products);
         colcode.setCellValueFactory(new PropertyValueFactory<Product, Integer>("code"));
         colPriceProducts.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
-        colNameProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        colProductType.setCellValueFactory(new PropertyValueFactory<Product, ProductType>("productType"));
-        colIngredientsProducts.setCellValueFactory(new PropertyValueFactory<Product, String>("nameIngredients"));
+        colBaseproduct.setCellValueFactory(new PropertyValueFactory<Product, BaseProduct>("baseProduct"));
         colSizeProducts.setCellValueFactory(new PropertyValueFactory<Product, ProductSize>("productSize"));
         colCreatorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("creator"));
         colEditorProducts.setCellValueFactory(new PropertyValueFactory<Product, User>("lastEditor"));

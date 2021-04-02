@@ -99,7 +99,7 @@ public class Product implements Serializable, Comparable<Product> {
 
     @Override
     public String toString() {
-        return getBaseProduct().getName() + " " + getProductSize();
+        return getBaseProduct().getName() + "-" + getProductSize();
     }
 
 }

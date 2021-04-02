@@ -25,29 +25,24 @@
             <TableColumn fx:id="colEditorBaseProducts" minWidth="0.0" prefWidth="88.0" text="LAST EDITOR" />
          </columns>
       </TableView>
-      <Label layoutX="553.0" layoutY="76.0" text="Name:">
+      <Label layoutX="558.0" layoutY="150.0" text="Name:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="739.0" layoutY="74.0" prefHeight="25.0" prefWidth="98.0" text="Product Type:">
+      <Label layoutX="744.0" layoutY="148.0" prefHeight="25.0" prefWidth="98.0" text="Product Type:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="524.0" layoutY="139.0" text="Add Ingredients:">
+      <Label layoutX="633.0" layoutY="223.0" text="Add Ingredients:">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameBaseProducts" layoutX="494.0" layoutY="111.0" prefHeight="25.0" prefWidth="186.0" />
-      <Label fx:id="showMessage" layoutX="702.0" layoutY="364.0" prefHeight="25.0" prefWidth="206.0">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="comboIngredients" layoutX="489.0" layoutY="175.0" onAction="#comboEvent" prefHeight="31.0" prefWidth="186.0" />
-      <Label layoutX="676.0" layoutY="20.0" text="Base Product Crud">
+      <TextField fx:id="txtNameBaseProducts" layoutX="499.0" layoutY="185.0" prefHeight="25.0" prefWidth="186.0" />
+      <ComboBox fx:id="comboIngredients" layoutX="598.0" layoutY="259.0" onAction="#comboEvent" prefHeight="31.0" prefWidth="186.0" />
+      <Label layoutX="600.0" layoutY="20.0" text="Base Product Crud">
          <font>
             <Font name="System Bold Italic" size="21.0" />
          </font>
@@ -76,7 +71,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="553.0" layoutY="480.0" mnemonicParsing="false" onAction="#updateBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="548.0" layoutY="512.0" mnemonicParsing="false" onAction="#updateBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -88,7 +83,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="706.0" layoutY="480.0" mnemonicParsing="false" onAction="#deleteBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" contentDisplay="RIGHT" disable="true" layoutX="701.0" layoutY="512.0" mnemonicParsing="false" onAction="#deleteBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -100,7 +95,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="637.0" layoutY="425.0" mnemonicParsing="false" onAction="#createBaseProducts" prefHeight="41.0" prefWidth="116.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
+      <Button fx:id="btnCreate" alignment="CENTER" contentDisplay="RIGHT" layoutX="626.0" layoutY="457.0" mnemonicParsing="false" onAction="#createBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-background-color: blue;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -112,14 +107,14 @@
             </ImageView>
          </graphic>
       </Button>
-      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="634.0" layoutY="535.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
+      <CheckBox fx:id="cbDisable" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="629.0" layoutY="567.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setStateBaseProducts" prefHeight="41.0" prefWidth="122.0" style="-fx-border-color: blue; -fx-padding: 6;" text="Disable">
          <font>
             <Font size="16.0" />
          </font>
       </CheckBox>
-      <ImageView fitHeight="65.0" fitWidth="53.0" layoutX="615.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="105.0" fitWidth="116.0" layoutX="638.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/img/buying_96px.png" />
+            <Image url="@../assets/img/our-mission.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="376.0" layoutY="587.0" mnemonicParsing="false" onAction="#deselectBaseProduct" prefHeight="41.0" prefWidth="148.0" style="-fx-background-color: blue;" text="Deselect Row" textFill="WHITE">
@@ -139,9 +134,9 @@
             <Image url="@../assets/img/back_40px.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="cbTypes" layoutX="705.0" layoutY="108.0" onAction="#comboEvent" prefHeight="31.0" prefWidth="186.0" />
-      <TextArea fx:id="txtIngredients" editable="false" layoutX="491.0" layoutY="230.0" prefHeight="105.0" prefWidth="186.0" wrapText="true" />
-      <Button fx:id="btnClean" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="702.0" layoutY="227.0" mnemonicParsing="false" onAction="#cleanIngredients" prefHeight="41.0" prefWidth="186.0" style="-fx-background-color: blue;" text="Clean Ingredients" textFill="WHITE">
+      <ComboBox fx:id="cbTypes" layoutX="710.0" layoutY="182.0" onAction="#comboEvent" prefHeight="31.0" prefWidth="186.0" />
+      <TextArea fx:id="txtIngredients" editable="false" layoutX="496.0" layoutY="304.0" prefHeight="105.0" prefWidth="186.0" wrapText="true" />
+      <Button fx:id="btnClean" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="710.0" layoutY="336.0" mnemonicParsing="false" onAction="#cleanIngredients" prefHeight="41.0" prefWidth="186.0" style="-fx-background-color: blue;" text="Clean Ingredients" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

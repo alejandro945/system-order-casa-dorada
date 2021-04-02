@@ -305,8 +305,6 @@ public class EmployeeController {
                     || dateStart.getValue()
                             .compareTo(LocalDate.parse(cGui.date(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))) > 0) {
                 btnGenerate.setDisable(true);
-            } else if (dateStart.getValue() == null || dateEnd.getValue() == null) {
-                System.out.println("d");
             } else if (dateStart.getValue().compareTo(dateEnd.getValue()) < 0) {
                 btnGenerate.setDisable(false);
             } else if (dateStart.getValue().compareTo(dateEnd.getValue()) > 0) {

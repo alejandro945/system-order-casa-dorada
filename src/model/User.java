@@ -57,7 +57,7 @@ public class User extends Employee {
     @Override
     public String toString() {
         if (getImage() == null) {
-            return "IMPORTED";
+            return "REGISTER";
         } else {
             return getName();
         }

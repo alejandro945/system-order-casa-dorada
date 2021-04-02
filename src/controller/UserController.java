@@ -332,7 +332,7 @@ public class UserController {
     }
 
     public void initAdmin() {
-        if (restaurant.getAdmin().getUserName() != null) {
+        if (restaurant.getAdmin() != null) {
             adminUser.setText("Username: " + restaurant.getAdmin().getUserName());
             adminPassword.setText("Password: " + restaurant.getAdmin().getPassword());
         }

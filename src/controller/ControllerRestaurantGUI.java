@@ -217,10 +217,9 @@ public class ControllerRestaurantGUI implements Initializable {
         Parent root = fxmlloader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().setAll(root);
-        productController.initComboIngredientBox();
         productController.initComboSizesBox();
+        productController.initComboBaseBox();
         productController.initProductTable();
-        productController.initReport();
     }
 
     public void showProductsReport() throws IOException {

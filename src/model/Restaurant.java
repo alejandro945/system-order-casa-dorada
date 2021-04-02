@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -308,6 +307,30 @@ public class Restaurant {
         return render;
     }
 
+    public ProductType getTypeImporting(String name) {
+        boolean render = false;
+        ProductType pt = null;
+        for (int i = 0; i < productType.size() && !render; i++) {
+            if (productType.get(i).getName().equalsIgnoreCase(name)) {
+                pt = productType.get(i);
+                render = true;
+            }
+        }
+        return pt;
+    }
+
+    public Ingredients getIngredientImporting(String name) {
+        boolean render = false;
+        Ingredients ing = null;
+        for (int i = 0; i < ingredients.size() && !render; i++) {
+            if (ingredients.get(i).getName().equalsIgnoreCase(name)) {
+                ing = ingredients.get(i);
+                render = true;
+            }
+        }
+        return ing;
+    }
+
     public boolean searchProductSize(String name) {
         boolean render = false;
         for (int i = 0; i < products.size() && !render; i++) {
@@ -415,7 +438,6 @@ public class Restaurant {
                 }
             }
         }
-        System.out.println(Arrays.toString(orderSorted.toArray()));
         return orderSorted;
     }
 
@@ -595,6 +617,7 @@ public class Restaurant {
             oos.writeObject(people);
             oos.writeObject(products);
             oos.writeObject(orders);
+            oos.writeObject(baseProducts);
             oos.writeObject(ingredients);
             oos.writeObject(productType);
             oos.writeObject(productSize);
@@ -613,6 +636,7 @@ public class Restaurant {
             people = (List<Person>) ois.readObject();
             products = (ArrayList<Product>) ois.readObject();
             orders = (ArrayList<Order>) ois.readObject();
+            baseProducts = (List<BaseProduct>) ois.readObject();
             ingredients = (List<Ingredients>) ois.readObject();
             productType = (List<ProductType>) ois.readObject();
             productSize = (List<ProductSize>) ois.readObject();
@@ -718,19 +742,53 @@ public class Restaurant {
     // ---------------------------------------------PRODUCTS-REPORT--------------------------------------------------------
     public List<Product> getUnitProducts(List<Order> order) {
         List<Product> p = new ArrayList<>();
-        // for (int i = 0; i < order.size(); i++) {
-        // if (p.isEmpty()) {
-        // p.add(order.get(0).getEmployee());
-        // } else {
-        // for (int j = 0; j < p.size(); j++) {
-        // if (p.get(j).getId() != order.get(i).getEmployee().getId()
-        // && !searchPro(p, order.get(i).getpr)) {
-        // p.add(order.get(i).getEmployee());
-        // }
-        // }
-        // }
-        // }
+        for (int i = 0; i < order.size(); i++) {
+            for (int k = 0; k < order.get(i).getProducts().size(); k++) {
+                if (p.isEmpty()) {
+                    p.add(order.get(0).getProducts().get(0));
+                } else {
+                    for (int j = 0; j < p.size(); j++) {
+                        if (!p.get(j).getBaseProduct().getName()
+                                .equals(order.get(i).getProducts().get(k).getBaseProduct().getName())
+                                && !searchPro(p, order.get(i).getProducts().get(k).getBaseProduct().getName(),
+                                        order.get(i).getProducts().get(k).getProductSize().getName())) {
+                            p.add(order.get(i).getProducts().get(k));
+                        } else if (!p.get(j).getProductSize().equals(order.get(i).getProducts().get(k).getProductSize())
+                                && !searchPro(p, order.get(i).getProducts().get(k).getBaseProduct().getName(),
+                                        order.get(i).getProducts().get(k).getProductSize().getName())) {
+                            p.add(order.get(i).getProducts().get(k));
+                        }
+                    }
+                }
+            }
+        }
         return p;
+    }
+
+    public ArrayList<int[]> countOrdersForProduct(List<Product> p, List<Order> order) {
+        ArrayList<int[]> list = new ArrayList<>();
+        int[] array = new int[2];
+        int orderForProduct = 0;
+        double totalPrice = 0;
+        for (int j = 0; j < p.size(); j++) {
+            for (int i = 0; i < order.size(); i++) {
+                for (int k = 0; k < order.get(i).getProducts().size(); k++) {
+                    if (order.get(i).getProducts().get(k).getBaseProduct().getName()
+                            .equals(p.get(j).getBaseProduct().getName())
+                            && order.get(i).getProducts().get(k).getProductSize().equals(p.get(j).getProductSize())) {
+                        orderForProduct += order.get(i).getAmount().get(k);
+                        totalPrice += p.get(j).getPrice() * orderForProduct;
+                    }
+                }
+            }
+            array[0] = orderForProduct;
+            array[1] = (int) (totalPrice);
+            list.add(array);
+            array = new int[2];
+            orderForProduct = 0;
+            totalPrice = 0;
+        }
+        return list;
     }
 
     public boolean searchPro(List<Product> p, String name, String size) {
@@ -745,15 +803,18 @@ public class Restaurant {
 
     public void exportProductReport(String fileName, String separator, List<Order> o) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        // List<Product> em = getUnitEmployees(o);
-        pw.println("Name" + separator + "Last name" + separator + "Id" + separator + "# Orders" + separator + "Total");
-        // ArrayList<int[]> a = countOrdersForEmployee(em, o);
-        // for (int i = 0; i < em.size(); i++) {
-        // Employee e = em.get(i);
-        // pw.println(e.getName() + separator + e.getLastName() + separator + e.getId()
-        // + separator + a.get(i)[0]
-        // + separator + a.get(i)[1]);
-        // }
+        List<Product> p = getUnitProducts(o);
+        int grandTotal = 0;
+        pw.println("Product" + separator + "Size" + separator + "Requested Amount" + separator + "Unit Price"
+                + separator + "Total");
+        ArrayList<int[]> a = countOrdersForProduct(p, o);
+        for (int i = 0; i < p.size(); i++) {
+            Product pro = p.get(i);
+            pw.println(pro.getBaseProduct() + separator + pro.getProductSize() + separator + a.get(i)[0] + separator
+                    + pro.getPrice() + separator + (a.get(i)[0] * pro.getPrice()));
+            grandTotal += (a.get(i)[0] * pro.getPrice());
+        }
+        pw.println(separator + separator + separator + "Grand Total" + separator + grandTotal);
         pw.close();
     }
 
@@ -793,25 +854,24 @@ public class Restaurant {
 
     public String deleteUser(User useroToDelete) {
         boolean redux = false;
-        String msg = "";
+        String msg = "You can not delete you";
         boolean render = searchUserByName(useroToDelete);
-        if (render == true) {
-            for (int i = 0; i < people.size() && !redux; i++) {
-                if (people.get(i) instanceof User) {
-                    User user = (User) (people.get(i));
-                    if (user == useroToDelete && getLoggedUser(userIndex) != user) {
+        for (int i = 0; i < people.size() && !redux; i++) {
+            if (people.get(i) instanceof User) {
+                User user = (User) (people.get(i));
+                if (user == useroToDelete && getLoggedUser(userIndex) != user) {
+                    if (render == false) {
                         User u = getLoggedUser(userIndex);
                         people.remove(useroToDelete);
                         userVerification(u.getUserName(), u.getPassword());
                         msg = "The user have been deleted succesfully";
                         redux = true;
                     } else {
-                        msg = "You can't delete you";
+                        msg = "The User have a reference by a Orders";
+                        redux = true;
                     }
                 }
             }
-        } else {
-            msg = "The User have a reference by a Orders";
         }
         return msg;
     }
@@ -1121,7 +1181,7 @@ public class Restaurant {
 
     public String deleteEmployee(Employee employeeToDelete) {
         boolean found = false;
-        String msg = "";
+        String msg = "you can not delete you";
         boolean redux = searchUserByName(employeeToDelete);
         for (int i = 0; i < people.size() && !found; i++) {
             if (people.get(i) instanceof Employee) {
@@ -1134,12 +1194,9 @@ public class Restaurant {
                         found = true;
                         msg = "The employee have been deleted succesfully";
                     } else {
-                        msg = "The employee have a reference by a order";
+                        msg = "The employee have a reference by order ";
                         found = true;
                     }
-                } else {
-                    msg = "You can not delete you";
-                    found = true;
                 }
             }
         }
@@ -1235,7 +1292,6 @@ public class Restaurant {
                 if (newIngredient.getName().equalsIgnoreCase(ingredients.get(j).getName())) {
                     msg = "You can not added an ingredient with the same name";
                     added = true;
-                    System.out.println(getLoggedUser(userIndex) == creator);
                 }
             }
             if (!added) {
@@ -1558,15 +1614,13 @@ public class Restaurant {
             User creator) {
         String msg = "";
         BaseProduct newBaseProduct = new BaseProduct(name, productType, ingredients, code, creator);
-        System.out.println(Arrays.toString(ingredients.toArray()));
         if (baseProducts.isEmpty()) {
             baseProducts.add(newBaseProduct);
             msg = "The base product " + newBaseProduct.getName() + " have been added succesfully";
         } else {
             boolean added = false;
             for (int j = 0; j < baseProducts.size() && !added; j++) {
-                if (newBaseProduct.getName().equalsIgnoreCase(baseProducts.get(j).getName()) && newBaseProduct
-                        .getProductType().getName().equals(baseProducts.get(j).getProductType().getName())) {
+                if (newBaseProduct.getName().equalsIgnoreCase(baseProducts.get(j).getName())) {
                     msg = "You can not added an base product, because alredy exists";
                     added = true;
                 }
@@ -1608,20 +1662,30 @@ public class Restaurant {
         if (redux == false) {
             baseProducts.remove(positionBaseProduct);
             setCodeBaseProductPosition();
-            return "The product have been deleted succesfully";
+            return "The base product have been deleted succesfully";
         } else {
-            return "The base product have a reference by a product";
+            return "The base base product have a reference by a product";
         }
     }
 
     public String disableBaseProduct(BaseProduct bp) {
         bp.setState(false);
-        return "The product have been disabled succesfully";
+        return "The base product have been disabled succesfully";
     }
 
     public String enableBaseProduct(BaseProduct bp) {
         bp.setState(true);
-        return "The product have been enabled succesfully";
+        return "The base product have been enabled succesfully";
+    }
+
+    public ArrayList<Ingredients> getingImporting(String[] ing) {
+        ArrayList<Ingredients> in = new ArrayList<>();
+        for (int i = 1; i < ing.length; i++) {
+            if (searchIngredient(ing[i])) {
+                in.add(getIngredientImporting(ing[i]));
+            }
+        }
+        return in;
     }
 
     public void importDataBaseProduct(String fileName) throws IOException {
@@ -1629,24 +1693,29 @@ public class Restaurant {
         String line = br.readLine();
         while (line != null) {
             String[] parts = line.split(FILE_SEPARATOR);
-            String name = parts[0];
-            int code = Integer.parseInt(null);
+            String[] parts2 = line.split("|");
+            boolean render = searchProductType(parts[1]);
+            ArrayList<Ingredients> ing = getingImporting(parts2);
+            if (render && ing != null) {
+                String name = parts[0];
+                ProductType pt = getTypeImporting(parts[1]);
+                addBaseProduct(name, pt, ing, getCodeBaseProduct(), getLoggedUser(userIndex));
+            }
             line = br.readLine();
-            addProductSize(name, code, getLoggedUser(userIndex));
         }
         br.close();
     }
 
     public void exportDataBaseProduct(String fileName, String separator) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(fileName);
-        pw.println("CASA DORADA PRODUCTS REPORT");
+        pw.println("CASA DORADA BASE PRODUCTS REPORT");
         pw.println("Code" + separator + " Name" + separator + "Product type" + separator + "Ingredients" + separator
                 + "State");
         for (int i = 0; i < getBaseProducts().size(); i++) {
             BaseProduct bp = getBaseProducts().get(i);
-            String statusP = (bp.getState() == true) ? "ACTIVE" : "INACTIVE";
+            String statusBp = (bp.getState() == true) ? "ACTIVE" : "INACTIVE";
             pw.println(bp.getCode() + separator + bp.getName() + separator + bp.getProductType() + separator + separator
-                    + bp.getNameIngredients() + separator + statusP);
+                    + bp.getNameIngredients() + separator + statusBp);
         }
         pw.close();
     }

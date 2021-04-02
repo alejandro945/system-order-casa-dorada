@@ -41,9 +41,6 @@ public class BaseProductController {
     private TextField txtNameBaseProducts;
 
     @FXML
-    private Label showMessage;
-
-    @FXML
     private ComboBox<Ingredients> comboIngredients;
 
     @FXML
@@ -103,8 +100,10 @@ public class BaseProductController {
     void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
+
     @FXML
-    public void createBaseProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void createBaseProducts(ActionEvent event)
+            throws FileNotFoundException, ClassNotFoundException, IOException {
         boolean validateFields = baseProductValidation(txtNameBaseProducts.getText(), txtIngredients.getText());
         if (!validateFields) {
             Alert alert2 = new Alert(AlertType.WARNING);
@@ -115,8 +114,7 @@ public class BaseProductController {
         } else if (validateFields) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             String msg = restaurant.addBaseProduct(txtNameBaseProducts.getText(), preProductType, preListIngredients,
-                    restaurant.getCodeBaseProduct(),
-                    restaurant.getLoggedUser(restaurant.getUserIndex()));
+                    restaurant.getCodeBaseProduct(), restaurant.getLoggedUser(restaurant.getUserIndex()));
             alert.setContentText(msg);
             alert.showAndWait();
             restaurant.saveData();
@@ -136,9 +134,9 @@ public class BaseProductController {
 
     public void trimBaseProductForm() {
         txtNameBaseProducts.setText("");
-        preListIngredients.clear();
         comboIngredients.setValue(null);
         txtIngredients.setText("");
+        preListIngredients.clear();
         cbTypes.setValue(null);
         btnCreate.setDisable(false);
         btnUpdate.setDisable(true);
@@ -150,9 +148,10 @@ public class BaseProductController {
     @FXML
     public void updateBaseProducts(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        String msg = restaurant.setBaseProductInfo(getPreSelectBaseProduct(), txtNameBaseProducts.getText(), cbTypes.getValue(),
-                preListIngredients, getIdxBaseProduct(), restaurant.getLoggedUser(restaurant.getUserIndex()));
-                restaurant.getLoggedUser(restaurant.getUserIndex());
+        String msg = restaurant.setBaseProductInfo(getPreSelectBaseProduct(), txtNameBaseProducts.getText(),
+                cbTypes.getValue(), preListIngredients, getIdxBaseProduct(),
+                restaurant.getLoggedUser(restaurant.getUserIndex()));
+        restaurant.getLoggedUser(restaurant.getUserIndex());
         alert.setContentText(msg);
         alert.showAndWait();
         restaurant.saveData();
@@ -181,13 +180,14 @@ public class BaseProductController {
     public void setForm(BaseProduct selectBaseProduct) {
         txtNameBaseProducts.setText(selectBaseProduct.getName());
         cbTypes.setValue(selectBaseProduct.getProductType());
-        txtIngredients.setText(selectBaseProduct.getNameIngredients());
         preListIngredients = selectBaseProduct.getIngredients();
+        txtIngredients.setText(selectBaseProduct.getNameIngredients());
         cbDisable.setSelected(!selectBaseProduct.getState());
     }
 
     @FXML
-    public void setStateBaseProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void setStateBaseProducts(ActionEvent event)
+            throws FileNotFoundException, ClassNotFoundException, IOException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableBaseProduct(preSelectBaseProduct);
@@ -207,7 +207,8 @@ public class BaseProductController {
     }
 
     @FXML
-    public void deleteBaseProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void deleteBaseProducts(ActionEvent event)
+            throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteProduct(getIdxBaseProduct(), preSelectBaseProduct.getName(),
                 String.valueOf(preSelectBaseProduct.getProductType()));
@@ -221,7 +222,7 @@ public class BaseProductController {
     }
 
     @FXML
-     public void deselectBaseProduct(ActionEvent event) {
+    public void deselectBaseProduct(ActionEvent event) {
         trimBaseProductForm();
     }
 
@@ -233,37 +234,38 @@ public class BaseProductController {
         File selectedFile = fc.showSaveDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Export product");
+            alert.setTitle("Export base product");
             restaurant.exportDataProduct(selectedFile.getAbsolutePath(), separator.getText());
-            alert.setContentText("The product data was exported succesfully");
+            alert.setContentText("The base product data was exported succesfully");
             alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Export product");
-            alert.setContentText("The product data was NOT exported. An error occurred");
+            alert.setTitle("Export base product");
+            alert.setContentText("The base product data was NOT exported. An error occurred");
             alert.showAndWait();
         }
     }
 
     @FXML
-    public void importBaseProducts(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void importBaseProducts(ActionEvent event)
+            throws FileNotFoundException, ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
         File selectedFile = fc.showOpenDialog(cGui.getPane());
         if (selectedFile != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Import product");
+            alert.setTitle("Import base product");
             restaurant.importDataProduct(selectedFile.getAbsolutePath());
-            alert.setContentText("The product data was imported succesfully");
+            alert.setContentText("The base product data was imported succesfully");
             alert.showAndWait();
             restaurant.saveData();
             restaurant.loadData();
             initBaseProductTable();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Import product");
-            alert.setContentText("The product data was NOT imported. An error occurred");
+            alert.setTitle("Import base product");
+            alert.setContentText("The base product data was NOT imported. An error occurred");
             alert.showAndWait();
         }
     }
@@ -307,8 +309,10 @@ public class BaseProductController {
         listBaseProducts.setItems(baseProducts);
         colCode.setCellValueFactory(new PropertyValueFactory<BaseProduct, Integer>("code"));
         colNameBaseProducts.setCellValueFactory(new PropertyValueFactory<BaseProduct, String>("name"));
-        colProductTypeBaseProduct.setCellValueFactory(new PropertyValueFactory<BaseProduct, ProductType>("productType"));
-        colIngredientsBaseProducts.setCellValueFactory(new PropertyValueFactory<BaseProduct, String>("nameIngredients"));
+        colProductTypeBaseProduct
+                .setCellValueFactory(new PropertyValueFactory<BaseProduct, ProductType>("productType"));
+        colIngredientsBaseProducts
+                .setCellValueFactory(new PropertyValueFactory<BaseProduct, String>("nameIngredients"));
         colCreatorBaseProducts.setCellValueFactory(new PropertyValueFactory<BaseProduct, User>("creator"));
         colEditorBaseProducts.setCellValueFactory(new PropertyValueFactory<BaseProduct, User>("lastEditor"));
     }
