@@ -97,7 +97,7 @@ public class BaseProductController {
     }
 
     @FXML
-    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+    public void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
 

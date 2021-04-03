@@ -108,12 +108,12 @@ public class EmployeeController {
     }
 
     @FXML
-    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+    public void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
 
     @FXML
-    void createEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void createEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean validateFields = employeeValidation(txtNameEmployee.getText(), txtLastNameEmployee.getText(),
                 txtIDEmployee.getText());
         if (!validateFields) {
@@ -153,7 +153,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void selectedEmployee(MouseEvent event) {
+    public void selectedEmployee(MouseEvent event) {
         Employee sltEmployee = listEmployees.getSelectionModel().getSelectedItem();
         if (sltEmployee != null) {
             int idxUser = listEmployees.getSelectionModel().getSelectedIndex();
@@ -168,7 +168,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void generateReport(ActionEvent event) throws FileNotFoundException {
+    public void generateReport(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -211,7 +211,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void setStateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void setStateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         String msg = "";
         if (cbDisableEmployee.isSelected()) {
             msg = restaurant.disableEmployee(preSelectEmployee);
@@ -230,7 +230,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void updateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void updateEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoEmployee(getPreSelectEmployee(), txtNameEmployee.getText(),
                 txtLastNameEmployee.getText(), Integer.parseInt(txtIDEmployee.getText()),
@@ -245,7 +245,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void deleteEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void deleteEmployee(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteEmployee(getPreSelectEmployee());
         alert.setContentText(msg);
@@ -256,12 +256,12 @@ public class EmployeeController {
     }
 
     @FXML
-    void deselectEmployee(ActionEvent event) {
+    public void deselectEmployee(ActionEvent event) {
         trimEmployeeForm();
     }
 
     @FXML
-    void exportEmployee(ActionEvent event) throws FileNotFoundException {
+    public void exportEmployee(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -281,7 +281,7 @@ public class EmployeeController {
     }
 
     @FXML
-    void eventReport(ActionEvent event) {
+    public void eventReport(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(dateStart)) {
             initbtnReportDate();
@@ -345,12 +345,12 @@ public class EmployeeController {
     }
 
     @FXML
-    void closeModal(MouseEvent event) {
+    public void closeModal(MouseEvent event) {
         modal.close();
     }
 
     @FXML
-    void importEmployee(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void importEmployee(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));

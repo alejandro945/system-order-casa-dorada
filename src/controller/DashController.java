@@ -75,32 +75,32 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showListEmployees(ActionEvent event) throws ClassNotFoundException, IOException {
+    public void showListEmployees(ActionEvent event) throws ClassNotFoundException, IOException {
         cGui.showEmployees();
     }
 
     @FXML
-    void showEmployeesReport(ActionEvent event) throws IOException {
+    public void showEmployeesReport(ActionEvent event) throws IOException {
         cGui.showEmployeesReport();
     }
 
     @FXML
-    void showIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
+    public void showIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showIngredients();
     }
 
     @FXML
-    void showProducts(ActionEvent event) throws IOException {
+    public void showProducts(ActionEvent event) throws IOException {
         cGui.showProducts();
     }
 
     @FXML
-    void showProductsReport(ActionEvent event) throws IOException {
+    public void showProductsReport(ActionEvent event) throws IOException {
         cGui.showProductsReport();
     }
 
     @FXML
-    void showBaseProduct(ActionEvent event) throws IOException {
+    public void showBaseProduct(ActionEvent event) throws IOException {
         cGui.showBaseProducts();
     }
 
@@ -110,22 +110,22 @@ public class DashController implements Initializable {
     }
 
     @FXML
-    void showProductSizes(ActionEvent event) throws IOException, ClassNotFoundException {
+    public void showProductSizes(ActionEvent event) throws IOException, ClassNotFoundException {
         cGui.showProductSizes();
     }
 
     @FXML
-    void showOrders(ActionEvent event) throws IOException {
+    public void showOrders(ActionEvent event) throws IOException {
         cGui.showOrders();
     }
 
     @FXML
-    void showOrdersReport(ActionEvent event) throws IOException {
+    public void showOrdersReport(ActionEvent event) throws IOException {
         cGui.showOrdersReport();
     }
 
     @FXML
-    void github(MouseEvent event) throws IOException {
+    public void github(MouseEvent event) throws IOException {
         String osName = System.getProperty("os.name");
         if (osName.contains("Windows"))
             Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "https://github.com/alejandro945");

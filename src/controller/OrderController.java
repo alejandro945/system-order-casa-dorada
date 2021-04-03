@@ -219,7 +219,7 @@ public class OrderController {
     }
 
     @FXML
-    void createOrder(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void createOrder(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         boolean validateFields = orderValidation(txtSuggestionsOrder.getText(), txtTotalToPay.getText(),
                 txtAreaAmountProduct.getText());
         if (!validateFields) {
@@ -274,7 +274,7 @@ public class OrderController {
     }
 
     @FXML
-    void cleanProducts(ActionEvent event) {
+    public void cleanProducts(ActionEvent event) {
         preProduct.clear();
         txtAreaAmountProduct.setText("");
         preAmount.clear();
@@ -290,7 +290,7 @@ public class OrderController {
     }
 
     @FXML
-    void searchCostumer(ActionEvent event) {
+    public void searchCostumer(ActionEvent event) {
         Long startTime = System.nanoTime();
         Costumer c = restaurant.searchBinary(preCostumer.getId(), restaurant.sortCostumerById());
         txtAreaCostumerInfo.setText(
@@ -301,7 +301,7 @@ public class OrderController {
     }
 
     @FXML
-    void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
+    public void updateOrder(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setOrderInfo(preSelectOrder, cGui.date(), cGui.getHour(), preState, preProduct,
                 preAmount, preCostumer, preEmployee, txtSuggestionsOrder.getText(),
@@ -316,7 +316,7 @@ public class OrderController {
     }
 
     @FXML
-    void selectedOrder(MouseEvent event) {
+    public void selectedOrder(MouseEvent event) {
         Order sltOrder = listOrders.getSelectionModel().getSelectedItem();
         if (sltOrder != null) {
             int idxProduct = listOrders.getSelectionModel().getSelectedIndex();
@@ -346,7 +346,7 @@ public class OrderController {
     }
 
     @FXML
-    void deleteOrder(ActionEvent event) throws IOException, ClassNotFoundException {
+    public void deleteOrder(ActionEvent event) throws IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteOrder(getIdxOrder(), preSelectOrder.getState());
         alert.setContentText(msg);
@@ -360,12 +360,12 @@ public class OrderController {
     }
 
     @FXML
-    void deselectOrder(ActionEvent event) {
+    public void deselectOrder(ActionEvent event) {
         trimOrderForm();
     }
 
     @FXML
-    void exportOrders(ActionEvent event) throws FileNotFoundException {
+    public void exportOrders(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -385,7 +385,7 @@ public class OrderController {
     }
 
     @FXML
-    void importOrders(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void importOrders(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -408,7 +408,7 @@ public class OrderController {
     }
 
     @FXML
-    void addToCart(ActionEvent event) {
+    public void addToCart(ActionEvent event) {
         if (preProd != null && !txtAmountProducts.getText().equals("")) {
             preAmount.add(Integer.parseInt(txtAmountProducts.getText()));
             preProduct.add(preProd);
@@ -453,7 +453,7 @@ public class OrderController {
     }
 
     @FXML
-    void comboAction(ActionEvent event) {
+    public void comboAction(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(comboProductOrders)) {
             preProd = (restaurant.searchIndex(comboProductOrders.getSelectionModel().getSelectedItem()));
@@ -476,12 +476,12 @@ public class OrderController {
     }
 
     @FXML
-    void closeModal(MouseEvent event) {
+    public void closeModal(MouseEvent event) {
         modal.close();
     }
 
     @FXML
-    void event(ActionEvent event) {
+    public void event(ActionEvent event) {
         Object e = event.getSource();
         if (e.equals(dateStart)) {
             initbtnReportDate();
@@ -544,7 +544,7 @@ public class OrderController {
     }
 
     @FXML
-    void generateReport(ActionEvent event) throws FileNotFoundException {
+    public void generateReport(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
