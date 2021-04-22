@@ -317,7 +317,7 @@ public class UserController {
     }
 
     @FXML
-    void handleMouseClick(MouseEvent event) {
+    public void handleMouseClick(MouseEvent event) {
         if (event.getSource() == btnBackToLogin) {
             new FadeIn(pnlSingin).play();
             pnlSingin.toFront();
@@ -399,7 +399,7 @@ public class UserController {
     }
 
     @FXML
-    void selectedUser(MouseEvent event) {
+    public void selectedUser(MouseEvent event) {
         User sltUser = listUsers.getSelectionModel().getSelectedItem();
         if (sltUser != null) {
             int idxUser = listUsers.getSelectionModel().getSelectedIndex();
@@ -474,7 +474,7 @@ public class UserController {
     }
 
     @FXML
-    void deleteUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void deleteUser(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteUser(getPreSelectUser());
         alert.setContentText(msg);

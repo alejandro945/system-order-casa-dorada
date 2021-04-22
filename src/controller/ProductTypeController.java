@@ -174,7 +174,7 @@ public class ProductTypeController {
     }
 
     @FXML
-    void deleteProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void deleteProductType(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteProductType(getIdxProductType(), preSelectProductType.getName());
         alert.setContentText(msg);
@@ -185,12 +185,12 @@ public class ProductTypeController {
     }
 
     @FXML
-    void deselectProductType(ActionEvent event) {
+    public void deselectProductType(ActionEvent event) {
         trimProductTypeForm();
     }
 
     @FXML
-    void exportProductType(ActionEvent event) throws FileNotFoundException {
+    public void exportProductType(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
         new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -210,7 +210,7 @@ public class ProductTypeController {
     }
 
     @FXML
-    void importProductType(ActionEvent event) throws ClassNotFoundException, IOException {
+    public void importProductType(ActionEvent event) throws ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));

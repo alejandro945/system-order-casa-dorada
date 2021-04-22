@@ -73,12 +73,12 @@ public class IngredientsController {
     }
 
     @FXML
-    void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
+    public void backCostuToDash(MouseEvent event) throws ClassNotFoundException, IOException {
         cGui.showDashBoard();
     }
 
     @FXML
-    void createIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
+    public void createIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
         boolean validateFields = ingredientValidation(txtNameIngredients.getText());
         if (!validateFields) {
             Alert alert2 = new Alert(AlertType.WARNING);
@@ -115,7 +115,7 @@ public class IngredientsController {
     }
 
     @FXML
-    void selectedIngredients(MouseEvent event) {
+    public void selectedIngredients(MouseEvent event) {
         Ingredients sltIngredient = listIngredients.getSelectionModel().getSelectedItem();
         if (sltIngredient != null) {
             int idxIngredient = listIngredients.getSelectionModel().getSelectedIndex();
@@ -135,7 +135,7 @@ public class IngredientsController {
     }
 
     @FXML
-    void setStateIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void setStateIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         String msg = "";
         if (cbDisable.isSelected()) {
             msg = restaurant.disableIngredient(preSelectIngredient);
@@ -154,7 +154,7 @@ public class IngredientsController {
     }
 
     @FXML
-    void updateIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
+    public void updateIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.setInfoIngredient(getPreSelectIngredient(), txtNameIngredients.getText(),
                 restaurant.getLoggedUser(restaurant.getUserIndex()));
@@ -168,7 +168,7 @@ public class IngredientsController {
     }
 
     @FXML
-    void deleteIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
+    public void deleteIngredients(ActionEvent event) throws FileNotFoundException, ClassNotFoundException, IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         String msg = restaurant.deleteIngredient(getIdxIngredient(), preSelectIngredient.getName());
         alert.setContentText(msg);
@@ -179,7 +179,7 @@ public class IngredientsController {
     }
 
     @FXML
-    void sortIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
+    public void sortIngredients(ActionEvent event) throws IOException, ClassNotFoundException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setHeaderText("Confirmation");
         alert.setContentText("The ingredients have been sort succesfully");
@@ -192,12 +192,12 @@ public class IngredientsController {
     }
 
     @FXML
-    void deselectIngredient(ActionEvent event) {
+    public void deselectIngredient(ActionEvent event) {
         trimIngredientsForm();
     }
 
     @FXML
-    void exportIngredients(ActionEvent event) throws FileNotFoundException {
+    public void exportIngredients(ActionEvent event) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
@@ -217,7 +217,7 @@ public class IngredientsController {
     }
 
     @FXML
-    void importIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
+    public void importIngredients(ActionEvent event) throws ClassNotFoundException, IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"),
                 new FileChooser.ExtensionFilter("TXT", "*.txt"));
