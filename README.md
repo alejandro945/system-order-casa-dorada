@@ -1,10 +1,9 @@
-<div align="center">
 ![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/casa-dorada-removebg-preview.png)<br>
-
-<h2> Bienvenidos a nuestro proyecto <𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛𝚜/>! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
+<div align="center">
+<h2> Bienvenidos a nuestro proyecto! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
 </div>
 
-# Casa Dorada System Order ![Status badge]![Up to Date]
+# Casa Dorada System Order ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
 
 ✨ Gestiona tu restaurante de manera eficiente con tecnologia de calidad.
 
