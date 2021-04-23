@@ -1,0 +1,7 @@
+CASA DORADA ORDER REPORT
+Code;Hour;Date;State;Costumer;Employee;Suggestion;Total price
+780;11:48:22;22/04/2021;SENT;Zilvi;Gleda;ninguna;15300.0;Noak-Familiar;2;1352.0;Bentley-Familiar;4;3149.0
+781;15:29:04;22/04/2021;DELIVERED;Zilvi;Briana;ninguna;8196.0;Erminia-Caja para dos;2;1686.0;Lauren-Personal;2;2412.0
+782;15:37:02;22/04/2021;REQUESTED;Zorah;Alejandro;test;1352.0;Noak-Familiar;1;1352.0
+783;23:08:19;22/04/2021;SENT;Zorah;Edi;ninguna;11612.0;Maybach-Personal;2;1826.0;Saxe-Familiar;4;1990.0
+;;;;;;Grand Total;36460

@@ -9,9 +9,9 @@
 
 _Aplicación de escritorio que resuelve problemas de automatización de registros, tanto en el área administrativa como contable de una organización._
 
-## Espera te convecemos!! 😝
+## Espera, te convencemos!! 😝
 
-Revisa el siguiente video para que no te quede ninguna duda sobre la importancia de este software en tu vida: (https://youtu.be/popeGn-g1ME)
+Revisa el siguiente video para que no te quede ninguna duda sobre la importancia de este software en tu vida: https://youtu.be/popeGn-g1ME
 
 ## Comenzando 🚀
 
@@ -20,7 +20,7 @@ Revisa el siguiente video para que no te quede ninguna duda sobre la importancia
 
 ### Pre-requisitos 📋
 
-Asegúrate de tener instalado en tu ordenador el JRE  como minimo de: **"jre1.8.0_261"**, esto con el fin de asegurar todas las funcionalidades del software.
+Asegúrate de tener instalado en tu ordenador el JRE como minimo de: **"jre1.8.0_261"**, esto con el fin de asegurar todas las funcionalidades del software.
 
 ```
 Contar con un IDE o maquina virtual de java.
@@ -28,7 +28,7 @@ Contar con un IDE o maquina virtual de java.
 
 ## Despliegue 📦
 
-_Existen dos formas de ejecutar o desplegar de manera rapida nuestro proyecto:_
+_Existen dos formas de ejecutar o desplegar de manera rápida nuestro proyecto:_
 
 🛠 Archivo casa-dorada.jar: 
 
@@ -46,7 +46,7 @@ Para revisar la infinidad de funcionalidades que provee este software te invitam
 
 ## Tutoriales 📹
 
-_Importar datos_
+_Importar datos enlace video 👇 (click)_
 
 [![Watch the video](https://i.imgur.com/p8RyyS1.png)](https://youtu.be/NMClQ0Blcyk)
 
@@ -111,9 +111,7 @@ _Personas que ayudaron a levantar el proyecto_
 * **Luis Murcia** -  [Luis Murcia](https://github.com/luis486) 
 ---
 <div align="center">
-</br>
-</br>
-<i>Random dev joke for you! (create your own by clicking here ↓)</i><br>
+<i>Random dev joke for you!</i><br>
 <a href="https://readme-jokes.vercel.app"><img align="center" src="https://readme-jokes.vercel.app/api" alt="README Jokes"></a>
 
 
