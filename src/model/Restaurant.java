@@ -202,14 +202,15 @@ public class Restaurant {
         boolean render = false;
         for (int i = 0; i < orders.size() && !render; i++) {
             Order o = orders.get(i);
-            for (int j = 0; j < getCostumers(people).size() && !render; j++) {
-                if (o.getCostumer().getId() == c.getId()) {
-                    if (o.getState().equals(State.IN_PROCCESS) || o.getState().equals(State.REQUESTED)
-                            || o.getState().equals(State.SENT)) {
-                        render = true;
+            for (int j = 0; j < getCostumers(people).size(); j++) {
+                if (o.getCostumer() != null) {
+                    if (o.getCostumer().getId() == c.getId()) {
+                        if (!o.getState().equals(State.DELIVERED) || !o.getState().equals(State.CANCELED))
+                            render = true;
                     }
                 }
             }
+
         }
         return render;
     }
