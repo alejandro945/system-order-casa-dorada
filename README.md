@@ -42,7 +42,8 @@ _Existen dos formas de ejecutar o desplegar de manera rápida nuestro proyecto:_
 
 ## Funcionalidades 💡
 
-Para revisar la infinidad de funcionalidades que provee este software te invitamos a que des un pequeño vistazo al siguiente video: 
+Para revisar la infinidad de funcionalidades que provee este software te invitamos a que des un pequeño vistazo al siguiente video: https://youtu.be/4By-A7KpJjw
+
 
 ## Tutoriales 📹
 
